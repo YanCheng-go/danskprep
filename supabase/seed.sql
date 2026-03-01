@@ -1,0 +1,3 @@
+-- Placeholder seed file.
+-- Run scripts/seed-database.py to import seed data from src/data/seed/ JSON files.
+-- This file is intentionally left minimal; all seeding is handled by the Python script.
