@@ -41,3 +41,6 @@ supabase/.temp/
 
 # Scraped debug screenshots
 src/data/seed/_*.png
+
+# Intermediate exercise-split output (review before merging)
+src/data/seed/exercises-pd3m2-split.json
