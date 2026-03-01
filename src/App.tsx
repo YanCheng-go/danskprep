@@ -33,7 +33,11 @@ const SettingsPage = lazy(() =>
 
 function PageLoader() {
   return (
-    <div className="flex h-screen items-center justify-center text-muted-foreground">
+    <div
+      role="status"
+      aria-label="Loading page"
+      className="flex h-screen items-center justify-center text-muted-foreground"
+    >
       Loading…
     </div>
   )

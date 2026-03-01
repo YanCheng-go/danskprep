@@ -12,33 +12,30 @@ Use when the user wants to:
 ## Prerequisites
 
 ```bash
-pip install playwright
-playwright install chromium
+cd scripts
+uv sync
+uv run playwright install chromium
 ```
 
-Credentials in environment (never hardcode):
-```
-SPEAKSPEAK_USER=you@email.com
-SPEAKSPEAK_PASS=yourpassword
-```
+Auth: Microsoft SSO only — no username/password env vars needed. Use `--interactive` for first run.
 
 ## Running the Scraper
 
 ```bash
-# Module 2 (default output: src/data/seed/exercises-module2.json)
-SPEAKSPEAK_USER=you@email.com SPEAKSPEAK_PASS=secret \
-  python scripts/scrape-speakspeak.py --module 2
+# First run — interactive login, saves cookies
+uv run python scrape-speakspeak.py --exam PD3M2 --interactive --save-cookies cookies.json
 
-# Different module
-SPEAKSPEAK_USER=you@email.com SPEAKSPEAK_PASS=secret \
-  python scripts/scrape-speakspeak.py --module 3
+# Subsequent runs — use saved cookies
+uv run python scrape-speakspeak.py --exam PD3M2 --cookies cookies.json
+
+# PD2 content
+uv run python scrape-speakspeak.py --exam PD2 --cookies cookies.json
 
 # Custom output path
-python scripts/scrape-speakspeak.py --module 2 \
-  --output src/data/seed/exercises-module2.json
+uv run python scrape-speakspeak.py --exam PD3M2 --output src/data/seed/exercises-pd3m2.json
 
 # Visible browser (for debugging)
-python scripts/scrape-speakspeak.py --module 2 --visible
+uv run python scrape-speakspeak.py --exam PD3M2 --visible --cookies cookies.json
 ```
 
 ## What the Script Does
