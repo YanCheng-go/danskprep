@@ -1,0 +1,342 @@
+[
+  {
+    "title": "Noun Gender (T-ord og N-ord)",
+    "slug": "noun-gender",
+    "module_level": 2,
+    "category": "nouns",
+    "explanation": "Danish nouns have two grammatical genders: common gender (en-words, also called n-ord) and neuter gender (et-words, also called t-ord). About 75% of Danish nouns are en-words. There is no fully reliable rule to determine a noun's gender — it must be memorized. However, some patterns can help. The gender of a noun affects its definite form, adjective agreement, and which pronouns refer to it.",
+    "rules": [
+      {
+        "rule": "Indefinite singular: use 'en' or 'et' before the noun",
+        "example_da": "en bil, et hus",
+        "example_en": "a car, a house"
+      },
+      {
+        "rule": "Definite singular: add '-en' or '-et' to the end of the noun",
+        "example_da": "bilen, huset",
+        "example_en": "the car, the house"
+      },
+      {
+        "rule": "Indefinite plural: add '-er', '-e', or '-r' (depends on the noun)",
+        "example_da": "biler, huse, drenge",
+        "example_en": "cars, houses, boys"
+      },
+      {
+        "rule": "Definite plural: add '-ne' or '-ene' to the plural form",
+        "example_da": "bilerne, husene, drengene",
+        "example_en": "the cars, the houses, the boys"
+      },
+      {
+        "rule": "People and animals are almost always en-words",
+        "example_da": "en mand, en kvinde, en hund, en kat",
+        "example_en": "a man, a woman, a dog, a cat"
+      },
+      {
+        "rule": "Nouns ending in -hed, -else, -tion, -itet are en-words",
+        "example_da": "en mulighed, en oplevelse, en station, en aktivitet",
+        "example_en": "a possibility, an experience, a station, an activity"
+      },
+      {
+        "rule": "Many short, common nouns are et-words",
+        "example_da": "et hus, et bord, et barn, et ord",
+        "example_en": "a house, a table, a child, a word"
+      }
+    ],
+    "tips": [
+      "Always learn a noun together with its article (en/et). Never learn 'bil' alone — learn 'en bil'.",
+      "When you see a new noun, immediately note its gender. Write 'en bil' or 'et hus' in your vocabulary list.",
+      "The definite plural ending (-ne/-ene) is the same for both genders.",
+      "If a noun ends in a vowel, the definite singular often just adds -n or -t: en skole → skolen, et æble → æblet."
+    ],
+    "common_mistakes": [
+      "Using 'et' with people nouns: WRONG 'et mand', CORRECT 'en mand'",
+      "Forgetting that definite form is a suffix, not a separate word: WRONG 'den bil', CORRECT 'bilen' (when no adjective)",
+      "Wrong plural ending: not all nouns add -er. Some add -e (en dreng → drenge), some change vowel (en mand → mænd)",
+      "Confusing indefinite and definite plural: 'biler' = cars, 'bilerne' = the cars"
+    ],
+    "sort_order": 1
+  },
+  {
+    "title": "Comparative and Superlative (Komparativ og Superlativ)",
+    "slug": "comparative-superlative",
+    "module_level": 2,
+    "category": "adjectives",
+    "explanation": "Danish adjectives can be compared just like in English (big → bigger → biggest). Short adjectives usually add -ere (comparative) and -est (superlative). Longer adjectives use 'mere' (more) and 'mest' (most). Some very common adjectives have completely irregular forms that must be memorized.",
+    "rules": [
+      {
+        "rule": "Short adjectives: add -ere for comparative and -est for superlative",
+        "example_da": "hurtig → hurtigere → hurtigst",
+        "example_en": "fast → faster → fastest"
+      },
+      {
+        "rule": "Long or complex adjectives: use 'mere' and 'mest'",
+        "example_da": "interessant → mere interessant → mest interessant",
+        "example_en": "interesting → more interesting → most interesting"
+      },
+      {
+        "rule": "Irregular forms must be memorized: god → bedre → bedst",
+        "example_da": "Denne bog er bedre end den anden.",
+        "example_en": "This book is better than the other one."
+      },
+      {
+        "rule": "Comparative uses 'end' (than): 'Hun er højere end mig.'",
+        "example_da": "Danmark er mindre end Sverige.",
+        "example_en": "Denmark is smaller than Sweden."
+      },
+      {
+        "rule": "Superlative with definite article: 'den/det/de + superlative + -e'",
+        "example_da": "den hurtigste bil, det største hus",
+        "example_en": "the fastest car, the biggest house"
+      },
+      {
+        "rule": "Some adjectives double the final consonant: stor → større, smuk → smukkere",
+        "example_da": "en stor by → en større by",
+        "example_en": "a big city → a bigger city"
+      }
+    ],
+    "tips": [
+      "The most common irregular adjectives to memorize: god/bedre/bedst, dårlig/værre/værst, lille/mindre/mindst, stor/større/størst, gammel/ældre/ældst, ung/yngre/yngst, mange/flere/flest, meget/mere/mest",
+      "If an adjective has 3+ syllables, it almost always uses mere/mest",
+      "In the superlative with a definite article, always add -e to the adjective: den størst-e bil"
+    ],
+    "common_mistakes": [
+      "Using mere/mest with short adjectives: WRONG 'mere stor', CORRECT 'større'",
+      "Forgetting -e ending with definite superlative: WRONG 'den størst bil', CORRECT 'den største bil'",
+      "Using 'end' wrong: WRONG 'mere end interessant', CORRECT 'mere interessant end...'",
+      "Not recognizing irregular forms: using 'godere' instead of 'bedre'"
+    ],
+    "sort_order": 2
+  },
+  {
+    "title": "Inverted Word Order (Omvendt Ordstilling)",
+    "slug": "inverted-word-order",
+    "module_level": 2,
+    "category": "word_order",
+    "explanation": "Danish follows the V2 (verb-second) rule: in main clauses, the conjugated verb must always be in the second position. When something other than the subject starts the sentence — a time expression, a place, an adverb, or a subordinate clause — the subject and verb swap positions. This is called inversion (omvendt ordstilling).",
+    "rules": [
+      {
+        "rule": "Normal order (Subject-Verb): when the subject comes first",
+        "example_da": "Jeg spiser morgenmad.",
+        "example_en": "I eat breakfast."
+      },
+      {
+        "rule": "Inverted order (Verb-Subject): when something else comes first",
+        "example_da": "I morges spiste jeg morgenmad.",
+        "example_en": "This morning I ate breakfast."
+      },
+      {
+        "rule": "Time expression first → inversion",
+        "example_da": "I går gik vi i biografen.",
+        "example_en": "Yesterday we went to the cinema."
+      },
+      {
+        "rule": "Place expression first → inversion",
+        "example_da": "I Danmark taler man dansk.",
+        "example_en": "In Denmark people speak Danish."
+      },
+      {
+        "rule": "Adverb first → inversion",
+        "example_da": "Desværre kan jeg ikke komme.",
+        "example_en": "Unfortunately I cannot come."
+      },
+      {
+        "rule": "Subordinate clause first → inversion in the main clause",
+        "example_da": "Hvis det regner, tager jeg en paraply.",
+        "example_en": "If it rains, I take an umbrella."
+      },
+      {
+        "rule": "Questions always use inversion",
+        "example_da": "Hvad laver du? Kommer du i morgen?",
+        "example_en": "What are you doing? Are you coming tomorrow?"
+      }
+    ],
+    "tips": [
+      "Count the positions: Position 1 = [something], Position 2 = [verb], Position 3 = [subject]. The verb is ALWAYS in position 2.",
+      "Think of it as a seesaw: if the subject is pushed off position 1, it moves to position 3, but the verb stays at position 2.",
+      "After og, men, eller (coordinating conjunctions), there is NO inversion: 'Jeg spiser, og jeg drikker.'",
+      "The entire subordinate clause counts as position 1: 'Når jeg er sulten, spiser jeg.' — 'Når jeg er sulten' is ONE unit in position 1."
+    ],
+    "common_mistakes": [
+      "Forgetting to invert after time expressions: WRONG 'I morges jeg spiste...', CORRECT 'I morges spiste jeg...'",
+      "Inverting after og/men/eller: WRONG 'Jeg spiser, og drikker jeg', CORRECT 'Jeg spiser, og jeg drikker'",
+      "Forgetting inversion after subordinate clause: WRONG 'Hvis det regner, jeg tager...', CORRECT 'Hvis det regner, tager jeg...'",
+      "Double subject after inversion: WRONG 'I morges jeg spiste jeg...'"
+    ],
+    "sort_order": 3
+  },
+  {
+    "title": "Main and Subordinate Clauses (Hovedsætning og Ledsætninger)",
+    "slug": "main-subordinate-clauses",
+    "module_level": 2,
+    "category": "word_order",
+    "explanation": "Danish has different word order rules for main clauses (hovedsætninger) and subordinate clauses (ledsætninger). The crucial difference is the placement of adverbs like 'ikke', 'altid', 'aldrig', 'ofte', etc. In main clauses, the adverb comes AFTER the verb. In subordinate clauses, the adverb comes BEFORE the verb. Getting this right is one of the most important grammar skills for the Danish exam.",
+    "rules": [
+      {
+        "rule": "Main clause word order: Subject – Verb – Adverb – Object (SVAO)",
+        "example_da": "Han spiser ikke morgenmad.",
+        "example_en": "He does not eat breakfast."
+      },
+      {
+        "rule": "Subordinate clause word order: Conjunction – Subject – Adverb – Verb – Object (CSAVO)",
+        "example_da": "...fordi han ikke spiser morgenmad.",
+        "example_en": "...because he does not eat breakfast."
+      },
+      {
+        "rule": "The adverb (ikke, altid, aldrig, ofte, også, kun) changes position between clause types",
+        "example_da": "Main: Han kommer altid. Sub: ...fordi han altid kommer.",
+        "example_en": "Main: He always comes. Sub: ...because he always comes."
+      },
+      {
+        "rule": "Common subordinating conjunctions: at, fordi, hvis, når, da, selvom, mens, inden, efter at",
+        "example_da": "Jeg ved, at han ikke kommer.",
+        "example_en": "I know that he is not coming."
+      },
+      {
+        "rule": "Coordinating conjunctions (og, men, eller, for) do NOT change word order",
+        "example_da": "Han spiser ikke, og han drikker ikke.",
+        "example_en": "He doesn't eat, and he doesn't drink."
+      },
+      {
+        "rule": "With two verbs in a subordinate clause, the adverb goes before BOTH verbs",
+        "example_da": "...fordi han ikke kan komme.",
+        "example_en": "...because he cannot come."
+      }
+    ],
+    "tips": [
+      "The golden rule: in subordinate clauses, adverbs (ikke, altid, etc.) JUMP OVER to before the verb.",
+      "After at, fordi, hvis, når, da, selvom, mens → use subordinate clause word order.",
+      "After og, men, eller → use main clause word order (no change).",
+      "Test yourself: 'Han spiser ikke' (main) vs. '...fordi han ikke spiser' (sub). The 'ikke' moves!",
+      "If you hear a subordinating conjunction, immediately think: adverb BEFORE verb."
+    ],
+    "common_mistakes": [
+      "Using main clause word order in subordinate clauses: WRONG '...fordi han spiser ikke', CORRECT '...fordi han ikke spiser'",
+      "Using subordinate clause word order in main clauses: WRONG 'Han ikke spiser morgenmad', CORRECT 'Han spiser ikke morgenmad'",
+      "Forgetting to move the adverb with modal verbs: WRONG '...fordi han kan ikke komme', CORRECT '...fordi han ikke kan komme'",
+      "Treating og/men as subordinating conjunctions and changing word order"
+    ],
+    "sort_order": 4
+  },
+  {
+    "title": "Verbs and Tenses (Verber og Tider)",
+    "slug": "verbs-tenses",
+    "module_level": 2,
+    "category": "verbs",
+    "explanation": "Danish verbs change form to show tense (time). The main tenses are: present (nutid), past (datid), present perfect (førnutid), and past perfect (førdatid). Unlike English, Danish verbs do NOT change form based on the person (I eat, he eats → jeg spiser, han spiser). Danish verbs fall into regular groups and irregular patterns. The imperative (bydeform) is used for commands.",
+    "rules": [
+      {
+        "rule": "Present tense (nutid): add -er or -r to the stem. Same form for all persons.",
+        "example_da": "at spise → spiser, at bo → bor",
+        "example_en": "to eat → eat(s), to live → live(s)"
+      },
+      {
+        "rule": "Past tense (datid): Group 1 adds -ede, Group 2 adds -te. Irregular verbs change entirely.",
+        "example_da": "snakkede (talked), spiste (ate), gik (went)",
+        "example_en": "Group 1: -ede, Group 2: -te, Irregular: varies"
+      },
+      {
+        "rule": "Present perfect (førnutid): har + past participle (supinum)",
+        "example_da": "Jeg har spist. Hun har boet her i to år.",
+        "example_en": "I have eaten. She has lived here for two years."
+      },
+      {
+        "rule": "Past perfect (førdatid): havde + past participle",
+        "example_da": "Jeg havde spist, da hun kom.",
+        "example_en": "I had eaten when she arrived."
+      },
+      {
+        "rule": "Future: vil + infinitive (want/will) or skal + infinitive (plan/must)",
+        "example_da": "Jeg vil rejse. Jeg skal arbejde i morgen.",
+        "example_en": "I will travel. I am going to work tomorrow."
+      },
+      {
+        "rule": "Imperative (bydeform): usually the verb stem without any ending",
+        "example_da": "Spis! Kom! Sæt dig ned!",
+        "example_en": "Eat! Come! Sit down!"
+      },
+      {
+        "rule": "Group 1 verbs: stem ends in two consonants or a long vowel + d",
+        "example_da": "at arbejde → arbejder → arbejdede → har arbejdet",
+        "example_en": "to work → work(s) → worked → have worked"
+      },
+      {
+        "rule": "Group 2 verbs: stem ends in a single consonant or certain vowels",
+        "example_da": "at købe → køber → købte → har købt",
+        "example_en": "to buy → buy(s) → bought → have bought"
+      }
+    ],
+    "tips": [
+      "No person conjugation! 'Jeg spiser, du spiser, han spiser' — all the same form.",
+      "Group 1 pattern: -er / -ede / -et (snakker / snakkede / har snakket)",
+      "Group 2 pattern: -er / -te / -t (spiser / spiste / har spist)",
+      "For irregular verbs, make flashcards with all 4 forms: infinitive / present / past / perfect",
+      "Present perfect with movement verbs sometimes uses 'er' instead of 'har': 'Jeg er kommet' (I have arrived)"
+    ],
+    "common_mistakes": [
+      "Conjugating for person: WRONG 'han spise', CORRECT 'han spiser' — always use the -er form",
+      "Mixing up Group 1 and Group 2 endings: WRONG 'han spisede', CORRECT 'han spiste'",
+      "Wrong past participle: WRONG 'har spiset', CORRECT 'har spist' (Group 2 uses -t, not -et)",
+      "Forgetting 'har' in present perfect: WRONG 'Jeg spist', CORRECT 'Jeg har spist'",
+      "Using wrong irregular past: WRONG 'han gåede', CORRECT 'han gik'"
+    ],
+    "sort_order": 5
+  },
+  {
+    "title": "Pronouns (Pronominer)",
+    "slug": "pronouns",
+    "module_level": 2,
+    "category": "pronouns",
+    "explanation": "Danish pronouns change form depending on whether they are the subject or the object of a sentence. Danish also has possessive pronouns that agree with the gender and number of the noun they describe. A special challenge is the reflexive possessive 'sin/sit/sine', which refers back to the subject of the same clause.",
+    "rules": [
+      {
+        "rule": "Subject pronouns: jeg, du, han, hun, den/det, vi, I, de",
+        "example_da": "Han bor i København.",
+        "example_en": "He lives in Copenhagen."
+      },
+      {
+        "rule": "Object pronouns: mig, dig, ham, hende, den/det, os, jer, dem",
+        "example_da": "Kan du hjælpe mig?",
+        "example_en": "Can you help me?"
+      },
+      {
+        "rule": "Possessive pronouns agree with the noun's gender: min/mit/mine",
+        "example_da": "min bil (en-word), mit hus (et-word), mine bøger (plural)",
+        "example_en": "my car, my house, my books"
+      },
+      {
+        "rule": "sin/sit/sine = his/her own (refers back to the SUBJECT of the clause)",
+        "example_da": "Peter vasker sin bil. (Peter washes his own car.)",
+        "example_en": "Use sin/sit/sine when the possessor is the subject."
+      },
+      {
+        "rule": "hans/hendes = his/her (refers to someone OTHER than the subject)",
+        "example_da": "Peter vasker hans bil. (Peter washes his [someone else's] car.)",
+        "example_en": "Use hans/hendes when the possessor is NOT the subject."
+      },
+      {
+        "rule": "Reflexive pronouns (sig/mig/dig/os/jer): used when subject and object are the same",
+        "example_da": "Han vasker sig. Vi hygger os.",
+        "example_en": "He washes himself. We enjoy ourselves."
+      },
+      {
+        "rule": "Demonstrative pronouns: denne/dette/disse (this/these), den/det/de (that/those)",
+        "example_da": "Denne bog er god. Disse bøger er dyre.",
+        "example_en": "This book is good. These books are expensive."
+      }
+    ],
+    "tips": [
+      "sin/sit/sine is the trickiest concept. Ask: does the possessive refer to the SUBJECT of THIS clause? If yes → sin/sit/sine. If no → hans/hendes/deres.",
+      "Possessives agree with the THING OWNED, not the owner: 'hans bil' (his car — en-word), 'hans hus' (his house — et-word) — hans doesn't change. But: 'sin bil', 'sit hus', 'sine bøger' — sin changes!",
+      "After prepositions, always use object form: 'med mig' (with me), 'til ham' (to him)",
+      "'den' and 'det' as pronouns replace en-words and et-words: 'Bilen? Den er rød.' (The car? It is red.)"
+    ],
+    "common_mistakes": [
+      "Using subject form after prepositions: WRONG 'med jeg', CORRECT 'med mig'",
+      "Mixing up sin/hans: WRONG 'Peter vasker hans bil' when meaning his own car, CORRECT 'Peter vasker sin bil'",
+      "Not agreeing possessive with noun gender: WRONG 'min hus', CORRECT 'mit hus' (hus is et-word)",
+      "Using 'sin' when subject is 'jeg/du/vi/I': sin is only for 3rd person. WRONG 'Jeg vasker sin bil', CORRECT 'Jeg vasker min bil'",
+      "Forgetting to use object form: WRONG 'Han ser jeg', CORRECT 'Han ser mig'"
+    ],
+    "sort_order": 6
+  }
+]
