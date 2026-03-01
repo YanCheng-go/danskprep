@@ -36,7 +36,7 @@ def seed_grammar_topics(client: Client) -> None:
     print("Seeding grammar_topics…")
     with open(SEED_DIR / "grammar-pd3m2.json") as f:
         topics = json.load(f)
-    result = client.table("grammar_topics").upsert(topics, on_conflict="slug").execute()
+    client.table("grammar_topics").upsert(topics, on_conflict="slug").execute()
     print(f"  → {len(topics)} topics upserted")
 
 
@@ -48,7 +48,7 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
-    result = client.table("words").upsert(words, on_conflict="danish").execute()
+    client.table("words").upsert(words, on_conflict="danish").execute()
     print(f"  → {len(words)} words upserted")
 
 
@@ -62,7 +62,7 @@ def seed_exercises(client: Client) -> None:
         # Ensure required fields
         e.setdefault("acceptable_answers", [])
         e.setdefault("source", "generated")
-    result = client.table("exercises").insert(exercises).execute()
+    client.table("exercises").insert(exercises).execute()
     print(f"  → {len(exercises)} exercises inserted")
 
 
@@ -74,7 +74,7 @@ def seed_sentences(client: Client) -> None:
         s.pop("id", None)
         s.pop("created_at", None)
         s.setdefault("source", "generated")
-    result = client.table("sentences").insert(sentences).execute()
+    client.table("sentences").insert(sentences).execute()
     print(f"  → {len(sentences)} sentences inserted")
 
 
