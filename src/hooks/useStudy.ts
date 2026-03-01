@@ -5,7 +5,7 @@ import { scheduleReview, getSchedulingOptions, createNewCard } from '@/lib/fsrs'
 import type { UserCard } from '@/types/database'
 import type { ReviewableCard, SchedulingOptions } from '@/types/study'
 import type { Exercise } from '@/types/quiz'
-import exercisesData from '@/data/seed/exercises-module2.json'
+import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import { DAILY_NEW_CARDS_LIMIT, DAILY_REVIEW_LIMIT } from '@/lib/constants'
 
 const localExercises = exercisesData as Exercise[]
