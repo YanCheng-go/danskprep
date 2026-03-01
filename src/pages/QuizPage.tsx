@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 import { useQuiz } from '@/hooks/useQuiz'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { Progress } from '@/components/ui/progress'
@@ -14,6 +15,7 @@ import { QuizResults } from '@/components/quiz/QuizResults'
 import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import type { Exercise } from '@/types/quiz'
 import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 const allExercises = exercisesData as Exercise[]
 
@@ -32,6 +34,7 @@ interface QuizConfig {
 }
 
 export function QuizPage() {
+  const [pageMode, setPageMode] = useState<'quiz' | 'list'>('quiz')
   const [config, setConfig] = useState<QuizConfig | null>(null)
   const [key, setKey] = useState(0)
 
@@ -52,32 +55,190 @@ export function QuizPage() {
     setConfig(null)
   }
 
-  if (!config) {
+  const modeToggle = (
+    <div className="flex rounded-lg border overflow-hidden mb-6">
+      <button
+        className={cn(
+          'flex-1 py-2 text-sm font-medium transition-colors',
+          pageMode === 'quiz' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
+        )}
+        onClick={() => setPageMode('quiz')}
+      >
+        Quiz
+      </button>
+      <button
+        className={cn(
+          'flex-1 py-2 text-sm font-medium transition-colors border-l',
+          pageMode === 'list' ? 'bg-primary text-primary-foreground' : 'hover:bg-muted'
+        )}
+        onClick={() => setPageMode('list')}
+      >
+        All Questions
+      </button>
+    </div>
+  )
+
+  // Active quiz — no toggle shown (exit via "Exit quiz" button in flow)
+  if (config) {
+    const exercises = getExercises(config)
     return (
-      <PageContainer>
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold">Quiz</h1>
-          <p className="text-muted-foreground text-sm mt-1">Choose a topic and exercise type</p>
-        </div>
-        <QuizSelector onStart={startQuiz} />
+      <PageContainer key={key}>
+        <QuizFlow
+          exercises={exercises}
+          config={config}
+          onReset={resetQuiz}
+        />
       </PageContainer>
     )
   }
 
-  const exercises = getExercises(config)
+  if (pageMode === 'list') {
+    return (
+      <PageContainer>
+        {modeToggle}
+        <AllQuestionsList />
+      </PageContainer>
+    )
+  }
 
   return (
-    <PageContainer key={key}>
-      <QuizFlow
-        exercises={exercises}
-        config={config}
-        onReset={resetQuiz}
-      />
+    <PageContainer>
+      {modeToggle}
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold">Quiz</h1>
+        <p className="text-muted-foreground text-sm mt-1">Choose a topic and exercise type</p>
+      </div>
+      <QuizSelector onStart={startQuiz} />
     </PageContainer>
   )
 }
 
-// ─── Quiz Selector ─────────────────────────────────────────────────────────
+// ─── All Questions List ──────────────────────────────────────────────────────
+
+function AllQuestionsList() {
+  const [topicFilter, setTopicFilter] = useState('all')
+  const [typeFilter, setTypeFilter] = useState('all')
+  const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set())
+
+  const filtered = allExercises.filter(e => {
+    const topicMatch = topicFilter === 'all' || e.grammar_topic_slug === topicFilter
+    const typeMatch = typeFilter === 'all' || e.exercise_type === typeFilter
+    return topicMatch && typeMatch
+  })
+
+  function toggleReveal(globalIdx: number) {
+    setRevealedIds(prev => {
+      const next = new Set(prev)
+      if (next.has(globalIdx)) next.delete(globalIdx)
+      else next.add(globalIdx)
+      return next
+    })
+  }
+
+  return (
+    <div className="space-y-4">
+      {/* Topic filter */}
+      <div className="space-y-2">
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Topic</p>
+        <div className="flex flex-wrap gap-2">
+          <FilterChip active={topicFilter === 'all'} onClick={() => setTopicFilter('all')}>All topics</FilterChip>
+          {GRAMMAR_TOPIC_SLUGS.map(slug => (
+            <FilterChip key={slug} active={topicFilter === slug} onClick={() => setTopicFilter(slug)}>
+              {TOPIC_LABELS[slug]}
+            </FilterChip>
+          ))}
+        </div>
+      </div>
+
+      {/* Type filter */}
+      <div className="space-y-2">
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Type</p>
+        <div className="flex flex-wrap gap-2">
+          <FilterChip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>All types</FilterChip>
+          {Object.entries(EXERCISE_TYPE_LABELS).map(([key, label]) => (
+            <FilterChip key={key} active={typeFilter === key} onClick={() => setTypeFilter(key)}>
+              {label}
+            </FilterChip>
+          ))}
+        </div>
+      </div>
+
+      {/* Count */}
+      <p className="text-sm text-muted-foreground">{filtered.length} exercises</p>
+
+      {/* List */}
+      <div className="space-y-2">
+        {filtered.length === 0 ? (
+          <p className="text-center py-8 text-muted-foreground text-sm">
+            No exercises match these filters.
+          </p>
+        ) : (
+          filtered.map(exercise => {
+            const globalIdx = allExercises.indexOf(exercise)
+            const revealed = revealedIds.has(globalIdx)
+            return (
+              <div key={globalIdx} className="rounded-lg border p-4 space-y-2">
+                <div className="flex items-start justify-between gap-3">
+                  <p className="text-sm leading-snug flex-1">{exercise.question}</p>
+                  <button
+                    onClick={() => toggleReveal(globalIdx)}
+                    className="shrink-0 text-xs text-muted-foreground hover:text-foreground border rounded px-2 py-1 transition-colors"
+                  >
+                    {revealed ? 'Hide' : 'Answer'}
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {exercise.grammar_topic_slug && (
+                    <Badge variant="outline" className="text-xs">
+                      {TOPIC_LABELS[exercise.grammar_topic_slug] ?? exercise.grammar_topic_slug}
+                    </Badge>
+                  )}
+                  <Badge variant="secondary" className="text-xs">
+                    {EXERCISE_TYPE_LABELS[exercise.exercise_type] ?? exercise.exercise_type}
+                  </Badge>
+                </div>
+                {revealed && (
+                  <div className="rounded bg-muted px-3 py-2 text-sm font-medium">
+                    {exercise.correct_answer}
+                    {exercise.explanation && (
+                      <p className="text-xs text-muted-foreground font-normal mt-1">
+                        {exercise.explanation}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+            )
+          })
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Filter Chip ─────────────────────────────────────────────────────────────
+
+interface FilterChipProps {
+  active: boolean
+  onClick: () => void
+  children: ReactNode
+}
+
+function FilterChip({ active, onClick, children }: FilterChipProps) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        'rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
+        active ? 'border-primary bg-primary text-primary-foreground' : 'hover:bg-accent'
+      )}
+    >
+      {children}
+    </button>
+  )
+}
+
+// ─── Quiz Selector ─────────────────────────────────────────────────────────────
 
 interface QuizSelectorProps {
   onStart: (config: QuizConfig) => void
@@ -235,6 +396,8 @@ function renderExercise(exercise: Exercise, onSubmit: (r: string) => void) {
       return <WordOrder exercise={exercise} onSubmit={onSubmit} />
     case 'error_correction':
       return <ErrorCorrection exercise={exercise} onSubmit={onSubmit} />
+    case 'conjugation':
+      return <TypeAnswer exercise={exercise} onSubmit={onSubmit} />
     default:
       return <TypeAnswer exercise={exercise} onSubmit={onSubmit} />
   }

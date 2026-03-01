@@ -48,7 +48,7 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
-    client.table("words").upsert(words, on_conflict="danish").execute()
+    client.table("words").upsert(words, on_conflict="danish,part_of_speech").execute()
     print(f"  → {len(words)} words upserted")
 
 
