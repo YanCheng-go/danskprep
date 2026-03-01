@@ -24,7 +24,6 @@ export function WordOrder({ exercise, onSubmit, disabled }: WordOrderProps) {
     const raw = exercise.question.replace(/^Put in correct order:\s*/i, '')
     const words = raw.split(/\s*\/\s*/)
     return shuffle(words).map((w, i) => ({ id: i, word: w }))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [exercise.question])
 
   const [selected, setSelected] = useState<Array<{ id: number; word: string }>>([])

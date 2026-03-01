@@ -26,9 +26,12 @@ export function useQuiz(
   const [lastResult, setLastResult] = useState<AnswerResult | null>(null)
   const [lastResponse, setLastResponse] = useState('')
   const [answers, setAnswers] = useState<QuizAnswer[]>([])
-  const questionStartTime = useRef(Date.now())
+  // eslint-disable-next-line react-hooks/purity
+  const questionStartTime = useRef<number>(Date.now())
 
-  const acceptLatin = localStorage.getItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK) !== 'false'
+  const [acceptLatin] = useState(
+    () => localStorage.getItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK) !== 'false'
+  )
 
   const currentExercise = exercises[currentIndex] ?? null
   const isComplete = currentIndex >= exercises.length
