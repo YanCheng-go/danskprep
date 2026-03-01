@@ -31,10 +31,9 @@ import re
 import sys
 from pathlib import Path
 from datetime import datetime
-from urllib.parse import urlparse
 
 try:
-    from playwright.sync_api import sync_playwright, Page, Route, TimeoutError as PlaywrightTimeout
+    from playwright.sync_api import sync_playwright, Page, TimeoutError as PlaywrightTimeout
 except ImportError:
     print("ERROR: Playwright not installed. Run: pip install playwright && playwright install chromium")
     sys.exit(1)
@@ -408,7 +407,7 @@ def scrape_with_interception(urls: list[str], module: int) -> list[dict]:
         print("[1/3] Logging in …")
         login(page, username, password)
 
-        print(f"[2/3] Navigating to module pages …")
+        print("[2/3] Navigating to module pages …")
         for url in urls:
             print(f"  Visiting: {url}")
             try:
@@ -490,10 +489,10 @@ def main() -> None:
     output_path = Path(args.output) if args.output else root / f"src/data/seed/exercises-module{args.module}.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"\nDanskPrep — Gyldendal Modultest Scraper")
+    print("\nDanskPrep — Gyldendal Modultest Scraper")
     print(f"  Module:  {args.module}")
     print(f"  Output:  {output_path}")
-    print(f"  Note:    Browser will be visible to help navigate the SPA")
+    print("  Note:    Browser will be visible to help navigate the SPA")
     print()
 
     # Two-phase: first find URLs, then scrape with interception

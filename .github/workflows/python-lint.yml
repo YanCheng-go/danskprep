@@ -1,0 +1,45 @@
+name: Python Lint
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/**.py'
+      - 'scripts/pyproject.toml'
+      - 'scripts/uv.lock'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**.py'
+      - 'scripts/pyproject.toml'
+      - 'scripts/uv.lock'
+
+jobs:
+  lint:
+    name: Ruff + syntax check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: uv sync
+
+      - name: Ruff lint
+        working-directory: scripts
+        run: uv run ruff check .
+
+      - name: Syntax check
+        working-directory: scripts
+        run: |
+          for f in *.py; do
+            uv run python -m py_compile "$f" && echo "OK: $f"
+          done

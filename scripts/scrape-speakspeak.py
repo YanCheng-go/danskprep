@@ -203,7 +203,7 @@ def find_courses(page: Page, exam: str | None, all_courses: bool) -> list[dict]:
     if not matched:
         print(f"\n  No courses matched exam {exam_upper!r} (looking for {course_filter!r} in course name).")
         print(f"  Enrolled courses: {[c['name'] for c in courses]}")
-        print(f"  Tip: Run with --all-courses to scrape everything.")
+        print("  Tip: Run with --all-courses to scrape everything.")
         return []
 
     print(f"\n  Matched {len(matched)} course(s) for {exam_upper}: {[c['name'] for c in matched]}")
@@ -415,7 +415,7 @@ def _parse_moodle_question(qel, module: int, context_name: str) -> dict | None:
     if not question:
         return None
 
-    correct, alternatives, explanation = "", [], ""
+    correct, alternatives = "", []
 
     if ex_type == "multiple_choice":
         options = [clean(el.inner_text()) for el in qel.query_selector_all(".answer label") if clean(el.inner_text())]
@@ -424,8 +424,7 @@ def _parse_moodle_question(qel, module: int, context_name: str) -> dict | None:
             correct = clean(correct_el.inner_text())
             alternatives = [o for o in options if o != correct]
         elif options:
-            correct, alternatives = options[0], options[1:]
-            explanation = "REVIEW: correct answer undetected."
+            correct, alternatives = "REVIEW", options  # correct answer undetected
     elif ex_type == "type_answer":
         el = qel.query_selector(".rightanswer, .correct")
         if el:
@@ -437,10 +436,6 @@ def _parse_moodle_question(qel, module: int, context_name: str) -> dict | None:
     else:
         el = qel.query_selector(".rightanswer, .correct")
         correct = clean(el.inner_text()) if el else "REVIEW"
-
-    fb = qel.query_selector(".generalfeedback, .feedback")
-    if fb:
-        explanation = clean(fb.inner_text())
 
     return _make_exercise(question, correct, alternatives, ex_type, context_name, module)
 
@@ -515,7 +510,7 @@ def main() -> None:
     if args.interactive:
         args.visible = True
 
-    print(f"\nDanskPrep — SpeakSpeak Scraper")
+    print("\nDanskPrep — SpeakSpeak Scraper")
     print(f"  Exam:    {exam_label}  (module_level={module_level})")
     print(f"  Output:  {output_path}")
     print(f"  Login:   {'interactive' if args.interactive else 'cookies'}")
@@ -539,7 +534,7 @@ def main() -> None:
             if args.save_cookies:
                 save_cookies(context, Path(__file__).parent / args.save_cookies)
 
-            print(f"\n[2/3] Finding courses …")
+            print("\n[2/3] Finding courses …")
             courses = find_courses(page, exam, args.all_courses)
             if not courses:
                 sys.exit(0)
@@ -576,7 +571,7 @@ def main() -> None:
         debug.write_text(json.dumps(all_exercises, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"  Raw dump → {debug.name}")
         if review_count:
-            print(f"  Search output for 'REVIEW' to find items needing correct answers.")
+            print("  Search output for 'REVIEW' to find items needing correct answers.")
     else:
         print("Nothing scraped.")
         print("  • Run with --interactive to log in fresh")
