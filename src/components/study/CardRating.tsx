@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import type { SchedulingOptions } from '@/types/study'
 import { cn } from '@/lib/utils'
 
@@ -33,6 +34,18 @@ const RATINGS: Array<{ rating: 1 | 2 | 3 | 4; label: string; colorClass: string;
 ]
 
 export function CardRating({ schedulingOptions, onRate, disabled, suggestedRating }: CardRatingProps) {
+  // Keyboard shortcuts: 1=Again, 2=Hard, 3=Good, 4=Easy
+  useEffect(() => {
+    if (disabled) return
+    function handleKey(e: KeyboardEvent) {
+      if (['1', '2', '3', '4'].includes(e.key)) {
+        onRate(Number(e.key) as 1 | 2 | 3 | 4)
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [onRate, disabled])
+
   return (
     <div className="space-y-2">
       {suggestedRating && (
@@ -58,9 +71,7 @@ export function CardRating({ schedulingOptions, onRate, disabled, suggestedRatin
               {opt && (
                 <span className="text-xs opacity-70 mt-0.5">{opt.label}</span>
               )}
-              {isSuggested && (
-                <span className="text-xs mt-0.5 font-semibold">↑</span>
-              )}
+              <span className="text-xs opacity-40 mt-0.5">{isSuggested ? '↑' : rating}</span>
             </button>
           )
         })}

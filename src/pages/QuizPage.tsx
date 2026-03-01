@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useQuiz } from '@/hooks/useQuiz'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { Progress } from '@/components/ui/progress'
@@ -34,8 +35,15 @@ interface QuizConfig {
 }
 
 export function QuizPage() {
+  const [searchParams] = useSearchParams()
+  const topicFromUrl = searchParams.get('topic') ?? ''
+
   const [pageMode, setPageMode] = useState<'quiz' | 'list'>('quiz')
   const [config, setConfig] = useState<QuizConfig | null>(null)
+  // Pre-select topic from URL query param (e.g. /quiz?topic=noun-gender)
+  const initialTopic = GRAMMAR_TOPIC_SLUGS.includes(topicFromUrl as typeof GRAMMAR_TOPIC_SLUGS[number])
+    ? topicFromUrl
+    : GRAMMAR_TOPIC_SLUGS[0]
   const [key, setKey] = useState(0)
 
   function getExercises(cfg: QuizConfig): Exercise[] {
@@ -108,7 +116,7 @@ export function QuizPage() {
         <h1 className="text-2xl font-bold">Quiz</h1>
         <p className="text-muted-foreground text-sm mt-1">Choose a topic and exercise type</p>
       </div>
-      <QuizSelector onStart={startQuiz} />
+      <QuizSelector onStart={startQuiz} initialTopic={initialTopic} />
     </PageContainer>
   )
 }
@@ -242,10 +250,11 @@ function FilterChip({ active, onClick, children }: FilterChipProps) {
 
 interface QuizSelectorProps {
   onStart: (config: QuizConfig) => void
+  initialTopic?: string
 }
 
-function QuizSelector({ onStart }: QuizSelectorProps) {
-  const [topicSlug, setTopicSlug] = useState<string>(GRAMMAR_TOPIC_SLUGS[0])
+function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSelectorProps) {
+  const [topicSlug, setTopicSlug] = useState<string>(initialTopic)
   const [exerciseType, setExerciseType] = useState('all')
 
   const availableTypes = ['all', ...Object.keys(EXERCISE_TYPE_LABELS)]
