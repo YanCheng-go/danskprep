@@ -12,8 +12,9 @@ Use when the user wants to:
 ## Prerequisites
 
 ```bash
-pip install playwright
-playwright install chromium
+cd scripts
+uv sync
+uv run playwright install chromium
 ```
 
 Credentials in environment (never hardcode):
@@ -25,20 +26,20 @@ GYLDENDAL_PASS=yourpassword
 ## Running the Scraper
 
 ```bash
-# Module 2 (default output: src/data/seed/exercises-module2.json)
+# PD3M2 (default output: src/data/seed/exercises-pd3m2.json)
 GYLDENDAL_USER=you@email.com GYLDENDAL_PASS=secret \
-  python scripts/scrape-gyldendal.py --module 2
+  uv run python scrape-gyldendal.py --module 3
 
-# Module 3
+# PD2
 GYLDENDAL_USER=you@email.com GYLDENDAL_PASS=secret \
-  python scripts/scrape-gyldendal.py --module 3
+  uv run python scrape-gyldendal.py --module 2
 
 # Custom output path
-python scripts/scrape-gyldendal.py --module 2 \
-  --output src/data/seed/exercises-module2.json
+uv run python scrape-gyldendal.py --module 3 \
+  --output src/data/seed/exercises-pd3m2.json
 
 # Dump all captured API calls for debugging
-python scripts/scrape-gyldendal.py --module 2 --dump-api
+uv run python scrape-gyldendal.py --module 3 --dump-api
 ```
 
 ## How the Script Works

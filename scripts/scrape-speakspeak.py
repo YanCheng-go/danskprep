@@ -34,10 +34,8 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import re
 import sys
-import time
 from pathlib import Path
 from datetime import datetime
 
@@ -103,6 +101,7 @@ def detect_topic(text: str, default: str = "noun-gender") -> str:
     for keywords, slug in TOPIC_KEYWORDS:
         if any(kw in text_lower for kw in keywords):
             return slug
+    # Falls back to default — review grammar_topic_slug assignments after scraping
     return default
 
 
@@ -138,7 +137,7 @@ def login_interactive(page: Page, root: Path) -> None:
     print()
     print("  ┌─────────────────────────────────────────────────────┐")
     print("  │  Browser is open — log in to SpeakSpeak now        │")
-    print("  │  Username: 64267  (use Microsoft SSO button)       │")
+    print("  │  Click 'Log in with Microsoft' and complete SSO    │")
     print("  │  The scraper continues when you reach the dashboard │")
     print("  └─────────────────────────────────────────────────────┘")
     print()
@@ -173,7 +172,7 @@ def save_cookies(context: BrowserContext, path: Path) -> None:
 # ---------------------------------------------------------------------------
 # Course discovery
 # ---------------------------------------------------------------------------
-def find_courses(page: Page, exam: str | None, all_courses: bool, root: Path) -> list[dict]:
+def find_courses(page: Page, exam: str | None, all_courses: bool) -> list[dict]:
     page.goto(f"{BASE_URL}/my/courses.php", wait_until="networkidle", timeout=20000)
     seen: set[str] = set()
     courses: list[dict] = []
@@ -348,10 +347,10 @@ def _extract_h5p_exercises(params: dict, h5p_type: str, exercise_type: str, name
         if question:
             exercises.append(_make_exercise(question, correct, wrong, "multiple_choice", name, module))
 
-    # Recurse into nested questionsets
-    for key in ("questions", "taskDescription", "params"):
-        if isinstance(params.get(key), dict):
-            exercises.extend(_extract_h5p_exercises(params[key], h5p_type, exercise_type, name, module))
+    # Recurse into nested params (e.g. H5P.QuestionSet wrapping sub-questions)
+    nested = params.get("params")
+    if isinstance(nested, dict) and nested.get("questions"):
+        exercises.extend(_extract_h5p_exercises(nested, h5p_type, exercise_type, name, module))
 
     return exercises
 
@@ -541,7 +540,7 @@ def main() -> None:
                 save_cookies(context, Path(__file__).parent / args.save_cookies)
 
             print(f"\n[2/3] Finding courses …")
-            courses = find_courses(page, exam, args.all_courses, root)
+            courses = find_courses(page, exam, args.all_courses)
             if not courses:
                 sys.exit(0)
 

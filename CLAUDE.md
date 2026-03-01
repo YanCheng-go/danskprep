@@ -236,8 +236,8 @@ uv run playwright install chromium
 
 ```bash
 # Always run scripts through uv (respects the venv and pyproject.toml)
-uv run python scripts/scrape-speakspeak.py --module 2
-uv run python scripts/scrape-gyldendal.py --module 2
+uv run python scripts/scrape-speakspeak.py --exam PD3M2 --cookies scripts/cookies.json
+uv run python scripts/scrape-gyldendal.py --module 3
 uv run python scripts/seed-database.py
 ```
 
@@ -253,6 +253,51 @@ uv add --dev pytest
 
 ### pyproject.toml location
 `scripts/pyproject.toml` — defines the Python project for all scripts in `scripts/`.
+
+## Development Flow
+
+Every change — no matter how small — follows this flow. Do not push directly to `main`.
+
+```
+feature branch → PR → CI/CD → Claude review → human approves → merge
+```
+
+### Step-by-step
+
+1. **Create a feature branch**
+   ```bash
+   git checkout -b feature/<short-description>
+   ```
+
+2. **Commit your work** with a clear message explaining *why*, not just *what*
+   ```bash
+   git commit -m "fix: remove hardcoded username from interactive login prompt"
+   ```
+
+3. **Push and open a PR against `main`**
+   ```bash
+   git push -u origin feature/<short-description>
+   gh pr create --title "..." --body "..."
+   ```
+
+4. **Wait for CI/CD to pass** — TypeScript, tests, and lint must all be green before review
+
+5. **Ask Claude to review the PR**
+   ```
+   /review <PR number>
+   ```
+
+6. **Fix any issues** Claude identifies, push to the same branch — CI re-runs automatically
+
+7. **Human approves and merges** — only the human merges into `main`
+
+### Rules
+- Never push directly to `main`
+- Never merge without a passing CI run
+- Never merge without a Claude review
+- Always use the `/pull-request` skill before creating the PR to ensure NOTES.md and README are up to date
+
+---
 
 ## Key Design Principles
 
