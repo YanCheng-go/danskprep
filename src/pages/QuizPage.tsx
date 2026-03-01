@@ -11,7 +11,7 @@ import { WordOrder } from '@/components/quiz/WordOrder'
 import { ErrorCorrection } from '@/components/quiz/ErrorCorrection'
 import { FeedbackPanel } from '@/components/quiz/FeedbackPanel'
 import { QuizResults } from '@/components/quiz/QuizResults'
-import exercisesData from '@/data/seed/exercises-module2.json'
+import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import type { Exercise } from '@/types/quiz'
 import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS } from '@/lib/constants'
 

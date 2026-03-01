@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { SETTINGS_KEYS, DAILY_NEW_CARDS_LIMIT } from '@/lib/constants'
 
 export function SettingsPage() {
-  const [dailyLimit, setDailyLimit] = useState(DAILY_NEW_CARDS_LIMIT)
-  const [acceptLatin, setAcceptLatin] = useState(true)
-  const [saved, setSaved] = useState(false)
-
-  useEffect(() => {
+  const [dailyLimit, setDailyLimit] = useState(() => {
     const stored = localStorage.getItem(SETTINGS_KEYS.DAILY_NEW_LIMIT)
-    if (stored) setDailyLimit(Number(stored))
-    setAcceptLatin(localStorage.getItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK) !== 'false')
-  }, [])
+    return stored ? Number(stored) : DAILY_NEW_CARDS_LIMIT
+  })
+  const [acceptLatin, setAcceptLatin] = useState(
+    () => localStorage.getItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK) !== 'false'
+  )
+  const [saved, setSaved] = useState(false)
 
   function save() {
     localStorage.setItem(SETTINGS_KEYS.DAILY_NEW_LIMIT, String(dailyLimit))
