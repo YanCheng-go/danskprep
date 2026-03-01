@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import grammarData from '@/data/seed/grammar-module2.json'
+import grammarData from '@/data/seed/grammar-pd3m2.json'
 import type { GrammarTopic } from '@/types/grammar'
 
 const topics = grammarData as GrammarTopic[]

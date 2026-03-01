@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import wordsData from '@/data/seed/words-module2.json'
+import wordsData from '@/data/seed/words-pd3m2.json'
 import type { Word } from '@/types/database'
 
 // The JSON uses the same shape as Word but without id/created_at

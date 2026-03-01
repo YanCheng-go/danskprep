@@ -34,7 +34,7 @@ def get_client() -> Client:
 
 def seed_grammar_topics(client: Client) -> None:
     print("Seeding grammar_topics…")
-    with open(SEED_DIR / "grammar-module2.json") as f:
+    with open(SEED_DIR / "grammar-pd3m2.json") as f:
         topics = json.load(f)
     result = client.table("grammar_topics").upsert(topics, on_conflict="slug").execute()
     print(f"  → {len(topics)} topics upserted")
@@ -42,7 +42,7 @@ def seed_grammar_topics(client: Client) -> None:
 
 def seed_words(client: Client) -> None:
     print("Seeding words…")
-    with open(SEED_DIR / "words-module2.json") as f:
+    with open(SEED_DIR / "words-pd3m2.json") as f:
         words = json.load(f)
     # Remove client-side fields not in DB schema
     for w in words:
@@ -54,7 +54,7 @@ def seed_words(client: Client) -> None:
 
 def seed_exercises(client: Client) -> None:
     print("Seeding exercises…")
-    with open(SEED_DIR / "exercises-module2.json") as f:
+    with open(SEED_DIR / "exercises-pd3m2.json") as f:
         exercises = json.load(f)
     for e in exercises:
         e.pop("id", None)
@@ -68,7 +68,7 @@ def seed_exercises(client: Client) -> None:
 
 def seed_sentences(client: Client) -> None:
     print("Seeding sentences…")
-    with open(SEED_DIR / "sentences-module2.json") as f:
+    with open(SEED_DIR / "sentences-pd3m2.json") as f:
         sentences = json.load(f)
     for s in sentences:
         s.pop("id", None)
