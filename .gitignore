@@ -31,3 +31,13 @@ pnpm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# VS Code workspace files (user-specific)
+*.code-workspace
+
+# Scraped session data (credentials/temp)
+scripts/cookies*.json
+supabase/.temp/
+
+# Scraped debug screenshots
+src/data/seed/_*.png
