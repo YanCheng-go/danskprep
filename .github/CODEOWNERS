@@ -1,0 +1,28 @@
+# CODEOWNERS — auto-assigns reviewers on PRs touching these paths
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global fallback — all files require owner review
+* @YanCheng-go
+
+# ── Architecture & Database ─────────────────────────────────────────────────
+# Schema changes need architect sign-off before merge
+supabase/                         @YanCheng-go
+src/types/database.ts             @YanCheng-go
+src/types/                        @YanCheng-go
+
+# ── Security-sensitive paths ─────────────────────────────────────────────────
+# Auth, Supabase client, environment config
+src/lib/supabase.ts               @YanCheng-go
+src/hooks/useAuth.ts              @YanCheng-go
+.env.example                      @YanCheng-go
+
+# ── CI/CD & DevSecOps ───────────────────────────────────────────────────────
+# Workflow changes affect every engineer — require careful review
+.github/workflows/                @YanCheng-go
+.github/CODEOWNERS                @YanCheng-go
+.npmrc                            @YanCheng-go
+
+# ── SDLC governance files ────────────────────────────────────────────────────
+CLAUDE.md                         @YanCheng-go
+CONTRIBUTING.md                   @YanCheng-go
+SECURITY.md                       @YanCheng-go
