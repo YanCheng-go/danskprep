@@ -233,10 +233,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     const word = localWords[index] ?? localWords[0]
     const inf = word.inflections as Record<string, string | string[]> | null
 
-    let front = word.danish
-    if (word.part_of_speech === 'verb') front = `at ${word.danish}`
-    else if (word.gender) front = `${word.gender} ${word.danish}`
-
+    // Build the inflection summary shown after reveal
     let explanation: string | undefined
     if (inf) {
       if (word.part_of_speech === 'verb') {
@@ -255,17 +252,152 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
       }
     }
 
+    // Build question variants — rotate by reps so each review tests a different form
+    const variants = buildWordVariants(word, inf)
+    const variant = variants[card.reps % variants.length]
+
     return {
       userCard: card,
       content: {
-        front,
-        back: word.english,
-        hint: word.example_da ?? undefined,
+        front: variant.front,
+        back: variant.back,
+        hint: variant.hint,
         explanation: explanation || undefined,
         contentType: 'word',
         contentId: card.content_id,
+        activeRecall: true,
+        correctAnswer: variant.correctAnswer,
+        acceptableAnswers: variant.acceptableAnswers,
       },
     }
+  }
+
+  function buildWordVariants(
+    word: Word,
+    inf: Record<string, string | string[]> | null
+  ): Array<{ front: string; back: string; hint: string; correctAnswer: string; acceptableAnswers: string[] }> {
+    const pos = word.part_of_speech
+    const displayForm = pos === 'verb'
+      ? `at ${word.danish}`
+      : word.gender
+        ? `${word.gender} ${word.danish}`
+        : word.danish
+
+    // Variant 0 (always present): English → type Danish spelling
+    const variants = [{
+      front: word.english,
+      back: displayForm,
+      hint: pos === 'verb' ? 'verbum (infinitiv)' : pos === 'noun' ? `substantiv (${word.gender ?? 'en/et'})` : pos,
+      correctAnswer: word.danish,
+      acceptableAnswers: [] as string[],
+    }]
+
+    if (!inf) return variants
+
+    if (pos === 'verb') {
+      const present = inf['present'] as string | undefined
+      const past = inf['past'] as string | undefined
+      const perfect = inf['perfect'] as string | undefined
+      const imperative = inf['imperative'] as string | undefined
+
+      if (past) variants.push({
+        front: `Hvad er datid af "${word.danish}"?`,
+        back: past,
+        hint: 'datid',
+        correctAnswer: past,
+        acceptableAnswers: [],
+      })
+      if (present) variants.push({
+        front: `Hvad er nutid af "${word.danish}"?`,
+        back: present,
+        hint: 'nutid',
+        correctAnswer: present,
+        acceptableAnswers: [],
+      })
+      if (perfect) variants.push({
+        front: `Skriv perfektum af "${word.danish}"`,
+        back: perfect,
+        hint: 'perfektum (har/er + participium)',
+        correctAnswer: perfect,
+        // Accept just the participle without auxiliary
+        acceptableAnswers: perfect.startsWith('har ') || perfect.startsWith('er ')
+          ? [perfect.replace(/^(har|er) /, '')]
+          : [],
+      })
+      if (imperative) variants.push({
+        front: `Hvad er bydeform (imperativ) af "${word.danish}"?`,
+        back: imperative,
+        hint: 'imperativ / bydeform',
+        correctAnswer: imperative,
+        acceptableAnswers: [],
+      })
+    }
+
+    if (pos === 'noun') {
+      const definite = inf['definite'] as string | undefined
+      const pluralIndef = inf['plural_indef'] as string | undefined
+      const pluralDef = inf['plural_def'] as string | undefined
+
+      if (definite) variants.push({
+        front: `Bestemt form af "${word.gender ?? ''} ${word.danish}".trim()?`,
+        back: definite,
+        hint: `bestemt ental (${word.gender === 'et' ? 'et-ord: +et/-et' : 'en-ord: +en/-en'})`,
+        correctAnswer: definite,
+        acceptableAnswers: [],
+      })
+      if (pluralIndef) variants.push({
+        front: `Ubestemt flertal af "${word.danish}"?`,
+        back: pluralIndef,
+        hint: 'ubestemt flertal',
+        correctAnswer: pluralIndef,
+        acceptableAnswers: pluralDef ? [] : [],
+      })
+      if (pluralDef) variants.push({
+        front: `Bestemt flertal af "${word.danish}"?`,
+        back: pluralDef,
+        hint: 'bestemt flertal (-ne)',
+        correctAnswer: pluralDef,
+        acceptableAnswers: [],
+      })
+    }
+
+    if (pos === 'adjective') {
+      const tForm = inf['t_form'] as string | undefined
+      const eForm = inf['e_form'] as string | undefined
+      const comparative = inf['comparative'] as string | undefined
+      const superlative = inf['superlative'] as string | undefined
+
+      if (tForm) variants.push({
+        front: `T-form (et-ord, ubestemt) af "${word.danish}"?`,
+        back: tForm,
+        hint: 'et-ord ubestemt → tilføj -t',
+        correctAnswer: tForm,
+        acceptableAnswers: [],
+      })
+      if (eForm) variants.push({
+        front: `E-form (bestemt/flertal) af "${word.danish}"?`,
+        back: eForm,
+        hint: 'bestemt form / flertal → tilføj -e',
+        correctAnswer: eForm,
+        acceptableAnswers: [],
+      })
+      if (comparative) variants.push({
+        front: `Komparativ af "${word.danish}"?`,
+        back: comparative,
+        hint: 'komparativ (-ere)',
+        correctAnswer: comparative,
+        acceptableAnswers: [],
+      })
+      if (superlative) variants.push({
+        front: `Superlativ af "${word.danish}"?`,
+        back: superlative,
+        hint: 'superlativ (-est/-st)',
+        correctAnswer: superlative,
+        acceptableAnswers: [],
+      })
+    }
+
+    return variants
   }
 
   const reviewCard = useCallback(async (

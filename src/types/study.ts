@@ -14,6 +14,10 @@ export interface ReviewContent {
   explanation?: string
   contentType: 'word' | 'exercise' | 'sentence'
   contentId: string
+  // Active recall: show text input instead of flip-reveal
+  activeRecall?: boolean
+  correctAnswer?: string          // Primary correct answer string
+  acceptableAnswers?: string[]    // Alternative accepted spellings
 }
 
 export interface SchedulingOption {
