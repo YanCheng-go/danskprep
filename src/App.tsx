@@ -14,7 +14,7 @@ import { SettingsPage } from '@/pages/SettingsPage'
 
 export function App() {
   return (
-    <BrowserRouter basename="/danskprep">
+    <BrowserRouter>
       <Routes>
         {/* Public auth routes */}
         <Route path="/login" element={<LoginPage />} />
