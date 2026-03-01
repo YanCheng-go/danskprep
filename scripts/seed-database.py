@@ -48,10 +48,8 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
-    # Use insert (not upsert) until migration 002 adds UNIQUE(danish).
-    # Re-seeding requires truncating the words table first.
-    client.table("words").insert(words).execute()
-    print(f"  → {len(words)} words inserted")
+    client.table("words").upsert(words, on_conflict="danish").execute()
+    print(f"  → {len(words)} words upserted")
 
 
 def seed_exercises(client: Client) -> None:
