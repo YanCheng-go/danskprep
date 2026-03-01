@@ -48,8 +48,10 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
-    client.table("words").upsert(words, on_conflict="danish").execute()
-    print(f"  → {len(words)} words upserted")
+    # Use insert (not upsert) until migration 002 adds UNIQUE(danish).
+    # Re-seeding requires truncating the words table first.
+    client.table("words").insert(words).execute()
+    print(f"  → {len(words)} words inserted")
 
 
 def seed_exercises(client: Client) -> None:
@@ -73,6 +75,7 @@ def seed_sentences(client: Client) -> None:
     for s in sentences:
         s.pop("id", None)
         s.pop("created_at", None)
+        s.pop("topic_tags", None)  # not in DB schema; stored in JSON for reference only
         s.setdefault("source", "generated")
     client.table("sentences").insert(sentences).execute()
     print(f"  → {len(sentences)} sentences inserted")
