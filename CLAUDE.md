@@ -104,7 +104,26 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 
 Never commit `.env.local`.
 
+## Agents & Skills
+
+| Name | Type | Purpose |
+|------|------|---------|
+| `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
+| `/retro` | Skill | End-of-session retrospective, update backlog + session log |
+| `/scope` | Skill | Break a backlog item into sub-tasks with effort/risk |
+| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/some` | Skill | Social media post generator (LinkedIn/Twitter/FB) |
+| `coder` | Agent | Autonomous dev cycle: pick item → code → test → PR → retro |
+| `pm` | Agent | Exam-aligned research, roadmap planning, feature breakdown |
+| `data-engineer` | Agent | Gather official exam data, validate, map to schema, enrich |
+| `test-frontend` | Agent | Playwright visual/a11y/interaction tests with screenshots |
+| `project-review` | Agent | 8-dimension project health audit |
+| `spike-research` | Agent | Technical deep-dive research → `docs/spikes/` |
+| `content-generator` | Agent | Danish exercise/grammar content generation |
+
+Reports output to: `docs/pm/`, `docs/spikes/`, `docs/reviews/`, `docs/test-reports/`, `docs/some/`
+
 ## Where to Find Detailed Rules
 
 Code conventions, TS pitfalls, Nix setup, and Supabase workflow are in `.claude/rules/` (auto-loaded).
-Domain knowledge (Danish grammar, FSRS config, Supabase patterns) is in `.claude/references/` (loaded by skills on demand).
+Domain knowledge (Danish grammar, FSRS config, Supabase patterns) are in `.claude/references/` (loaded by skills on demand).
