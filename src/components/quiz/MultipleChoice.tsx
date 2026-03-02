@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import type { Exercise } from '@/types/quiz'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 
 interface MultipleChoiceProps {
   exercise: Exercise
@@ -18,11 +20,12 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export function MultipleChoice({ exercise, onSubmit, disabled }: MultipleChoiceProps) {
+  const { t } = useTranslation()
+
   const options = useMemo(() => {
     const all = [exercise.correct_answer, ...(exercise.alternatives ?? [])]
     return shuffle(all)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exercise.question])
+  }, [exercise.question, exercise.correct_answer, exercise.alternatives])
 
   return (
     <div className="space-y-4">
@@ -46,6 +49,15 @@ export function MultipleChoice({ exercise, onSubmit, disabled }: MultipleChoiceP
           </button>
         ))}
       </div>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => onSubmit('')}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

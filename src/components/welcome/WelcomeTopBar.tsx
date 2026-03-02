@@ -27,16 +27,16 @@ export function WelcomeTopBar({ locale, onLocaleToggle, onToggleBubbles, bubbles
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-xl bg-background/80 border-b border-foreground/[0.08]">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 sm:px-6 py-4 backdrop-blur-xl bg-background/80 border-b border-foreground/[0.08]">
       <div className="flex items-center gap-2 text-lg font-bold tracking-tight text-foreground">
         <span className="text-xl">{'\u{1F1E9}\u{1F1F0}'}</span>
-        DanskPrep
+        <span className="hidden sm:inline">DanskPrep</span>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         {/* Game toggle */}
         <button
           onClick={onToggleBubbles}
-          className={`relative bg-foreground/[0.04] border border-foreground/[0.08] rounded-md p-1.5 hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
+          className={`relative bg-foreground/[0.04] border border-foreground/[0.08] rounded-md min-h-11 min-w-11 flex items-center justify-center hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
           title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
         >
           <Gamepad2 className="h-4 w-4" />
@@ -50,7 +50,7 @@ export function WelcomeTopBar({ locale, onLocaleToggle, onToggleBubbles, bubbles
         {bubblesEnabled && (
           <button
             onClick={onOpenGamePanel}
-            className="inline-flex items-center gap-0.5 bg-foreground/[0.04] border border-foreground/[0.08] rounded-md px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
+            className="inline-flex items-center gap-0.5 bg-foreground/[0.04] border border-foreground/[0.08] rounded-md min-h-11 min-w-11 justify-center px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
             title={t('bubble.game.tooltip')}
           >
             <Trophy className="h-4 w-4 text-yellow-500" />
@@ -59,16 +59,17 @@ export function WelcomeTopBar({ locale, onLocaleToggle, onToggleBubbles, bubbles
         )}
         <button
           onClick={handleThemeToggle}
-          className="text-muted-foreground bg-foreground/[0.04] border border-foreground/[0.08] rounded-md p-1.5 hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
+          className="text-muted-foreground bg-foreground/[0.04] border border-foreground/[0.08] rounded-md min-h-11 min-w-11 flex items-center justify-center hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
           title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
           {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>
         <button
           onClick={onLocaleToggle}
-          className="text-[13px] text-muted-foreground bg-foreground/[0.04] border border-foreground/[0.08] rounded-md px-3 py-1.5 hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
+          className="text-muted-foreground bg-foreground/[0.04] border border-foreground/[0.08] rounded-md min-h-11 min-w-11 flex items-center justify-center hover:bg-foreground/[0.07] hover:border-foreground/[0.15] transition-all"
+          title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
         >
-          {locale === 'en' ? '\u{1F1E9}\u{1F1F0} Dansk' : '\u{1F1EC}\u{1F1E7} English'}
+          <span className="text-[15px]">{locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}</span>
         </button>
 
         {/* Separator */}
@@ -84,7 +85,7 @@ export function WelcomeTopBar({ locale, onLocaleToggle, onToggleBubbles, bubbles
         </Link>
         <Link
           to="/signup"
-          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-primary-foreground bg-primary hover:bg-primary/90 rounded-md px-3 py-1.5 transition-colors"
+          className="inline-flex items-center gap-1.5 text-[13px] font-medium text-primary-foreground bg-primary hover:bg-primary/90 rounded-md px-3 py-1.5 min-h-11 transition-colors"
         >
           <UserPlus className="h-3.5 w-3.5 hidden sm:block" />
           {t('nav.signUp')}

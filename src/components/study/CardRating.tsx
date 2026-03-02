@@ -53,7 +53,7 @@ export function CardRating({ schedulingOptions, onRate, disabled, suggestedRatin
           Suggested rating highlighted — tap to confirm or choose differently
         </p>
       )}
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
         {RATINGS.map(({ rating, label, colorClass, suggestedClass }) => {
           const opt = schedulingOptions?.[rating]
           const isSuggested = suggestedRating === rating

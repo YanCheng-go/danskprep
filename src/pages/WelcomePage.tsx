@@ -144,7 +144,7 @@ export function WelcomePage() {
       <div className="relative z-20 flex-1 min-w-0 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto [&_select]:pointer-events-auto [&_textarea]:pointer-events-auto">
 
         {/* ============ HERO ============ */}
-        <section className="relative min-h-screen flex flex-col items-center text-center px-6 pt-20 pb-12">
+        <section className="relative min-h-screen flex flex-col items-center text-center px-4 sm:px-6 pt-16 sm:pt-20 pb-8 sm:pb-12">
           {/* Glow effect */}
           <div className="absolute -top-[20%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,rgba(59,130,246,0.04)_40%,transparent_70%)] pointer-events-none" />
 
@@ -173,11 +173,11 @@ export function WelcomePage() {
           </p>
 
           {/* CTA group */}
-          <div className="flex flex-col items-center gap-4 mb-8">
+          <div className="flex flex-col items-center gap-3 sm:gap-4 mb-6 sm:mb-8 w-full sm:w-auto px-2 sm:px-0">
             <Button
               size="lg"
               onClick={handleStart}
-              className="min-w-[260px] text-base font-semibold py-3.5 px-10 glow-primary"
+              className="w-full sm:w-auto sm:min-w-[260px] text-base font-semibold py-3.5 px-10 glow-primary"
             >
               {t('welcome.startPracticing')}
             </Button>
@@ -185,7 +185,7 @@ export function WelcomePage() {
               to="/signup"
               className={cn(
                 buttonVariants({ variant: 'outline', size: 'lg' }),
-                'min-w-[260px] text-base text-muted-foreground border-foreground/[0.08] bg-transparent hover:bg-foreground/[0.04] hover:border-foreground/[0.15] hover:text-foreground'
+                'w-full sm:w-auto sm:min-w-[260px] text-base text-muted-foreground border-foreground/[0.08] bg-transparent hover:bg-foreground/[0.04] hover:border-foreground/[0.15] hover:text-foreground'
               )}
             >
               {t('welcome.createAccount')}
@@ -218,8 +218,8 @@ export function WelcomePage() {
           </div>
 
           {/* Bottom spacer + support / coffee */}
-          <div className="flex-1 flex flex-col items-center justify-end gap-3 pt-8">
-            <p className="text-sm text-muted-foreground/50">
+          <div className="flex-1 flex flex-col items-center justify-end gap-2 sm:gap-3 pt-4 sm:pt-8">
+            <p className="text-xs sm:text-sm text-muted-foreground/50">
               {t('welcome.support.text')}
             </p>
             <button
@@ -234,14 +234,14 @@ export function WelcomePage() {
 
         {/* ============ STATS BAR ============ */}
         <section className="py-12 border-t border-b border-foreground/[0.08]">
-          <div className="max-w-[960px] mx-auto px-6 flex justify-center gap-12 flex-wrap">
+          <div className="max-w-[960px] mx-auto px-6 flex justify-center gap-6 sm:gap-12 flex-wrap">
             {[
               { value: latestStats.exercises, label: t('welcome.stats.exercises') },
               { value: latestStats.words, label: t('welcome.stats.words') },
               { value: latestStats.grammar_topics, label: t('welcome.stats.grammarTopics') },
               { value: 7, label: t('welcome.stats.practiceModes') },
             ].map((stat) => (
-              <div key={stat.label} className="text-center min-w-[120px]">
+              <div key={stat.label} className="text-center min-w-[80px] sm:min-w-[120px]">
                 <div className="text-[32px] md:text-[32px] font-bold tracking-tight text-foreground mb-1">
                   {stat.value}
                 </div>
@@ -398,7 +398,7 @@ export function WelcomePage() {
           <Button
             size="lg"
             onClick={handleStart}
-            className="relative min-w-[260px] text-base font-semibold py-3.5 px-10 glow-primary"
+            className="relative w-full sm:w-auto sm:min-w-[260px] text-base font-semibold py-3.5 px-10 glow-primary"
           >
             {t('welcome.startPracticing')}
           </Button>
