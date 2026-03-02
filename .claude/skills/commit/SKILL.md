@@ -1,16 +1,12 @@
 ---
 name: commit
-description: Commit changes, create PR, self-review, fix issues, and merge — full ship cycle
+description: Commit, PR, self-review, fix, merge — full ship cycle
 user-invocable: true
 ---
 
 # /commit — Ship Cycle
 
-Commit current changes and run the full ship cycle: branch, PR, self-review, fix, merge.
-
-**Never push directly to main.** Every change goes through a PR.
-
-## Arguments
+Commit → branch → PR → self-review → fix → CI → merge. **Never push directly to main.**
 
 | Invocation | Behaviour |
 |---|---|
@@ -19,39 +15,33 @@ Commit current changes and run the full ship cycle: branch, PR, self-review, fix
 
 ---
 
-## Step 1 — Prepare the commit
+## Step 1 — Commit
 
-1. Run `git status` and `git diff --stat HEAD` to understand what changed
-2. Check for related backlog items in `docs/backlog.md` — scan titles/descriptions for keywords matching the changed files or feature area
-3. Draft a commit message:
-   - First line: imperative, under 70 chars, explains *why* not *what*
-   - If user provided a message, use it as the basis
-   - End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
-4. Stage relevant files (`git add <specific files>` — never `git add -A`)
-   - Skip files that contain secrets (`.env`, credentials)
-   - Skip unrelated uncommitted changes from other sessions
-5. Create the commit
+1. `git status` + `git diff --stat HEAD` to see what changed
+2. Check `docs/backlog.md` for related items (match by file/feature keywords)
+3. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
+4. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 
-## Step 2 — Create a branch and PR
+## Step 2 — Branch and PR
 
-1. Create a branch from current position: `git checkout -b <type>/<short-description>`
-   - Types: `fix/`, `feat/`, `docs/`, `chore/`, `refactor/`
-2. Switch GitHub auth: `gh auth switch --user YanCheng-go`
-3. Push: `git push -u origin <branch>`
-4. Create PR with `gh pr create`:
+1. `git checkout -b <type>/<short-name>` (types: `fix/`, `feat/`, `docs/`, `chore/`, `refactor/`)
+2. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
+3. Create PR — include backlog reference if applicable:
 
 ```bash
-gh pr create --title "<short title>" --body "$(cat <<'EOF'
+gh pr create --title "<title>" --body "$(cat <<'EOF'
 ## Summary
-- What changed and why
+- What and why
 
 ## Backlog
-- Relates to: BL-NNN (or "No related backlog items")
+- Relates to: BL-NNN (or "None")
+
+## Docs updated
+- [ ] README.md (if user-facing: roadmap, stack, commands)
+- [ ] NOTES.md (check off completed items)
 
 ## Test plan
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run build` succeeds
-- [ ] `npx vitest run` — all tests pass
+- [ ] `npx tsc --noEmit` + `npm run build` + `npx vitest run`
 - [ ] Manually verified: <description>
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
@@ -59,75 +49,34 @@ EOF
 )"
 ```
 
-**Backlog reference**: If a backlog item is related, include `Relates to: BL-NNN` or `Closes: BL-NNN` (if fully resolved) in the PR body.
-
 ## Step 3 — Self-review
 
-After the PR is created, perform a fresh review of the changes:
+1. `gh pr diff <number>` — read the full diff as a reviewer
+2. Check for: unused imports, type issues, broken logic, convention violations (CLAUDE.md + `.claude/rules/`), regressions
+3. Report to user:
+   - **Errors** (must fix), **Suggestions** (nice to have), **Trade-offs** (compromises worth noting)
+   - **Verdict**: Clean / Needs fixes
 
-1. Run `gh pr diff <number>` to see the full diff as a reviewer would
-2. Check for:
-   - **Errors**: unused imports, type issues, missing null checks, broken logic
-   - **Suggestions**: simpler approaches, redundant code, naming improvements
-   - **Trade-offs**: document any compromises made (performance vs readability, etc.)
-   - **Regressions**: does this break existing behaviour?
-   - **Convention violations**: check against CLAUDE.md and `.claude/rules/`
-3. Report findings to the user:
-   ```
-   ## Self-review — PR #NN
+## Step 4 — Fix (if needed)
 
-   ### Errors (must fix)
-   - ...
+Fix errors on the same branch → commit → push → re-verify (`tsc --noEmit && build && vitest run`).
 
-   ### Suggestions (nice to have)
-   - ...
+## Step 5 — CI and merge
 
-   ### Trade-offs
-   - ...
+1. `gh pr checks <number>` — wait for CI to pass (fix failures if any)
+2. `gh pr merge <number> --squash --delete-branch`
+3. Sync: `git checkout main && git stash && git pull --rebase && git stash pop`
 
-   ### Verdict: Clean / Needs fixes
-   ```
+## Step 6 — Update backlog
 
-## Step 4 — Fix issues (if any)
-
-If the self-review found errors:
-
-1. Fix all errors on the **same branch**
-2. Stage and commit the fixes: `fix: address review findings`
-3. Push: `git push`
-4. Re-run verification: `npx tsc --noEmit && npm run build && npx vitest run`
-
-If the self-review is clean, skip to Step 5.
-
-## Step 5 — Wait for CI and merge
-
-1. Poll CI status: `gh pr checks <number>`
-   - If CI fails, read the failure logs, fix, push, and re-check
-2. Once CI passes, merge: `gh pr merge <number> --squash --delete-branch`
-3. Sync local main: `git checkout main && git stash && git pull --rebase && git stash pop`
-
-## Step 6 — Update backlog (if applicable)
-
-If the PR relates to a backlog item:
-
-1. Read `docs/backlog.md`
-2. If the item is fully resolved: update status to `done`, append note with today's date
-3. If partially addressed: append a note describing what was done
-4. Update the header counts
-5. Commit the backlog update in a follow-up (or include in the same PR if not yet merged)
+If PR relates to a backlog item: update `docs/backlog.md` status (`done` or add note), update header counts.
 
 ---
 
-## Quick mode
-
-For trivial changes (typo, single-line fix, docs-only):
-- Skip Step 3 (self-review) if the diff is under 20 lines and docs-only
-- Still create a PR — never push to main
-
 ## Rules
 
-- **Never push to main** — always go through a PR
-- **Never skip CI** — wait for checks to pass before merging
-- **Never use `--no-verify`** — if hooks fail, fix the underlying issue
-- **Clean up unused imports** in the same edit, not as a follow-up
-- **One concern per commit** — if fixing multiple unrelated things, make separate commits
+- **Never push to main** — always PR
+- **Never skip CI** — wait for checks before merge
+- **Clean up unused imports** in the same edit
+- **One concern per commit** — separate unrelated changes
+- **Docs check**: update README roadmap/commands/stack when user-facing changes ship
