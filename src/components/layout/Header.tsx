@@ -47,39 +47,8 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
   }
 
   return (
-    <header className="sticky top-0 z-40 h-14 border-b bg-background relative">
-      {/* Search layer — absolutely positioned to align with content area (sidebar-offset on desktop) */}
-      <div className="absolute inset-y-0 left-0 right-0 md:left-52 flex items-center px-4 pointer-events-none">
-        <div className="w-full max-w-2xl mx-auto flex items-center gap-1.5 pointer-events-auto">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-              onKeyDown={e => {
-                if (e.key === 'Enter' && searchTerm.trim()) {
-                  navigate(`/dictionary?q=${encodeURIComponent(searchTerm.trim())}`)
-                  setSearchTerm('')
-                }
-              }}
-              placeholder={t('header.lookupPlaceholder')}
-              className="h-9 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all hidden sm:block"
-            />
-          </div>
-          <button
-            onClick={() => navigate('/dictionary')}
-            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all shrink-0"
-            title={t('nav.dictionary')}
-            aria-label={t('nav.dictionary')}
-          >
-            <BookOpen className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Header chrome — sits on top of the search layer */}
-      <div className="relative z-10 flex h-full items-center px-4">
+    <header className="sticky top-0 z-40 h-14 border-b bg-background">
+      <div className="flex h-full items-center px-4">
         {/* Mobile menu toggle */}
         <Button
           variant="ghost"
@@ -138,34 +107,47 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
 
         </div>
 
-        <div className="flex-1" />
+        {/* Spacer + mobile search icon */}
+        <div className="flex-1 flex items-center justify-center px-2 min-w-0 md:block">
+          <div className="flex items-center gap-1.5 md:hidden">
+            <button
+              onClick={() => navigate('/dictionary')}
+              className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all"
+              title={t('header.lookupPlaceholder')}
+              aria-label={t('header.lookupPlaceholder')}
+            >
+              <Search className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
 
         <div className="flex items-center gap-1 bg-background pl-3">
-          {/* Game toggle — hidden on mobile to prevent header overflow */}
-          <button
-            onClick={onToggleBubbles}
-            className={`relative hidden sm:inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
-            title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
-            aria-label={t('bubble.game.tooltip')}
-          >
-            <Gamepad2 className="h-4 w-4" />
-            {!bubblesEnabled && (
-              <span className="absolute inset-0 flex items-center justify-center">
-                <span className="block w-5 h-px bg-muted-foreground/60 rotate-45" />
-              </span>
-            )}
-          </button>
-          {/* Trophy — opens rankings, only when game is on; hidden on mobile */}
-          {bubblesEnabled && (
+          {/* Game controls — toggle + rankings, hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-0 rounded-lg border border-foreground/[0.08]">
             <button
-              onClick={onOpenGamePanel}
-              className="hidden sm:inline-flex items-center gap-0.5 rounded-md min-h-11 min-w-11 justify-center px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors"
-              title={t('bubble.game.tooltip')}
+              onClick={onToggleBubbles}
+              className={`relative inline-flex items-center justify-center min-h-9 min-w-9 p-1.5 rounded-l-lg hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
+              title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
+              aria-label={t('bubble.game.tooltip')}
             >
-              <Trophy className="h-4 w-4 text-yellow-500" />
-              {bubbleScore > 0 && <span>{bubbleScore}</span>}
+              <Gamepad2 className="h-4 w-4" />
+              {!bubblesEnabled && (
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="block w-5 h-px bg-muted-foreground/60 rotate-45" />
+                </span>
+              )}
             </button>
-          )}
+            {bubblesEnabled && (
+              <button
+                onClick={onOpenGamePanel}
+                className="inline-flex items-center gap-0.5 min-h-9 px-1.5 rounded-r-lg text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors border-l border-foreground/[0.08]"
+                title={t('bubble.game.tooltip')}
+              >
+                <Trophy className="h-3.5 w-3.5 text-yellow-500" />
+                {bubbleScore > 0 && <span>{bubbleScore}</span>}
+              </button>
+            )}
+          </div>
 
           {/* Dark mode toggle */}
           <button
@@ -214,6 +196,36 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
               <span className="hidden sm:inline">{t('header.signIn')}</span>
             </Link>
           )}
+        </div>
+      </div>
+
+      {/* Desktop search — absolutely centered over the content area (after sidebar) */}
+      <div className="hidden md:flex absolute inset-y-0 left-52 right-0 items-center justify-center pointer-events-none">
+        <div className="max-w-xs w-full flex items-center gap-1.5 pointer-events-auto">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' && searchTerm.trim()) {
+                  navigate(`/dictionary?q=${encodeURIComponent(searchTerm.trim())}`)
+                  setSearchTerm('')
+                }
+              }}
+              placeholder={t('header.lookupPlaceholder')}
+              className="h-9 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all"
+            />
+          </div>
+          <button
+            onClick={() => navigate('/dictionary')}
+            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all shrink-0"
+            title={t('nav.dictionary')}
+            aria-label={t('nav.dictionary')}
+          >
+            <BookOpen className="h-4 w-4" />
+          </button>
         </div>
       </div>
 

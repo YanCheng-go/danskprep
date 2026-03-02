@@ -69,8 +69,9 @@ Fix errors on the same branch → commit → push → re-verify (`tsc --noEmit &
 ## Step 5 — CI and merge
 
 1. `gh pr checks <number>` — wait for CI to pass (fix failures if any)
-2. `gh pr merge <number> --squash --delete-branch`
-3. Sync: `git checkout main && git stash && git pull --rebase && git stash pop`
+2. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
+3. `git checkout main && git pull --rebase`
+4. `git branch -d <branch>` — delete the local branch to keep the workspace clean
 
 ## Step 6 — Update backlog
 

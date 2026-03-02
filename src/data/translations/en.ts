@@ -31,7 +31,7 @@ const en = {
   'header.soon': 'Soon',
   'header.module': 'Module',
   'header.signIn': 'Sign in',
-  'header.lookupPlaceholder': 'Look up a word in the dictionary — for sentences, try the AI Tutor',
+  'header.lookupPlaceholder': 'Look up a word',
 
   // Home
   'home.greeting': 'Good day!',
@@ -141,18 +141,19 @@ const en = {
   'writing.subtitleFull': 'Practice writing in Danish and get AI feedback on grammar and vocabulary',
   'writing.promptOf': 'Prompt {current} of {total}',
   'writing.nextPrompt': 'Next prompt',
+  'writing.prevPrompt': 'Previous prompt',
   'writing.submit': 'Submit for AI review',
   'writing.scoring': 'Scoring...',
   'writing.yourResponse': 'Your response:',
   'writing.editResubmit': 'Edit & resubmit',
   'writing.wordCount': '{count} words',
   'writing.overLimit': 'Over limit',
-  'writing.apiKeyRequired': 'AI scoring requires an Anthropic API key. Add it in Settings.',
+  'writing.apiKeyRequired': 'AI scoring requires an LLM API key (Anthropic or OpenAI).',
 
   // Speaking
   'speaking.title': 'Speaking Practice',
   'speaking.subtitle': 'Practice speaking Danish — record yourself, then transcribe and get AI feedback',
-  'speaking.step1': 'Step 1: Record yourself',
+  'speaking.step1': 'Step 1: Record yourself (temporary — not saved)',
   'speaking.step2': 'Step 2: Type what you said',
   'speaking.step2hint': 'Listen to your recording and transcribe it in Danish below.',
   'speaking.playback': 'Playback:',
@@ -273,9 +274,7 @@ const en = {
   'settings.model': 'Model',
   'settings.testConnection': 'Test connection',
   'settings.testing': 'Testing...',
-  'settings.ollamaCorsTitle': 'Ollama only works locally',
-  'settings.ollamaCorsHelp': 'Ollama cannot be used when DanskPrep is hosted on Vercel (HTTPS). Browsers block requests from HTTPS pages to http://localhost. Use Ollama only when running the app locally (npm run dev), or switch to Anthropic/OpenRouter for cloud deployment.',
-  'settings.ollamaHttpsWarning': 'You are accessing DanskPrep over HTTPS — Ollama will not work. Use Anthropic or OpenRouter instead.',
+  'settings.ollamaLocalOnly': 'Ollama only works locally for now.',
   'settings.aiKeyNote': 'API keys are stored in your browser only — never sent to our servers.',
 
   // Chat

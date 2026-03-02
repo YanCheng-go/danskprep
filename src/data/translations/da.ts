@@ -33,7 +33,7 @@ const da: Record<TranslationKeys, string> = {
   'header.soon': 'Snart',
   'header.module': 'Modul',
   'header.signIn': 'Log ind',
-  'header.lookupPlaceholder': 'Slå et ord op i ordbogen — for sætninger, prøv AI Tutor',
+  'header.lookupPlaceholder': 'Slå et ord op',
 
   // Home
   'home.greeting': 'Goddag!',
@@ -143,18 +143,19 @@ const da: Record<TranslationKeys, string> = {
   'writing.subtitleFull': 'Øv skriftlig dansk og få AI-feedback om grammatik og ordforråd',
   'writing.promptOf': 'Opgave {current} af {total}',
   'writing.nextPrompt': 'Næste opgave',
+  'writing.prevPrompt': 'Forrige opgave',
   'writing.submit': 'Indsend til AI-vurdering',
   'writing.scoring': 'Vurderer...',
   'writing.yourResponse': 'Dit svar:',
   'writing.editResubmit': 'Rediger og genindsend',
   'writing.wordCount': '{count} ord',
   'writing.overLimit': 'Over grænsen',
-  'writing.apiKeyRequired': 'AI-scoring kræver en Anthropic API-nøgle. Tilføj den i Indstillinger.',
+  'writing.apiKeyRequired': 'AI-scoring kræver en LLM API-nøgle (Anthropic eller OpenAI).',
 
   // Speaking
   'speaking.title': 'Taleøvelse',
   'speaking.subtitle': 'Øv mundtlig dansk — optag dig selv, transskribér og få AI-feedback',
-  'speaking.step1': 'Trin 1: Optag dig selv',
+  'speaking.step1': 'Trin 1: Optag dig selv (midlertidig — gemmes ikke)',
   'speaking.step2': 'Trin 2: Skriv hvad du sagde',
   'speaking.step2hint': 'Lyt til din optagelse og transskribér den på dansk herunder.',
   'speaking.playback': 'Afspilning:',
@@ -275,9 +276,7 @@ const da: Record<TranslationKeys, string> = {
   'settings.model': 'Model',
   'settings.testConnection': 'Test forbindelse',
   'settings.testing': 'Tester...',
-  'settings.ollamaCorsTitle': 'Ollama virker kun lokalt',
-  'settings.ollamaCorsHelp': 'Ollama kan ikke bruges når DanskPrep kører på Vercel (HTTPS). Browsere blokerer forespørgsler fra HTTPS-sider til http://localhost. Brug kun Ollama lokalt (npm run dev), eller skift til Anthropic/OpenRouter ved cloud-hosting.',
-  'settings.ollamaHttpsWarning': 'Du tilgår DanskPrep via HTTPS — Ollama vil ikke virke. Brug Anthropic eller OpenRouter i stedet.',
+  'settings.ollamaLocalOnly': 'Ollama virker kun lokalt indtil videre.',
   'settings.aiKeyNote': 'API-nøgler gemmes kun i din browser — sendes aldrig til vores servere.',
 
   // Chat
