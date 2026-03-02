@@ -69,7 +69,7 @@ def seed_exercises(client: Client) -> None:
     try:
         client.table("exercises").insert(exercises).execute()
     except Exception as exc:
-        print(f"  ✗ Insert failed after delete — exercises table is now empty!")
+        print("  ✗ Insert failed after delete — exercises table is now empty!")
         print(f"    Error: {exc}")
         sys.exit(1)
     print(f"  → {len(exercises)} exercises inserted (replaced)")
@@ -90,7 +90,7 @@ def seed_sentences(client: Client) -> None:
     try:
         client.table("sentences").insert(sentences).execute()
     except Exception as exc:
-        print(f"  ✗ Insert failed after delete — sentences table is now empty!")
+        print("  ✗ Insert failed after delete — sentences table is now empty!")
         print(f"    Error: {exc}")
         sys.exit(1)
     print(f"  → {len(sentences)} sentences inserted (replaced)")
