@@ -1,3 +1,9 @@
+---
+name: architecture-review
+description: Review architecture changes, evaluate design decisions, write ADRs
+user-invocable: true
+---
+
 # Architecture Review
 
 Review proposed or implemented architecture changes. Acts as the Solution Architect role: evaluates system design decisions, API contracts, module boundaries, and records decisions as ADRs (Architecture Decision Records).

@@ -1,6 +1,14 @@
+---
+name: data-architect
+description: Design and review database schema, migrations, RLS policies
+user-invocable: true
+---
+
 # Data Architect
 
 Design, review, and evolve the DanskPrep database schema. Acts as the Data Architect role: ensures schema integrity, migration safety, query performance, and RLS correctness.
+
+> **Reference:** Read `.claude/references/supabase-patterns.md` first — it covers client usage, RLS patterns, query conventions, and migration rules.
 
 ## Instructions
 
@@ -76,12 +84,19 @@ CREATE POLICY "user_select" ON new_table
 CREATE POLICY "user_insert" ON new_table
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+-- IMPORTANT: UPDATE needs both USING and WITH CHECK
+-- USING  = which rows can be accessed (before update)
+-- WITH CHECK = what values are allowed (after update)
+-- Without WITH CHECK, a user could change user_id to hijack the row
 CREATE POLICY "user_update" ON new_table
-  FOR UPDATE USING (auth.uid() = user_id);
+  FOR UPDATE USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "user_delete" ON new_table
   FOR DELETE USING (auth.uid() = user_id);
 ```
+
+**UPDATE `WITH CHECK` rule:** Every UPDATE policy on user-owned tables MUST include `WITH CHECK` matching the `USING` clause. Without it, a user can match their own row via `USING` but then set `user_id` to another value, effectively stealing the row. This applies to guest rows too — a guest could set `is_guest = false` or assign a `user_id` without `WITH CHECK` enforcement.
 
 ---
 

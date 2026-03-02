@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Agentation } from 'agentation'
 import { Header } from './Header'
@@ -7,24 +7,18 @@ import { FloatingWords } from '@/components/welcome/FloatingWords'
 import { GamePanel } from '@/components/welcome/GamePanel'
 import { ChatButton } from '@/components/chat/ChatButton'
 import { useAuth } from '@/hooks/useAuth'
+import { useBubbleGame } from '@/hooks/useBubbleGame'
 import { SETTINGS_KEYS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 export function Layout() {
   const { user, signOut } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
-  const [bubbleScore, setBubbleScore] = useState(0)
-  const [gamePanelOpen, setGamePanelOpen] = useState(false)
-  const [bubblesEnabled, setBubblesEnabled] = useState(false)
-
-  // Auto-open game panel on first bubble discovery
-  const hasOpenedRef = useRef(false)
-  useEffect(() => {
-    if (bubbleScore === 1 && !hasOpenedRef.current) {
-      hasOpenedRef.current = true
-      setGamePanelOpen(true)
-    }
-  }, [bubbleScore])
+  const {
+    bubbleScore, setBubbleScore,
+    gamePanelOpen, setGamePanelOpen,
+    bubblesEnabled, toggleBubbles,
+  } = useBubbleGame()
 
   function handleSignOut() {
     // Reset bubble game state — new session on next login
@@ -35,10 +29,6 @@ export function Layout() {
     signOut()
   }
 
-  function handleToggleBubbles() {
-    setBubblesEnabled(prev => !prev)
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <Header
@@ -47,7 +37,7 @@ export function Layout() {
         onToggleMenu={() => setMenuOpen(o => !o)}
         onSignOut={handleSignOut}
         bubblesEnabled={bubblesEnabled}
-        onToggleBubbles={handleToggleBubbles}
+        onToggleBubbles={toggleBubbles}
         bubbleScore={bubbleScore}
         onOpenGamePanel={() => setGamePanelOpen(o => !o)}
       />
