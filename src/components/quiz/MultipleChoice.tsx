@@ -25,7 +25,7 @@ export function MultipleChoice({ exercise, onSubmit, disabled }: MultipleChoiceP
   const options = useMemo(() => {
     const all = [exercise.correct_answer, ...(exercise.alternatives ?? [])]
     return shuffle(all)
-  }, [exercise.question, exercise.correct_answer])
+  }, [exercise.question, exercise.correct_answer, exercise.alternatives])
 
   return (
     <div className="space-y-4">

@@ -92,15 +92,19 @@ export function DictionaryPage() {
     } catch {
       setLookupState({ status: 'error', message: t('dictionary.networkError') })
     }
-  }, [t, seedWords, allWords])
+  }, [t, seedWords])
 
   // Auto-search when ?q= param is present (from header search)
+  const pendingQuery = searchParams.get('q')
+  const pendingQueryRef = useRef<string | null>(null)
   useEffect(() => {
-    const q = searchParams.get('q')
-    if (q) {
-      handleSearch(q)
+    if (pendingQuery && pendingQuery !== pendingQueryRef.current) {
+      pendingQueryRef.current = pendingQuery
+      // Defer to avoid synchronous setState in effect body
+      const id = requestAnimationFrame(() => handleSearch(pendingQuery))
+      return () => cancelAnimationFrame(id)
     }
-  }, [searchParams, handleSearch])
+  }, [pendingQuery, handleSearch])
 
   function handleAddToVocab() {
     if (lookupState.status !== 'success') return
