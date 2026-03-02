@@ -114,6 +114,66 @@ uv run python enrich-vocabulary.py
 | Speaking prompts | `speaking-prompts-pd3m2.json` | 8 |
 | Listening episodes | `listening-episodes.json` | 8 |
 
+## Development — AI-First with Claude Code
+
+This project is built using an **AI-first development methodology** powered by [Claude Code](https://claude.com/claude-code). Instead of traditional project management tools, a system of Claude Code agents and skills manages the full product lifecycle — from market research to social media posts.
+
+### Agent & Skill Ecosystem
+
+```
+                         ┌──────────┐
+                         │    pm    │ research → roadmap → breakdown
+                         └────┬─────┘
+                              │ approved features
+                              ▼
+                     ┌────────────────┐
+                     │   /backlog     │ items created
+                     └───────┬────────┘
+                             │ /backlog next
+                             ▼
+                     ┌────────────────┐
+                     │    coder       │ pick → plan → code → test → PR
+                     └───────┬────────┘
+                             │
+              ┌──────────────┼───────────────┐
+              ▼              ▼               ▼
+      ┌──────────┐   ┌────────────┐   ┌──────────┐
+      │ /scope   │   │ /release   │   │  /retro  │
+      └──────────┘   └─────┬──────┘   └──────────┘
+                            │
+                            ▼
+                     ┌──────────────┐
+                     │    /some     │ social post (if notable)
+                     └──────────────┘
+```
+
+| Name | Type | Purpose |
+|------|------|---------|
+| **pm** | Agent | Exam-aligned research, roadmap planning, feature breakdown |
+| **coder** | Agent | Autonomous dev cycle: pick item → code → test → PR → retro |
+| **data-engineer** | Agent | Gather official exam data, validate, map to schema, enrich |
+| **test-frontend** | Agent | Playwright visual/a11y/interaction tests with screenshots |
+| **project-review** | Agent | 8-dimension project health audit (security, perf, a11y, i18n...) |
+| **spike-research** | Agent | Technical deep-dive research → `docs/spikes/` |
+| **content-generator** | Agent | Danish exercise and grammar content generation |
+| `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
+| `/scope` | Skill | Break a backlog item into sub-tasks with effort and risk |
+| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/retro` | Skill | End-of-session retrospective, update backlog and session log |
+| `/some` | Skill | Social media post generator (LinkedIn, Twitter, Facebook) |
+
+### How it works
+
+1. **PM agent** researches Danish exam requirements and proposes a feature roadmap
+2. Approved features are broken into **backlog items** with metadata (priority, effort, area, exam scope)
+3. **Coder agent** picks the highest-priority item, implements it with checkpoints for user approval
+4. **Test agent** runs Playwright screenshots across viewports/themes to catch visual regressions
+5. **Release skill** chains changelog + PR + GitHub release when ready to ship
+6. **Retro skill** logs what was done, updates the backlog, and filters durable learnings into project rules
+7. **SOME skill** generates social media posts for notable releases
+
+All agent definitions live in `.claude/agents/`, skills in `.claude/skills/`. Reports output to `docs/` subdirectories.
+
 ## Roadmap
 
 ### Done
