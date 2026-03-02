@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Brain, Dumbbell, PenLine, BookOpen, Coffee, LogIn } from 'lucide-react'
 import { SupportDialog } from '@/components/layout/SupportDialog'
+import { FloatingWords } from '@/components/welcome/FloatingWords'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
@@ -28,8 +29,9 @@ export function WelcomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-2xl px-4 pt-4 pb-8 sm:pt-6 sm:pb-12">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      <FloatingWords />
+      <div className="relative z-20 mx-auto max-w-2xl px-4 pt-4 pb-8 sm:pt-6 sm:pb-12">
         {/* Language toggle */}
         <div className="mb-6">
           <button

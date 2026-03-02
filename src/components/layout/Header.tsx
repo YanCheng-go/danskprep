@@ -69,8 +69,13 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
               {AVAILABLE_MODULES.map(mod => (
                 <button
                   key={mod.id}
-                  onClick={() => selectModule(mod.id)}
-                  className={`w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors flex items-center justify-between ${
+                  onClick={() => mod.hasContent && selectModule(mod.id)}
+                  disabled={!mod.hasContent}
+                  className={`w-full text-left px-3 py-2 text-sm transition-colors flex items-center justify-between ${
+                    !mod.hasContent
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'hover:bg-accent'
+                  } ${
                     activeModuleId === mod.id ? 'font-medium text-primary' : ''
                   }`}
                 >
@@ -97,7 +102,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
 
       {/* Dictionary search — always visible, pink glow */}
       <div className="flex flex-1 px-2 md:px-4">
-        <div className="flex items-center gap-1.5 w-full">
+        <div className="flex items-center gap-1.5 w-full max-w-2xl mx-auto">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
             <input

@@ -367,6 +367,7 @@ const en = {
   'welcome.getStarted': 'Get Started',
   'welcome.continueAsGuest': 'Continue as guest',
   'welcome.noAccountYet': "Don't have an account?",
+  'welcome.wordsDiscovered': '{count} words discovered',
 
   // Footer
   'footer.builtBy': 'Built by',
