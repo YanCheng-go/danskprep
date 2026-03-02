@@ -188,6 +188,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
 
           <span className="w-px h-4 bg-foreground/[0.08] mx-0.5" />
 
+
           <button
             onClick={() => { setSupportOpen(true); track('support_click') }}
             className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
