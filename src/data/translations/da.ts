@@ -345,6 +345,8 @@ const da: Record<TranslationKeys, string> = {
   'guest.tryQuiz': 'Prøv Quiz i stedet',
   'guest.progressDesc': 'Log ind for at følge din stime, nøjagtighed og kortfremskridt.',
   'guest.dashboardDesc': 'Log ind for at følge dine fremskridt med spredt gentagelse.',
+  'guest.signInRequired': 'Log ind påkrævet',
+  'guest.signInRequiredDesc': 'Du skal have en konto for at bruge denne funktion.',
 
   // Welcome
   'welcome.title': 'Forbered dig til Prøve i Dansk',
