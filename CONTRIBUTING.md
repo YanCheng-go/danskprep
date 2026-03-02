@@ -47,7 +47,7 @@ npm run lint           # ESLint
 npm test -- --run      # Vitest
 npm run build          # Production build
 
-# 5. Open PR using the pull-request skill
+# 5. Open PR using the commit skill
 # (Claude handles NOTES.md, README.md, PR creation)
 ```
 
