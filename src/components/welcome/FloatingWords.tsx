@@ -75,9 +75,11 @@ function useReducedMotion(): boolean {
 interface FloatingWordsProps {
   score?: number
   onScoreChange?: (count: number) => void
+  /** When false, bubbles are purely decorative and don't capture clicks */
+  interactive?: boolean
 }
 
-export function FloatingWords({ score = 0, onScoreChange }: FloatingWordsProps) {
+export function FloatingWords({ score = 0, onScoreChange, interactive = true }: FloatingWordsProps) {
   const reducedMotion = useReducedMotion()
   const [bubbles, setBubbles] = useState<ActiveBubble[]>([])
   const discoveredCountRef = useRef(score)
@@ -162,6 +164,7 @@ export function FloatingWords({ score = 0, onScoreChange }: FloatingWordsProps) 
           sway={bubble.sway}
           size={bubble.size}
           colorClasses={bubble.colorClasses}
+          interactive={interactive}
           onComplete={() => handleComplete(bubble.id)}
           onDiscover={handleDiscover}
         />
