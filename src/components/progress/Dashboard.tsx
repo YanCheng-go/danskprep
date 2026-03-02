@@ -61,6 +61,31 @@ export function Dashboard({
         </Card>
       )}
 
+      {/* Quick-start buttons */}
+      <div className="grid grid-cols-3 gap-3">
+        <Link
+          to="/study"
+          className={cn(buttonVariants({ size: 'lg' }), 'h-16 flex-col gap-1')}
+        >
+          <Brain className="h-5 w-5" />
+          <span className="text-sm">{t('progress.studyNow')}</span>
+        </Link>
+        <Link
+          to="/quiz"
+          className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
+        >
+          <List className="h-5 w-5" />
+          <span className="text-sm">{t('progress.quickQuiz')}</span>
+        </Link>
+        <Link
+          to="/drill"
+          className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
+        >
+          <Dumbbell className="h-5 w-5" />
+          <span className="text-sm">{t('progress.drill')}</span>
+        </Link>
+      </div>
+
       {/* Guest sign-in CTA */}
       {isGuest && (
         <Card className="border-primary/40 bg-primary/5 dark:bg-primary/10">
@@ -89,31 +114,6 @@ export function Dashboard({
           </CardContent>
         </Card>
       )}
-
-      {/* Quick-start buttons */}
-      <div className="grid grid-cols-3 gap-3">
-        <Link
-          to="/study"
-          className={cn(buttonVariants({ size: 'lg' }), 'h-16 flex-col gap-1')}
-        >
-          <Brain className="h-5 w-5" />
-          <span className="text-sm">{t('progress.studyNow')}</span>
-        </Link>
-        <Link
-          to="/quiz"
-          className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
-        >
-          <List className="h-5 w-5" />
-          <span className="text-sm">{t('progress.quickQuiz')}</span>
-        </Link>
-        <Link
-          to="/drill"
-          className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
-        >
-          <Dumbbell className="h-5 w-5" />
-          <span className="text-sm">{t('progress.drill')}</span>
-        </Link>
-      </div>
 
       {/* Stats (only for authenticated users with data) */}
       {!isGuest && total > 0 && (
