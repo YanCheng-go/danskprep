@@ -28,7 +28,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
     } catch {
       // ignore
     }
-    return 'en'
+    return 'da'
   })
 
   const setLocale = useCallback((l: Locale) => {
