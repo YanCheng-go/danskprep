@@ -94,17 +94,19 @@ export function DictionaryPage() {
     }
   }, [t, seedWords])
 
-  // Auto-search when ?q= param is present (from header search)
+  // Auto-search when ?q= param is present (from header search).
+  // Use a ref for handleSearch so the effect only re-runs when the query changes,
+  // not when handleSearch is recreated (which would cancel the pending RAF).
+  const handleSearchRef = useRef(handleSearch)
+  handleSearchRef.current = handleSearch
   const pendingQuery = searchParams.get('q')
   const pendingQueryRef = useRef<string | null>(null)
   useEffect(() => {
     if (pendingQuery && pendingQuery !== pendingQueryRef.current) {
       pendingQueryRef.current = pendingQuery
-      // Defer to avoid synchronous setState in effect body
-      const id = requestAnimationFrame(() => handleSearch(pendingQuery))
-      return () => cancelAnimationFrame(id)
+      handleSearchRef.current(pendingQuery)
     }
-  }, [pendingQuery, handleSearch])
+  }, [pendingQuery])
 
   function handleAddToVocab() {
     if (lookupState.status !== 'success') return
