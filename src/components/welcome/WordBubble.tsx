@@ -24,6 +24,7 @@ interface WordBubbleProps {
   sway: number        // px, horizontal sway amplitude
   size: 'sm' | 'md' | 'lg'
   colorClasses?: BubbleColorClasses
+  interactive?: boolean // whether bubble captures pointer events (default true)
   onComplete: () => void
   onDiscover: () => void
 }
@@ -42,6 +43,7 @@ export function WordBubble({
   sway,
   size,
   colorClasses,
+  interactive = true,
   onComplete,
   onDiscover,
 }: WordBubbleProps) {
@@ -83,7 +85,8 @@ export function WordBubble({
       tabIndex={-1}
       onClick={handleClick}
       className={cn(
-        'absolute rounded-full border cursor-pointer select-none whitespace-nowrap transition-colors pointer-events-auto',
+        'absolute rounded-full border select-none whitespace-nowrap transition-colors',
+        interactive ? 'cursor-pointer pointer-events-auto' : 'pointer-events-none',
         SIZE_CLASSES[size],
         flipped
           ? 'ring-2 ring-green-400/50 bg-green-50/80 dark:bg-green-950/40 border-green-300/50 dark:border-green-700/50'

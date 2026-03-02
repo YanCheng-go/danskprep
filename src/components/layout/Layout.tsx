@@ -81,9 +81,10 @@ export function Layout() {
         />
       </div>
 
-      {/* Floating word bubbles — background layer */}
+      {/* Floating word bubbles — decorative background, non-interactive in Layout
+           so bubbles never block clicks on content (quiz buttons, etc.) */}
       {bubblesEnabled && (
-        <FloatingWords score={bubbleScore} onScoreChange={setBubbleScore} />
+        <FloatingWords score={bubbleScore} onScoreChange={setBubbleScore} interactive={false} />
       )}
 
       {/* Floating chat */}
