@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import { Agentation } from 'agentation'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 import { ChatButton } from '@/components/chat/ChatButton'
@@ -51,6 +52,9 @@ export function Layout() {
 
       {/* Floating chat */}
       <ChatButton />
+
+      {/* Dev-only: visual annotation tool for UI feedback */}
+      {import.meta.env.DEV && <Agentation />}
     </div>
   )
 }
