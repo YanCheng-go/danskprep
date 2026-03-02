@@ -81,6 +81,20 @@ export function TopicDetail({ topic }: TopicDetailProps) {
           </section>
         </>
       )}
+
+      {/* Practice CTA */}
+      <Separator />
+      <div className="flex flex-col items-center gap-3 py-4 text-center">
+        <p className="text-sm text-muted-foreground">
+          Ready to practice what you just read?
+        </p>
+        <Link
+          to={`/quiz?topic=${topic.slug}`}
+          className={cn(buttonVariants({ variant: 'default', size: 'lg' }), 'w-full sm:w-auto')}
+        >
+          Practice {topic.title}
+        </Link>
+      </div>
     </div>
   )
 }

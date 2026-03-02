@@ -6,8 +6,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["transport", "daily"],
-    "inflections": {"definite": "bilen", "plural_indef": "biler", "plural_def": "bilerne"},
+    "tags": [
+      "transport",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "bilen",
+      "plural_indef": "biler",
+      "plural_def": "bilerne"
+    },
     "example_da": "Jeg kører min bil til arbejde hver dag.",
     "example_en": "I drive my car to work every day.",
     "source": "module2-core"
@@ -19,8 +26,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["home", "daily"],
-    "inflections": {"definite": "huset", "plural_indef": "huse", "plural_def": "husene"},
+    "tags": [
+      "home",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "huset",
+      "plural_indef": "huse",
+      "plural_def": "husene"
+    },
     "example_da": "Vi bor i et stort hus.",
     "example_en": "We live in a big house.",
     "source": "module2-core"
@@ -32,8 +46,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["people", "daily"],
-    "inflections": {"definite": "manden", "plural_indef": "mænd", "plural_def": "mændene"},
+    "tags": [
+      "people",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "manden",
+      "plural_indef": "mænd",
+      "plural_def": "mændene"
+    },
     "example_da": "Manden arbejder på kontoret.",
     "example_en": "The man works at the office.",
     "source": "module2-core"
@@ -45,8 +66,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["people", "daily"],
-    "inflections": {"definite": "kvinden", "plural_indef": "kvinder", "plural_def": "kvinderne"},
+    "tags": [
+      "people",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "kvinden",
+      "plural_indef": "kvinder",
+      "plural_def": "kvinderne"
+    },
     "example_da": "Kvinden læser en bog i parken.",
     "example_en": "The woman reads a book in the park.",
     "source": "module2-core"
@@ -58,8 +86,16 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["people", "family", "irregular"],
-    "inflections": {"definite": "barnet", "plural_indef": "børn", "plural_def": "børnene"},
+    "tags": [
+      "people",
+      "family",
+      "irregular"
+    ],
+    "inflections": {
+      "definite": "barnet",
+      "plural_indef": "børn",
+      "plural_def": "børnene"
+    },
     "example_da": "Barnet leger i haven.",
     "example_en": "The child plays in the garden.",
     "source": "module2-core"
@@ -71,8 +107,16 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "daily", "irregular"],
-    "inflections": {"definite": "bogen", "plural_indef": "bøger", "plural_def": "bøgerne"},
+    "tags": [
+      "education",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "definite": "bogen",
+      "plural_indef": "bøger",
+      "plural_def": "bøgerne"
+    },
     "example_da": "Denne bog er meget interessant.",
     "example_en": "This book is very interesting.",
     "source": "module2-core"
@@ -84,8 +128,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "daily"],
-    "inflections": {"definite": "skolen", "plural_indef": "skoler", "plural_def": "skolerne"},
+    "tags": [
+      "education",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "skolen",
+      "plural_indef": "skoler",
+      "plural_def": "skolerne"
+    },
     "example_da": "Børnene går i skole.",
     "example_en": "The children go to school.",
     "source": "module2-core"
@@ -97,8 +148,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["home", "furniture"],
-    "inflections": {"definite": "bordet", "plural_indef": "borde", "plural_def": "bordene"},
+    "tags": [
+      "home",
+      "furniture"
+    ],
+    "inflections": {
+      "definite": "bordet",
+      "plural_indef": "borde",
+      "plural_def": "bordene"
+    },
     "example_da": "Maden står på bordet.",
     "example_en": "The food is on the table.",
     "source": "module2-core"
@@ -110,8 +168,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["work", "daily"],
-    "inflections": {"definite": "arbejdet", "plural_indef": "arbejder", "plural_def": "arbejderne"},
+    "tags": [
+      "work",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "arbejdet",
+      "plural_indef": "arbejder",
+      "plural_def": "arbejderne"
+    },
     "example_da": "Han kan godt lide sit arbejde.",
     "example_en": "He likes his job.",
     "source": "module2-core"
@@ -123,8 +188,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["time", "daily"],
-    "inflections": {"definite": "dagen", "plural_indef": "dage", "plural_def": "dagene"},
+    "tags": [
+      "time",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "dagen",
+      "plural_indef": "dage",
+      "plural_def": "dagene"
+    },
     "example_da": "Det har været en lang dag.",
     "example_en": "It has been a long day.",
     "source": "module2-core"
@@ -136,8 +208,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["time", "daily"],
-    "inflections": {"definite": "tiden", "plural_indef": "tider", "plural_def": "tiderne"},
+    "tags": [
+      "time",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "tiden",
+      "plural_indef": "tider",
+      "plural_def": "tiderne"
+    },
     "example_da": "Jeg har ikke tid i dag.",
     "example_en": "I don't have time today.",
     "source": "module2-core"
@@ -149,8 +228,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["people", "social"],
-    "inflections": {"definite": "vennen", "plural_indef": "venner", "plural_def": "vennerne"},
+    "tags": [
+      "people",
+      "social"
+    ],
+    "inflections": {
+      "definite": "vennen",
+      "plural_indef": "venner",
+      "plural_def": "vennerne"
+    },
     "example_da": "Jeg skal mødes med mine venner.",
     "example_en": "I am going to meet my friends.",
     "source": "module2-core"
@@ -162,8 +248,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["food", "daily"],
-    "inflections": {"definite": "maden", "plural_indef": null, "plural_def": null},
+    "tags": [
+      "food",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "maden",
+      "plural_indef": null,
+      "plural_def": null
+    },
     "example_da": "Maden smager godt.",
     "example_en": "The food tastes good.",
     "source": "module2-core"
@@ -175,8 +268,14 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["geography"],
-    "inflections": {"definite": "landet", "plural_indef": "lande", "plural_def": "landene"},
+    "tags": [
+      "geography"
+    ],
+    "inflections": {
+      "definite": "landet",
+      "plural_indef": "lande",
+      "plural_def": "landene"
+    },
     "example_da": "Danmark er et lille land.",
     "example_en": "Denmark is a small country.",
     "source": "module2-core"
@@ -188,8 +287,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["geography", "daily"],
-    "inflections": {"definite": "byen", "plural_indef": "byer", "plural_def": "byerne"},
+    "tags": [
+      "geography",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "byen",
+      "plural_indef": "byer",
+      "plural_def": "byerne"
+    },
     "example_da": "København er en stor by.",
     "example_en": "Copenhagen is a big city.",
     "source": "module2-core"
@@ -201,8 +307,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["food", "daily"],
-    "inflections": {"definite": "vandet", "plural_indef": null, "plural_def": null},
+    "tags": [
+      "food",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "vandet",
+      "plural_indef": null,
+      "plural_def": null
+    },
     "example_da": "Kan jeg få et glas vand?",
     "example_en": "Can I have a glass of water?",
     "source": "module2-core"
@@ -214,8 +327,14 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["time"],
-    "inflections": {"definite": "året", "plural_indef": "år", "plural_def": "årene"},
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "året",
+      "plural_indef": "år",
+      "plural_def": "årene"
+    },
     "example_da": "Jeg har boet her i tre år.",
     "example_en": "I have lived here for three years.",
     "source": "module2-core"
@@ -227,8 +346,14 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["time"],
-    "inflections": {"definite": "ugen", "plural_indef": "uger", "plural_def": "ugerne"},
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "ugen",
+      "plural_indef": "uger",
+      "plural_def": "ugerne"
+    },
     "example_da": "Vi ses næste uge.",
     "example_en": "We'll see each other next week.",
     "source": "module2-core"
@@ -240,8 +365,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["daily", "shopping"],
-    "inflections": {"definite": "pengene", "plural_indef": null, "plural_def": null},
+    "tags": [
+      "daily",
+      "shopping"
+    ],
+    "inflections": {
+      "definite": "pengene",
+      "plural_indef": null,
+      "plural_def": null
+    },
     "example_da": "Jeg har ikke nok penge.",
     "example_en": "I don't have enough money.",
     "source": "module2-core"
@@ -253,8 +385,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common"],
-    "inflections": {"definite": "sproget", "plural_indef": "sprog", "plural_def": "sprogene"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "definite": "sproget",
+      "plural_indef": "sprog",
+      "plural_def": "sprogene"
+    },
     "example_da": "Dansk er et svært sprog.",
     "example_en": "Danish is a difficult language.",
     "source": "module2-core"
@@ -266,8 +405,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["health", "profession"],
-    "inflections": {"definite": "lægen", "plural_indef": "læger", "plural_def": "lægerne"},
+    "tags": [
+      "health",
+      "profession"
+    ],
+    "inflections": {
+      "definite": "lægen",
+      "plural_indef": "læger",
+      "plural_def": "lægerne"
+    },
     "example_da": "Jeg skal til lægen i morgen.",
     "example_en": "I have to go to the doctor tomorrow.",
     "source": "module2-core"
@@ -279,8 +425,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["shopping", "daily"],
-    "inflections": {"definite": "butikken", "plural_indef": "butikker", "plural_def": "butikkerne"},
+    "tags": [
+      "shopping",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "butikken",
+      "plural_indef": "butikker",
+      "plural_def": "butikkerne"
+    },
     "example_da": "Butikken lukker klokken seks.",
     "example_en": "The shop closes at six o'clock.",
     "source": "module2-core"
@@ -292,8 +445,14 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["home"],
-    "inflections": {"definite": "køkkenet", "plural_indef": "køkkener", "plural_def": "køkkenerne"},
+    "tags": [
+      "home"
+    ],
+    "inflections": {
+      "definite": "køkkenet",
+      "plural_indef": "køkkener",
+      "plural_def": "køkkenerne"
+    },
     "example_da": "Vi spiser i køkkenet.",
     "example_en": "We eat in the kitchen.",
     "source": "module2-core"
@@ -305,8 +464,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["home", "furniture"],
-    "inflections": {"definite": "stolen", "plural_indef": "stole", "plural_def": "stolene"},
+    "tags": [
+      "home",
+      "furniture"
+    ],
+    "inflections": {
+      "definite": "stolen",
+      "plural_indef": "stole",
+      "plural_def": "stolene"
+    },
     "example_da": "Sæt dig på stolen.",
     "example_en": "Sit on the chair.",
     "source": "module2-core"
@@ -318,8 +484,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common"],
-    "inflections": {"definite": "ordet", "plural_indef": "ord", "plural_def": "ordene"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "definite": "ordet",
+      "plural_indef": "ord",
+      "plural_def": "ordene"
+    },
     "example_da": "Jeg kender ikke dette ord.",
     "example_en": "I don't know this word.",
     "source": "module2-core"
@@ -331,8 +504,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["education", "exam_common"],
-    "inflections": {"definite": "spørgsmålet", "plural_indef": "spørgsmål", "plural_def": "spørgsmålene"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "definite": "spørgsmålet",
+      "plural_indef": "spørgsmål",
+      "plural_def": "spørgsmålene"
+    },
     "example_da": "Har du et spørgsmål?",
     "example_en": "Do you have a question?",
     "source": "module2-core"
@@ -344,8 +524,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common"],
-    "inflections": {"definite": "svaret", "plural_indef": "svar", "plural_def": "svarene"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "definite": "svaret",
+      "plural_indef": "svar",
+      "plural_def": "svarene"
+    },
     "example_da": "Jeg kender ikke svaret.",
     "example_en": "I don't know the answer.",
     "source": "module2-core"
@@ -357,8 +544,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["family", "daily"],
-    "inflections": {"definite": "familien", "plural_indef": "familier", "plural_def": "familierne"},
+    "tags": [
+      "family",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "familien",
+      "plural_indef": "familier",
+      "plural_def": "familierne"
+    },
     "example_da": "Min familie bor i Danmark.",
     "example_en": "My family lives in Denmark.",
     "source": "module2-core"
@@ -370,8 +564,15 @@
     "gender": "et",
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["weather", "daily"],
-    "inflections": {"definite": "vejret", "plural_indef": null, "plural_def": null},
+    "tags": [
+      "weather",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "vejret",
+      "plural_indef": null,
+      "plural_def": null
+    },
     "example_da": "Vejret er godt i dag.",
     "example_en": "The weather is good today.",
     "source": "module2-core"
@@ -383,8 +584,15 @@
     "gender": "en",
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["abstract", "exam_common"],
-    "inflections": {"definite": "muligheden", "plural_indef": "muligheder", "plural_def": "mulighederne"},
+    "tags": [
+      "abstract",
+      "exam_common"
+    ],
+    "inflections": {
+      "definite": "muligheden",
+      "plural_indef": "muligheder",
+      "plural_def": "mulighederne"
+    },
     "example_da": "Der er mange muligheder.",
     "example_en": "There are many possibilities.",
     "source": "module2-core"
@@ -396,8 +604,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["food", "daily", "group2"],
-    "inflections": {"present": "spiser", "past": "spiste", "perfect": "har spist", "imperative": "spis"},
+    "tags": [
+      "food",
+      "daily",
+      "group2"
+    ],
+    "inflections": {
+      "present": "spiser",
+      "past": "spiste",
+      "perfect": "har spist",
+      "imperative": "spis"
+    },
     "example_da": "Vi spiser aftensmad klokken seks.",
     "example_en": "We eat dinner at six o'clock.",
     "source": "module2-core"
@@ -409,8 +626,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["home", "daily", "group2"],
-    "inflections": {"present": "bor", "past": "boede", "perfect": "har boet", "imperative": "bo"},
+    "tags": [
+      "home",
+      "daily",
+      "group2"
+    ],
+    "inflections": {
+      "present": "bor",
+      "past": "boede",
+      "perfect": "har boet",
+      "imperative": "bo"
+    },
     "example_da": "Jeg bor i København.",
     "example_en": "I live in Copenhagen.",
     "source": "module2-core"
@@ -422,8 +648,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["work", "daily", "group1"],
-    "inflections": {"present": "arbejder", "past": "arbejdede", "perfect": "har arbejdet", "imperative": "arbejd"},
+    "tags": [
+      "work",
+      "daily",
+      "group1"
+    ],
+    "inflections": {
+      "present": "arbejder",
+      "past": "arbejdede",
+      "perfect": "har arbejdet",
+      "imperative": "arbejd"
+    },
     "example_da": "Hun arbejder på et hospital.",
     "example_en": "She works at a hospital.",
     "source": "module2-core"
@@ -435,8 +670,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["communication", "daily", "group1"],
-    "inflections": {"present": "snakker", "past": "snakkede", "perfect": "har snakket", "imperative": "snak"},
+    "tags": [
+      "communication",
+      "daily",
+      "group1"
+    ],
+    "inflections": {
+      "present": "snakker",
+      "past": "snakkede",
+      "perfect": "har snakket",
+      "imperative": "snak"
+    },
     "example_da": "Vi snakker dansk i klassen.",
     "example_en": "We speak Danish in class.",
     "source": "module2-core"
@@ -448,8 +692,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["movement", "daily", "irregular"],
-    "inflections": {"present": "kommer", "past": "kom", "perfect": "er kommet", "imperative": "kom"},
+    "tags": [
+      "movement",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "kommer",
+      "past": "kom",
+      "perfect": "er kommet",
+      "imperative": "kom"
+    },
     "example_da": "Han kommer i morgen.",
     "example_en": "He is coming tomorrow.",
     "source": "module2-core"
@@ -461,8 +714,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["movement", "daily", "irregular"],
-    "inflections": {"present": "går", "past": "gik", "perfect": "er gået", "imperative": "gå"},
+    "tags": [
+      "movement",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "går",
+      "past": "gik",
+      "perfect": "er gået",
+      "imperative": "gå"
+    },
     "example_da": "Jeg går til sprogskole hver dag.",
     "example_en": "I go to language school every day.",
     "source": "module2-core"
@@ -474,8 +736,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["daily", "irregular"],
-    "inflections": {"present": "tager", "past": "tog", "perfect": "har taget", "imperative": "tag"},
+    "tags": [
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "tager",
+      "past": "tog",
+      "perfect": "har taget",
+      "imperative": "tag"
+    },
     "example_da": "Jeg tager bussen til arbejde.",
     "example_en": "I take the bus to work.",
     "source": "module2-core"
@@ -487,8 +757,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["daily", "irregular"],
-    "inflections": {"present": "ser", "past": "så", "perfect": "har set", "imperative": "se"},
+    "tags": [
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "ser",
+      "past": "så",
+      "perfect": "har set",
+      "imperative": "se"
+    },
     "example_da": "Vi ser en film i aften.",
     "example_en": "We are watching a movie tonight.",
     "source": "module2-core"
@@ -500,8 +778,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["daily", "irregular"],
-    "inflections": {"present": "giver", "past": "gav", "perfect": "har givet", "imperative": "giv"},
+    "tags": [
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "giver",
+      "past": "gav",
+      "perfect": "har givet",
+      "imperative": "giv"
+    },
     "example_da": "Hun giver ham en gave.",
     "example_en": "She gives him a gift.",
     "source": "module2-core"
@@ -513,8 +799,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["shopping", "daily", "group2"],
-    "inflections": {"present": "køber", "past": "købte", "perfect": "har købt", "imperative": "køb"},
+    "tags": [
+      "shopping",
+      "daily",
+      "group2"
+    ],
+    "inflections": {
+      "present": "køber",
+      "past": "købte",
+      "perfect": "har købt",
+      "imperative": "køb"
+    },
     "example_da": "Jeg skal købe mælk.",
     "example_en": "I need to buy milk.",
     "source": "module2-core"
@@ -526,8 +821,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "daily", "group2"],
-    "inflections": {"present": "læser", "past": "læste", "perfect": "har læst", "imperative": "læs"},
+    "tags": [
+      "education",
+      "daily",
+      "group2"
+    ],
+    "inflections": {
+      "present": "læser",
+      "past": "læste",
+      "perfect": "har læst",
+      "imperative": "læs"
+    },
     "example_da": "Jeg læser avisen hver morgen.",
     "example_en": "I read the newspaper every morning.",
     "source": "module2-core"
@@ -539,8 +843,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "daily", "irregular"],
-    "inflections": {"present": "skriver", "past": "skrev", "perfect": "har skrevet", "imperative": "skriv"},
+    "tags": [
+      "education",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "skriver",
+      "past": "skrev",
+      "perfect": "har skrevet",
+      "imperative": "skriv"
+    },
     "example_da": "Hun skriver en mail til sin chef.",
     "example_en": "She writes an email to her boss.",
     "source": "module2-core"
@@ -552,8 +865,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common", "group2"],
-    "inflections": {"present": "lærer", "past": "lærte", "perfect": "har lært", "imperative": "lær"},
+    "tags": [
+      "education",
+      "exam_common",
+      "group2"
+    ],
+    "inflections": {
+      "present": "lærer",
+      "past": "lærte",
+      "perfect": "har lært",
+      "imperative": "lær"
+    },
     "example_da": "Jeg lærer dansk på sprogskolen.",
     "example_en": "I learn Danish at the language school.",
     "source": "module2-core"
@@ -565,8 +887,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["communication", "daily", "irregular"],
-    "inflections": {"present": "siger", "past": "sagde", "perfect": "har sagt", "imperative": "sig"},
+    "tags": [
+      "communication",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "siger",
+      "past": "sagde",
+      "perfect": "har sagt",
+      "imperative": "sig"
+    },
     "example_da": "Hvad sagde du?",
     "example_en": "What did you say?",
     "source": "module2-core"
@@ -578,8 +909,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["daily", "irregular"],
-    "inflections": {"present": "finder", "past": "fandt", "perfect": "har fundet", "imperative": "find"},
+    "tags": [
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "finder",
+      "past": "fandt",
+      "perfect": "har fundet",
+      "imperative": "find"
+    },
     "example_da": "Kan du finde mine nøgler?",
     "example_en": "Can you find my keys?",
     "source": "module2-core"
@@ -591,8 +930,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["food", "daily", "irregular"],
-    "inflections": {"present": "drikker", "past": "drak", "perfect": "har drukket", "imperative": "drik"},
+    "tags": [
+      "food",
+      "daily",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "drikker",
+      "past": "drak",
+      "perfect": "har drukket",
+      "imperative": "drik"
+    },
     "example_da": "Vi drikker kaffe om morgenen.",
     "example_en": "We drink coffee in the morning.",
     "source": "module2-core"
@@ -604,8 +952,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily", "irregular_comparison"],
-    "inflections": {"t_form": "stort", "e_form": "store", "comparative": "større", "superlative": "størst"},
+    "tags": [
+      "description",
+      "daily",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "stort",
+      "e_form": "store",
+      "comparative": "større",
+      "superlative": "størst"
+    },
     "example_da": "Det er et stort problem.",
     "example_en": "It is a big problem.",
     "source": "module2-core"
@@ -617,8 +974,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily", "irregular_comparison"],
-    "inflections": {"t_form": "lille", "e_form": "små", "comparative": "mindre", "superlative": "mindst"},
+    "tags": [
+      "description",
+      "daily",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "lille",
+      "e_form": "små",
+      "comparative": "mindre",
+      "superlative": "mindst"
+    },
     "example_da": "Jeg bor i en lille lejlighed.",
     "example_en": "I live in a small apartment.",
     "source": "module2-core"
@@ -630,8 +996,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily", "irregular_comparison"],
-    "inflections": {"t_form": "godt", "e_form": "gode", "comparative": "bedre", "superlative": "bedst"},
+    "tags": [
+      "description",
+      "daily",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "godt",
+      "e_form": "gode",
+      "comparative": "bedre",
+      "superlative": "bedst"
+    },
     "example_da": "Det var en god idé.",
     "example_en": "It was a good idea.",
     "source": "module2-core"
@@ -643,8 +1018,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily", "irregular_comparison"],
-    "inflections": {"t_form": "dårligt", "e_form": "dårlige", "comparative": "værre", "superlative": "værst"},
+    "tags": [
+      "description",
+      "daily",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "dårligt",
+      "e_form": "dårlige",
+      "comparative": "værre",
+      "superlative": "værst"
+    },
     "example_da": "Vejret er dårligt i dag.",
     "example_en": "The weather is bad today.",
     "source": "module2-core"
@@ -656,8 +1040,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily"],
-    "inflections": {"t_form": "nyt", "e_form": "nye", "comparative": "nyere", "superlative": "nyest"},
+    "tags": [
+      "description",
+      "daily"
+    ],
+    "inflections": {
+      "t_form": "nyt",
+      "e_form": "nye",
+      "comparative": "nyere",
+      "superlative": "nyest"
+    },
     "example_da": "Jeg har købt en ny telefon.",
     "example_en": "I have bought a new phone.",
     "source": "module2-core"
@@ -669,8 +1061,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "daily", "irregular_comparison"],
-    "inflections": {"t_form": "gammelt", "e_form": "gamle", "comparative": "ældre", "superlative": "ældst"},
+    "tags": [
+      "description",
+      "daily",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "gammelt",
+      "e_form": "gamle",
+      "comparative": "ældre",
+      "superlative": "ældst"
+    },
     "example_da": "Bygningen er meget gammel.",
     "example_en": "The building is very old.",
     "source": "module2-core"
@@ -682,8 +1083,17 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "people", "irregular_comparison"],
-    "inflections": {"t_form": "ungt", "e_form": "unge", "comparative": "yngre", "superlative": "yngst"},
+    "tags": [
+      "description",
+      "people",
+      "irregular_comparison"
+    ],
+    "inflections": {
+      "t_form": "ungt",
+      "e_form": "unge",
+      "comparative": "yngre",
+      "superlative": "yngst"
+    },
     "example_da": "De er en ung familie.",
     "example_en": "They are a young family.",
     "source": "module2-core"
@@ -695,8 +1105,15 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description"],
-    "inflections": {"t_form": "langt", "e_form": "lange", "comparative": "længere", "superlative": "længst"},
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "langt",
+      "e_form": "lange",
+      "comparative": "længere",
+      "superlative": "længst"
+    },
     "example_da": "Det var en lang rejse.",
     "example_en": "It was a long journey.",
     "source": "module2-core"
@@ -708,8 +1125,15 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description"],
-    "inflections": {"t_form": "hurtigt", "e_form": "hurtige", "comparative": "hurtigere", "superlative": "hurtigst"},
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "hurtigt",
+      "e_form": "hurtige",
+      "comparative": "hurtigere",
+      "superlative": "hurtigst"
+    },
     "example_da": "Toget er hurtigere end bussen.",
     "example_en": "The train is faster than the bus.",
     "source": "module2-core"
@@ -721,8 +1145,15 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["shopping"],
-    "inflections": {"t_form": "billigt", "e_form": "billige", "comparative": "billigere", "superlative": "billigst"},
+    "tags": [
+      "shopping"
+    ],
+    "inflections": {
+      "t_form": "billigt",
+      "e_form": "billige",
+      "comparative": "billigere",
+      "superlative": "billigst"
+    },
     "example_da": "Denne jakke er billigere end den anden.",
     "example_en": "This jacket is cheaper than the other one.",
     "source": "module2-core"
@@ -734,8 +1165,15 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["shopping"],
-    "inflections": {"t_form": "dyrt", "e_form": "dyre", "comparative": "dyrere", "superlative": "dyrest"},
+    "tags": [
+      "shopping"
+    ],
+    "inflections": {
+      "t_form": "dyrt",
+      "e_form": "dyre",
+      "comparative": "dyrere",
+      "superlative": "dyrest"
+    },
     "example_da": "Lejligheder i København er dyre.",
     "example_en": "Apartments in Copenhagen are expensive.",
     "source": "module2-core"
@@ -747,8 +1185,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common"],
-    "inflections": {"t_form": "svært", "e_form": "svære", "comparative": "sværere", "superlative": "sværest"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "t_form": "svært",
+      "e_form": "svære",
+      "comparative": "sværere",
+      "superlative": "sværest"
+    },
     "example_da": "Dansk er et svært sprog.",
     "example_en": "Danish is a difficult language.",
     "source": "module2-core"
@@ -760,8 +1206,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["education", "exam_common"],
-    "inflections": {"t_form": "nemt", "e_form": "nemme", "comparative": "nemmere", "superlative": "nemmest"},
+    "tags": [
+      "education",
+      "exam_common"
+    ],
+    "inflections": {
+      "t_form": "nemt",
+      "e_form": "nemme",
+      "comparative": "nemmere",
+      "superlative": "nemmest"
+    },
     "example_da": "Øvelsen er nem.",
     "example_en": "The exercise is easy.",
     "source": "module2-core"
@@ -773,8 +1227,16 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["description", "mere_mest"],
-    "inflections": {"t_form": "interessant", "e_form": "interessante", "comparative": "mere interessant", "superlative": "mest interessant"},
+    "tags": [
+      "description",
+      "mere_mest"
+    ],
+    "inflections": {
+      "t_form": "interessant",
+      "e_form": "interessante",
+      "comparative": "mere interessant",
+      "superlative": "mest interessant"
+    },
     "example_da": "Filmen var mere interessant end bogen.",
     "example_en": "The movie was more interesting than the book.",
     "source": "module2-core"
@@ -786,7 +1248,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["negation", "word_order", "exam_common"],
+    "tags": [
+      "negation",
+      "word_order",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Jeg spiser ikke kød.",
     "example_en": "I don't eat meat.",
@@ -799,7 +1265,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["frequency", "word_order", "exam_common"],
+    "tags": [
+      "frequency",
+      "word_order",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Hun kommer altid til tiden.",
     "example_en": "She always arrives on time.",
@@ -812,7 +1282,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["frequency", "word_order", "exam_common"],
+    "tags": [
+      "frequency",
+      "word_order",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Jeg drikker aldrig alkohol.",
     "example_en": "I never drink alcohol.",
@@ -825,7 +1299,10 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["frequency", "word_order"],
+    "tags": [
+      "frequency",
+      "word_order"
+    ],
     "inflections": {},
     "example_da": "Vi spiser ofte pasta.",
     "example_en": "We often eat pasta.",
@@ -838,7 +1315,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Jeg lærer dansk, fordi jeg bor i Danmark.",
     "example_en": "I learn Danish because I live in Denmark.",
@@ -851,7 +1332,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Hvis det regner, bliver vi hjemme.",
     "example_en": "If it rains, we stay home.",
@@ -864,7 +1349,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Når jeg kommer hjem, laver jeg mad.",
     "example_en": "When I get home, I make food.",
@@ -877,7 +1366,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Da jeg var barn, boede jeg i Odense.",
     "example_en": "When I was a child, I lived in Odense.",
@@ -890,7 +1383,11 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Selvom det regnede, gik vi en tur.",
     "example_en": "Even though it rained, we went for a walk.",
@@ -903,7 +1400,10 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 2,
-    "tags": ["subordinating", "clause"],
+    "tags": [
+      "subordinating",
+      "clause"
+    ],
     "inflections": {},
     "example_da": "Jeg læser, mens hun laver mad.",
     "example_en": "I read while she cooks.",
@@ -916,10 +1416,3482 @@
     "gender": null,
     "module_level": 2,
     "difficulty": 1,
-    "tags": ["subordinating", "clause", "exam_common"],
+    "tags": [
+      "subordinating",
+      "clause",
+      "exam_common"
+    ],
     "inflections": {},
     "example_da": "Jeg tror, at han kommer i morgen.",
     "example_en": "I think that he is coming tomorrow.",
     "source": "module2-core"
+  },
+  {
+    "danish": "bede",
+    "english": "to ask",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "beder",
+      "past": "bad",
+      "perfect": "har bedt",
+      "imperative": "bed"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "betyde",
+    "english": "to mean",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "betyder",
+      "past": "betød",
+      "perfect": "har betydet",
+      "imperative": "betyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bide",
+    "english": "to bite",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "bider",
+      "past": "bed",
+      "perfect": "har bidt",
+      "imperative": "bid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "binde",
+    "english": "to tie",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "binder",
+      "past": "bandt",
+      "perfect": "har bundet",
+      "imperative": "bind"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "blive",
+    "english": "to stay",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "bliver",
+      "past": "blev",
+      "perfect": "er blevet",
+      "imperative": "bliv"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bryde",
+    "english": "to break",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "bryder",
+      "past": "brød",
+      "perfect": "har brudt",
+      "imperative": "bryd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bære",
+    "english": "to carry",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "bærer",
+      "past": "bar",
+      "perfect": "har båret",
+      "imperative": "bær"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "falde",
+    "english": "to fall",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "falder",
+      "past": "faldt",
+      "perfect": "er faldet",
+      "imperative": "fald"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "flyde",
+    "english": "to float",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "flyder",
+      "past": "flød",
+      "perfect": "har flydt",
+      "imperative": "flyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "flyve",
+    "english": "to fly",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "flyver",
+      "past": "fløj",
+      "perfect": "er fløjet",
+      "imperative": "flyv"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fortryde",
+    "english": "to regret",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "fortryder",
+      "past": "fortrød",
+      "perfect": "har fortrudt",
+      "imperative": "fortryd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fryse",
+    "english": "to be cold",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "fryser",
+      "past": "frøs",
+      "perfect": "har frosset",
+      "imperative": "frys"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "få",
+    "english": "to get",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "får",
+      "past": "fik",
+      "perfect": "har fået",
+      "imperative": "få"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gide",
+    "english": "to bother",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "gider",
+      "past": "gad",
+      "perfect": "har gidet",
+      "imperative": "gid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "glide",
+    "english": "to slide",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "glider",
+      "past": "gled",
+      "perfect": "er gledet",
+      "imperative": "glid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gribe",
+    "english": "to catch",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "griber",
+      "past": "greb",
+      "perfect": "har grebet",
+      "imperative": "grib"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "græde",
+    "english": "to cry",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "græder",
+      "past": "græd",
+      "perfect": "har grædt",
+      "imperative": "græd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gælde",
+    "english": "to be valid",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "gælder",
+      "past": "gjaldt",
+      "perfect": "har gjaldt",
+      "imperative": "gæld"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hedde",
+    "english": "to be named",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "hedder",
+      "past": "hed",
+      "perfect": "har heddet",
+      "imperative": "hed"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hjælpe",
+    "english": "to help",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "hjælper",
+      "past": "hjalp",
+      "perfect": "har hjulpet",
+      "imperative": "hjælp"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "holde",
+    "english": "to hold",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "holder",
+      "past": "holdt",
+      "perfect": "har holdt",
+      "imperative": "hold"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hænge",
+    "english": "to hang",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "hænger",
+      "past": "hang",
+      "perfect": "har hængt",
+      "imperative": "hæng"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "knibe",
+    "english": "to pinch",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "kniber",
+      "past": "kneb",
+      "perfect": "har knebet",
+      "imperative": "knib"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lade",
+    "english": "to let",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "lader",
+      "past": "lod",
+      "perfect": "har ladt",
+      "imperative": "lad"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "le",
+    "english": "to laugh",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "ler",
+      "past": "lo",
+      "perfect": "har let",
+      "imperative": "le"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "at kunne lide",
+    "english": "to like",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "kan lide",
+      "past": "kunne lide",
+      "perfect": "har kunnet lide",
+      "imperative": "kan lide"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ligge",
+    "english": "to lie (static)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "ligger",
+      "past": "lå",
+      "perfect": "har ligget",
+      "imperative": "lig"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lyde",
+    "english": "to sound",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "lyder",
+      "past": "lød",
+      "perfect": "har lydt",
+      "imperative": "lyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lyve",
+    "english": "to lie",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "lyver",
+      "past": "løj",
+      "perfect": "har løjet",
+      "imperative": "lyv"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "løbe",
+    "english": "to run",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "løber",
+      "past": "løb",
+      "perfect": "er løbet",
+      "imperative": "løb"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "nyde",
+    "english": "to enjoy",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "nyder",
+      "past": "nød",
+      "perfect": "har nydt",
+      "imperative": "nyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ride",
+    "english": "to ride",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "rider",
+      "past": "red",
+      "perfect": "er redet",
+      "imperative": "rid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "rive",
+    "english": "to tear",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "river",
+      "past": "rev",
+      "perfect": "har revet",
+      "imperative": "riv"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ryge",
+    "english": "to smoke",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "ryger",
+      "past": "røg",
+      "perfect": "har røget",
+      "imperative": "ryg"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "sidde",
+    "english": "to sit",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "sidder",
+      "past": "sad",
+      "perfect": "har siddet",
+      "imperative": "sid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "skrige",
+    "english": "to scream",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "skriger",
+      "past": "skreg",
+      "perfect": "har skreget",
+      "imperative": "skrig"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "skyde",
+    "english": "to shoot",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "skyder",
+      "past": "skød",
+      "perfect": "har skudt",
+      "imperative": "skyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "skære",
+    "english": "to cut",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "skærer",
+      "past": "skar",
+      "perfect": "har skåret",
+      "imperative": "skær"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "slå",
+    "english": "to hit",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "slår",
+      "past": "slog",
+      "perfect": "har slået",
+      "imperative": "slå"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "slide",
+    "english": "to wear out",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "slider",
+      "past": "sled",
+      "perfect": "har slidt",
+      "imperative": "slid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "slippe",
+    "english": "to let go",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "slipper",
+      "past": "slap",
+      "perfect": "har sluppet",
+      "imperative": "slip"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "smide",
+    "english": "to throw",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "smider",
+      "past": "smed",
+      "perfect": "har smidt",
+      "imperative": "smid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "snige",
+    "english": "to sneak",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "sniger",
+      "past": "sneg",
+      "perfect": "er sneget",
+      "imperative": "snig"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "snyde",
+    "english": "to cheat",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "snyder",
+      "past": "snød",
+      "perfect": "har snydt",
+      "imperative": "snyd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "sove",
+    "english": "to sleep",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "sover",
+      "past": "sov",
+      "perfect": "har sovet",
+      "imperative": "sov"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "springe",
+    "english": "to jump",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "springer",
+      "past": "sprang",
+      "perfect": "er sprunget",
+      "imperative": "spring"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stå",
+    "english": "to stand",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "står",
+      "past": "stod",
+      "perfect": "har stået",
+      "imperative": "stå"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stige",
+    "english": "to rise",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "stiger",
+      "past": "steg",
+      "perfect": "er steget",
+      "imperative": "stig"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stikke",
+    "english": "to poke",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "stikker",
+      "past": "stak",
+      "perfect": "har stukket",
+      "imperative": "stik"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stinke",
+    "english": "to stink",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "stinker",
+      "past": "stank",
+      "perfect": "har stinket",
+      "imperative": "stink"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stjæle",
+    "english": "to steal",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "stjæler",
+      "past": "stjal",
+      "perfect": "har stjålet",
+      "imperative": "stjæl"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "stryge",
+    "english": "to iron",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "stryger",
+      "past": "strøg",
+      "perfect": "har strøget",
+      "imperative": "stryg"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "svinge",
+    "english": "to swing",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "svinger",
+      "past": "svingede",
+      "perfect": "har svunget",
+      "imperative": "sving"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "synge",
+    "english": "to sing",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "synger",
+      "past": "sang",
+      "perfect": "har sunget",
+      "imperative": "syng"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "synke",
+    "english": "to sink",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "synker",
+      "past": "sank",
+      "perfect": "er sunket",
+      "imperative": "synk"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tie",
+    "english": "to be silent",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "tier",
+      "past": "tav",
+      "perfect": "har tiet",
+      "imperative": "ti"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "træffe",
+    "english": "to hit (a target)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "træffer",
+      "past": "traf",
+      "perfect": "har truffet",
+      "imperative": "træf"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "trække",
+    "english": "to pull",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "trækker",
+      "past": "trak",
+      "perfect": "har trukket",
+      "imperative": "træk"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tvinge",
+    "english": "to force",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "tvinger",
+      "past": "tvang",
+      "perfect": "har tvunget",
+      "imperative": "tving"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vinde",
+    "english": "to win",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "vinder",
+      "past": "vandt",
+      "perfect": "har vundet",
+      "imperative": "vind"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vride",
+    "english": "to twist",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "vrider",
+      "past": "vred",
+      "perfect": "har vredet",
+      "imperative": "vrid"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "være",
+    "english": "to be",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "er",
+      "past": "var",
+      "perfect": "har været",
+      "imperative": "vær"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "æde",
+    "english": "to eat (animals)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "verb",
+      "irregular"
+    ],
+    "inflections": {
+      "present": "æder",
+      "past": "åd",
+      "perfect": "har ædt",
+      "imperative": "æd"
+    },
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "opgive",
+    "english": "to abandon",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "acceptere",
+    "english": "to accept",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "opnå",
+    "english": "to achieve",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "indrømme",
+    "english": "to admit",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "råde",
+    "english": "to advise",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tillade",
+    "english": "to allow",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "meddele",
+    "english": "to announce",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "anvende",
+    "english": "to apply",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "arrangere",
+    "english": "to arrange",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ankomme",
+    "english": "to arrive",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "spørge",
+    "english": "to ask",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vurdere",
+    "english": "to assess",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lokke",
+    "english": "to attract",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "undgå",
+    "english": "to avoid",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "begynde",
+    "english": "to begin",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tro",
+    "english": "to believe",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tilhøre",
+    "english": "to belong",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "låne",
+    "english": "to borrow",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bygge",
+    "english": "to build",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kalde",
+    "english": "to call",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "aflyse",
+    "english": "to cancel",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fange",
+    "english": "to capture",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fejre",
+    "english": "to celebrate",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ændre",
+    "english": "to change",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vælge",
+    "english": "to choose",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "rense",
+    "english": "to clean",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lukke",
+    "english": "to close",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "samle",
+    "english": "to collect",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "overveje",
+    "english": "to consider",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "koge",
+    "english": "to cook",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "koste",
+    "english": "to cost",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "skabe",
+    "english": "to create",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "danse",
+    "english": "to dance",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "beslutte",
+    "english": "to decide",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forsvare",
+    "english": "to defend",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "levere",
+    "english": "to deliver",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kræve",
+    "english": "to demand",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "beskrive",
+    "english": "to describe",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ødelægge",
+    "english": "to destroy",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "udvikle",
+    "english": "to develop",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "dø",
+    "english": "to die",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forsvinde",
+    "english": "to disappear",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "opdage",
+    "english": "to discover",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "diskutere",
+    "english": "to discuss",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gøre",
+    "english": "to do",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tegne",
+    "english": "to draw",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "drømme",
+    "english": "to dream",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "køre",
+    "english": "to drive",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fortjene",
+    "english": "to earn",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ansætte",
+    "english": "to employ",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "flygte",
+    "english": "to escape",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forklare",
+    "english": "to explain",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "frygte",
+    "english": "to fear",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "føle",
+    "english": "to feel",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hente",
+    "english": "to fetch",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kæmpe",
+    "english": "to fight",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fylde",
+    "english": "to fill",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "følge",
+    "english": "to follow",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "glemme",
+    "english": "to forget",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hilse",
+    "english": "to greet",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vokse",
+    "english": "to grow",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hade",
+    "english": "to hate",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "have",
+    "english": "to have",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "høre",
+    "english": "to hear",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gemme",
+    "english": "to hide",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "håbe",
+    "english": "to hope",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forbedre",
+    "english": "to improve",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "øge",
+    "english": "to increase",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "oplyse",
+    "english": "to inform",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "invitere",
+    "english": "to invite",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "hoppe",
+    "english": "to jump",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "beholde",
+    "english": "to keep",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "dræbe",
+    "english": "to kill",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kysse",
+    "english": "to kiss",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kende",
+    "english": "to know (a person)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vide",
+    "english": "to know (a fact)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "mangle",
+    "english": "to lack",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forlade",
+    "english": "to leave",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lytte",
+    "english": "to listen",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "leve",
+    "english": "to live",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kigge",
+    "english": "to look",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "miste",
+    "english": "to lose",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "elske",
+    "english": "to love",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lave",
+    "english": "to make / to do",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "møde",
+    "english": "to meet",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "savne",
+    "english": "to miss",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "flytte",
+    "english": "to move",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "behøve",
+    "english": "to need",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bemærke",
+    "english": "to notice",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "åbne",
+    "english": "to open",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bestille",
+    "english": "to order",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "eje",
+    "english": "to own",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "deltage",
+    "english": "to participate",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "betale",
+    "english": "to pay",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "planlægge",
+    "english": "to plan",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "spille",
+    "english": "to play (game)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "lege",
+    "english": "to play (children)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "foretrække",
+    "english": "to prefer",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forberede",
+    "english": "to prepare",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "trykke",
+    "english": "to press",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forhindre",
+    "english": "to prevent",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "beskytte",
+    "english": "to protect",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "skubbe",
+    "english": "to push",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "sætte",
+    "english": "to put",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "nå",
+    "english": "to reach",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "modtage",
+    "english": "to receive",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "anbefale",
+    "english": "to recommend",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "huske",
+    "english": "to remember",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fjerne",
+    "english": "to remove",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "leje",
+    "english": "to rent",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "gentage",
+    "english": "to repeat",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ringe",
+    "english": "to ring",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "spare",
+    "english": "to save",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "søge",
+    "english": "to seek",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "synes",
+    "english": "to seem",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "sælge",
+    "english": "to sell",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "sende",
+    "english": "to send",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "dele",
+    "english": "to share",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "smile",
+    "english": "to smile",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tale",
+    "english": "to speak / to talk",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tilbringe",
+    "english": "to spend (time)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "starte",
+    "english": "to start",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "standse",
+    "english": "to stop",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "studere",
+    "english": "to study",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "foreslå",
+    "english": "to suggest",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "overraske",
+    "english": "to surprise",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "smage",
+    "english": "to taste",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "fortælle",
+    "english": "to tell",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "takke",
+    "english": "to thank",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "tænke",
+    "english": "to think",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "kaste",
+    "english": "to throw",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "røre",
+    "english": "to touch",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "rejse",
+    "english": "to travel",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "prøve",
+    "english": "to try",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vende",
+    "english": "to turn",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "forstå",
+    "english": "to understand",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "bruge",
+    "english": "to use",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "besøge",
+    "english": "to visit",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vente",
+    "english": "to wait",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vågne",
+    "english": "to wake up",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "advare",
+    "english": "to warn",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "vaske",
+    "english": "to wash",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
+  },
+  {
+    "danish": "ønske",
+    "english": "to wish",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "verb"
+    ],
+    "inflections": {},
+    "example_da": null,
+    "example_en": null,
+    "source": "speakandlearn"
   }
 ]

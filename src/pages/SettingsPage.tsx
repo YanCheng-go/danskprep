@@ -12,11 +12,24 @@ export function SettingsPage() {
   const [acceptLatin, setAcceptLatin] = useState(
     () => localStorage.getItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK) !== 'false'
   )
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem(SETTINGS_KEYS.DARK_MODE) === 'true'
+  )
   const [saved, setSaved] = useState(false)
+
+  function toggleDarkMode(enabled: boolean) {
+    setDarkMode(enabled)
+    if (enabled) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }
 
   function save() {
     localStorage.setItem(SETTINGS_KEYS.DAILY_NEW_LIMIT, String(dailyLimit))
     localStorage.setItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK, String(acceptLatin))
+    localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(darkMode))
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
@@ -64,6 +77,26 @@ export function SettingsPage() {
                 className="h-4 w-4"
               />
               <span className="text-sm">Enable Latin fallback (ae → æ, oe → ø, aa → å)</span>
+            </label>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-base">Dark Mode</CardTitle>
+            <CardDescription>
+              Switch between light and dark theme
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={darkMode}
+                onChange={e => toggleDarkMode(e.target.checked)}
+                className="h-4 w-4"
+              />
+              <span className="text-sm">Enable dark mode</span>
             </label>
           </CardContent>
         </Card>

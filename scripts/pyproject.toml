@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Data scraping and seeding scripts for DanskPrep"
 requires-python = ">=3.12"
 dependencies = [
+    "anthropic>=0.84.0",
     "playwright>=1.40.0",
+    "supabase>=2.0.0",
 ]
 
 [dependency-groups]
