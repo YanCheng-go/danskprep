@@ -80,7 +80,7 @@ feature branch → PR → CI/CD → Claude review → human merge
 
 - Never push directly to `main`
 - Never merge without passing CI + Claude review
-- Use `/pull-request` skill before creating PRs
+- Use `/commit` skill to ship changes (branch → PR → review → merge)
 - Commit messages: explain *why*, not *what*
 
 ## Strict TypeScript — Unused Imports
