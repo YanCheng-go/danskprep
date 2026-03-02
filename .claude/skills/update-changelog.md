@@ -1,7 +1,7 @@
 # /update-changelog — Add a new changelog entry
 
 ## When to use
-After a batch of features/fixes are ready, before creating a PR. Summarizes the session's work into `src/data/seed/changelog.json` and bumps the WhatsNew banner.
+After a batch of features/fixes are ready, before creating a PR. Summarizes the session's work into `src/data/seed/changelog.json`, bumps the version, and ensures the WhatsNew banner + GitHub Release will pick it up.
 
 ## Steps
 
@@ -24,11 +24,17 @@ After a batch of features/fixes are ready, before creating a PR. Summarizes the 
      "stats": { "exercises": N, "words": N, "grammar_topics": 6 }
    }
    ```
-7. **Verify**: `npx tsc --noEmit && npm run build`
-8. **Confirm** the Updates page renders correctly
+7. **Sync version in all three places** (must match):
+   - `src/data/seed/changelog.json` → latest entry `version`
+   - `src/lib/constants.ts` → `APP_VERSION`
+   - `package.json` → `version`
+8. **Verify**: `npx tsc --noEmit && npm run build`
+9. **Confirm** the Updates page renders correctly
 
 ## Rules
 - Date is always today's date
 - Stats must be actual current counts, not estimates
 - Highlights should be user-facing (no "refactored X" unless it changes UX)
 - Keep title under 50 chars
+- **Version must be synced** in changelog.json, constants.ts, and package.json
+- On merge to main, `.github/workflows/release.yml` automatically creates a GitHub Release from the latest changelog entry
