@@ -66,8 +66,8 @@ export function Layout() {
           <Sidebar user={user} onClose={() => setMenuOpen(false)} />
         </aside>
 
-        {/* Main content */}
-        <div className="flex-1 min-w-0">
+        {/* Main content — z-20 to stack above z-10 floating bubbles */}
+        <div className="flex-1 min-w-0 relative z-20">
           <Outlet />
         </div>
 
