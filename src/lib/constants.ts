@@ -31,6 +31,14 @@ export const RATING_LABELS: Record<number, string> = {
   4: 'Easy',
 }
 
+export const DRILL_ROUND_TYPE_LABELS: Record<string, string> = {
+  translation_en_da: 'EN → DA',
+  translation_da_en: 'DA → EN',
+  context_cloze: 'Context Cloze',
+  paradigm_fill: 'Paradigm Fill',
+  form_choice: 'Form Choice',
+}
+
 export const SETTINGS_KEYS = {
   DAILY_NEW_LIMIT: 'danskprep_daily_new_limit',
   ACCEPT_LATIN_FALLBACK: 'danskprep_accept_latin',

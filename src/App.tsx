@@ -21,6 +21,9 @@ const GrammarTopicPage = lazy(() =>
 const QuizPage = lazy(() =>
   import('@/pages/QuizPage').then(m => ({ default: m.QuizPage }))
 )
+const DrillPage = lazy(() =>
+  import('@/pages/DrillPage').then(m => ({ default: m.DrillPage }))
+)
 const VocabularyPage = lazy(() =>
   import('@/pages/VocabularyPage').then(m => ({ default: m.VocabularyPage }))
 )
@@ -65,6 +68,7 @@ export function App() {
             <Route path="grammar" element={<GrammarPage />} />
             <Route path="grammar/:slug" element={<GrammarTopicPage />} />
             <Route path="quiz" element={<QuizPage />} />
+            <Route path="drill" element={<DrillPage />} />
             <Route path="vocabulary" element={<VocabularyPage />} />
             <Route path="progress" element={<ProgressPage />} />
             <Route path="settings" element={<SettingsPage />} />

@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import {
   BookOpen,
   Brain,
+  Dumbbell,
   Home,
   List,
   Settings,
@@ -20,6 +21,7 @@ const navItems: NavItem[] = [
   { to: '/study', label: 'Study', icon: <Brain className="h-5 w-5" /> },
   { to: '/grammar', label: 'Grammar', icon: <BookOpen className="h-5 w-5" /> },
   { to: '/quiz', label: 'Quiz', icon: <List className="h-5 w-5" /> },
+  { to: '/drill', label: 'Drill', icon: <Dumbbell className="h-5 w-5" /> },
   { to: '/vocabulary', label: 'Vocabulary', icon: <List className="h-5 w-5" /> },
   { to: '/progress', label: 'Progress', icon: <BarChart2 className="h-5 w-5" /> },
   { to: '/settings', label: 'Settings', icon: <Settings className="h-5 w-5" /> },
