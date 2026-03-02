@@ -96,8 +96,8 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
       </button>
 
       {/* Dictionary search — always visible, pink glow */}
-      <div className="flex flex-1 justify-center px-2">
-        <div className="flex items-center gap-1.5 max-w-lg w-full">
+      <div className="flex flex-1 px-2 md:px-4">
+        <div className="flex items-center gap-1.5 w-full">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
             <input
