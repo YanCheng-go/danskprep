@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Word } from '@/types/database'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { WordDetail } from './WordDetail'
 import { Search } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
+
+const WORDS_PER_PAGE = 50
 
 interface WordListProps {
   words: Word[]
@@ -13,17 +17,28 @@ interface WordListProps {
   onPosChange: (pos: string) => void
 }
 
-const POS_OPTIONS = [
-  { value: '', label: 'All' },
-  { value: 'noun', label: 'Nouns' },
-  { value: 'verb', label: 'Verbs' },
-  { value: 'adjective', label: 'Adjectives' },
-  { value: 'pronoun', label: 'Pronouns' },
-  { value: 'adverb', label: 'Adverbs' },
+const POS_OPTION_KEYS: { value: string; labelKey: string }[] = [
+  { value: '', labelKey: 'vocab.all' },
+  { value: 'noun', labelKey: 'vocab.nouns' },
+  { value: 'verb', labelKey: 'vocab.verbs' },
+  { value: 'adjective', labelKey: 'vocab.adjectives' },
+  { value: 'pronoun', labelKey: 'vocab.pronouns' },
+  { value: 'adverb', labelKey: 'vocab.adverbs' },
 ]
 
 export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosChange }: WordListProps) {
   const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [page, setPage] = useState(0)
+  const { t } = useTranslation()
+
+  // Reset pagination when filters change
+  useEffect(() => {
+    setPage(0)
+  }, [searchTerm, posFilter])
+
+  const visibleCount = Math.min((page + 1) * WORDS_PER_PAGE, words.length)
+  const visibleWords = words.slice(0, visibleCount)
+  const hasMore = visibleCount < words.length
 
   return (
     <div className="space-y-4">
@@ -31,7 +46,7 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search Danish or English…"
+          placeholder={t('vocab.search')}
           value={searchTerm}
           onChange={e => onSearchChange(e.target.value)}
           className="pl-9"
@@ -40,7 +55,7 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
 
       {/* POS filter */}
       <div className="flex flex-wrap gap-2">
-        {POS_OPTIONS.map(opt => (
+        {POS_OPTION_KEYS.map(opt => (
           <button
             key={opt.value}
             onClick={() => onPosChange(opt.value)}
@@ -50,20 +65,22 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
                 : 'bg-background text-muted-foreground border-border hover:border-primary/50'
             }`}
           >
-            {opt.label}
+            {t(opt.labelKey)}
           </button>
         ))}
       </div>
 
       {/* Word count */}
-      <p className="text-xs text-muted-foreground">{words.length} words</p>
+      <p className="text-xs text-muted-foreground">
+        {t('vocab.showing', { count: visibleCount, total: words.length })}
+      </p>
 
       {/* Word rows */}
       <div className="divide-y border rounded-lg overflow-hidden">
-        {words.length === 0 ? (
-          <p className="py-8 text-center text-muted-foreground text-sm">No words found</p>
+        {visibleWords.length === 0 ? (
+          <p className="py-8 text-center text-muted-foreground text-sm">{t('vocab.noWords')}</p>
         ) : (
-          words.map(word => (
+          visibleWords.map(word => (
             <div key={word.id}>
               <button
                 className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-muted/50 transition-colors"
@@ -93,6 +110,17 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
           ))
         )}
       </div>
+
+      {/* Load more */}
+      {hasMore && (
+        <Button
+          variant="outline"
+          className="w-full"
+          onClick={() => setPage(p => p + 1)}
+        >
+          {t('vocab.loadMore', { count: words.length - visibleCount })}
+        </Button>
+      )}
     </div>
   )
 }

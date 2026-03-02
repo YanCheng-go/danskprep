@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { DrillQuestion } from '@/types/drill'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface ContextClozeRoundProps {
   question: DrillQuestion
@@ -10,6 +11,7 @@ interface ContextClozeRoundProps {
 }
 
 export function ContextClozeRound({ question, onSubmit, disabled }: ContextClozeRoundProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
 
   const parts = question.prompt.split('___')
@@ -35,7 +37,7 @@ export function ContextClozeRound({ question, onSubmit, disabled }: ContextCloze
         ))}
       </div>
       {question.hint && (
-        <p className="text-sm text-muted-foreground italic">Hint: {question.hint}</p>
+        <p className="text-sm text-muted-foreground italic">{t('common.hint')} {question.hint}</p>
       )}
       <DanishInput
         value={value}
@@ -50,8 +52,17 @@ export function ContextClozeRound({ question, onSubmit, disabled }: ContextCloze
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Check answer
+        {t('quiz.checkAnswer')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

@@ -567,7 +567,7 @@ def main() -> None:
 
     if all_exercises:
         merge_into_seed(all_exercises, output_path)
-        debug = root / f"src/data/seed/_speakspeak_raw_{file_suffix}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        debug = root / f"scripts/data/_speakspeak_raw_{file_suffix}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         debug.write_text(json.dumps(all_exercises, ensure_ascii=False, indent=2), encoding="utf-8")
         print(f"  Raw dump → {debug.name}")
         if review_count:

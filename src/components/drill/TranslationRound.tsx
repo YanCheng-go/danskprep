@@ -3,6 +3,7 @@ import type { DrillQuestion } from '@/types/drill'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface TranslationRoundProps {
   question: DrillQuestion
@@ -11,6 +12,7 @@ interface TranslationRoundProps {
 }
 
 export function TranslationRound({ question, onSubmit, disabled }: TranslationRoundProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
   const isDanishTarget = question.roundType === 'translation_en_da'
 
@@ -24,7 +26,7 @@ export function TranslationRound({ question, onSubmit, disabled }: TranslationRo
     <div className="space-y-4">
       <p className="font-medium leading-relaxed">{question.prompt}</p>
       {question.hint && (
-        <p className="text-sm text-muted-foreground italic">Hint: {question.hint}</p>
+        <p className="text-sm text-muted-foreground italic">{t('common.hint')} {question.hint}</p>
       )}
       {isDanishTarget ? (
         <DanishInput
@@ -55,8 +57,17 @@ export function TranslationRound({ question, onSubmit, disabled }: TranslationRo
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Check answer
+        {t('quiz.checkAnswer')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

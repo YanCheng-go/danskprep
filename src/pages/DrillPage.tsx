@@ -17,7 +17,9 @@ import { DrillResults } from '@/components/drill/DrillResults'
 import { FeedbackPanel } from '@/components/quiz/FeedbackPanel'
 import { DRILL_ROUND_TYPE_LABELS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { FeedbackButton } from '@/components/feedback/FeedbackButton'
 import type { Exercise } from '@/types/quiz'
+import { useTranslation } from '@/lib/i18n'
 
 // ─── Load words ─────────────────────────────────────────────────────────────
 
@@ -33,6 +35,7 @@ const allWords = (wordsData as SeedWord[]).map((w, i) => ({
 export function DrillPage() {
   const [config, setConfig] = useState<DrillConfig | null>(null)
   const [key, setKey] = useState(0)
+  const { t } = useTranslation()
 
   function startDrill(cfg: DrillConfig) {
     setConfig(cfg)
@@ -55,9 +58,9 @@ export function DrillPage() {
   return (
     <PageContainer>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Vocabulary Drill</h1>
+        <h1 className="text-2xl font-bold">{t('drill.title')}</h1>
         <p className="text-muted-foreground text-sm mt-1">
-          Practice with bidirectional translation, cloze, paradigm tables, and more
+          {t('drill.subtitle')}
         </p>
       </div>
       <DrillSelector onStart={startDrill} />
@@ -67,10 +70,10 @@ export function DrillPage() {
 
 // ─── Drill Selector ─────────────────────────────────────────────────────────
 
-const POS_OPTIONS: { value: 'noun' | 'verb' | 'adjective'; label: string }[] = [
-  { value: 'noun', label: 'Nouns' },
-  { value: 'verb', label: 'Verbs' },
-  { value: 'adjective', label: 'Adjectives' },
+const POS_OPTIONS: { value: 'noun' | 'verb' | 'adjective'; labelKey: string }[] = [
+  { value: 'noun', labelKey: 'vocab.nouns' },
+  { value: 'verb', labelKey: 'vocab.verbs' },
+  { value: 'adjective', labelKey: 'vocab.adjectives' },
 ]
 
 const ROUND_TYPE_OPTIONS: { value: DrillRoundType; label: string }[] = [
@@ -91,6 +94,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
   const [posFilter, setPosFilter] = useState<('noun' | 'verb' | 'adjective')[]>([])
   const [roundTypes, setRoundTypes] = useState<DrillRoundType[]>([])
   const [questionCount, setQuestionCount] = useState<number>(20)
+  const { t } = useTranslation()
 
   // Count eligible words
   const eligibleCount = useMemo(() => {
@@ -114,8 +118,8 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
     <div className="space-y-6">
       {/* POS filter */}
       <div className="space-y-2">
-        <p className="text-sm font-medium">Word type</p>
-        <p className="text-xs text-muted-foreground">Leave empty for all types</p>
+        <p className="text-sm font-medium">{t('drill.wordType')}</p>
+        <p className="text-xs text-muted-foreground">{t('drill.wordTypeHint')}</p>
         <div className="flex flex-wrap gap-2">
           {POS_OPTIONS.map(opt => (
             <FilterChip
@@ -123,7 +127,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
               active={posFilter.includes(opt.value)}
               onClick={() => togglePos(opt.value)}
             >
-              {opt.label}
+              {t(opt.labelKey)}
             </FilterChip>
           ))}
         </div>
@@ -131,8 +135,8 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
 
       {/* Round type filter */}
       <div className="space-y-2">
-        <p className="text-sm font-medium">Drill types</p>
-        <p className="text-xs text-muted-foreground">Leave empty for all types</p>
+        <p className="text-sm font-medium">{t('drill.drillTypes')}</p>
+        <p className="text-xs text-muted-foreground">{t('drill.wordTypeHint')}</p>
         <div className="flex flex-wrap gap-2">
           {ROUND_TYPE_OPTIONS.map(opt => (
             <FilterChip
@@ -148,7 +152,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
 
       {/* Session length */}
       <div className="space-y-2">
-        <p className="text-sm font-medium">Session length</p>
+        <p className="text-sm font-medium">{t('drill.sessionLength')}</p>
         <div className="flex flex-wrap gap-2">
           {SESSION_LENGTHS.map(n => (
             <FilterChip
@@ -156,7 +160,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
               active={questionCount === n}
               onClick={() => setQuestionCount(n)}
             >
-              {n === 0 ? `All (${eligibleCount})` : `${n} questions`}
+              {n === 0 ? t('drill.allCount', { count: eligibleCount }) : t('drill.questions', { count: n })}
             </FilterChip>
           ))}
         </div>
@@ -164,7 +168,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
 
       {/* Word count preview */}
       <p className="text-sm text-muted-foreground">
-        {eligibleCount} words available
+        {t('drill.wordsAvailable', { count: eligibleCount })}
       </p>
 
       <Button
@@ -172,7 +176,7 @@ function DrillSelector({ onStart }: DrillSelectorProps) {
         onClick={() => onStart({ posFilter, roundTypes, questionCount: questionCount === 0 ? eligibleCount : questionCount })}
         disabled={eligibleCount === 0}
       >
-        Start Drill
+        {t('drill.start')}
       </Button>
     </div>
   )
@@ -208,6 +212,7 @@ interface DrillFlowProps {
 }
 
 function DrillFlow({ questions, onReset }: DrillFlowProps) {
+  const { t } = useTranslation()
   const {
     currentQuestion,
     currentIndex,
@@ -226,8 +231,8 @@ function DrillFlow({ questions, onReset }: DrillFlowProps) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-12 space-y-4">
-        <p className="text-muted-foreground">No questions could be generated for this combination.</p>
-        <Button onClick={onReset} variant="outline">Back to selector</Button>
+        <p className="text-muted-foreground">{t('drill.noQuestions')}</p>
+        <Button onClick={onReset} variant="outline">{t('quiz.backToSelector')}</Button>
       </div>
     )
   }
@@ -251,9 +256,12 @@ function DrillFlow({ questions, onReset }: DrillFlowProps) {
         <Badge variant="outline">
           {DRILL_ROUND_TYPE_LABELS[currentQuestion.roundType]}
         </Badge>
-        <span className="text-sm text-muted-foreground">
-          {currentIndex + 1} / {totalQuestions}
-        </span>
+        <div className="flex items-center gap-2">
+          <FeedbackButton exerciseId={currentQuestion.word.id ?? `drill-${currentIndex}`} />
+          <span className="text-sm text-muted-foreground">
+            {currentIndex + 1} / {totalQuestions}
+          </span>
+        </div>
       </div>
 
       <Progress value={progress * 100} className="h-1.5" />
@@ -278,7 +286,7 @@ function DrillFlow({ questions, onReset }: DrillFlowProps) {
         onClick={onReset}
         className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
       >
-        Exit drill
+        {t('drill.exit')}
       </button>
     </div>
   )

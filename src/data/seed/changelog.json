@@ -1,0 +1,57 @@
+[
+  {
+    "version": "0.3.0",
+    "date": "2026-03-02",
+    "title": "Writing, Speaking & Exercise Submission",
+    "highlights": [
+      "Writing practice with AI scoring (requires Anthropic API key)",
+      "Speaking practice with audio recording and self-transcription",
+      "Add your own exercises from exam papers or homework",
+      "Module selector (PD2, PD3M1, PD3M2) in Settings",
+      "Updates page with changelog",
+      "Vocabulary pagination (50 per page)"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 277,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
+    "version": "0.2.0",
+    "date": "2026-03-02",
+    "title": "Drill Mode, Feedback & Content Expansion",
+    "highlights": [
+      "Vocabulary drill with 5 round types (translation, cloze, paradigm, form choice)",
+      "In-app feedback system with Supabase + email fallback",
+      "WhatsNew content banner on homepage",
+      "Cleaned raw SpeakSpeak exercises, merged 76 new split exercises",
+      "GitHub link and contribution info in sidebar"
+    ],
+    "stats": {
+      "exercises": 250,
+      "words": 277,
+      "grammar_topics": 6
+    }
+  },
+  {
+    "version": "0.1.0",
+    "date": "2026-03-01",
+    "title": "MVP Launch — PD3 Module 2",
+    "highlights": [
+      "Quiz mode with 6 exercise types across 6 grammar topics",
+      "Spaced repetition (FSRS) study mode with daily review queue",
+      "Vocabulary list with inflection tables",
+      "Grammar topics with rules, examples, and tips",
+      "Dark mode, keyboard shortcuts, Vercel Analytics",
+      "SpeakSpeak scraper for PD3M2 course content"
+    ],
+    "stats": {
+      "exercises": 201,
+      "words": 277,
+      "grammar_topics": 6
+    }
+  }
+]

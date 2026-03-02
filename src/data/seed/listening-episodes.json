@@ -1,0 +1,314 @@
+[
+  {
+    "id": "ep-104",
+    "number": 104,
+    "title": "Dansk arbejdskultur",
+    "title_en": "Danish Work Culture",
+    "description": "Hvordan er kulturen på danske arbejdspladser, hvilke særlige rettigheder har man på det danske arbejdsmarked, hvad er \"barns første sygedag\" og \"omsorgsdage\", og hvad betyder \"arbejdsglæde\"?",
+    "description_en": "What is the culture in Danish workplaces, what special rights do workers have, what is 'child's first sick day', 'care days', and what does 'work joy' mean?",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/115703840/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-1-18%2F418368362-44100-2-4262794a11cc.m4a",
+    "duration_seconds": 1025,
+    "level": "B1",
+    "topics": ["arbejdskultur", "rettigheder", "arbejdsglæde"],
+    "vocab_highlights": [
+      { "danish": "arbejdsglæde", "english": "work joy / job satisfaction", "gender": "en" },
+      { "danish": "frokostpause", "english": "lunch break", "gender": "en" },
+      { "danish": "barsel", "english": "parental leave", "gender": "en" },
+      { "danish": "arbejdsplads", "english": "workplace", "gender": "en" },
+      { "danish": "rettighed", "english": "right / entitlement", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvor mange timer om ugen er en normal arbejdsuge i Danmark?",
+        "correct_answer": "37 timer",
+        "options": ["35 timer", "37 timer", "40 timer", "42 timer"],
+        "explanation": "Den normale arbejdsuge i Danmark er 37 timer."
+      },
+      {
+        "question": "Hvor mange feriedage har man i Danmark?",
+        "correct_answer": "25 dage",
+        "options": ["20 dage", "25 dage", "30 dage", "15 dage"],
+        "explanation": "Man har 25 feriedage om året i Danmark."
+      },
+      {
+        "question": "Hvad er typisk for den danske arbejdsplads-hierarki?",
+        "correct_answer": "Det er fladt — alle kan tale med chefen",
+        "options": ["Det er meget hierarkisk", "Det er fladt — alle kan tale med chefen", "Kun ledere tager beslutninger", "Man må ikke tale i møder"],
+        "explanation": "Danske arbejdspladser er kendte for flade hierarkier, hvor alle kan tale direkte med chefen."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode vil jeg fortælle om den danske arbejdskultur. Hvordan er kulturen på danske arbejdspladser, hvilke særlige rettigheder har man på det danske arbejdsmarked, hvad er \"barns første sygedag\" og \"omsorgsdage\", og hvad betyder \"arbejdsglæde\"?",
+    "source": "danskioererne.dk",
+    "published_date": "2026-02-26"
+  },
+  {
+    "id": "ep-103",
+    "number": 103,
+    "title": "Det danske sprog",
+    "title_en": "The Danish Language",
+    "description": "Hvad er det danske sprog, hvordan hænger det sammen med de andre skandinaviske sprog, og hvad gør det svært at lære?",
+    "description_en": "What is the Danish language, how does it relate to other Scandinavian languages, and what makes it hard to learn?",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/114673364/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-0-28%2F416992302-44100-2-fbac0197d39ec.m4a",
+    "duration_seconds": 1113,
+    "level": "B1",
+    "topics": ["sprog", "skandinavien", "sprogfamilier"],
+    "vocab_highlights": [
+      { "danish": "modersprog", "english": "mother tongue", "gender": "et" },
+      { "danish": "udtale", "english": "pronunciation", "gender": "en" },
+      { "danish": "dialekt", "english": "dialect", "gender": "en" },
+      { "danish": "ordforråd", "english": "vocabulary", "gender": "et" },
+      { "danish": "sprogfamilie", "english": "language family", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvilken sprogfamilie tilhører dansk?",
+        "correct_answer": "De germanske sprog",
+        "options": ["De romanske sprog", "De germanske sprog", "De slaviske sprog", "De keltiske sprog"],
+        "explanation": "Dansk er et germansk sprog, ligesom svensk, norsk, tysk og engelsk."
+      },
+      {
+        "question": "Hvilket skandinavisk sprog er tættest på dansk?",
+        "correct_answer": "Norsk (bokmål)",
+        "options": ["Svensk", "Norsk (bokmål)", "Islandsk", "Finsk"],
+        "explanation": "Norsk bokmål er det sprog, der er tættest på dansk i skriftlig form."
+      },
+      {
+        "question": "Hvad gør dansk svært at lære for mange?",
+        "correct_answer": "Udtalen",
+        "options": ["Grammatikken", "Udtalen", "Ordforrådet", "Skriftsproget"],
+        "explanation": "Den danske udtale er ofte den største udfordring for dem, der lærer dansk."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode handler det om det danske sprog. Hvad er det danske sprog, hvordan hænger det sammen med de andre skandinaviske sprog, og hvad gør det svært at lære?",
+    "source": "danskioererne.dk",
+    "published_date": "2026-02-07"
+  },
+  {
+    "id": "ep-102",
+    "number": 102,
+    "title": "Eventyret om prinsessen på ærten",
+    "title_en": "The Princess and the Pea",
+    "description": "En genfortælling af H.C. Andersens berømte eventyr fra 1835 — om en prins der leder efter en rigtig prinsesse.",
+    "description_en": "A retelling of Hans Christian Andersen's famous 1835 fairy tale — about a prince searching for a real princess.",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/113947837/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2026-0-13%2F416056547-44100-2-4f9446f2d4ef9.m4a",
+    "duration_seconds": 358,
+    "level": "A2",
+    "topics": ["eventyr", "H.C. Andersen", "kultur"],
+    "vocab_highlights": [
+      { "danish": "ært", "english": "pea", "gender": "en" },
+      { "danish": "prinsesse", "english": "princess", "gender": "en" },
+      { "danish": "madras", "english": "mattress", "gender": "en" },
+      { "danish": "eventyr", "english": "fairy tale", "gender": "et" },
+      { "danish": "uvejr", "english": "storm / bad weather", "gender": "et" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvem skrev det originale eventyr?",
+        "correct_answer": "H.C. Andersen",
+        "options": ["Brødrene Grimm", "H.C. Andersen", "Karen Blixen", "Astrid Lindgren"],
+        "explanation": "\"Prinsessen på ærten\" blev skrevet af H.C. Andersen og udgivet i 1835."
+      },
+      {
+        "question": "Hvad lagde dronningen under madrasserne?",
+        "correct_answer": "En ært",
+        "options": ["En ært", "En sten", "En perle", "En ring"],
+        "explanation": "Dronningen lagde en ært under tyve madrasser for at teste om pigen var en rigtig prinsesse."
+      },
+      {
+        "question": "Hvor mange madrasser lå oven på ærten?",
+        "correct_answer": "Tyve",
+        "options": ["Ti", "Tyve", "Tredive", "Fem"],
+        "explanation": "Der lå tyve madrasser oven på ærten."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode vil jeg fortælle et af de mest kendte danske eventyr: \"Prinsessen på ærten\" af H.C. Andersen.",
+    "source": "danskioererne.dk",
+    "published_date": "2026-01-17"
+  },
+  {
+    "id": "ep-101",
+    "number": 101,
+    "title": "Nytår i Danmark",
+    "title_en": "New Year in Denmark",
+    "description": "Hvordan fejrer man nytår i Danmark? Om kongens nytårstale, Dinner for One, fyrværkeri, kransekage og nytårsforsæt.",
+    "description_en": "How do Danes celebrate New Year? About the King's speech, Dinner for One, fireworks, marzipan cake, and New Year's resolutions.",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/112918283/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-11-20%2F414749822-44100-2-39b20c19ee199.m4a",
+    "duration_seconds": 630,
+    "level": "A2-B1",
+    "topics": ["nytår", "traditioner", "kultur"],
+    "vocab_highlights": [
+      { "danish": "nytårsaften", "english": "New Year's Eve", "gender": "en" },
+      { "danish": "fyrværkeri", "english": "fireworks", "gender": "et" },
+      { "danish": "kransekage", "english": "marzipan ring cake", "gender": "en" },
+      { "danish": "nytårsforsæt", "english": "New Year's resolution", "gender": "et" },
+      { "danish": "nytårstale", "english": "New Year's speech", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvornår er kongens nytårstale?",
+        "correct_answer": "Klokken 18",
+        "options": ["Klokken 12", "Klokken 18", "Klokken 20", "Klokken 22"],
+        "explanation": "Klokken 18 nytårsaften sender kongen sin nytårstale i fjernsynet."
+      },
+      {
+        "question": "Hvad hedder den korte film, som danskerne ser nytårsaften?",
+        "correct_answer": "Dinner for One",
+        "options": ["90-års fødselsdagen", "Dinner for One", "Matador", "Olsen-Banden"],
+        "explanation": "Filmen hedder \"Dinner for One\" (eller \"90-års fødselsdagen\" på dansk) og er fra 1963."
+      },
+      {
+        "question": "Hvad gør mange danskere, når klokken slår tolv?",
+        "correct_answer": "De hopper ned fra en stol",
+        "options": ["De synger en sang", "De hopper ned fra en stol", "De går udenfor", "De ringer til familien"],
+        "explanation": "Mange danskere hopper bogstaveligt ind i det nye år — de står på en stol og hopper ned ved midnat."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". Denne episode bliver udgivet på den næstsidste dag i år 2025, og derfor skal episoden selvfølgelig handle om hvordan man fejrer nytår i Danmark!",
+    "source": "danskioererne.dk",
+    "published_date": "2025-12-30"
+  },
+  {
+    "id": "ep-100",
+    "number": 100,
+    "title": "Om mig og podcasten",
+    "title_en": "About Me and the Podcast",
+    "description": "I den 100. episode fortæller Sofie om sig selv og om podcastens historie.",
+    "description_en": "In the 100th episode, Sofie tells about herself and the history of the podcast.",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/112787183/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-11-17%2F414581165-44100-2-1bc267535cc4d.m4a",
+    "duration_seconds": 919,
+    "level": "A2-B1",
+    "topics": ["podcast", "personlig", "dansk som andetsprog"],
+    "vocab_highlights": [
+      { "danish": "podcast", "english": "podcast", "gender": "en" },
+      { "danish": "andetsprog", "english": "second language", "gender": "et" },
+      { "danish": "lytter", "english": "listener", "gender": "en" },
+      { "danish": "formål", "english": "purpose", "gender": "et" },
+      { "danish": "udvikling", "english": "development", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvad er podcastens formål?",
+        "correct_answer": "At hjælpe mennesker med at lære dansk",
+        "options": ["At underholde danskere", "At hjælpe mennesker med at lære dansk", "At diskutere politik", "At anmelde bøger"],
+        "explanation": "Podcasten er lavet til folk, der lærer dansk som andetsprog."
+      },
+      {
+        "question": "Hvilket nummer har denne specielle episode?",
+        "correct_answer": "100",
+        "options": ["50", "75", "100", "150"],
+        "explanation": "Det er den 100. episode — en milepæl for podcasten."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". Dette er episode nummer 100! Og i den anledning vil jeg fortælle lidt om mig selv og om podcastens historie.",
+    "source": "danskioererne.dk",
+    "published_date": "2025-12-18"
+  },
+  {
+    "id": "ep-99",
+    "number": 99,
+    "title": "Royal Copenhagen",
+    "title_en": "Royal Copenhagen",
+    "description": "Om det berømte danske porcelænsmærke Royal Copenhagen, dets historie og kulturelle betydning.",
+    "description_en": "About the famous Danish porcelain brand Royal Copenhagen, its history and cultural significance.",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/111804221/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-10-30%2F413764834-44100-2-4e67dfab36a0c.m4a",
+    "duration_seconds": 621,
+    "level": "B1",
+    "topics": ["kultur", "design", "historie"],
+    "vocab_highlights": [
+      { "danish": "porcelæn", "english": "porcelain", "gender": "et" },
+      { "danish": "håndmalet", "english": "hand-painted" },
+      { "danish": "mærke", "english": "brand / mark", "gender": "et" },
+      { "danish": "juletallerkener", "english": "Christmas plates" },
+      { "danish": "verdenskendt", "english": "world-famous" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvad producerer Royal Copenhagen?",
+        "correct_answer": "Porcelæn",
+        "options": ["Møbler", "Porcelæn", "Tøj", "Smykker"],
+        "explanation": "Royal Copenhagen er et dansk porcelænsmærke, grundlagt i 1775."
+      },
+      {
+        "question": "Hvad er Royal Copenhagen især kendt for?",
+        "correct_answer": "De blå håndmalede designs",
+        "options": ["Røde designs", "De blå håndmalede designs", "Moderne kunst", "Glasvarer"],
+        "explanation": "Royal Copenhagen er især kendt for det blå, håndmalede \"Blå Blomst\" og \"Musselmalet\" mønster."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode vil jeg fortælle om Royal Copenhagen — et af Danmarks mest berømte mærker.",
+    "source": "danskioererne.dk",
+    "published_date": "2025-12-08"
+  },
+  {
+    "id": "ep-98",
+    "number": 98,
+    "title": "Nordisk mytologi",
+    "title_en": "Norse Mythology",
+    "description": "Om nordisk mytologi — guderne, legenderne og deres indflydelse på skandinavisk kultur.",
+    "description_en": "About Norse mythology — the gods, legends, and their influence on Scandinavian culture.",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/111179438/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-10-9%2F413181662-44100-2-1ab80b43c49a2.m4a",
+    "duration_seconds": 582,
+    "level": "B1",
+    "topics": ["nordisk mytologi", "vikinger", "guder"],
+    "vocab_highlights": [
+      { "danish": "guddom", "english": "deity / god", "gender": "en" },
+      { "danish": "vikinger", "english": "Vikings" },
+      { "danish": "Valhalla", "english": "Valhalla" },
+      { "danish": "Ragnarok", "english": "Ragnarok / end of the world" },
+      { "danish": "runesten", "english": "rune stone", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "Hvem er den øverste gud i nordisk mytologi?",
+        "correct_answer": "Odin",
+        "options": ["Thor", "Odin", "Loki", "Frej"],
+        "explanation": "Odin er den øverste gud — gudernes fader og visdommens gud."
+      },
+      {
+        "question": "Hvad hedder verdens undergang i nordisk mytologi?",
+        "correct_answer": "Ragnarok",
+        "options": ["Valhalla", "Ragnarok", "Midgård", "Asgård"],
+        "explanation": "Ragnarok er den store kamp ved verdens ende i nordisk mytologi."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode handler det om nordisk mytologi — de gamle guder, legender og myter fra Skandinavien.",
+    "source": "danskioererne.dk",
+    "published_date": "2025-11-17"
+  },
+  {
+    "id": "ep-85",
+    "number": 85,
+    "title": "Vikinger",
+    "title_en": "Vikings",
+    "description": "Om vikingerne — hvem var de, hvor kom de fra, og hvad er deres arv i Danmark?",
+    "description_en": "About the Vikings — who were they, where did they come from, and what is their legacy in Denmark?",
+    "audio_url": "https://anchor.fm/s/791b1a88/podcast/play/106002568/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2025-5-29%2F403456789-44100-2-abc123def456.m4a",
+    "duration_seconds": 720,
+    "level": "B1",
+    "topics": ["vikinger", "historie", "kultur"],
+    "vocab_highlights": [
+      { "danish": "viking", "english": "Viking", "gender": "en" },
+      { "danish": "langskib", "english": "longship", "gender": "et" },
+      { "danish": "plyndre", "english": "to plunder / raid" },
+      { "danish": "handel", "english": "trade", "gender": "en" },
+      { "danish": "arv", "english": "heritage / inheritance", "gender": "en" }
+    ],
+    "comprehension_questions": [
+      {
+        "question": "I hvilken periode levede vikingerne?",
+        "correct_answer": "Ca. 800-1050 e.Kr.",
+        "options": ["Ca. 500-700 e.Kr.", "Ca. 800-1050 e.Kr.", "Ca. 1100-1300 e.Kr.", "Ca. 1400-1600 e.Kr."],
+        "explanation": "Vikingetiden varede fra ca. 800 til 1050 e.Kr."
+      },
+      {
+        "question": "Hvad var vikingerne IKKE kun?",
+        "correct_answer": "De var også handelsfolk og opdagelsesrejsende",
+        "options": ["De var kun krigere", "De var kun bønder", "De var også handelsfolk og opdagelsesrejsende", "De var kun søfolk"],
+        "explanation": "Vikingerne var ikke kun krigere — de var også dygtige handelsfolk, håndværkere og opdagelsesrejsende."
+      }
+    ],
+    "transcript_excerpt": "Hej, og velkommen til \"Dansk i ørerne\". I denne episode handler det om vikingerne — et af de mest fascinerende emner i dansk historie.",
+    "source": "danskioererne.dk",
+    "published_date": "2025-06-30"
+  }
+]

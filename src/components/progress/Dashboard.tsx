@@ -6,6 +6,7 @@ import { StreakCounter } from './StreakCounter'
 import { StatsChart } from './StatsChart'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 
 interface DashboardProps {
   dueCount: number
@@ -30,6 +31,8 @@ export function Dashboard({
   accuracyPercent,
   isLoading,
 }: DashboardProps) {
+  const { t } = useTranslation()
+
   if (isLoading) {
     return (
       <div className="space-y-4">
@@ -48,7 +51,7 @@ export function Dashboard({
             <StreakCounter streakDays={streakDays} />
             <div className="text-right">
               <p className="text-3xl font-bold">{dueCount}</p>
-              <p className="text-xs text-muted-foreground">cards due</p>
+              <p className="text-xs text-muted-foreground">{t('progress.cardsDue')}</p>
             </div>
           </div>
         </CardContent>
@@ -61,14 +64,14 @@ export function Dashboard({
           className={cn(buttonVariants({ size: 'lg' }), 'h-16 flex-col gap-1')}
         >
           <Brain className="h-5 w-5" />
-          <span className="text-sm">Study Now</span>
+          <span className="text-sm">{t('progress.studyNow')}</span>
         </Link>
         <Link
           to="/quiz"
           className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
         >
           <List className="h-5 w-5" />
-          <span className="text-sm">Quick Quiz</span>
+          <span className="text-sm">{t('progress.quickQuiz')}</span>
         </Link>
       </div>
 
@@ -77,9 +80,9 @@ export function Dashboard({
         <Card>
           <CardHeader>
             <CardTitle className="text-base flex justify-between">
-              <span>Cards by state</span>
+              <span>{t('progress.cardsByState')}</span>
               <span className="text-sm font-normal text-muted-foreground">
-                {accuracyPercent}% accuracy
+                {accuracyPercent}% {t('progress.accuracy')}
               </span>
             </CardTitle>
           </CardHeader>
@@ -99,7 +102,7 @@ export function Dashboard({
         <Card>
           <CardContent className="py-8 text-center">
             <p className="text-muted-foreground text-sm">
-              No study cards yet. Start studying to create your first cards!
+              {t('progress.empty')}
             </p>
           </CardContent>
         </Card>

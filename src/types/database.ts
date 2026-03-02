@@ -136,6 +136,16 @@ export interface UserCard {
   updated_at: string
 }
 
+// ─── Feedback ─────────────────────────────────────────────────────────────────
+export interface FeedbackRow {
+  id: string
+  user_id: string | null
+  exercise_id: string | null
+  type: string
+  message: string
+  created_at: string
+}
+
 // ─── Review Logs ─────────────────────────────────────────────────────────────
 export interface ReviewLog {
   id: string

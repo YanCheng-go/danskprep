@@ -17,6 +17,13 @@ so any feature can be rolled back by reverting its PR.
 
 ## ⚡ High Priority — No Credentials Required (Pure Code)
 
+### 0. Writing & Speaking Test Modes
+**Branch:** `feature/writing-speaking`
+
+- Writing page: exam-style prompts, free-form textarea, AI scoring via Claude API (user provides ANTHROPIC_API_KEY in Settings)
+- Speaking page: record audio, self-transcribe, AI grammar scoring
+- Both need `ai-scoring.ts` utility and API key management in Settings
+
 ### 1. useProgress Refresh After Study Session
 **Branch:** `feature/progress-refresh`
 
@@ -95,35 +102,7 @@ Queue shape: `{ card_id, rating, reviewed_at, response, was_correct, time_taken_
 
 ---
 
-### 10. In-App Feedback Mode
-**Branch:** `feature/feedback-mode`
-
-Allow users to report errors in exercises and suggest improvements.
-
-**Important scope reminder:** This app is for **exam preparation** (PD2, PD3M1, PD3M2 / Prøve i Dansk). Feedback should focus on improving exam-relevant content. Non-exam content will not be added.
-
-Implementation:
-- `FeedbackButton` component — small "Report" icon in bottom-right of each exercise card
-- `FeedbackDialog` — modal with:
-  - "Type" dropdown: `Bug in exercise` | `Wrong answer` | `Wrong explanation` | `Content suggestion`
-  - Text area (max 500 chars)
-  - Reminder text: *"This app covers PD2, PD3M1, PD3M2 exam content only. Suggestions outside that scope will not be acted on."*
-  - Submit → write to Supabase `feedback` table (needs new migration) **or** `mailto:` link if Supabase not yet connected
-- `supabase/migrations/003_add_feedback.sql`:
-  ```sql
-  CREATE TABLE feedback (
-    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    exercise_id text,
-    type text NOT NULL,
-    message text NOT NULL,
-    created_at timestamptz DEFAULT now()
-  );
-  ```
-- Files:
-  - `src/components/quiz/FeedbackButton.tsx`
-  - `src/components/quiz/FeedbackDialog.tsx`
-  - `src/pages/QuizPage.tsx` — wire FeedbackButton into QuizFlow
-  - `src/components/study/FlashCard.tsx` — optional: feedback on study cards too
+### ~~10. In-App Feedback Mode~~ ✅ COMPLETED (feature/feedback-session)
 
 ---
 
@@ -140,6 +119,29 @@ Implementation:
 
 ## ✅ Completed
 
+### Session 2026-03-02 cont. #2 (branch: feature/feedback-session)
+- [x] **Support redesign** — renamed "Donate" to "Support" with Coffee icon (pink), removed MobilePay `<a href>` link (security), hardcoded number as JS constant, Vercel Analytics `support_click` event
+- [x] **Dictionary inflections** — `api/dictionary.ts` now extracts gender, normalizes POS (Danish→English), builds structured inflections from DDO suffixes
+- [x] **User words schema** — `src/lib/user-words.ts` aligned with `Word` type (gender, inflections, examples, difficulty)
+- [x] **Supabase graceful null** — `supabase.ts` exports `null` when env vars missing; all consumers guard against it
+- [x] **user_words migration** — `005_add_user_words.sql` with RLS (private per user)
+- [x] **Feature flag** — `FEATURES.DICT_ADD_TO_VOCAB = false` to disable WIP add-to-vocabulary
+- [x] **Sidebar polish** — GitHub link moved above "Built by", version number beside it
+- [x] **i18n translations** — `en.ts` + `da.ts` with support.* and dictionary.* keys
+- [x] **useWords merge** — seed + user-added words merged with Supabase sync + deduplication
+
+### Session 2026-03-02 cont. (branch: feature/feedback-session)
+- [x] **In-App Feedback** — `FeedbackButton` + `FeedbackDialog` with Supabase insert + mailto fallback (chengyan2017@gmail.com)
+- [x] **WhatsNew banner** — dismissible content update card on HomePage (292 exercises, 277 words, 6 topics)
+- [x] **Drill mode** — vocabulary drill with 5 round types (translation, cloze, paradigm, form choice)
+- [x] **Removed Quiz "All Questions" tab** — simplified QuizPage to selector + quiz flow only
+- [x] **Cleaned seed data** — removed 34 raw multi-blank SpeakSpeak exercises, merged 76 clean replacements (250→292)
+- [x] **Vocabulary pagination** — "Load more" (50 per page) in WordList, resets on filter change
+- [x] **Module selector** — Settings page radio selector for PD2/PD3M1/PD3M2; active module badge on HomePage
+- [x] **Add Exercise** — user-submitted exercises via dialog (localStorage), duplicate detection, merged into quiz/drill
+- [x] **Site footer** — GitHub link + contribution CTA in sidebar
+- [x] **Migration 003** — `feedback` table; **Migration 004** — `user_exercises` table
+
 ### Session 2026-03-01 cont. (branches: feature/vocab-active-recall, feature/ux-quick-wins, feature/more-exercises)
 - [x] **Vocabulary Active Recall** — typing-based study mode with form rotation (verb tenses, noun forms, adjective forms)
 - [x] **Auto-suggested ratings** — correct=Good(3), almost=Hard(2), wrong=Again(1) with manual override
@@ -155,7 +157,7 @@ Implementation:
 ### Session 2026-03-02 (branch: feature/sdlc-safety-guards)
 - [x] **Study mode Daily/All toggle** — `useStudy(user, mode)` hook + `StudyPage.tsx` segmented control
 - [x] **Study mode word cards** — vocabulary added to FSRS queue; flashcard shows "at [verb]" / "en/et [noun]" → English
-- [x] **Quiz All Questions list mode** — browse all 201 exercises with topic/type filters and answer reveal
+- [x] ~~**Quiz All Questions list mode**~~ (removed in feature/feedback-session — simplified to selector + quiz flow)
 - [x] **Vocabulary inflection tables** — `WordDetail.tsx` with POS-specific tables (VerbTable, AdjectiveTable, NounTable)
 - [x] **Data enrichment** — exercises: 102 → 201 total (67 hand-crafted from SpeakSpeak analysis)
 - [x] **Vocabulary expansion** — words: 71 → 277 (63 irregular verbs with conjugations + 143 common verbs)
@@ -186,3 +188,5 @@ Implementation:
 - **Scrapers need manual review** — search output JSON for `"REVIEW"` and fill in missing answers
 - **`npm run types`** — must be run after Supabase is connected to get real DB types
 - **Vercel URL** — update README line 8 once actual deployment URL is known
+- **Writing & Speaking modes** — need ANTHROPIC_API_KEY for AI scoring; see Step 0 in High Priority
+- **Listening exercises** — need SpeakSpeak scraper update to capture audio files

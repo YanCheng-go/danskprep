@@ -5,7 +5,7 @@ Reads the 35 original scraped SpeakSpeak exercises (lines 1–409 of
 exercises-pd3m2.json), sends each one to Claude, and asks it to split
 the multi-blank exercise into clean individual questions.
 
-Output: src/data/seed/exercises-pd3m2-split.json  (review before merging)
+Output: scripts/data/exercises-pd3m2-split.json  (review before merging)
 
 Usage:
   cd scripts
@@ -32,7 +32,7 @@ import anthropic
 # ── Paths ─────────────────────────────────────────────────────────────────────
 ROOT = Path(__file__).parent.parent
 EXERCISES_FILE = ROOT / "src/data/seed/exercises-pd3m2.json"
-DEFAULT_OUTPUT = ROOT / "src/data/seed/exercises-pd3m2-split.json"
+DEFAULT_OUTPUT = ROOT / "scripts/data/exercises-pd3m2-split.json"
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 SCRAPED_SOURCE = "speakspeak"
