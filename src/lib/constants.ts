@@ -61,6 +61,8 @@ export const SETTINGS_KEYS = {
   OPENROUTER_KEY: 'danskprep_openrouter_key',
   OPENAI_KEY: 'danskprep_openai_api_key',
   WELCOME_SEEN: 'danskprep_welcome_seen',
+  BUBBLE_NICKNAME: 'danskprep_bubble_nickname',
+  BUBBLE_SCORES: 'danskprep_bubble_scores',
 } as const
 
 export interface ModuleInfo {

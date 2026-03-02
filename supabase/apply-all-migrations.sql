@@ -1,4 +1,4 @@
--- DanskPrep: Combined migrations (001–005)
+-- DanskPrep: Combined migrations (001–008)
 -- Run this in the Supabase SQL Editor to set up all tables.
 -- Safe to re-run: uses IF NOT EXISTS and will skip existing objects.
 
@@ -277,3 +277,88 @@ do $$ begin
   create policy "user_words_own" on user_words for all using (auth.uid() = user_id);
 exception when duplicate_object then null;
 end $$;
+
+
+-- ═══ Migration 006: Bubble leaderboard ═══════════════════════════════════════
+
+create table if not exists bubble_scores (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade,
+  nickname text not null,
+  score int not null default 0,
+  is_guest boolean not null default true,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+
+-- Guests get one entry per nickname (among guests only)
+create unique index if not exists bubble_scores_guest_unique
+  on bubble_scores (nickname) where is_guest = true;
+
+alter table bubble_scores enable row level security;
+
+do $$ begin
+  create policy "bubble_scores_read" on bubble_scores for select using (true);
+exception when duplicate_object then null;
+end $$;
+do $$ begin
+  create policy "bubble_scores_insert" on bubble_scores for insert with check (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and user_id is null and is_guest = true)
+  );
+exception when duplicate_object then null;
+end $$;
+do $$ begin
+  create policy "bubble_scores_update" on bubble_scores for update using (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and is_guest = true and user_id is null)
+  ) with check (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and is_guest = true and user_id is null)
+  );
+exception when duplicate_object then null;
+end $$;
+do $$ begin
+  create policy "bubble_scores_delete" on bubble_scores for delete using (auth.uid() = user_id);
+exception when duplicate_object then null;
+end $$;
+
+create table if not exists bubble_nickname_history (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  nickname text not null,
+  created_at timestamptz default now()
+);
+
+alter table bubble_nickname_history enable row level security;
+
+do $$ begin
+  create policy "nickname_history_read_own" on bubble_nickname_history for select using (auth.uid() = user_id);
+exception when duplicate_object then null;
+end $$;
+do $$ begin
+  create policy "nickname_history_insert_own" on bubble_nickname_history for insert with check (auth.uid() = user_id);
+exception when duplicate_object then null;
+end $$;
+
+
+-- ═══ Migration 007: Bubble multi-nickname ════════════════════════════════════
+
+-- Allow multiple leaderboard entries per signed-in user (one per nickname)
+-- Previously: one row per user_id. Now: one row per (user_id, nickname) pair.
+drop index if exists bubble_scores_user_unique;
+
+create unique index if not exists bubble_scores_user_nickname_unique
+  on bubble_scores (user_id, nickname) where user_id is not null;
+
+create index if not exists bubble_scores_user_latest
+  on bubble_scores (user_id, updated_at desc) where user_id is not null;
+
+
+-- ═══ Migration 008: Tighten bubble_scores RLS ════════════════════════════════
+
+-- Drop old permissive policies and recreate with ownership checks
+-- (already replaced inline above in the 006 section)
+
+-- Ensure updated_at is not nullable (used in ORDER BY for session restore)
+alter table bubble_scores alter column updated_at set not null;

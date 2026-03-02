@@ -3,13 +3,31 @@ import { Outlet } from 'react-router-dom'
 import { Agentation } from 'agentation'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
+import { FloatingWords } from '@/components/welcome/FloatingWords'
+import { GamePanel } from '@/components/welcome/GamePanel'
 import { ChatButton } from '@/components/chat/ChatButton'
 import { useAuth } from '@/hooks/useAuth'
+import { useBubbleGame } from '@/hooks/useBubbleGame'
+import { SETTINGS_KEYS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
 export function Layout() {
   const { user, signOut } = useAuth()
   const [menuOpen, setMenuOpen] = useState(false)
+  const {
+    bubbleScore, setBubbleScore,
+    gamePanelOpen, setGamePanelOpen,
+    bubblesEnabled, toggleBubbles,
+  } = useBubbleGame()
+
+  function handleSignOut() {
+    // Reset bubble game state — new session on next login
+    // Keep BUBBLE_SCORES (leaderboard) — it repopulates from Supabase
+    setBubbleScore(0)
+    setGamePanelOpen(false)
+    localStorage.removeItem(SETTINGS_KEYS.BUBBLE_NICKNAME)
+    signOut()
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -17,7 +35,11 @@ export function Layout() {
         user={user}
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen(o => !o)}
-        onSignOut={signOut}
+        onSignOut={handleSignOut}
+        bubblesEnabled={bubblesEnabled}
+        onToggleBubbles={toggleBubbles}
+        bubbleScore={bubbleScore}
+        onOpenGamePanel={() => setGamePanelOpen(o => !o)}
       />
 
       <div className="flex">
@@ -48,7 +70,21 @@ export function Layout() {
         <div className="flex-1 min-w-0">
           <Outlet />
         </div>
+
+        {/* Game rankings panel — inline, squeezes main content */}
+        <GamePanel
+          open={gamePanelOpen}
+          onClose={() => setGamePanelOpen(false)}
+          currentScore={bubbleScore}
+          onScoreReset={() => setBubbleScore(0)}
+          onScoreLoad={(score) => setBubbleScore(score)}
+        />
       </div>
+
+      {/* Floating word bubbles — background layer */}
+      {bubblesEnabled && (
+        <FloatingWords score={bubbleScore} onScoreChange={setBubbleScore} />
+      )}
 
       {/* Floating chat */}
       <ChatButton />

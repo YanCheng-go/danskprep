@@ -60,10 +60,19 @@ def seed_exercises(client: Client) -> None:
         e.pop("id", None)
         e.pop("created_at", None)
         # Ensure required fields
-        e.setdefault("acceptable_answers", [])
+        if not e.get("acceptable_answers"):
+            e["acceptable_answers"] = []
         e.setdefault("source", "generated")
-    client.table("exercises").insert(exercises).execute()
-    print(f"  → {len(exercises)} exercises inserted")
+    # Delete existing exercises first, then re-insert (no natural unique key —
+    # exercises lack a stable composite key for upsert)
+    client.table("exercises").delete().neq("id", "00000000-0000-0000-0000-000000000000").execute()
+    try:
+        client.table("exercises").insert(exercises).execute()
+    except Exception as exc:
+        print("  ✗ Insert failed after delete — exercises table is now empty!")
+        print(f"    Error: {exc}")
+        sys.exit(1)
+    print(f"  → {len(exercises)} exercises inserted (replaced)")
 
 
 def seed_sentences(client: Client) -> None:
@@ -75,8 +84,16 @@ def seed_sentences(client: Client) -> None:
         s.pop("created_at", None)
         s.pop("topic_tags", None)  # not in DB schema; stored in JSON for reference only
         s.setdefault("source", "generated")
-    client.table("sentences").insert(sentences).execute()
-    print(f"  → {len(sentences)} sentences inserted")
+    # Delete existing sentences first, then re-insert (no natural unique key —
+    # sentences lack a stable composite key for upsert)
+    client.table("sentences").delete().neq("id", "00000000-0000-0000-0000-000000000000").execute()
+    try:
+        client.table("sentences").insert(sentences).execute()
+    except Exception as exc:
+        print("  ✗ Insert failed after delete — sentences table is now empty!")
+        print(f"    Error: {exc}")
+        sys.exit(1)
+    print(f"  → {len(sentences)} sentences inserted (replaced)")
 
 
 def main() -> None:

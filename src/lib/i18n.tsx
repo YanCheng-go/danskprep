@@ -28,7 +28,7 @@ export function I18nProvider({ children }: I18nProviderProps) {
     } catch {
       // ignore
     }
-    return 'da'
+    return navigator.language?.startsWith('da') ? 'da' : 'en'
   })
 
   const setLocale = useCallback((l: Locale) => {

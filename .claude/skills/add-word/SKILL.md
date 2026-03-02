@@ -1,3 +1,9 @@
+---
+name: add-word
+description: Add a new Danish word to vocabulary seed data with correct inflections
+user-invocable: true
+---
+
 # Add Word
 
 Add a new Danish word to the vocabulary seed data with correct inflections, translations, and metadata.
