@@ -223,7 +223,7 @@ const da: Record<TranslationKeys, string> = {
 
   // Support / Donate
   'support.title': 'Støt',
-  'support.dialogTitle': 'Køb os en kaffe',
+  'support.dialogTitle': 'Køb udvikleren en kaffe',
   'support.dialogDesc': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe os en kaffe via MobilePay:',
   'support.thankYou': 'Hver kaffe hjælper med at holde DanskPrep gratis og i udvikling. Tak!',
   'donate.support': 'Støt med MobilePay',

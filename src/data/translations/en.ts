@@ -221,7 +221,7 @@ const en = {
 
   // Support / Donate
   'support.title': 'Support',
-  'support.dialogTitle': 'Buy us a coffee',
+  'support.dialogTitle': 'Buy the developer a coffee',
   'support.dialogDesc': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying us a coffee via MobilePay:',
   'support.thankYou': 'Every coffee helps keep DanskPrep free and improving. Tak!',
   'donate.support': 'Support with MobilePay',
