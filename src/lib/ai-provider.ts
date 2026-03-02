@@ -6,7 +6,7 @@
 import type { ChatMessageData } from './chat'
 import { SETTINGS_KEYS } from './constants'
 
-export type AIProvider = 'anthropic' | 'ollama' | 'openrouter'
+export type AIProvider = 'anthropic' | 'ollama' | 'openrouter' | 'openai'
 
 export interface ProviderConfig {
   provider: AIProvider
@@ -19,6 +19,7 @@ const PROVIDER_DEFAULTS: Record<AIProvider, { model: string; baseUrl?: string }>
   anthropic: { model: 'claude-haiku-4-5-20251001' },
   ollama: { model: 'llama3.1', baseUrl: 'http://localhost:11434' },
   openrouter: { model: 'qwen/qwen3-80b:free' },
+  openai: { model: 'gpt-4o-mini' },
 }
 
 // ── Config persistence ─────────────────────────────────────────────────────
@@ -39,6 +40,14 @@ export function getProviderConfig(): ProviderConfig {
     return {
       provider,
       apiKey: localStorage.getItem(SETTINGS_KEYS.OPENROUTER_KEY) ?? undefined,
+      model,
+    }
+  }
+
+  if (provider === 'openai') {
+    return {
+      provider,
+      apiKey: localStorage.getItem(SETTINGS_KEYS.OPENAI_KEY) ?? undefined,
       model,
     }
   }
@@ -64,6 +73,9 @@ export function saveProviderConfig(config: ProviderConfig): void {
   if (config.provider === 'anthropic' && config.apiKey) {
     localStorage.setItem(SETTINGS_KEYS.ANTHROPIC_KEY, config.apiKey)
   }
+  if (config.provider === 'openai' && config.apiKey) {
+    localStorage.setItem(SETTINGS_KEYS.OPENAI_KEY, config.apiKey)
+  }
 }
 
 // ── Non-streaming completion ────────────────────────────────────────────────
@@ -78,6 +90,8 @@ export async function aiComplete(system: string, userMessage: string): Promise<s
       return ollamaComplete(config, system, userMessage)
     case 'openrouter':
       return openrouterComplete(config, system, userMessage)
+    case 'openai':
+      return openaiComplete(config, system, userMessage)
   }
 }
 
@@ -99,6 +113,8 @@ export async function aiStream(
       return ollamaStream(config, system, messages, onChunk, onDone, onError)
     case 'openrouter':
       return openrouterStream(config, system, messages, onChunk, onDone, onError)
+    case 'openai':
+      return openaiStream(config, system, messages, onChunk, onDone, onError)
   }
 }
 
@@ -371,6 +387,88 @@ async function openrouterStream(
     onDone()
   } catch (err) {
     onError(err instanceof Error ? err : new Error('OpenRouter request failed'))
+  }
+}
+
+// ── OpenAI implementation ─────────────────────────────────────────────────
+
+const OPENAI_URL = 'https://api.openai.com/v1/chat/completions'
+
+function openaiMessages(system: string, messages: ChatMessageData[]) {
+  return [
+    { role: 'system', content: system },
+    ...messages.map(m => ({ role: m.role, content: m.content })),
+  ]
+}
+
+async function openaiComplete(config: ProviderConfig, system: string, userMessage: string): Promise<string> {
+  if (!config.apiKey) throw new Error('No OpenAI API key configured. Add it in Settings.')
+
+  const res = await fetch(OPENAI_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${config.apiKey}`,
+    },
+    body: JSON.stringify({
+      model: config.model,
+      messages: openaiMessages(system, [{ role: 'user', content: userMessage }]),
+    }),
+  })
+
+  if (!res.ok) {
+    const body = await res.text()
+    throw new Error(`OpenAI error ${res.status}: ${body}`)
+  }
+
+  const data = await res.json()
+  return data.choices?.[0]?.message?.content ?? ''
+}
+
+async function openaiStream(
+  config: ProviderConfig,
+  system: string,
+  messages: ChatMessageData[],
+  onChunk: (text: string) => void,
+  onDone: () => void,
+  onError: (error: Error) => void
+): Promise<void> {
+  if (!config.apiKey) {
+    onError(new Error('No OpenAI API key configured. Add it in Settings.'))
+    return
+  }
+
+  try {
+    const res = await fetch(OPENAI_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${config.apiKey}`,
+      },
+      body: JSON.stringify({
+        model: config.model,
+        messages: openaiMessages(system, messages),
+        stream: true,
+      }),
+    })
+
+    if (!res.ok) {
+      const body = await res.text()
+      onError(new Error(`OpenAI error ${res.status}: ${body}`))
+      return
+    }
+
+    // OpenAI-compatible SSE format
+    await readSSE(res, (data) => {
+      if (data === '[DONE]') return
+      const event = JSON.parse(data)
+      const content = event.choices?.[0]?.delta?.content
+      if (content) onChunk(content)
+    })
+
+    onDone()
+  } catch (err) {
+    onError(err instanceof Error ? err : new Error('OpenAI request failed'))
   }
 }
 

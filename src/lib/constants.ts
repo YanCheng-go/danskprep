@@ -59,6 +59,7 @@ export const SETTINGS_KEYS = {
   ANTHROPIC_KEY: 'danskprep_anthropic_api_key',
   OLLAMA_URL: 'danskprep_ollama_url',
   OPENROUTER_KEY: 'danskprep_openrouter_key',
+  OPENAI_KEY: 'danskprep_openai_api_key',
   WELCOME_SEEN: 'danskprep_welcome_seen',
 } as const
 
