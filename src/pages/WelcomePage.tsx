@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Brain, Dumbbell, PenLine, BookOpen, Coffee } from 'lucide-react'
-import { PageContainer } from '@/components/layout/PageContainer'
+import { Link, useNavigate } from 'react-router-dom'
+import { Brain, Dumbbell, PenLine, BookOpen, Coffee, LogIn } from 'lucide-react'
 import { SupportDialog } from '@/components/layout/SupportDialog'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 import { SETTINGS_KEYS } from '@/lib/constants'
 
@@ -19,16 +19,17 @@ export function WelcomePage() {
   const navigate = useNavigate()
   const [supportOpen, setSupportOpen] = useState(false)
 
-  function handleGetStarted() {
+  function handleGuest() {
     localStorage.setItem(SETTINGS_KEYS.WELCOME_SEEN, 'true')
     navigate('/')
   }
 
   return (
-    <PageContainer>
-      <div className="mx-auto max-w-2xl py-8">
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16">
         {/* Hero */}
         <div className="text-center mb-10">
+          <div className="text-4xl mb-4">🇩🇰</div>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t('welcome.title')}
           </h1>
@@ -55,8 +56,33 @@ export function WelcomePage() {
           ))}
         </div>
 
+        {/* CTAs */}
+        <div className="flex flex-col items-center gap-3 mb-10">
+          <Link
+            to="/login"
+            className={cn(buttonVariants({ size: 'lg' }), 'gap-2 w-full sm:w-auto sm:min-w-[240px]')}
+          >
+            <LogIn className="h-4 w-4" />
+            {t('guest.signIn')}
+          </Link>
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={handleGuest}
+            className="w-full sm:w-auto sm:min-w-[240px]"
+          >
+            {t('welcome.continueAsGuest')}
+          </Button>
+          <p className="text-xs text-muted-foreground mt-1">
+            {t('welcome.noAccountYet')}{' '}
+            <Link to="/signup" className="text-primary underline underline-offset-4">
+              {t('guest.signUp')}
+            </Link>
+          </p>
+        </div>
+
         {/* Support note */}
-        <div className="rounded-lg border border-pink-200 dark:border-pink-800/40 bg-pink-50 dark:bg-pink-950/20 p-4 mb-8 text-center">
+        <div className="rounded-lg border border-pink-200 dark:border-pink-800/40 bg-pink-50 dark:bg-pink-950/20 p-4 text-center">
           <p className="text-sm text-muted-foreground mb-3">
             {t('welcome.supportNote')}
           </p>
@@ -68,16 +94,9 @@ export function WelcomePage() {
             {t('support.dialogTitle')}
           </button>
         </div>
-
-        {/* Get Started */}
-        <div className="text-center">
-          <Button size="lg" onClick={handleGetStarted}>
-            {t('welcome.getStarted')}
-          </Button>
-        </div>
       </div>
 
       <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
-    </PageContainer>
+    </div>
   )
 }

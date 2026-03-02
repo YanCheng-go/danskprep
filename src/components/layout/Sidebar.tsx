@@ -24,6 +24,7 @@ import { FeedbackDialog } from '@/components/feedback/FeedbackDialog'
 import { AddExerciseDialog } from '@/components/exercise/AddExerciseDialog'
 import { useTranslation } from '@/lib/i18n'
 import { APP_VERSION } from '@/lib/constants'
+import type { User } from '@supabase/supabase-js'
 
 interface NavItem {
   to: string
@@ -45,10 +46,11 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 interface SidebarProps {
+  user?: User | null
   onClose?: () => void
 }
 
-export function Sidebar({ onClose }: SidebarProps) {
+export function Sidebar({ user, onClose }: SidebarProps) {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [addExerciseOpen, setAddExerciseOpen] = useState(false)
   const { t } = useTranslation()
@@ -132,35 +134,38 @@ export function Sidebar({ onClose }: SidebarProps) {
       {/* Divider */}
       <div className="my-2 border-t" />
 
-      {/* Add exercise button */}
-      <button
-        onClick={() => setAddExerciseOpen(true)}
-        className={linkClass}
-      >
-        <PlusCircle className="h-5 w-5" />
-        {t('nav.addExercise')}
-      </button>
+      {/* Add exercise + feedback — signed-in users only */}
+      {user && (
+        <>
+          <button
+            onClick={() => setAddExerciseOpen(true)}
+            className={linkClass}
+          >
+            <PlusCircle className="h-5 w-5" />
+            {t('nav.addExercise')}
+          </button>
 
-      {/* General feedback button */}
-      <button
-        onClick={() => setFeedbackOpen(true)}
-        className={linkClass}
-      >
-        <MessageSquare className="h-5 w-5" />
-        {t('nav.feedback')}
-      </button>
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            className={linkClass}
+          >
+            <MessageSquare className="h-5 w-5" />
+            {t('nav.feedback')}
+          </button>
 
-      <Dialog open={addExerciseOpen} onOpenChange={setAddExerciseOpen}>
-        <DialogContent>
-          <AddExerciseDialog onClose={() => setAddExerciseOpen(false)} />
-        </DialogContent>
-      </Dialog>
+          <Dialog open={addExerciseOpen} onOpenChange={setAddExerciseOpen}>
+            <DialogContent>
+              <AddExerciseDialog onClose={() => setAddExerciseOpen(false)} />
+            </DialogContent>
+          </Dialog>
 
-      <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
-        <DialogContent>
-          <FeedbackDialog onClose={() => setFeedbackOpen(false)} />
-        </DialogContent>
-      </Dialog>
+          <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
+            <DialogContent>
+              <FeedbackDialog onClose={() => setFeedbackOpen(false)} />
+            </DialogContent>
+          </Dialog>
+        </>
+      )}
 
       {/* Site footer */}
       <div className="mt-auto border-t pt-3">
