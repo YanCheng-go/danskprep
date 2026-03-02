@@ -6,6 +6,9 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 import { SETTINGS_KEYS } from '@/lib/constants'
+import changelogData from '@/data/seed/changelog.json'
+
+const latestStats = (changelogData as { stats: Record<string, number> }[])[0].stats
 
 const FEATURES = [
   { icon: Brain, titleKey: 'welcome.studyTitle', descKey: 'welcome.studyDesc' },
@@ -52,6 +55,16 @@ export function WelcomePage() {
                 <h2 className="font-semibold text-sm">{t(titleKey)}</h2>
                 <p className="text-muted-foreground text-sm mt-1">{t(descKey)}</p>
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Content stats */}
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
+          {Object.entries(latestStats).map(([key, value]) => (
+            <div key={key} className="rounded-md border bg-card px-4 py-3 text-center min-w-[100px]">
+              <p className="text-2xl font-bold">{value}</p>
+              <p className="text-xs text-muted-foreground">{key.replace(/_/g, ' ')}</p>
             </div>
           ))}
         </div>
