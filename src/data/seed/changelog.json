@@ -1,5 +1,26 @@
 [
   {
+    "version": "0.4.1",
+    "date": "2026-03-02",
+    "title": "Mobile Responsiveness & Quiz Fixes",
+    "highlights": [
+      "Mobile-first layouts: game panel overlay, responsive hero, 44px touch targets",
+      "Header no longer clips on small screens (375px+)",
+      "Dictionary page search input visible on mobile",
+      "Quiz multiple choice: fixed stale options bug between same-question exercises",
+      "Added 'Don't know — show answer' button to multiple choice questions",
+      "Added 'Bug report' category to exercise feedback dialog",
+      "CardRating 2x2 grid on mobile, DanishInput 44px keyboard buttons"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 277,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
     "version": "0.4.0",
     "date": "2026-03-02",
     "title": "Guest Mode & Welcome Page",
