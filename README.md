@@ -58,7 +58,7 @@ danskprep/
 ├── scripts/                  # Python tooling (scrapers, data enrichment, seeding)
 │   └── data/                 # Scraper output artifacts (raw JSON, screenshots)
 ├── supabase/
-│   └── migrations/           # SQL schema migrations (001–007)
+│   └── migrations/           # SQL schema migrations (001–008)
 ├── docs/                     # Architecture diagrams (Excalidraw)
 └── references/               # Data source documentation
 ```
@@ -125,11 +125,14 @@ uv run python enrich-vocabulary.py
 - [x] Vercel Analytics + Speed Insights
 - [x] Lazy-loaded routes
 - [x] AI chatbot tutor
-- [x] EN/DA language toggle
+- [x] EN/DA language toggle (browser language auto-detection)
 - [x] In-app feedback system
+- [x] Supabase migrations 001-008 applied via CLI
+- [x] Nix + direnv dev environment (`.envrc` + `flake.nix`)
 
 ### Next
-- [ ] Connect Supabase (auth + FSRS persistence)
+- [ ] Generate real DB types (`npm run types` → replace `createClient<any>()`)
+- [ ] Seed remote database (`cd scripts && uv run python seed-database.py`)
 - [ ] Fill 143 empty verb inflections (run `enrich-vocabulary.py`)
 - [ ] Refresh progress stats after study session
 - [ ] WordOrder drag-and-drop reorder

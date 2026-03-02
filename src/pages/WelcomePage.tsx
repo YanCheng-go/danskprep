@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ClipboardCheck,
@@ -20,7 +20,9 @@ import { Button } from '@/components/ui/button'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
+import { useBubbleGame } from '@/hooks/useBubbleGame'
 import { SETTINGS_KEYS } from '@/lib/constants'
+import type { TranslationKeys } from '@/data/translations/en'
 import changelogData from '@/data/seed/changelog.json'
 
 const latestStats = (changelogData as { stats: Record<string, number> }[])[0].stats
@@ -29,9 +31,9 @@ const latestStats = (changelogData as { stats: Record<string, number> }[])[0].st
 
 interface Feature {
   icon: LucideIcon
-  titleKey: string
-  descKey: string
-  tagKey?: string
+  titleKey: TranslationKeys
+  descKey: TranslationKeys
+  tagKey?: TranslationKeys
   featured: boolean
   iconBg: string
   iconColor: string
@@ -107,22 +109,11 @@ export function WelcomePage() {
   const { locale, setLocale, t } = useTranslation()
   const navigate = useNavigate()
   const [supportOpen, setSupportOpen] = useState(false)
-  const [gamePanelOpen, setGamePanelOpen] = useState(false)
-  const [bubbleScore, setBubbleScore] = useState(0)
-  const [bubblesEnabled, setBubblesEnabled] = useState(true)
-
-  // Auto-open game panel on first bubble discovery
-  const hasOpenedRef = useRef(false)
-  useEffect(() => {
-    if (bubbleScore === 1 && !hasOpenedRef.current) {
-      hasOpenedRef.current = true
-      setGamePanelOpen(true)
-    }
-  }, [bubbleScore])
-
-  function handleToggleBubbles() {
-    setBubblesEnabled(prev => !prev)
-  }
+  const {
+    bubbleScore, setBubbleScore,
+    gamePanelOpen, setGamePanelOpen,
+    bubblesEnabled, toggleBubbles,
+  } = useBubbleGame({ initialEnabled: true })
 
   function handleStart() {
     localStorage.setItem(SETTINGS_KEYS.WELCOME_SEEN, 'true')
@@ -135,7 +126,7 @@ export function WelcomePage() {
       <WelcomeTopBar
         locale={locale}
         onLocaleToggle={() => setLocale(locale === 'en' ? 'da' : 'en')}
-        onToggleBubbles={handleToggleBubbles}
+        onToggleBubbles={toggleBubbles}
         bubblesEnabled={bubblesEnabled}
         bubbleScore={bubbleScore}
         onOpenGamePanel={() => setGamePanelOpen(o => !o)}
@@ -150,7 +141,7 @@ export function WelcomePage() {
       <div className="flex">
 
       {/* Page content — z-20 */}
-      <div className="relative z-20 flex-1 min-w-0 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto">
+      <div className="relative z-20 flex-1 min-w-0 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto [&_input]:pointer-events-auto [&_select]:pointer-events-auto [&_textarea]:pointer-events-auto">
 
         {/* ============ HERO ============ */}
         <section className="relative min-h-screen flex flex-col items-center text-center px-6 pt-20 pb-12">

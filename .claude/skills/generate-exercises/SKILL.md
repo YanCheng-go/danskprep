@@ -1,6 +1,14 @@
+---
+name: generate-exercises
+description: Generate a batch of exercises for a Danish grammar topic
+user-invocable: true
+---
+
 # Generate Exercises
 
 Generate a batch of exercises for a Danish grammar topic or vocabulary set, following DanskPrep's exercise type specifications and quality standards.
+
+> **Reference:** Read `.claude/references/danish-content.md` first — it covers grammatical accuracy rules, exam scope, and exercise quality standards.
 
 ## Instructions
 

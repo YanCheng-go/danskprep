@@ -43,6 +43,24 @@ const cards = (data ?? []) as Pick<UserCard, 'state'>[]
 - `words`, `grammar_topics`, `exercises`, `sentences`: public read, no writes from frontend
 - Never bypass RLS with the service role key in client-side code
 
+### UPDATE policies must have WITH CHECK
+PostgreSQL RLS has two clauses for UPDATE:
+- `USING` — filters which rows the user can **read/access** (row selection, before update)
+- `WITH CHECK` — validates what values are allowed in the **new row** (after update)
+
+Without `WITH CHECK`, a user who matches a row via `USING` can change any column to any value — including `user_id`, effectively hijacking the row. Always mirror the `USING` constraint in `WITH CHECK`:
+
+```sql
+-- WRONG: user can change user_id to steal the row
+CREATE POLICY "user_update" ON my_table
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- CORRECT: new values must also satisfy ownership
+CREATE POLICY "user_update" ON my_table
+  FOR UPDATE USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+```
+
 ## Query Patterns
 ```typescript
 // Prefer: typed select with explicit columns
