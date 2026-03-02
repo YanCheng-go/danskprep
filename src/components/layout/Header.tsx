@@ -48,7 +48,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
 
   return (
     <header className="sticky top-0 z-40 h-14 border-b bg-background">
-      <div className="flex h-full items-center px-4">
+      <div className="flex h-full items-center px-4 overflow-hidden">
         {/* Mobile menu toggle */}
         <Button
           variant="ghost"
@@ -70,6 +70,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
             <button
               onClick={() => setModuleDropdownOpen(o => !o)}
               className="flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium hover:bg-accent transition-colors"
+              aria-label={t('header.selectModule')}
             >
               {activeModule?.shortLabel ?? t('header.module')}
               <ChevronDown className="h-3 w-3" />
@@ -121,7 +122,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           </div>
         </div>
 
-        <div className="flex items-center gap-1 bg-background pl-3">
+        <div className="flex items-center gap-1 bg-background pl-3 min-w-0 overflow-hidden">
           {/* Game controls — toggle + rankings, hidden on mobile */}
           <div className="hidden sm:flex items-center gap-0 rounded-lg border border-foreground/[0.08]">
             <button
@@ -142,6 +143,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
                 onClick={onOpenGamePanel}
                 className="inline-flex items-center gap-0.5 min-h-9 px-1.5 rounded-r-lg text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors border-l border-foreground/[0.08]"
                 title={t('bubble.game.tooltip')}
+                aria-label={t('bubble.game.tooltip')}
               >
                 <Trophy className="h-3.5 w-3.5 text-yellow-500" />
                 {bubbleScore > 0 && <span>{bubbleScore}</span>}
@@ -153,7 +155,8 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           <button
             onClick={handleThemeToggle}
             className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-muted-foreground hover:bg-accent transition-colors"
-            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
+            aria-label={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
           >
             {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
@@ -174,6 +177,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           <button
             onClick={() => { setSupportOpen(true); track('support_click') }}
             className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
+            aria-label={t('support.title')}
           >
             <Coffee className="h-4 w-4 text-pink-500" />
             <span className="hidden sm:inline">{t('support.title')}</span>
