@@ -95,11 +95,11 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
         {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
       </button>
 
-      {/* Dictionary search — always visible */}
+      {/* Dictionary search — always visible, pink glow */}
       <div className="flex flex-1 justify-center px-2">
-        <div className="flex items-center gap-1.5 max-w-sm w-full">
+        <div className="flex items-center gap-1.5 max-w-lg w-full">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
             <input
               type="text"
               value={searchTerm}
@@ -111,12 +111,12 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
                 }
               }}
               placeholder={t('header.lookupPlaceholder')}
-              className="h-9 w-full rounded-lg border-2 bg-muted/50 pl-9 pr-3 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-primary focus:bg-background transition-colors"
+              className="h-9 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all"
             />
           </div>
           <button
             onClick={() => navigate('/dictionary')}
-            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 text-muted-foreground hover:text-foreground hover:bg-accent transition-colors shrink-0"
+            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all shrink-0"
             title={t('nav.dictionary')}
             aria-label={t('nav.dictionary')}
           >

@@ -31,7 +31,7 @@ const da: Record<TranslationKeys, string> = {
   'header.soon': 'Snart',
   'header.module': 'Modul',
   'header.signIn': 'Log ind',
-  'header.lookupPlaceholder': 'Slå op...',
+  'header.lookupPlaceholder': 'Slå et ord op i ordbogen — for sætninger, prøv AI Tutor',
 
   // Home
   'home.greeting': 'Goddag!',
