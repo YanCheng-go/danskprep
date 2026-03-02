@@ -1,0 +1,65 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version from package.json
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' package.json)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Check if tag already exists
+        id: check
+        run: |
+          if git rev-parse "v${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Extract release notes from changelog
+        if: steps.check.outputs.exists == 'false'
+        id: notes
+        run: |
+          # Extract latest entry from changelog.json
+          TITLE=$(jq -r '.[0].title' src/data/seed/changelog.json)
+          DATE=$(jq -r '.[0].date' src/data/seed/changelog.json)
+          HIGHLIGHTS=$(jq -r '.[0].highlights | map("- " + .) | join("\n")' src/data/seed/changelog.json)
+          STATS=$(jq -r '.[0].stats | to_entries | map("- **" + .key + ":** " + (.value | tostring)) | join("\n")' src/data/seed/changelog.json)
+
+          # Build release body
+          BODY="## ${TITLE}
+
+          ${HIGHLIGHTS}
+
+          ### Content stats
+          ${STATS}
+
+          ---
+          Released on ${DATE}"
+
+          # Write to file to avoid escaping issues
+          echo "$BODY" > release-notes.md
+
+      - name: Create GitHub Release
+        if: steps.check.outputs.exists == 'false'
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "${{ steps.version.outputs.tag }} — $(jq -r '.[0].title' src/data/seed/changelog.json)" \
+            --notes-file release-notes.md \
+            --target main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
