@@ -154,20 +154,30 @@ export function FeedbackDialog({ exerciseId, onClose }: FeedbackDialogProps) {
         </p>
 
         {status === 'error' && (
-          <p className="text-sm text-destructive">
-            Failed to submit via database.
-          </p>
+          <div className="rounded-md border border-destructive/30 bg-destructive/5 p-3 space-y-2">
+            <p className="text-sm text-destructive">
+              Could not submit — database not connected.
+            </p>
+            <a
+              href={`mailto:chengyan2017@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`}
+              className="inline-flex items-center gap-1.5 rounded-md border border-primary bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Send via email instead
+            </a>
+          </div>
         )}
 
-        <p className="text-xs text-muted-foreground">
-          Or{' '}
-          <a
-            href={`mailto:chengyan2017@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`}
-            className="underline hover:text-foreground transition-colors"
-          >
-            send feedback via email
-          </a>
-        </p>
+        {status !== 'error' && (
+          <p className="text-xs text-muted-foreground">
+            Or{' '}
+            <a
+              href={`mailto:chengyan2017@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`}
+              className="underline hover:text-foreground transition-colors"
+            >
+              send feedback via email
+            </a>
+          </p>
+        )}
       </div>
 
       <DialogFooter>

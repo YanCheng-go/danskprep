@@ -266,8 +266,9 @@ const en = {
   'settings.model': 'Model',
   'settings.testConnection': 'Test connection',
   'settings.testing': 'Testing...',
-  'settings.ollamaCorsTitle': 'Running DanskPrep online?',
-  'settings.ollamaCorsHelp': 'If you host DanskPrep on Vercel or another domain, Ollama blocks cross-origin requests by default. Start Ollama with:',
+  'settings.ollamaCorsTitle': 'Ollama only works locally',
+  'settings.ollamaCorsHelp': 'Ollama cannot be used when DanskPrep is hosted on Vercel (HTTPS). Browsers block requests from HTTPS pages to http://localhost. Use Ollama only when running the app locally (npm run dev), or switch to Anthropic/OpenRouter for cloud deployment.',
+  'settings.ollamaHttpsWarning': 'You are accessing DanskPrep over HTTPS — Ollama will not work. Use Anthropic or OpenRouter instead.',
   'settings.aiKeyNote': 'API keys are stored in your browser only — never sent to our servers.',
 
   // Chat

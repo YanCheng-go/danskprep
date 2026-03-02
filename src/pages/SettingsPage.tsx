@@ -241,18 +241,26 @@ export function SettingsPage() {
                 {ollamaTestResult && (
                   <p className="text-xs text-muted-foreground">{ollamaTestResult}</p>
                 )}
-                <div className="rounded-md border border-yellow-500/30 bg-yellow-50 dark:bg-yellow-950/20 p-3 mt-2">
-                  <div className="flex items-start gap-2">
-                    <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5" />
-                    <div className="text-xs">
-                      <p className="font-medium text-yellow-800 dark:text-yellow-300">{t('settings.ollamaCorsTitle')}</p>
-                      <p className="text-yellow-700 dark:text-yellow-400/80 mt-1">{t('settings.ollamaCorsHelp')}</p>
-                      <code className="block mt-1.5 rounded bg-yellow-100 dark:bg-yellow-900/40 px-2 py-1 font-mono text-[11px] text-yellow-900 dark:text-yellow-200 select-all">
-                        OLLAMA_ORIGINS="*" ollama serve
-                      </code>
+                {window.location.protocol === 'https:' ? (
+                  <div className="rounded-md border border-red-500/30 bg-red-50 dark:bg-red-950/20 p-3 mt-2">
+                    <div className="flex items-start gap-2">
+                      <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+                      <p className="text-xs font-medium text-red-800 dark:text-red-300">
+                        {t('settings.ollamaHttpsWarning')}
+                      </p>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="rounded-md border border-yellow-500/30 bg-yellow-50 dark:bg-yellow-950/20 p-3 mt-2">
+                    <div className="flex items-start gap-2">
+                      <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5" />
+                      <div className="text-xs">
+                        <p className="font-medium text-yellow-800 dark:text-yellow-300">{t('settings.ollamaCorsTitle')}</p>
+                        <p className="text-yellow-700 dark:text-yellow-400/80 mt-1">{t('settings.ollamaCorsHelp')}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
