@@ -121,9 +121,16 @@ yes | supabase db push        # apply
 | Seed script fails after delete | Data lost — re-run seed script; see error handling in `seed-database.py` |
 | `createClient<any>` type warnings | Run Step 4 to generate real DB types |
 
+### Step 5 — Update NOTES.md
+
+After a successful push, update `NOTES.md` to record which migrations have been applied:
+- In section **4. Connect Supabase**, update the migration range (e.g., "Migrations 001-009 applied")
+- If a new migration was just created and pushed, add it to the current session's completed items in the **Completed** section
+
 ## Reminders
 
 - Never commit `.env.local` or service role keys
 - Always dry-run before pushing migrations to catch SQL errors
 - The `apply-all-migrations.sql` file is a convenience copy for manual SQL Editor use — the CLI uses the individual files in `supabase/migrations/`
 - After adding a new migration file, update `apply-all-migrations.sql` to stay in sync
+- After a successful sync, update `NOTES.md` to track applied migration state
