@@ -343,6 +343,8 @@ const en = {
   'guest.tryQuiz': 'Try Quiz instead',
   'guest.progressDesc': 'Sign in to track your streak, accuracy, and card progress.',
   'guest.dashboardDesc': 'Sign in to track your progress with spaced repetition.',
+  'guest.signInRequired': 'Sign in required',
+  'guest.signInRequiredDesc': 'You need an account to use this feature.',
 
   // Welcome
   'welcome.title': 'Prepare for Prøve i Dansk',
