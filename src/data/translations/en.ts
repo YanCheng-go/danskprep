@@ -344,6 +344,11 @@ const en = {
   'guest.tryQuiz': 'Try Quiz instead',
   'guest.progressDesc': 'Sign in to track your streak, accuracy, and card progress.',
   'guest.dashboardDesc': 'Sign in to track your progress with spaced repetition.',
+  'guest.benefit1': 'Spaced repetition that adapts to your memory',
+  'guest.benefit2': 'Daily streak and accuracy tracking',
+  'guest.benefit3': 'Review history synced across devices',
+  'guest.benefit4': 'Custom exercises saved to your account',
+  'guest.privacyNote': 'We only store your email and learning data (cards, reviews, progress). No personal data is shared with third parties.',
   'guest.signInRequired': 'Sign in required',
   'guest.signInRequiredDesc': 'You need an account to use this feature.',
 
