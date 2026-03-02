@@ -94,6 +94,7 @@ feature branch → PR → CI/CD → Claude review → human merge
 3. **Mobile-ready** — All layouts work on 375px+, dark mode from day 1
 4. **Legally clean** — Original content only, never copy textbook text
 5. **Offline-capable SRS** — FSRS runs client-side, sync on reconnect
+6. **AI-native** — Documents use clear structure, explicit context, and machine-parseable formats so AI agents can consume them effectively. APIs should be designed for AI integration (e.g. exposable via MCP servers)
 
 ## Environment Variables
 
