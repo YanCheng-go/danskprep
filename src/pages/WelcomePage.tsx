@@ -18,7 +18,7 @@ const FEATURES = [
 ] as const
 
 export function WelcomePage() {
-  const { t } = useTranslation()
+  const { locale, setLocale, t } = useTranslation()
   const navigate = useNavigate()
   const [supportOpen, setSupportOpen] = useState(false)
 
@@ -29,7 +29,18 @@ export function WelcomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-2xl px-4 py-12 sm:py-16">
+      {/* Language toggle — top right */}
+      <div className="flex justify-end px-4 pt-4">
+        <button
+          onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
+          className="rounded-md border px-2 py-1 text-sm hover:bg-accent transition-colors"
+          title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+        >
+          {locale === 'en' ? '\u{1F1E9}\u{1F1F0} Dansk' : '\u{1F1EC}\u{1F1E7} English'}
+        </button>
+      </div>
+
+      <div className="mx-auto max-w-2xl px-4 py-8 sm:py-12">
         {/* Hero */}
         <div className="text-center mb-10">
           <div className="text-4xl mb-4">🇩🇰</div>
