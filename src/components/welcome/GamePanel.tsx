@@ -1,7 +1,10 @@
-import { useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Gamepad2, X } from 'lucide-react'
-import { BubbleLeaderboard } from './BubbleLeaderboard'
 import { useTranslation } from '@/lib/i18n'
+import { BubbleLeaderboard } from './BubbleLeaderboard'
+import { GameSelector } from './games/GameSelector'
+import { GenderSnapGame } from './games/gender-snap/GenderSnapGame'
+import type { GameId } from './games/types'
 
 interface GamePanelProps {
   open: boolean
@@ -14,6 +17,7 @@ interface GamePanelProps {
 
 export function GamePanel({ open, onClose, currentScore, onScoreReset, onScoreLoad }: GamePanelProps) {
   const { t } = useTranslation()
+  const [activeGame, setActiveGame] = useState<GameId>('bubbles')
 
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
@@ -39,7 +43,7 @@ export function GamePanel({ open, onClose, currentScore, onScoreReset, onScoreLo
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Gamepad2 className="h-5 w-5 text-primary" />
-            <h2 className="text-base font-semibold">{t('bubble.leaderboard.title')}</h2>
+            <h2 className="text-base font-semibold">{t('game.panelTitle')}</h2>
           </div>
           <button
             onClick={onClose}
@@ -49,13 +53,22 @@ export function GamePanel({ open, onClose, currentScore, onScoreReset, onScoreLo
           </button>
         </div>
 
-        {/* Description */}
-        <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-          {t('bubble.game.description')}
-        </p>
+        {/* Game Selector Tabs */}
+        <div className="mb-4">
+          <GameSelector activeGame={activeGame} onSelect={setActiveGame} />
+        </div>
 
-        {/* Leaderboard */}
-        <BubbleLeaderboard currentScore={currentScore} onScoreReset={onScoreReset} onScoreLoad={onScoreLoad} />
+        {/* Active Game */}
+        {activeGame === 'bubbles' && (
+          <>
+            <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
+              {t('bubble.game.description')}
+            </p>
+            <BubbleLeaderboard currentScore={currentScore} onScoreReset={onScoreReset} onScoreLoad={onScoreLoad} />
+          </>
+        )}
+
+        {activeGame === 'gender-snap' && <GenderSnapGame />}
       </div>
     </aside>
   )

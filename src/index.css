@@ -87,3 +87,22 @@
   from { opacity: 1; transform: scale(1); }
   to   { opacity: 0; transform: scale(0.6); }
 }
+
+/* Mini-game feedback flashes */
+@keyframes flash-correct {
+  0%   { background-color: hsl(142 71% 45% / 0.2); }
+  100% { background-color: transparent; }
+}
+
+@keyframes flash-wrong {
+  0%   { background-color: hsl(0 84% 60% / 0.2); }
+  100% { background-color: transparent; }
+}
+
+.animate-flash-correct {
+  animation: flash-correct 0.4s ease-out;
+}
+
+.animate-flash-wrong {
+  animation: flash-wrong 0.8s ease-out;
+}

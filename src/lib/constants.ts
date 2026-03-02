@@ -46,6 +46,8 @@ export const DRILL_ROUND_TYPE_LABELS: Record<string, string> = {
   form_choice: 'Form Choice',
 }
 
+export const GAME_SCORES_PREFIX = 'danskprep_game_'
+
 export const SETTINGS_KEYS = {
   DAILY_NEW_LIMIT: 'danskprep_daily_new_limit',
   ACCEPT_LATIN_FALLBACK: 'danskprep_accept_latin',

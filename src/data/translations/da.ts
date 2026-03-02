@@ -455,6 +455,38 @@ const da: Record<TranslationKeys, string> = {
   'bubble.ranking.guestMode': 'Gæst — nyt navn nulstiller din score',
   'bubble.ranking.signedInMode': 'Logget ind — score bevares på tværs af sessioner',
 
+  // Mini-games — shared
+  'game.panelTitle': 'Minispil',
+  'game.start': 'Start',
+  'game.playAgain': 'Spil igen',
+  'game.finalScore': 'Slutscore',
+  'game.answered': 'Besvaret',
+  'game.accuracy': 'Nøjagtighed',
+  'game.bestStreak': 'Bedste stime',
+  'game.streak': '{count} i stime',
+  'game.leaderboard.title': 'Topscorer',
+  'game.leaderboard.empty': 'Ingen scorer endnu — spil for at komme på listen!',
+
+  // Mini-games — Bubbles
+  'game.bubbles.title': 'Bobler',
+  'game.bubbles.description': 'Klik på svævende ord for at opdage deres betydning.',
+
+  // Mini-games — Gender Snap
+  'game.genderSnap.title': 'Kønssnap',
+  'game.genderSnap.description': 'Er det en eller et? Vælg det rigtige køn inden tiden løber ud. 30 sekunder — hvor mange kan du nå?',
+
+  // Mini-games — Cloze Tap (coming soon)
+  'game.clozeTap.title': 'Udfyld',
+  'game.clozeTap.description': 'Tryk på det manglende ord for at fuldføre sætningen.',
+
+  // Mini-games — Speed Match (coming soon)
+  'game.speedMatch.title': 'Hurtigmatch',
+  'game.speedMatch.description': 'Er dette den rigtige oversættelse? Swipe til højre eller venstre.',
+
+  // Mini-games — Word Order (coming soon)
+  'game.wordOrder.title': 'Ordrækkefølge',
+  'game.wordOrder.description': 'Tryk på ordene i den rigtige rækkefølge for at bygge en sætning.',
+
   // Footer
   'footer.builtBy': 'Bygget af',
   'footer.contributions': 'Bidrag velkomne — øvelser fra eksamener, fejlrapporter eller kode',
