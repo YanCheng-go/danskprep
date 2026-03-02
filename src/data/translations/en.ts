@@ -453,6 +453,38 @@ const en = {
   'bubble.ranking.guestMode': 'Guest — shuffle resets your score',
   'bubble.ranking.signedInMode': 'Signed in — score persists across sessions',
 
+  // Mini-games — shared
+  'game.panelTitle': 'Mini-Games',
+  'game.start': 'Start',
+  'game.playAgain': 'Play Again',
+  'game.finalScore': 'Final Score',
+  'game.answered': 'Answered',
+  'game.accuracy': 'Accuracy',
+  'game.bestStreak': 'Best Streak',
+  'game.streak': '{count} streak',
+  'game.leaderboard.title': 'Top Scores',
+  'game.leaderboard.empty': 'No scores yet — play to get on the board!',
+
+  // Mini-games — Bubbles
+  'game.bubbles.title': 'Bubbles',
+  'game.bubbles.description': 'Click floating words to discover their meaning.',
+
+  // Mini-games — Gender Snap
+  'game.genderSnap.title': 'Gender Snap',
+  'game.genderSnap.description': 'Is it en or et? Pick the correct gender before time runs out. 30 seconds — how many can you get?',
+
+  // Mini-games — Cloze Tap (coming soon)
+  'game.clozeTap.title': 'Cloze Tap',
+  'game.clozeTap.description': 'Tap the missing word to complete the sentence.',
+
+  // Mini-games — Speed Match (coming soon)
+  'game.speedMatch.title': 'Speed Match',
+  'game.speedMatch.description': 'Is this the right translation? Swipe right or left.',
+
+  // Mini-games — Word Order (coming soon)
+  'game.wordOrder.title': 'Word Order',
+  'game.wordOrder.description': 'Tap the words in the correct order to build a sentence.',
+
   // Footer
   'footer.builtBy': 'Built by',
   'footer.contributions': 'Contributions welcome — exercises from exams, bug reports, or code',
