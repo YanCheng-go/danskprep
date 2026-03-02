@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
-import { ExternalLink, AlertCircle, Plus, Check, ChevronDown } from 'lucide-react'
+import { ExternalLink, AlertCircle, Plus, Check, ChevronDown, Search } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 import { AVAILABLE_MODULES, FEATURES } from '@/lib/constants'
 import { addUserWord, isWordSaved, syncWordToSupabase } from '@/lib/user-words'
@@ -52,6 +52,8 @@ export function DictionaryPage() {
   const [addDialogOpen, setAddDialogOpen] = useState(false)
   const [selectedModule, setSelectedModule] = useState('pd3m2')
   const [moduleDropdownOpen, setModuleDropdownOpen] = useState(false)
+  const [mobileSearchTerm, setMobileSearchTerm] = useState('')
+  const mobileInputRef = useRef<HTMLInputElement>(null)
   const { t } = useTranslation()
   const { user } = useAuth()
   const { words: allWords, seedWords, refreshUserWords } = useWords()
@@ -160,12 +162,36 @@ export function DictionaryPage() {
         </p>
       </div>
 
+      {/* Mobile search bar — visible only on small screens where header search is hidden */}
+      <div className="sm:hidden mb-4">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
+          <input
+            ref={mobileInputRef}
+            type="text"
+            value={mobileSearchTerm}
+            onChange={e => setMobileSearchTerm(e.target.value)}
+            onKeyDown={e => {
+              if (e.key === 'Enter' && mobileSearchTerm.trim()) {
+                handleSearch(mobileSearchTerm.trim())
+                setMobileSearchTerm('')
+              }
+            }}
+            placeholder={t('dictionary.placeholder')}
+            className="h-11 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all"
+          />
+        </div>
+      </div>
+
       {/* Idle state — show recent searches + hint */}
       {lookupState.status === 'idle' && (
         <Card>
           <CardContent className="pt-4 pb-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground hidden sm:block">
               {t('dictionary.useHeaderSearch')}
+            </p>
+            <p className="text-sm text-muted-foreground sm:hidden">
+              {t('dictionary.placeholder')}
             </p>
           </CardContent>
         </Card>

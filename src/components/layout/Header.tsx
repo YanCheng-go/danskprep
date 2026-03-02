@@ -111,7 +111,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
                   className="fixed inset-0 z-50"
                   onClick={() => setModuleDropdownOpen(false)}
                 />
-                <div className="absolute top-full left-0 mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1">
+                <div className="absolute top-full left-0 sm:left-auto mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1">
                   {AVAILABLE_MODULES.map(mod => (
                     <button
                       key={mod.id}
@@ -141,10 +141,10 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
         <div className="flex-1" />
 
         <div className="flex items-center gap-1 bg-background pl-3">
-          {/* Game toggle */}
+          {/* Game toggle — hidden on mobile to prevent header overflow */}
           <button
             onClick={onToggleBubbles}
-            className={`relative inline-flex items-center justify-center rounded-md p-1.5 hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
+            className={`relative hidden sm:inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
             title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
             aria-label={t('bubble.game.tooltip')}
           >
@@ -155,11 +155,11 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
               </span>
             )}
           </button>
-          {/* Trophy — opens rankings, only when game is on */}
+          {/* Trophy — opens rankings, only when game is on; hidden on mobile */}
           {bubblesEnabled && (
             <button
               onClick={onOpenGamePanel}
-              className="inline-flex items-center gap-0.5 rounded-md px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors"
+              className="hidden sm:inline-flex items-center gap-0.5 rounded-md min-h-11 min-w-11 justify-center px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors"
               title={t('bubble.game.tooltip')}
             >
               <Trophy className="h-4 w-4 text-yellow-500" />
@@ -170,7 +170,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Dark mode toggle */}
           <button
             onClick={handleThemeToggle}
-            className="inline-flex items-center justify-center rounded-md p-1.5 text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-muted-foreground hover:bg-accent transition-colors"
             title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -179,7 +179,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Language toggle */}
           <button
             onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
-            className="inline-flex items-center justify-center rounded-md px-1.5 py-0.5 text-sm text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-sm text-muted-foreground hover:bg-accent transition-colors"
             title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
             aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
           >
