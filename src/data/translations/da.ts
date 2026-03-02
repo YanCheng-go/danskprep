@@ -369,6 +369,7 @@ const da: Record<TranslationKeys, string> = {
   'welcome.getStarted': 'Kom i gang',
   'welcome.continueAsGuest': 'Fortsæt som gæst',
   'welcome.noAccountYet': 'Har du ikke en konto?',
+  'welcome.wordsDiscovered': '{count} ord opdaget',
 
   // Footer
   'footer.builtBy': 'Bygget af',
