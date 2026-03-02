@@ -58,3 +58,32 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, #8b5cf6 50%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-primary {
+    box-shadow: 0 0 32px rgba(59,130,246,0.25), 0 0 64px rgba(59,130,246,0.1);
+  }
+}
+
+/* Bubble game animations — defined here (not in Tailwind config) so
+   they work with inline `animation:` style, matching the HTML prototype. */
+@keyframes bubble-rise {
+  0%   { transform: translateY(110vh) translateX(0); opacity: 0; }
+  3%   { opacity: 1; }
+  25%  { transform: translateY(75vh) translateX(var(--sway, 20px)); }
+  50%  { transform: translateY(50vh) translateX(calc(var(--sway, 20px) * -0.5)); }
+  75%  { transform: translateY(25vh) translateX(var(--sway, 20px)); }
+  97%  { opacity: 1; }
+  100% { transform: translateY(-60px) translateX(0); opacity: 0; }
+}
+
+@keyframes bubble-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.6); }
+}

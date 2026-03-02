@@ -8,6 +8,14 @@ export interface BubbleWord {
   part_of_speech?: string
 }
 
+export interface BubbleColorClasses {
+  bg: string
+  border: string
+  hoverBg: string
+  hoverBorder: string
+  text: string
+}
+
 interface WordBubbleProps {
   word: BubbleWord
   left: number        // percentage 0–100
@@ -15,14 +23,15 @@ interface WordBubbleProps {
   duration: number    // seconds
   sway: number        // px, horizontal sway amplitude
   size: 'sm' | 'md' | 'lg'
+  colorClasses?: BubbleColorClasses
   onComplete: () => void
   onDiscover: () => void
 }
 
 const SIZE_CLASSES = {
-  sm: 'text-xs px-3 py-1.5 min-h-11 min-w-11',
-  md: 'text-sm px-4 py-2 min-h-11 min-w-11',
-  lg: 'text-base px-5 py-2.5 min-h-11 min-w-11',
+  sm: 'text-sm px-4 py-2 min-h-[48px] min-w-[48px]',
+  md: 'text-base px-5 py-2.5 min-h-[56px] min-w-[56px]',
+  lg: 'text-lg px-6 py-3 min-h-[64px] min-w-[64px]',
 } as const
 
 export function WordBubble({
@@ -32,6 +41,7 @@ export function WordBubble({
   duration,
   sway,
   size,
+  colorClasses,
   onComplete,
   onDiscover,
 }: WordBubbleProps) {
@@ -53,35 +63,35 @@ export function WordBubble({
     return () => clearTimeout(timer)
   }, [flipped, onDiscover, onComplete])
 
+  // Inline animation — matches HTML prototype approach exactly.
+  // Avoids Tailwind class + inline longhand specificity conflicts.
+  const animation = exiting
+    ? 'bubble-fade-out 0.5s ease-out forwards'
+    : `bubble-rise ${duration}s linear ${delay}s forwards`
+
   return (
     <button
       type="button"
       tabIndex={-1}
       onClick={handleClick}
       className={cn(
-        'absolute rounded-full border cursor-pointer select-none whitespace-nowrap transition-colors',
+        'absolute rounded-full border cursor-pointer select-none whitespace-nowrap transition-colors pointer-events-auto',
         SIZE_CLASSES[size],
-        exiting
-          ? 'animate-bubble-fade-out'
-          : 'animate-bubble-rise',
         flipped
           ? 'ring-2 ring-green-400/50 bg-green-50/80 dark:bg-green-950/40 border-green-300/50 dark:border-green-700/50'
-          : 'bg-primary/5 border-primary/20 hover:bg-primary/15 hover:border-primary/40',
+          : colorClasses
+            ? `${colorClasses.bg} ${colorClasses.border} ${colorClasses.hoverBg} ${colorClasses.hoverBorder}`
+            : 'bg-primary/5 border-primary/20 hover:bg-primary/15 hover:border-primary/40',
       )}
       style={{
         left: `${left}%`,
-        animationDelay: exiting ? '0s' : `${delay}s`,
-        animationDuration: exiting ? '0.5s' : `${duration}s`,
+        opacity: 0,
+        animation,
         '--sway': `${sway}px`,
-        '--bubble-duration': `${duration}s`,
-        // Stay invisible until animation starts
-        ...(delay > 0 && !flipped && !exiting
-          ? { opacity: 0, animationFillMode: 'forwards' }
-          : {}),
       } as React.CSSProperties}
       onAnimationEnd={(e) => {
         // When the rise animation ends naturally, recycle the bubble
-        if (e.animationName.includes('bubble-rise') && !flipped) {
+        if (e.animationName === 'bubble-rise' && !flipped) {
           onComplete()
         }
       }}
@@ -97,7 +107,10 @@ export function WordBubble({
         </span>
       ) : (
         <span className="flex items-center gap-1.5">
-          <span className="text-foreground/20 hover:text-foreground/40 transition-colors font-medium">
+          <span className={cn(
+            'transition-colors font-medium',
+            colorClasses ? `${colorClasses.text} hover:text-foreground/60` : 'text-foreground/50 hover:text-foreground/70'
+          )}>
             {word.danish}
           </span>
           {word.gender && (

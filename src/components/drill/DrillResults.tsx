@@ -119,7 +119,7 @@ export function DrillResults({ session, stats, onRetry }: DrillResultsProps) {
         <Button onClick={onRetry} variant="outline" className="flex-1">
           Try again
         </Button>
-        <Link to="/" className={cn(buttonVariants(), 'flex-1 justify-center')}>
+        <Link to="/home" className={cn(buttonVariants(), 'flex-1 justify-center')}>
           Done
         </Link>
       </div>

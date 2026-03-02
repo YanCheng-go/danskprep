@@ -106,7 +106,7 @@ export function Sidebar({ user, onClose }: SidebarProps) {
     <nav className="flex h-full flex-col gap-0.5 p-4">
       {/* Home */}
       <NavLink
-        to="/"
+        to="/home"
         end
         onClick={onClose}
         className={({ isActive }) =>
