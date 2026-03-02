@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { User } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { scheduleReview, getSchedulingOptions, createNewCard } from '@/lib/fsrs'
@@ -22,6 +22,7 @@ interface UseStudyReturn {
   currentCard: ReviewableCard | null
   schedulingOptions: SchedulingOptions | null
   cardsRemaining: number
+  totalCards: number
   isLoading: boolean
   error: string | null
   reviewCard: (rating: 1 | 2 | 3 | 4, response?: string, wasCorrect?: boolean, timeTakenMs?: number) => Promise<void>
@@ -32,6 +33,12 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
   const [queue, setQueue] = useState<ReviewableCard[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const initialQueueSize = useRef(0)
+
+  function setInitialQueue(cards: ReviewableCard[]) {
+    initialQueueSize.current = cards.length
+    setQueue(cards)
+  }
 
   const currentCard = queue[0] ?? null
   const schedulingOptions = currentCard ? getSchedulingOptions(currentCard.userCard) : null
@@ -92,7 +99,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     }
 
     const reviewable = buildReviewableCards(allCards)
-    setQueue(reviewable)
+    setInitialQueue(reviewable)
   }
 
   async function loadAllQueue(userId: string) {
@@ -117,7 +124,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
 
     const allCards = [...existing, ...topped]
     const reviewable = buildReviewableCards(allCards)
-    setQueue(reviewable)
+    setInitialQueue(reviewable)
   }
 
   async function initializeUserCards(userId: string) {
@@ -182,7 +189,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     }
 
     const reviewable = buildReviewableCards((initialCards ?? []) as UserCard[])
-    setQueue(reviewable)
+    setInitialQueue(reviewable)
   }
 
   async function topUpUserCards(userId: string, existingIds: Set<string>): Promise<UserCard[]> {
@@ -476,6 +483,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     currentCard,
     schedulingOptions,
     cardsRemaining: queue.length,
+    totalCards: initialQueueSize.current || queue.length,
     isLoading,
     error,
     reviewCard,

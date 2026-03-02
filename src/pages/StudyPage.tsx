@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useStudy } from '@/hooks/useStudy'
@@ -12,14 +11,8 @@ import { useTranslation } from '@/lib/i18n'
 export function StudyPage() {
   const { user } = useAuth()
   const { t } = useTranslation()
-  const [totalCards, setTotalCards] = useState<number | null>(null)
-  const { currentCard, schedulingOptions, cardsRemaining, isLoading, error, reviewCard } =
+  const { currentCard, schedulingOptions, cardsRemaining, totalCards, isLoading, error, reviewCard } =
     useStudy(user, 'daily')
-
-  // Track total on first load
-  if (totalCards === null && cardsRemaining > 0) {
-    setTotalCards(cardsRemaining)
-  }
 
   if (isLoading) {
     return (
@@ -76,7 +69,7 @@ export function StudyPage() {
         currentCard={currentCard}
         schedulingOptions={schedulingOptions}
         cardsRemaining={cardsRemaining}
-        totalCards={totalCards ?? cardsRemaining}
+        totalCards={totalCards}
         onRate={reviewCard}
       />
     </PageContainer>
