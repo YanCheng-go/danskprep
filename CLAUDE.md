@@ -83,6 +83,10 @@ feature branch → PR → CI/CD → Claude review → human merge
 - Use `/pull-request` skill before creating PRs
 - Commit messages: explain *why*, not *what*
 
+## Strict TypeScript — Unused Imports
+
+`noUnusedLocals: true` is enabled. **When editing a file, always check whether the change makes any existing imports unused and remove them in the same edit.** Do not leave cleanup for a separate step — unused imports fail `tsc --noEmit` and CI. Common cases: removing a function call that was the only use of an import, replacing a component with a different one, extracting logic to a hook.
+
 ## Key Design Principles
 
 1. **Exam-focused only** — Every feature maps to an exam topic

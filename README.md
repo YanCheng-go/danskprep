@@ -4,7 +4,7 @@
 
 Active recall, spaced repetition (FSRS), and exam-focused exercises for learners preparing for the Danish integration language tests (Prøve i Dansk / Studieprøven).
 
-**Live app:** [danskprep.vercel.app](https://danskprep.vercel.app)
+**Live app:** [danskprep.vercel.app/welcome](https://danskprep.vercel.app/welcome)
 **GitHub:** [github.com/YanCheng-go/danskprep](https://github.com/YanCheng-go/danskprep)
 
 ## Features
