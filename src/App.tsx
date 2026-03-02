@@ -70,7 +70,8 @@ function LandingGate() {
 
 /** Navigating to /welcome redirects signed-in users to /home */
 function WelcomeGate() {
-  const { user } = useAuth()
+  const { user, isLoading } = useAuth()
+  if (isLoading) return <PageLoader />
   if (user) return <Navigate to="/home" replace />
   return <WelcomePage />
 }

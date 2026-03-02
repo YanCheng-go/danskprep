@@ -17,6 +17,8 @@
             python312      # Script runtime
             uv             # Python package manager
             supabase-cli   # DB migrations + type generation
+            # Linux users running Playwright scrapers: add system deps here
+            # e.g. at-spi2-atk, cups, cairo, pango, nss, etc.
           ];
 
           shellHook = ''
