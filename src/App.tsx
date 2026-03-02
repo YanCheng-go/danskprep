@@ -55,6 +55,9 @@ const UpdatesPage = lazy(() =>
 const SettingsPage = lazy(() =>
   import('@/pages/SettingsPage').then(m => ({ default: m.SettingsPage }))
 )
+const WelcomePage = lazy(() =>
+  import('@/pages/WelcomePage').then(m => ({ default: m.WelcomePage }))
+)
 
 function PageLoader() {
   return (
@@ -102,6 +105,7 @@ export function App() {
             <Route path="progress" element={<ProgressPage />} />
             <Route path="updates" element={<UpdatesPage />} />
             <Route path="settings" element={<SettingsPage />} />
+            <Route path="welcome" element={<WelcomePage />} />
           </Route>
 
           {/* Fallback */}

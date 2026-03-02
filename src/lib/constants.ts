@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.3.0'
+export const APP_VERSION = '0.4.0'
 
 // Feature flags
 export const FEATURES = {
@@ -59,6 +59,7 @@ export const SETTINGS_KEYS = {
   ANTHROPIC_KEY: 'danskprep_anthropic_api_key',
   OLLAMA_URL: 'danskprep_ollama_url',
   OPENROUTER_KEY: 'danskprep_openrouter_key',
+  WELCOME_SEEN: 'danskprep_welcome_seen',
 } as const
 
 export interface ModuleInfo {

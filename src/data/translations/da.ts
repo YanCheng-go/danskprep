@@ -30,6 +30,7 @@ const da: Record<TranslationKeys, string> = {
   'header.signOut': 'Log ud',
   'header.soon': 'Snart',
   'header.module': 'Modul',
+  'header.signIn': 'Log ind',
   'header.lookupPlaceholder': 'Slå op...',
 
   // Home
@@ -334,6 +335,29 @@ const da: Record<TranslationKeys, string> = {
   'rating.2': 'Svær',
   'rating.3': 'God',
   'rating.4': 'Nem',
+
+  // Guest CTAs
+  'guest.studyTitle': 'Følg dine fremskridt',
+  'guest.studyDesc': 'Log ind for at bruge spredt gentagelse og følge din læring over tid.',
+  'guest.signIn': 'Log ind',
+  'guest.signUp': 'Opret konto',
+  'guest.tryQuiz': 'Prøv Quiz i stedet',
+  'guest.progressDesc': 'Log ind for at følge din stime, nøjagtighed og kortfremskridt.',
+  'guest.dashboardDesc': 'Log ind for at følge dine fremskridt med spredt gentagelse.',
+
+  // Welcome
+  'welcome.title': 'Forbered dig til Prøve i Dansk',
+  'welcome.subtitle': 'Evidensbaseret læring med spredt gentagelse, aktiv genkaldelse og produktionsøvelser',
+  'welcome.studyTitle': 'Spredt gentagelse',
+  'welcome.studyDesc': 'Gennemgå kort på en videnskabeligt optimeret tidsplan der tilpasser sig din hukommelse',
+  'welcome.quizTitle': 'Quiz & øvelse',
+  'welcome.quizDesc': 'Øv grammatik og ordforråd med udfyldning, ordrækkefølge, bøjning og mere',
+  'welcome.writingTitle': 'Skrivning & tale',
+  'welcome.writingDesc': 'Skriv og tal dansk med AI-drevet feedback om grammatik og ordforråd',
+  'welcome.grammarTitle': 'Grammatikreference',
+  'welcome.grammarDesc': 'Klare forklaringer af danske grammatikregler organiseret efter eksamensemne',
+  'welcome.supportNote': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe udvikleren en kaffe.',
+  'welcome.getStarted': 'Kom i gang',
 
   // Footer
   'footer.builtBy': 'Bygget af',

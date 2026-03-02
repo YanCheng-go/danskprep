@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Menu, X, LogOut, ChevronDown, Coffee, Search, BookOpen } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Menu, X, LogIn, LogOut, ChevronDown, Coffee, Search, BookOpen } from 'lucide-react'
 import { track } from '@vercel/analytics'
 import { Button } from '@/components/ui/button'
 import { SupportDialog } from './SupportDialog'
@@ -133,7 +133,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
           <Coffee className="h-4 w-4 text-pink-500" />
           <span className="hidden sm:inline">{t('support.title')}</span>
         </button>
-        {user && (
+        {user ? (
           <>
             <span className="hidden text-xs text-muted-foreground sm:block truncate max-w-[160px] ml-1">
               {user.email}
@@ -142,6 +142,14 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
               <LogOut className="h-4 w-4" />
             </Button>
           </>
+        ) : (
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+          >
+            <LogIn className="h-4 w-4" />
+            <span className="hidden sm:inline">{t('header.signIn')}</span>
+          </Link>
         )}
       </div>
 
