@@ -35,6 +35,7 @@ const en = {
   'home.greeting': 'Good day!',
   'home.signedIn': 'Signed in as {email}',
   'home.welcome': 'Welcome to DanskPrep',
+  'home.latestUpdates': 'Latest app updates',
 
   // Study
   'study.title': 'Study',
