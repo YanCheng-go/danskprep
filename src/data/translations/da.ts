@@ -121,6 +121,7 @@ const da: Record<TranslationKeys, string> = {
   'progress.cardsDue': 'kort klar',
   'progress.studyNow': 'Studer nu',
   'progress.quickQuiz': 'Hurtig quiz',
+  'progress.drill': 'Øvelse',
   'progress.streak': 'dages stime',
   'progress.accuracy': 'nøjagtighed',
   'progress.accuracy30d': 'Nøjagtighed (30d)',

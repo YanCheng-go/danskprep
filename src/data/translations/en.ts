@@ -119,6 +119,7 @@ const en = {
   'progress.cardsDue': 'cards due',
   'progress.studyNow': 'Study Now',
   'progress.quickQuiz': 'Quick Quiz',
+  'progress.drill': 'Drill',
   'progress.streak': 'day streak',
   'progress.accuracy': 'accuracy',
   'progress.accuracy30d': 'Accuracy (30d)',

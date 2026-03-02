@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Brain, List, LogIn, UserPlus } from 'lucide-react'
+import { Brain, Dumbbell, List, LogIn, UserPlus } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { StreakCounter } from './StreakCounter'
@@ -89,7 +89,7 @@ export function Dashboard({
       )}
 
       {/* Quick-start buttons */}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-3 gap-3">
         <Link
           to="/study"
           className={cn(buttonVariants({ size: 'lg' }), 'h-16 flex-col gap-1')}
@@ -103,6 +103,13 @@ export function Dashboard({
         >
           <List className="h-5 w-5" />
           <span className="text-sm">{t('progress.quickQuiz')}</span>
+        </Link>
+        <Link
+          to="/drill"
+          className={cn(buttonVariants({ variant: 'outline', size: 'lg' }), 'h-16 flex-col gap-1')}
+        >
+          <Dumbbell className="h-5 w-5" />
+          <span className="text-sm">{t('progress.drill')}</span>
         </Link>
       </div>
 
