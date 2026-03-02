@@ -357,6 +357,8 @@ const en = {
   'welcome.grammarDesc': 'Clear explanations of Danish grammar rules organized by exam topic',
   'welcome.supportNote': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying the developer a coffee.',
   'welcome.getStarted': 'Get Started',
+  'welcome.continueAsGuest': 'Continue as guest',
+  'welcome.noAccountYet': "Don't have an account?",
 
   // Footer
   'footer.builtBy': 'Built by',

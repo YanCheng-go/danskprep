@@ -77,7 +77,8 @@ export function App() {
       <I18nProvider>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          {/* Public auth routes */}
+          {/* Public routes (no layout) */}
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
@@ -105,7 +106,6 @@ export function App() {
             <Route path="progress" element={<ProgressPage />} />
             <Route path="updates" element={<UpdatesPage />} />
             <Route path="settings" element={<SettingsPage />} />
-            <Route path="welcome" element={<WelcomePage />} />
           </Route>
 
           {/* Fallback */}

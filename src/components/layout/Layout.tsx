@@ -22,7 +22,7 @@ export function Layout() {
       <div className="flex">
         {/* Desktop sidebar */}
         <aside className="hidden md:block w-52 shrink-0 border-r h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto">
-          <Sidebar />
+          <Sidebar user={user} />
         </aside>
 
         {/* Mobile drawer overlay */}
@@ -40,7 +40,7 @@ export function Layout() {
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           )}
         >
-          <Sidebar onClose={() => setMenuOpen(false)} />
+          <Sidebar user={user} onClose={() => setMenuOpen(false)} />
         </aside>
 
         {/* Main content */}

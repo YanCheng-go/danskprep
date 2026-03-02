@@ -359,6 +359,8 @@ const da: Record<TranslationKeys, string> = {
   'welcome.grammarDesc': 'Klare forklaringer af danske grammatikregler organiseret efter eksamensemne',
   'welcome.supportNote': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe udvikleren en kaffe.',
   'welcome.getStarted': 'Kom i gang',
+  'welcome.continueAsGuest': 'Fortsæt som gæst',
+  'welcome.noAccountYet': 'Har du ikke en konto?',
 
   // Footer
   'footer.builtBy': 'Bygget af',
