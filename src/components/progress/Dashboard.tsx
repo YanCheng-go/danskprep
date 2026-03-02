@@ -63,22 +63,24 @@ export function Dashboard({
 
       {/* Guest sign-in CTA */}
       {isGuest && (
-        <Card>
-          <CardContent className="pt-6 pb-6">
-            <p className="text-sm text-muted-foreground mb-3">
+        <Card className="border-primary/40 bg-primary/5 dark:bg-primary/10">
+          <CardContent className="pt-6 pb-6 text-center">
+            <LogIn className="h-8 w-8 text-primary mx-auto mb-3" />
+            <h2 className="text-base font-semibold mb-1">{t('guest.studyTitle')}</h2>
+            <p className="text-sm text-muted-foreground mb-4">
               {t('guest.dashboardDesc')}
             </p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-3">
               <Link
                 to="/login"
-                className={cn(buttonVariants({ size: 'sm' }), 'gap-1.5')}
+                className={cn(buttonVariants({ size: 'default' }), 'gap-1.5')}
               >
                 <LogIn className="h-4 w-4" />
                 {t('guest.signIn')}
               </Link>
               <Link
                 to="/signup"
-                className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'gap-1.5')}
+                className={cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1.5')}
               >
                 <UserPlus className="h-4 w-4" />
                 {t('guest.signUp')}
