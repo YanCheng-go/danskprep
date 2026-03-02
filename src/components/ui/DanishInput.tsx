@@ -62,7 +62,7 @@ export function DanishInput({
             size="sm"
             onClick={() => handleSpecialChar(char)}
             disabled={disabled}
-            className="font-mono text-base min-h-9"
+            className="font-mono text-base min-h-11 min-w-11"
           >
             {char}
           </Button>

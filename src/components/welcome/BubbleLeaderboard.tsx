@@ -433,7 +433,7 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
                       className={`border-t border-foreground/[0.05] cursor-pointer transition-colors hover:bg-foreground/[0.06] ${isYou ? 'bg-primary/[0.06]' : ''}`}
                     >
                       <td className="py-1.5 text-muted-foreground/70">{i + 1}</td>
-                      <td className="py-1.5 font-medium truncate max-w-[160px]">
+                      <td className="py-1.5 font-medium truncate max-w-[120px] sm:max-w-[160px]">
                         {entry.nickname}
                         {isYou && <span className="text-[10px] text-primary ml-1.5 font-normal">(you)</span>}
                       </td>

@@ -14,6 +14,7 @@ const EXERCISE_FEEDBACK_TYPES = [
   'Correct answer marked wrong',
   'Unclear question',
   'Wrong explanation',
+  'Bug report',
   'Content suggestion',
 ] as const
 

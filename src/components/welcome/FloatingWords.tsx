@@ -47,7 +47,7 @@ function randomBubble(id: number, delay: number): ActiveBubble {
   return {
     id,
     word,
-    left: 3 + Math.random() * 94, // 3–97% to avoid edge clipping
+    left: 5 + Math.random() * 85, // 5–90% to avoid edge clipping on mobile
     delay,
     duration: 12 + Math.random() * 10, // 12–22s
     sway: 10 + Math.random() * 30,    // 10–40px
