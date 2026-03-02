@@ -91,4 +91,27 @@ describe('checkAnswer', () => {
     expect(result.isCorrect).toBe(false)
     expect(result.isAlmostCorrect).toBe(false)
   })
+
+  it('handles null acceptable_answers without throwing', () => {
+    // Seed data has "acceptable_answers": null — must not crash
+    const result = checkAnswer('En bil', 'En bil', null as unknown as string[])
+    expect(result.isCorrect).toBe(true)
+  })
+
+  it('handles undefined acceptable_answers without throwing', () => {
+    const result = checkAnswer('En bil', 'En bil', undefined)
+    expect(result.isCorrect).toBe(true)
+  })
+
+  it('handles multiple choice selection matching correct_answer', () => {
+    // Simulates clicking the correct MC option
+    const result = checkAnswer('En bil', 'En bil', null as unknown as string[])
+    expect(result.isCorrect).toBe(true)
+    expect(result.isAlmostCorrect).toBe(false)
+  })
+
+  it('handles multiple choice "don\'t know" (empty string)', () => {
+    const result = checkAnswer('', 'En bil', null as unknown as string[])
+    expect(result.isCorrect).toBe(false)
+  })
 })

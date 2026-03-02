@@ -7,7 +7,7 @@ import { SETTINGS_KEYS, DAILY_NEW_CARDS_LIMIT } from '@/lib/constants'
 import type { AIProvider } from '@/lib/ai-provider'
 import { getProviderConfig, saveProviderConfig, testOllamaConnection } from '@/lib/ai-provider'
 import { useTranslation } from '@/lib/i18n'
-import { AlertTriangle } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 
 export function SettingsPage() {
   const { t } = useTranslation()
@@ -207,6 +207,14 @@ export function SettingsPage() {
                   placeholder="claude-haiku-4-5-20251001"
                   className="font-mono text-sm"
                 />
+                <a
+                  href="https://platform.claude.com/settings/keys"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  Get your API key <ExternalLink className="h-3 w-3" />
+                </a>
                 {anthropicKey && (
                   <Button
                     size="sm"
@@ -239,37 +247,28 @@ export function SettingsPage() {
                   placeholder="llama3.1"
                   className="font-mono text-sm"
                 />
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleOllamaTest}
-                  disabled={ollamaTesting}
-                >
-                  {ollamaTesting ? t('settings.testing') : t('settings.testConnection')}
-                </Button>
+                <div className="flex items-center gap-3">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={handleOllamaTest}
+                    disabled={ollamaTesting}
+                  >
+                    {ollamaTesting ? t('settings.testing') : t('settings.testConnection')}
+                  </Button>
+                  <a
+                    href="https://docs.ollama.com/quickstart"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                  >
+                    Ollama installation guide <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
                 {ollamaTestResult && (
                   <p className="text-xs text-muted-foreground">{ollamaTestResult}</p>
                 )}
-                {window.location.protocol === 'https:' ? (
-                  <div className="rounded-md border border-red-500/30 bg-red-50 dark:bg-red-950/20 p-3 mt-2">
-                    <div className="flex items-start gap-2">
-                      <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
-                      <p className="text-xs font-medium text-red-800 dark:text-red-300">
-                        {t('settings.ollamaHttpsWarning')}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="rounded-md border border-yellow-500/30 bg-yellow-50 dark:bg-yellow-950/20 p-3 mt-2">
-                    <div className="flex items-start gap-2">
-                      <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400 shrink-0 mt-0.5" />
-                      <div className="text-xs">
-                        <p className="font-medium text-yellow-800 dark:text-yellow-300">{t('settings.ollamaCorsTitle')}</p>
-                        <p className="text-yellow-700 dark:text-yellow-400/80 mt-1">{t('settings.ollamaCorsHelp')}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <p className="text-xs text-muted-foreground">{t('settings.ollamaLocalOnly')}</p>
               </div>
             )}
 
@@ -291,18 +290,14 @@ export function SettingsPage() {
                   placeholder="qwen/qwen3-80b:free"
                   className="font-mono text-sm"
                 />
-                {openrouterKey && (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => {
-                      localStorage.removeItem(SETTINGS_KEYS.OPENROUTER_KEY)
-                      setOpenrouterKey('')
-                    }}
-                  >
-                    {t('settings.remove')}
-                  </Button>
-                )}
+                <a
+                  href="https://openrouter.ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  OpenRouter — browse models & get API key <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
             )}
 
@@ -324,6 +319,14 @@ export function SettingsPage() {
                   placeholder="gpt-4o-mini"
                   className="font-mono text-sm"
                 />
+                <a
+                  href="https://openai.com/index/openai-api/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  OpenAI API — get your API key <ExternalLink className="h-3 w-3" />
+                </a>
                 {openaiKey && (
                   <Button
                     size="sm"

@@ -78,7 +78,7 @@ export function checkAnswer(
 
   const allCorrect = [
     normalizedCorrect,
-    ...acceptableAnswers.map(a => normalizeDanish(a, acceptLatin)),
+    ...(acceptableAnswers ?? []).map(a => normalizeDanish(a, acceptLatin)),
   ]
 
   const isCorrect = allCorrect.includes(normalizedUser)
