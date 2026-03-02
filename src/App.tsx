@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from 'react'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -68,22 +68,10 @@ function LandingGate() {
   return <Navigate to="/home" replace />
 }
 
-/** Navigating to /welcome signs the user out (fresh start) and shows welcome */
+/** Navigating to /welcome redirects signed-in users to /home */
 function WelcomeGate() {
-  const { user, signOut } = useAuth()
-  const signedOutRef = useRef(false)
-
-  useEffect(() => {
-    if (user && !signedOutRef.current) {
-      signedOutRef.current = true
-      localStorage.removeItem(SETTINGS_KEYS.BUBBLE_NICKNAME)
-      localStorage.removeItem(SETTINGS_KEYS.WELCOME_SEEN)
-      signOut()
-    }
-  }, [user, signOut])
-
-  // While signing out, show loader
-  if (user) return <PageLoader />
+  const { user } = useAuth()
+  if (user) return <Navigate to="/home" replace />
   return <WelcomePage />
 }
 

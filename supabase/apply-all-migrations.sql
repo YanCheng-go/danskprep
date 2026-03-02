@@ -302,11 +302,17 @@ do $$ begin
 exception when duplicate_object then null;
 end $$;
 do $$ begin
-  create policy "bubble_scores_insert" on bubble_scores for insert with check (true);
+  create policy "bubble_scores_insert" on bubble_scores for insert with check (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and user_id is null and is_guest = true)
+  );
 exception when duplicate_object then null;
 end $$;
 do $$ begin
-  create policy "bubble_scores_update" on bubble_scores for update using (true);
+  create policy "bubble_scores_update" on bubble_scores for update using (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and is_guest = true and user_id is null)
+  );
 exception when duplicate_object then null;
 end $$;
 do $$ begin
@@ -344,3 +350,12 @@ create unique index if not exists bubble_scores_user_nickname_unique
 
 create index if not exists bubble_scores_user_latest
   on bubble_scores (user_id, updated_at desc) where user_id is not null;
+
+
+-- ═══ Migration 008: Tighten bubble_scores RLS ════════════════════════════════
+
+-- Drop old permissive policies and recreate with ownership checks
+-- (already replaced inline above in the 006 section)
+
+-- Ensure updated_at is not nullable (used in ORDER BY for session restore)
+alter table bubble_scores alter column updated_at set not null;

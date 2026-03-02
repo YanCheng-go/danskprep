@@ -1,6 +1,14 @@
+---
+name: danish-grammar-content
+description: Reference for generating and reviewing Danish exam content
+user-invocable: true
+---
+
 # Danish Grammar Content Reference
 
-Reference for generating and reviewing Danish exam content. For accuracy rules see `.claude/rules/danish-content.md`.
+Reference for generating and reviewing Danish exam content.
+
+> **Reference:** Read `.claude/references/danish-content.md` first — it covers character encoding, grammatical accuracy rules, exam scope, exercise quality, and legal compliance.
 
 ## Exam levels (for tagging content)
 | Level | Code | Difficulty | Notes |

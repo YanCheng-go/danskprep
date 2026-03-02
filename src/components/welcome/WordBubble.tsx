@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface BubbleWord {
@@ -47,20 +47,28 @@ export function WordBubble({
 }: WordBubbleProps) {
   const [flipped, setFlipped] = useState(false)
   const [exiting, setExiting] = useState(false)
+  const revealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const exitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  // Clean up timers on unmount
+  useEffect(() => {
+    return () => {
+      if (revealTimerRef.current) clearTimeout(revealTimerRef.current)
+      if (exitTimerRef.current) clearTimeout(exitTimerRef.current)
+    }
+  }, [])
 
   const handleClick = useCallback(() => {
     if (flipped) return
     setFlipped(true)
     onDiscover()
     // After showing translation, fade out and recycle
-    const timer = setTimeout(() => {
+    revealTimerRef.current = setTimeout(() => {
       setExiting(true)
-      const exitTimer = setTimeout(() => {
+      exitTimerRef.current = setTimeout(() => {
         onComplete()
       }, 500) // match bubble-fade-out duration
-      return () => clearTimeout(exitTimer)
     }, 2000)
-    return () => clearTimeout(timer)
   }, [flipped, onDiscover, onComplete])
 
   // Inline animation — matches HTML prototype approach exactly.

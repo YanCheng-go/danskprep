@@ -218,7 +218,7 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
     }
     fetchUserSession()
     return () => { cancelled = true }
-  }, [isGuest, user])
+  }, [isGuest, user?.id])
 
   // ---- Nickname-resume (typing): check local board + Supabase when nickname changes ----
   // Works for both guests (match by nickname + is_guest) and signed-in users (match by user_id + nickname).
