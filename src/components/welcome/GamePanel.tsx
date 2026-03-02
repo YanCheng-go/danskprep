@@ -42,12 +42,12 @@ export function GamePanel({ open, onClose, currentScore, onScoreReset, onScoreLo
       <aside
         className={cn(
           "border-l border-foreground/[0.08] bg-background overflow-hidden transition-all duration-300 ease-in-out",
-          // Mobile: full-screen overlay
-          "fixed inset-0 top-14 z-40 md:relative md:inset-auto md:top-auto md:z-auto",
+          // Mobile: fixed panel sliding from right; Desktop: inline collapse
+          "fixed top-14 right-0 bottom-0 z-40 md:relative md:inset-auto md:top-auto md:z-auto",
           "md:shrink-0 md:h-[calc(100vh-3.5rem)] md:sticky md:top-14",
           open
-            ? "translate-x-0 md:translate-x-0 md:w-96"
-            : "translate-x-full md:translate-x-0 md:w-0"
+            ? "w-full md:w-96"
+            : "w-0 md:w-0"
         )}
       >
         <div className="w-full md:w-96 pt-6 px-5 pb-8 h-full overflow-y-auto">
@@ -60,6 +60,7 @@ export function GamePanel({ open, onClose, currentScore, onScoreReset, onScoreLo
             <button
               onClick={onClose}
               className="text-muted-foreground hover:text-foreground p-2 min-h-11 min-w-11 flex items-center justify-center rounded-md hover:bg-foreground/[0.05] transition-colors"
+              aria-label={t('header.closePanel')}
             >
               <X className="h-4 w-4" />
             </button>

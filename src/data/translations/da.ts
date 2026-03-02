@@ -34,6 +34,10 @@ const da: Record<TranslationKeys, string> = {
   'header.module': 'Modul',
   'header.signIn': 'Log ind',
   'header.lookupPlaceholder': 'Slå et ord op',
+  'header.selectModule': 'Vælg modul',
+  'header.darkMode.light': 'Skift til lys tilstand',
+  'header.darkMode.dark': 'Skift til mørk tilstand',
+  'header.closePanel': 'Luk panel',
 
   // Home
   'home.greeting': 'Goddag!',
