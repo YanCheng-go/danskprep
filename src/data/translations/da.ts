@@ -37,6 +37,7 @@ const da: Record<TranslationKeys, string> = {
   'home.greeting': 'Goddag!',
   'home.signedIn': 'Logget ind som {email}',
   'home.welcome': 'Velkommen til DanskPrep',
+  'home.latestUpdates': 'Seneste appopdateringer',
 
   // Study
   'study.title': 'Studer',
