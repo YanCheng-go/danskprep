@@ -94,6 +94,7 @@ feature branch → PR → CI/CD → Claude review → human merge
 3. **Mobile-ready** — All layouts work on 375px+, dark mode from day 1
 4. **Legally clean** — Original content only, never copy textbook text
 5. **Offline-capable SRS** — FSRS runs client-side, sync on reconnect
+6. **AI-native** — Documents use clear structure, explicit context, and machine-parseable formats so AI agents can consume them effectively. APIs should be designed for AI integration (e.g. exposable via MCP servers)
 
 ## Environment Variables
 
@@ -104,7 +105,26 @@ VITE_SUPABASE_ANON_KEY=eyJ...
 
 Never commit `.env.local`.
 
+## Agents & Skills
+
+| Name | Type | Purpose |
+|------|------|---------|
+| `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
+| `/retro` | Skill | End-of-session retrospective, update backlog + session log |
+| `/scope` | Skill | Break a backlog item into sub-tasks with effort/risk |
+| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/some` | Skill | Social media post generator (LinkedIn/Twitter/FB) |
+| `coder` | Agent | Autonomous dev cycle: pick item → code → test → PR → retro |
+| `pm` | Agent | Exam-aligned research, roadmap planning, feature breakdown |
+| `data-engineer` | Agent | Gather official exam data, validate, map to schema, enrich |
+| `test-frontend` | Agent | Playwright visual/a11y/interaction tests with screenshots |
+| `project-review` | Agent | 8-dimension project health audit |
+| `spike-research` | Agent | Technical deep-dive research → `docs/spikes/` |
+| `content-generator` | Agent | Danish exercise/grammar content generation |
+
+Reports output to: `docs/pm/`, `docs/spikes/`, `docs/reviews/`, `docs/test-reports/`, `docs/some/`
+
 ## Where to Find Detailed Rules
 
 Code conventions, TS pitfalls, Nix setup, and Supabase workflow are in `.claude/rules/` (auto-loaded).
-Domain knowledge (Danish grammar, FSRS config, Supabase patterns) is in `.claude/references/` (loaded by skills on demand).
+Domain knowledge (Danish grammar, FSRS config, Supabase patterns) are in `.claude/references/` (loaded by skills on demand).
