@@ -31,3 +31,16 @@ pnpm-debug.log*
 
 # TypeScript
 *.tsbuildinfo
+
+# VS Code workspace files (user-specific)
+*.code-workspace
+
+# Scraped session data (credentials/temp)
+scripts/cookies*.json
+supabase/.temp/
+
+# Scraped debug screenshots
+src/data/seed/_*.png
+
+# Intermediate exercise-split output (review before merging)
+src/data/seed/exercises-pd3m2-split.json

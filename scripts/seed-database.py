@@ -48,7 +48,7 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
-    client.table("words").upsert(words, on_conflict="danish").execute()
+    client.table("words").upsert(words, on_conflict="danish,part_of_speech").execute()
     print(f"  → {len(words)} words upserted")
 
 
@@ -73,6 +73,7 @@ def seed_sentences(client: Client) -> None:
     for s in sentences:
         s.pop("id", None)
         s.pop("created_at", None)
+        s.pop("topic_tags", None)  # not in DB schema; stored in JSON for reference only
         s.setdefault("source", "generated")
     client.table("sentences").insert(sentences).execute()
     print(f"  → {len(sentences)} sentences inserted")

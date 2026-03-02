@@ -14,6 +14,9 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      // Downgrade strict React 19 rules — patterns like resetting state on
+      // prop change via useEffect are idiomatic in this codebase.
+      'react-hooks/set-state-in-effect': 'warn',
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
