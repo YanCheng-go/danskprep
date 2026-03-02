@@ -37,7 +37,7 @@ export function useProgress(user: User | null): UseProgressReturn {
   const [tick, setTick] = useState(0)
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !supabase) {
       setStats(DEFAULT_STATS)
       return
     }
@@ -45,6 +45,7 @@ export function useProgress(user: User | null): UseProgressReturn {
   }, [user, tick])
 
   async function fetchStats(userId: string) {
+    if (!supabase) return
     setIsLoading(true)
     setError(null)
     try {

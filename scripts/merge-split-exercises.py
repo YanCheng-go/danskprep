@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 MAIN_FILE = ROOT / "src/data/seed/exercises-pd3m2.json"
-SPLIT_FILE = ROOT / "src/data/seed/exercises-pd3m2-split.json"
+SPLIT_FILE = ROOT / "scripts/data/exercises-pd3m2-split.json"
 
 
 def main() -> None:

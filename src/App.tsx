@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { I18nProvider } from '@/lib/i18n'
 import { Layout } from '@/components/layout/Layout'
 import { AuthGuard } from '@/components/layout/AuthGuard'
 import { HomePage } from '@/pages/HomePage'
@@ -24,11 +25,32 @@ const QuizPage = lazy(() =>
 const DrillPage = lazy(() =>
   import('@/pages/DrillPage').then(m => ({ default: m.DrillPage }))
 )
+const WritingPage = lazy(() =>
+  import('@/pages/WritingPage').then(m => ({ default: m.WritingPage }))
+)
+const SpeakingPage = lazy(() =>
+  import('@/pages/SpeakingPage').then(m => ({ default: m.SpeakingPage }))
+)
+const ListeningPage = lazy(() =>
+  import('@/pages/ListeningPage').then(m => ({ default: m.ListeningPage }))
+)
+const DictionaryPage = lazy(() =>
+  import('@/pages/DictionaryPage').then(m => ({ default: m.DictionaryPage }))
+)
+const NewsletterPage = lazy(() =>
+  import('@/pages/NewsletterPage').then(m => ({ default: m.NewsletterPage }))
+)
+const ModultestPage = lazy(() =>
+  import('@/pages/ModultestPage').then(m => ({ default: m.ModultestPage }))
+)
 const VocabularyPage = lazy(() =>
   import('@/pages/VocabularyPage').then(m => ({ default: m.VocabularyPage }))
 )
 const ProgressPage = lazy(() =>
   import('@/pages/ProgressPage').then(m => ({ default: m.ProgressPage }))
+)
+const UpdatesPage = lazy(() =>
+  import('@/pages/UpdatesPage').then(m => ({ default: m.UpdatesPage }))
 )
 const SettingsPage = lazy(() =>
   import('@/pages/SettingsPage').then(m => ({ default: m.SettingsPage }))
@@ -49,6 +71,7 @@ function PageLoader() {
 export function App() {
   return (
     <BrowserRouter>
+      <I18nProvider>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           {/* Public auth routes */}
@@ -69,8 +92,15 @@ export function App() {
             <Route path="grammar/:slug" element={<GrammarTopicPage />} />
             <Route path="quiz" element={<QuizPage />} />
             <Route path="drill" element={<DrillPage />} />
+            <Route path="writing" element={<WritingPage />} />
+            <Route path="speaking" element={<SpeakingPage />} />
+            <Route path="dictionary" element={<DictionaryPage />} />
+            <Route path="podcast" element={<ListeningPage />} />
+            <Route path="newsletter" element={<NewsletterPage />} />
+            <Route path="modultest" element={<ModultestPage />} />
             <Route path="vocabulary" element={<VocabularyPage />} />
             <Route path="progress" element={<ProgressPage />} />
+            <Route path="updates" element={<UpdatesPage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
 
@@ -82,6 +112,7 @@ export function App() {
       {/* Vercel observability — injected outside the router, no UI rendered */}
       <Analytics />
       <SpeedInsights />
+      </I18nProvider>
     </BrowserRouter>
   )
 }

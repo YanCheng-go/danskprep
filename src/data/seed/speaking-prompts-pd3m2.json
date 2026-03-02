@@ -1,0 +1,66 @@
+[
+  {
+    "id": "sp-01",
+    "title": "Fortæl om dig selv",
+    "prompt": "Fortæl om dig selv. Hvad hedder du? Hvor kommer du fra? Hvad laver du?",
+    "prompt_en": "Tell about yourself. What is your name? Where are you from? What do you do?",
+    "tips": ["Present tense: Jeg hedder..., Jeg kommer fra...", "Occupation: Jeg er..., Jeg arbejder som..."],
+    "duration_seconds": 120
+  },
+  {
+    "id": "sp-02",
+    "title": "Din familie",
+    "prompt": "Fortæl om din familie. Hvem bor du sammen med? Har du søskende?",
+    "prompt_en": "Tell about your family. Who do you live with? Do you have siblings?",
+    "tips": ["Possessive pronouns: min, mit, mine", "Family words: forældre, søskende, børn, mand, kone"],
+    "duration_seconds": 120
+  },
+  {
+    "id": "sp-03",
+    "title": "Din bolig",
+    "prompt": "Beskriv hvor du bor. Er det en lejlighed eller et hus? Hvad er der i dit nabolag?",
+    "prompt_en": "Describe where you live. Is it an apartment or a house? What is in your neighbourhood?",
+    "tips": ["en lejlighed / et hus (noun gender)", "Der er... / Der ligger...", "Adjective agreement: stor/stort/store"],
+    "duration_seconds": 120
+  },
+  {
+    "id": "sp-04",
+    "title": "Din fritid",
+    "prompt": "Hvad laver du i din fritid? Har du nogen hobbyer?",
+    "prompt_en": "What do you do in your free time? Do you have any hobbies?",
+    "tips": ["Frequency: altid, ofte, sommetider, sjældent", "Infinitive: Jeg kan lide at..."],
+    "duration_seconds": 90
+  },
+  {
+    "id": "sp-05",
+    "title": "Mad og drikke",
+    "prompt": "Hvad er din yndlingsret? Kan du lide at lave mad? Fortæl om en typisk middag.",
+    "prompt_en": "What is your favourite dish? Do you like cooking? Tell about a typical dinner.",
+    "tips": ["Food vocabulary: kød, grøntsager, ris, pasta", "Verbs: laver mad, spiser, drikker"],
+    "duration_seconds": 90
+  },
+  {
+    "id": "sp-06",
+    "title": "Arbejde eller uddannelse",
+    "prompt": "Fortæl om dit arbejde eller din uddannelse. Hvad laver du? Kan du lide det?",
+    "prompt_en": "Tell about your work or education. What do you do? Do you like it?",
+    "tips": ["Subordinate clauses: fordi, selvom, når", "Opinion: Jeg synes at det er..."],
+    "duration_seconds": 120
+  },
+  {
+    "id": "sp-07",
+    "title": "En oplevelse",
+    "prompt": "Fortæl om noget sjovt eller spændende du har oplevet. Hvad skete der? Hvornår var det?",
+    "prompt_en": "Tell about something fun or exciting you experienced. What happened? When was it?",
+    "tips": ["Past tense throughout", "Time expressions: i går, sidste uge, for et år siden"],
+    "duration_seconds": 120
+  },
+  {
+    "id": "sp-08",
+    "title": "Vejret i Danmark",
+    "prompt": "Hvad synes du om vejret i Danmark? Hvordan er vejret i dit hjemland?",
+    "prompt_en": "What do you think about the weather in Denmark? How is the weather in your home country?",
+    "tips": ["Comparatives: varmere, koldere, mere sol", "Seasons: forår, sommer, efterår, vinter"],
+    "duration_seconds": 90
+  }
+]

@@ -1,3 +1,10 @@
+export const APP_VERSION = '0.3.0'
+
+// Feature flags
+export const FEATURES = {
+  DICT_ADD_TO_VOCAB: false, // Dictionary → Add to vocabulary (WIP)
+} as const
+
 export const DAILY_NEW_CARDS_LIMIT = 20
 export const DAILY_REVIEW_LIMIT = 50
 export const DESIRED_RETENTION = 0.9
@@ -43,4 +50,28 @@ export const SETTINGS_KEYS = {
   DAILY_NEW_LIMIT: 'danskprep_daily_new_limit',
   ACCEPT_LATIN_FALLBACK: 'danskprep_accept_latin',
   DARK_MODE: 'danskprep_dark_mode',
+  ACTIVE_MODULE: 'danskprep_active_module',
+  USER_EXERCISES: 'danskprep_user_exercises',
+  USER_WORDS: 'danskprep_user_words',
+  LOCALE: 'danskprep_locale',
+  AI_PROVIDER: 'danskprep_ai_provider',
+  AI_MODEL: 'danskprep_ai_model',
+  ANTHROPIC_KEY: 'danskprep_anthropic_api_key',
+  OLLAMA_URL: 'danskprep_ollama_url',
+  OPENROUTER_KEY: 'danskprep_openrouter_key',
 } as const
+
+export interface ModuleInfo {
+  id: string
+  label: string
+  shortLabel: string
+  hasContent: boolean
+}
+
+export const AVAILABLE_MODULES: ModuleInfo[] = [
+  { id: 'pd2', label: 'PD2 (Modul 2)', shortLabel: 'PD2', hasContent: false },
+  { id: 'pd3m1', label: 'PD3 Module 1', shortLabel: 'PD3 M1', hasContent: false },
+  { id: 'pd3m2', label: 'PD3 Module 2', shortLabel: 'PD3 M2', hasContent: true },
+]
+
+export const DEFAULT_MODULE = 'pd3m2'

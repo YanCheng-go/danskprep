@@ -17,8 +17,15 @@ import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import type { Exercise } from '@/types/quiz'
 import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { FeedbackButton } from '@/components/feedback/FeedbackButton'
+import { loadUserExercises, toExercise } from '@/lib/user-exercises'
+import { useTranslation } from '@/lib/i18n'
 
-const allExercises = exercisesData as Exercise[]
+const seedExercises = exercisesData as Exercise[]
+const allExercises: Exercise[] = [
+  ...seedExercises,
+  ...loadUserExercises().map(toExercise),
+]
 
 const TOPIC_LABELS: Record<string, string> = {
   'noun-gender': 'T-ord og N-ord',
@@ -37,6 +44,7 @@ interface QuizConfig {
 export function QuizPage() {
   const [searchParams] = useSearchParams()
   const topicFromUrl = searchParams.get('topic') ?? ''
+  const { t } = useTranslation()
 
   const [pageMode, setPageMode] = useState<'quiz' | 'list'>('quiz')
   const [config, setConfig] = useState<QuizConfig | null>(null)
@@ -72,7 +80,7 @@ export function QuizPage() {
         )}
         onClick={() => setPageMode('quiz')}
       >
-        Quiz
+        {t('quiz.title')}
       </button>
       <button
         className={cn(
@@ -81,7 +89,7 @@ export function QuizPage() {
         )}
         onClick={() => setPageMode('list')}
       >
-        All Questions
+        {t('quiz.allQuestions')}
       </button>
     </div>
   )
@@ -113,8 +121,8 @@ export function QuizPage() {
     <PageContainer>
       {modeToggle}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Quiz</h1>
-        <p className="text-muted-foreground text-sm mt-1">Choose a topic and exercise type</p>
+        <h1 className="text-2xl font-bold">{t('quiz.title')}</h1>
+        <p className="text-muted-foreground text-sm mt-1">{t('quiz.subtitle')}</p>
       </div>
       <QuizSelector onStart={startQuiz} initialTopic={initialTopic} />
     </PageContainer>
@@ -127,6 +135,7 @@ function AllQuestionsList() {
   const [topicFilter, setTopicFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set())
+  const { t } = useTranslation()
 
   const filtered = allExercises.filter(e => {
     const topicMatch = topicFilter === 'all' || e.grammar_topic_slug === topicFilter
@@ -147,9 +156,9 @@ function AllQuestionsList() {
     <div className="space-y-4">
       {/* Topic filter */}
       <div className="space-y-2">
-        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Topic</p>
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{t('common.topic')}</p>
         <div className="flex flex-wrap gap-2">
-          <FilterChip active={topicFilter === 'all'} onClick={() => setTopicFilter('all')}>All topics</FilterChip>
+          <FilterChip active={topicFilter === 'all'} onClick={() => setTopicFilter('all')}>{t('common.allTopics')}</FilterChip>
           {GRAMMAR_TOPIC_SLUGS.map(slug => (
             <FilterChip key={slug} active={topicFilter === slug} onClick={() => setTopicFilter(slug)}>
               {TOPIC_LABELS[slug]}
@@ -160,9 +169,9 @@ function AllQuestionsList() {
 
       {/* Type filter */}
       <div className="space-y-2">
-        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Type</p>
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{t('common.type')}</p>
         <div className="flex flex-wrap gap-2">
-          <FilterChip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>All types</FilterChip>
+          <FilterChip active={typeFilter === 'all'} onClick={() => setTypeFilter('all')}>{t('common.allTypes')}</FilterChip>
           {Object.entries(EXERCISE_TYPE_LABELS).map(([key, label]) => (
             <FilterChip key={key} active={typeFilter === key} onClick={() => setTypeFilter(key)}>
               {label}
@@ -172,13 +181,13 @@ function AllQuestionsList() {
       </div>
 
       {/* Count */}
-      <p className="text-sm text-muted-foreground">{filtered.length} exercises</p>
+      <p className="text-sm text-muted-foreground">{t('quiz.exercises', { count: filtered.length })}</p>
 
       {/* List */}
       <div className="space-y-2">
         {filtered.length === 0 ? (
           <p className="text-center py-8 text-muted-foreground text-sm">
-            No exercises match these filters.
+            {t('quiz.noExercises')}
           </p>
         ) : (
           filtered.map(exercise => {
@@ -192,7 +201,7 @@ function AllQuestionsList() {
                     onClick={() => toggleReveal(globalIdx)}
                     className="shrink-0 text-xs text-muted-foreground hover:text-foreground border rounded px-2 py-1 transition-colors"
                   >
-                    {revealed ? 'Hide' : 'Answer'}
+                    {revealed ? t('common.hide') : t('common.answer')}
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
@@ -256,13 +265,14 @@ interface QuizSelectorProps {
 function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSelectorProps) {
   const [topicSlug, setTopicSlug] = useState<string>(initialTopic)
   const [exerciseType, setExerciseType] = useState('all')
+  const { t } = useTranslation()
 
   const availableTypes = ['all', ...Object.keys(EXERCISE_TYPE_LABELS)]
 
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <p className="text-sm font-medium">Grammar topic</p>
+        <p className="text-sm font-medium">{t('quiz.grammarTopic')}</p>
         <div className="space-y-2">
           {GRAMMAR_TOPIC_SLUGS.map(slug => (
             <button
@@ -281,7 +291,7 @@ function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSe
       </div>
 
       <div className="space-y-2">
-        <p className="text-sm font-medium">Exercise type</p>
+        <p className="text-sm font-medium">{t('quiz.exerciseType')}</p>
         <div className="flex flex-wrap gap-2">
           {availableTypes.map(type => (
             <button
@@ -293,7 +303,7 @@ function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSe
                   : 'hover:bg-accent'
               }`}
             >
-              {type === 'all' ? 'All types' : EXERCISE_TYPE_LABELS[type]}
+              {type === 'all' ? t('common.allTypes') : EXERCISE_TYPE_LABELS[type]}
             </button>
           ))}
         </div>
@@ -303,7 +313,7 @@ function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSe
         className="w-full"
         onClick={() => onStart({ topicSlug, exerciseType })}
       >
-        Start Quiz
+        {t('quiz.start')}
       </Button>
     </div>
   )
@@ -318,6 +328,7 @@ interface QuizFlowProps {
 }
 
 function QuizFlow({ exercises, config, onReset }: QuizFlowProps) {
+  const { t } = useTranslation()
   const {
     currentExercise,
     currentIndex,
@@ -335,8 +346,8 @@ function QuizFlow({ exercises, config, onReset }: QuizFlowProps) {
   if (exercises.length === 0) {
     return (
       <div className="text-center py-12 space-y-4">
-        <p className="text-muted-foreground">No exercises found for this combination.</p>
-        <Button onClick={onReset} variant="outline">Back to selector</Button>
+        <p className="text-muted-foreground">{t('quiz.noExercises')}</p>
+        <Button onClick={onReset} variant="outline">{t('quiz.backToSelector')}</Button>
       </div>
     )
   }
@@ -360,9 +371,12 @@ function QuizFlow({ exercises, config, onReset }: QuizFlowProps) {
         <div className="flex items-center gap-2">
           <Badge variant="outline">{TOPIC_LABELS[config.topicSlug]}</Badge>
         </div>
-        <span className="text-sm text-muted-foreground">
-          {currentIndex + 1} / {exercises.length}
-        </span>
+        <div className="flex items-center gap-2">
+          <FeedbackButton exerciseId={currentExercise.id ?? `exercise-${currentIndex}`} />
+          <span className="text-sm text-muted-foreground">
+            {currentIndex + 1} / {exercises.length}
+          </span>
+        </div>
       </div>
 
       <Progress value={progress * 100} className="h-1.5" />
@@ -387,7 +401,7 @@ function QuizFlow({ exercises, config, onReset }: QuizFlowProps) {
         onClick={onReset}
         className="w-full text-center text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
       >
-        Exit quiz
+        {t('quiz.exit')}
       </button>
     </div>
   )

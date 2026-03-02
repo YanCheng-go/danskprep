@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import type { ReviewableCard, SchedulingOptions } from '@/types/study'
 import { checkAnswer } from '@/lib/answer-check'
+import { useTranslation } from '@/lib/i18n'
 import { Progress } from '@/components/ui/progress'
 import { FlashCard } from './FlashCard'
 import { CardRating } from './CardRating'
+import { FeedbackButton } from '@/components/feedback/FeedbackButton'
 
 interface ReviewQueueProps {
   currentCard: ReviewableCard
@@ -20,6 +22,7 @@ export function ReviewQueue({
   totalCards,
   onRate,
 }: ReviewQueueProps) {
+  const { t } = useTranslation()
   const [revealed, setRevealed] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -68,8 +71,8 @@ export function ReviewQueue({
       {/* Progress bar */}
       <div className="space-y-1">
         <div className="flex justify-between text-xs text-muted-foreground">
-          <span>{reviewed} reviewed</span>
-          <span>{cardsRemaining} remaining</span>
+          <span>{reviewed} {t('study.reviewed')}</span>
+          <span>{cardsRemaining} {t('study.remaining')}</span>
         </div>
         <Progress value={progressPct} className="h-2" />
       </div>
@@ -84,6 +87,11 @@ export function ReviewQueue({
         onCheckAnswer={handleCheckAnswer}
         inputResult={inputResult}
       />
+
+      {/* Report button */}
+      <div className="flex justify-end">
+        <FeedbackButton exerciseId={currentCard.userCard.content_id} />
+      </div>
 
       {/* Rating buttons — shown after reveal */}
       {revealed && (

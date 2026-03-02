@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Exercise } from '@/types/quiz'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface ErrorCorrectionProps {
   exercise: Exercise
@@ -10,6 +11,7 @@ interface ErrorCorrectionProps {
 }
 
 export function ErrorCorrection({ exercise, onSubmit, disabled }: ErrorCorrectionProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
 
   function handleSubmit() {
@@ -25,13 +27,13 @@ export function ErrorCorrection({ exercise, onSubmit, disabled }: ErrorCorrectio
   return (
     <div className="space-y-4">
       <div>
-        <p className="text-sm text-muted-foreground mb-2">Fix the grammatical error:</p>
+        <p className="text-sm text-muted-foreground mb-2">{t('quiz.fixError')}</p>
         <div className="rounded-md bg-muted px-4 py-3 font-medium">
           {badSentence}
         </div>
       </div>
       {exercise.hint && (
-        <p className="text-sm text-muted-foreground italic">Hint: {exercise.hint}</p>
+        <p className="text-sm text-muted-foreground italic">{t('common.hint')} {exercise.hint}</p>
       )}
       <DanishInput
         value={value}
@@ -46,8 +48,17 @@ export function ErrorCorrection({ exercise, onSubmit, disabled }: ErrorCorrectio
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Submit correction
+        {t('quiz.submitCorrection')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

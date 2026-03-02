@@ -3,6 +3,7 @@ import type { Exercise } from '@/types/quiz'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { CheckCircle, XCircle, AlertCircle } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface FeedbackPanelProps {
   result: AnswerResult
@@ -13,6 +14,7 @@ interface FeedbackPanelProps {
 }
 
 export function FeedbackPanel({ result, userResponse, exercise, onNext, isLast }: FeedbackPanelProps) {
+  const { t } = useTranslation()
   const isCorrect = result.isCorrect
   const isAlmost = result.isAlmostCorrect
 
@@ -41,17 +43,17 @@ export function FeedbackPanel({ result, userResponse, exercise, onNext, isLast }
           : isAlmost ? 'text-yellow-700 dark:text-yellow-400'
           : 'text-red-700 dark:text-red-400'
         )}>
-          {isCorrect ? 'Correct!' : isAlmost ? 'Almost — check spelling' : 'Incorrect'}
+          {isCorrect ? t('feedback.correct') : isAlmost ? t('feedback.almost') : t('feedback.incorrect')}
         </span>
       </div>
 
       {!isCorrect && (
         <div className="text-sm space-y-1">
           <p className="text-muted-foreground">
-            Your answer: <span className="font-mono text-foreground">{userResponse || '(empty)'}</span>
+            {t('feedback.yourAnswer')} <span className="font-mono text-foreground">{userResponse || t('feedback.empty')}</span>
           </p>
           <p className="text-muted-foreground">
-            Correct answer: <span className="font-mono font-medium text-foreground">{exercise.correct_answer}</span>
+            {t('feedback.correctAnswer')} <span className="font-mono font-medium text-foreground">{exercise.correct_answer}</span>
           </p>
         </div>
       )}
@@ -61,7 +63,7 @@ export function FeedbackPanel({ result, userResponse, exercise, onNext, isLast }
       )}
 
       <Button onClick={onNext} className="w-full">
-        {isLast ? 'See results' : 'Next question'}
+        {isLast ? t('quiz.seeResults') : t('quiz.nextQuestion')}
       </Button>
     </div>
   )

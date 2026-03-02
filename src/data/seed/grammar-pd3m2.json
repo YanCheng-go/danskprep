@@ -200,6 +200,16 @@
         "rule": "With two verbs in a subordinate clause, the adverb goes before BOTH verbs",
         "example_da": "...fordi han ikke kan komme.",
         "example_en": "...because he cannot come."
+      },
+      {
+        "rule": "When a subordinate clause has multiple adverbs, they all stack BEFORE the verb in this typical order: subject + ikke + altid/aldrig/kun/også/etc. + verb. The negation 'ikke' generally comes first among the adverbs.",
+        "example_da": "...fordi han ikke altid kan komme. ...selvom hun ikke også vil deltage.",
+        "example_en": "...because he cannot always come. ...even though she does not also want to participate."
+      },
+      {
+        "rule": "In Danish, a comma is placed BEFORE subordinating conjunctions (at, fordi, hvis, når, da, selvom, mens, inden, skønt, etc.) when the subordinate clause follows the main clause. When the subordinate clause comes first, a comma separates the two clauses before the main clause verb.",
+        "example_da": "Jeg ved, at han kommer. Han gik hjem, fordi han var træt. Hvis det regner, tager jeg en paraply.",
+        "example_en": "I know that he is coming. He went home because he was tired. If it rains, I take an umbrella."
       }
     ],
     "tips": [
@@ -207,13 +217,19 @@
       "After at, fordi, hvis, når, da, selvom, mens → use subordinate clause word order.",
       "After og, men, eller → use main clause word order (no change).",
       "Test yourself: 'Han spiser ikke' (main) vs. '...fordi han ikke spiser' (sub). The 'ikke' moves!",
-      "If you hear a subordinating conjunction, immediately think: adverb BEFORE verb."
+      "If you hear a subordinating conjunction, immediately think: adverb BEFORE verb.",
+      "When stacking adverbs in subordinate clauses, remember the chain: subject + ikke + (altid/aldrig/kun/også) + verb. Think of 'ikke' as the first link in the adverb chain.",
+      "Comma placement tip: if you can replace the conjunction with 'because/that/if/when', put a comma before it. This marks the boundary between main and subordinate clause.",
+      "Danish has two comma systems (traditional and new). The 'new comma' system (ny kommatering) places commas before ALL subordinate clauses. The 'traditional' system (grammatisk kommatering) is more selective. For the exam, the new system is generally accepted and easier to learn."
     ],
     "common_mistakes": [
       "Using main clause word order in subordinate clauses: WRONG '...fordi han spiser ikke', CORRECT '...fordi han ikke spiser'",
       "Using subordinate clause word order in main clauses: WRONG 'Han ikke spiser morgenmad', CORRECT 'Han spiser ikke morgenmad'",
       "Forgetting to move the adverb with modal verbs: WRONG '...fordi han kan ikke komme', CORRECT '...fordi han ikke kan komme'",
-      "Treating og/men as subordinating conjunctions and changing word order"
+      "Treating og/men as subordinating conjunctions and changing word order",
+      "Wrong adverb stacking order in subordinate clauses: WRONG '...fordi han altid ikke kan komme', CORRECT '...fordi han ikke altid kan komme' — 'ikke' comes before other adverbs",
+      "Omitting the comma before subordinating conjunctions: WRONG 'Jeg ved at han kommer', CORRECT 'Jeg ved, at han kommer'",
+      "Placing the comma after the conjunction instead of before: WRONG 'Jeg ved at, han kommer', CORRECT 'Jeg ved, at han kommer'"
     ],
     "sort_order": 4
   },
@@ -263,6 +279,31 @@
         "rule": "Group 2 verbs: stem ends in a single consonant or certain vowels",
         "example_da": "at købe → køber → købte → har købt",
         "example_en": "to buy → buy(s) → bought → have bought"
+      },
+      {
+        "rule": "Common irregular verbs must be memorized individually. Key conjugations: være (er / var / har været), have (har / havde / har haft), gå (går / gik / er gået), komme (kommer / kom / er kommet), sige (siger / sagde / har sagt), gøre (gør / gjorde / har gjort), se (ser / så / har set), give (giver / gav / har givet), tage (tager / tog / har taget), stå (står / stod / har stået).",
+        "example_da": "Jeg var syg i går. Han har sagt farvel. Vi tog toget.",
+        "example_en": "I was sick yesterday. He has said goodbye. We took the train."
+      },
+      {
+        "rule": "Modal verbs (kan, skal, vil, må, bør) are followed by an infinitive WITHOUT 'at'. Their past forms are: kan → kunne, skal → skulle, vil → ville, må → måtte, bør → burde.",
+        "example_da": "Jeg kan svømme. Han skal arbejde. Vi vil rejse. Du må ikke ryge her. Du bør sove mere.",
+        "example_en": "I can swim. He must work. We want to travel. You may not smoke here. You should sleep more."
+      },
+      {
+        "rule": "Modal verbs in past tense use their past form + infinitive. In perfect tense, they use 'har kunnet/skullet/villet/måttet/burdet' but this is rare in everyday speech.",
+        "example_da": "Jeg kunne ikke komme i går. Han skulle arbejde hele dagen. Vi ville gerne rejse.",
+        "example_en": "I could not come yesterday. He had to work all day. We wanted to travel."
+      },
+      {
+        "rule": "Passive voice can be formed in two ways: (1) add -s to the active verb form, or (2) use 'blive' + past participle. The -s passive is more common in formal writing; the blive-passive emphasizes the action or process.",
+        "example_da": "Døren åbnes. / Døren bliver åbnet. Bogen læses af mange. / Bogen bliver læst af mange.",
+        "example_en": "The door is opened. / The door is being opened. The book is read by many."
+      },
+      {
+        "rule": "Verbs expressing movement or a change of state use 'er' (not 'har') as the auxiliary in perfect tense. Common examples: komme, gå, rejse, flytte, dø, falde, ankomme, forsvinde.",
+        "example_da": "Jeg er kommet hjem. Hun er gået i skole. Vi er rejst til Sverige. Han er faldet på isen.",
+        "example_en": "I have come home. She has gone to school. We have traveled to Sweden. He has fallen on the ice."
       }
     ],
     "tips": [
@@ -270,14 +311,23 @@
       "Group 1 pattern: -er / -ede / -et (snakker / snakkede / har snakket)",
       "Group 2 pattern: -er / -te / -t (spiser / spiste / har spist)",
       "For irregular verbs, make flashcards with all 4 forms: infinitive / present / past / perfect",
-      "Present perfect with movement verbs sometimes uses 'er' instead of 'har': 'Jeg er kommet' (I have arrived)"
+      "Present perfect with movement verbs sometimes uses 'er' instead of 'har': 'Jeg er kommet' (I have arrived)",
+      "Modal verbs NEVER take 'at' before the following infinitive: 'Jeg kan svømme' (NOT 'Jeg kan at svømme'). This is different from English where 'to' sometimes appears.",
+      "Remember the modal verb past forms as pairs: kan/kunne, skal/skulle, vil/ville, må/måtte, bør/burde. They all follow the same vowel-shift pattern.",
+      "For passive voice, a quick test: if you can rephrase the sentence with 'someone does X', it can become passive. 'Nogen åbner døren' → 'Døren åbnes' or 'Døren bliver åbnet'.",
+      "Movement verbs with 'er': think about whether the subject CHANGES location or state. If yes, use 'er': 'Jeg er gået' (I have left). If it is just an activity, use 'har': 'Jeg har gået en tur' (I have taken a walk)."
     ],
     "common_mistakes": [
       "Conjugating for person: WRONG 'han spise', CORRECT 'han spiser' — always use the -er form",
       "Mixing up Group 1 and Group 2 endings: WRONG 'han spisede', CORRECT 'han spiste'",
       "Wrong past participle: WRONG 'har spiset', CORRECT 'har spist' (Group 2 uses -t, not -et)",
       "Forgetting 'har' in present perfect: WRONG 'Jeg spist', CORRECT 'Jeg har spist'",
-      "Using wrong irregular past: WRONG 'han gåede', CORRECT 'han gik'"
+      "Using wrong irregular past: WRONG 'han gåede', CORRECT 'han gik'",
+      "Adding 'at' after modal verbs: WRONG 'Jeg kan at svømme', CORRECT 'Jeg kan svømme'",
+      "Using 'har' instead of 'er' with movement verbs: WRONG 'Jeg har kommet', CORRECT 'Jeg er kommet'",
+      "Conjugating modal verbs like regular verbs: WRONG 'Han kanner svømme', CORRECT 'Han kan svømme' — modal verbs do not add -er in present tense",
+      "Mixing up -s passive and blive-passive tense forms: WRONG 'Døren blev åbnes', CORRECT 'Døren blev åbnet' (past tense with blive uses past participle)",
+      "Using 'er' with non-movement verbs: WRONG 'Jeg er spist', CORRECT 'Jeg har spist' — only movement/change-of-state verbs take 'er'"
     ],
     "sort_order": 5
   },
@@ -322,20 +372,43 @@
         "rule": "Demonstrative pronouns: denne/dette/disse (this/these), den/det/de (that/those)",
         "example_da": "Denne bog er god. Disse bøger er dyre.",
         "example_en": "This book is good. These books are expensive."
+      },
+      {
+        "rule": "Relative pronouns: 'som' (who/which/that) is the most common and can refer to both people and things. 'der' is used as a subject-only relative pronoun in some contexts. 'hvis' means 'whose'. 'hvor' is used for places.",
+        "example_da": "Manden, som bor her, er læge. Manden, der bor her, er læge. Kvinden, hvis søn er syg, er her. Byen, hvor jeg bor, er lille.",
+        "example_en": "The man who lives here is a doctor. The woman whose son is sick is here. The city where I live is small."
+      },
+      {
+        "rule": "Interrogative pronouns are used to ask questions: hvem (who), hvad (what), hvilken/hvilket/hvilke (which). 'Hvilken' is used with en-words, 'hvilket' with et-words, and 'hvilke' with plurals.",
+        "example_da": "Hvem er det? Hvad siger du? Hvilken bog vil du have? Hvilket hus er dit? Hvilke sko passer dig?",
+        "example_en": "Who is that? What are you saying? Which book do you want? Which house is yours? Which shoes fit you?"
+      },
+      {
+        "rule": "Indefinite pronouns: nogen/noget (some/any — nogen for people/countable, noget for things/uncountable), ingen/intet (no/none), alt/alle (all/everyone — alle for people, alt for things), man (one/you/people in general).",
+        "example_da": "Er der nogen hjemme? Jeg har noget til dig. Ingen kan hjælpe. Alle er velkomne. Man skal betale skat i Danmark.",
+        "example_en": "Is anyone home? I have something for you. Nobody can help. Everyone is welcome. You have to pay tax in Denmark."
       }
     ],
     "tips": [
       "sin/sit/sine is the trickiest concept. Ask: does the possessive refer to the SUBJECT of THIS clause? If yes → sin/sit/sine. If no → hans/hendes/deres.",
       "Possessives agree with the THING OWNED, not the owner: 'hans bil' (his car — en-word), 'hans hus' (his house — et-word) — hans doesn't change. But: 'sin bil', 'sit hus', 'sine bøger' — sin changes!",
       "After prepositions, always use object form: 'med mig' (with me), 'til ham' (to him)",
-      "'den' and 'det' as pronouns replace en-words and et-words: 'Bilen? Den er rød.' (The car? It is red.)"
+      "'den' and 'det' as pronouns replace en-words and et-words: 'Bilen? Den er rød.' (The car? It is red.)",
+      "'som' and 'der' are often interchangeable as subject relative pronouns, but 'som' is more versatile because it can also be used as an object relative pronoun: 'Bogen, som jeg læser' (The book that I am reading). 'der' cannot be used as an object.",
+      "'hvilken/hvilket/hvilke' must agree with the noun's gender and number — just like adjective endings. Think: en-word → hvilken, et-word → hvilket, plural → hvilke.",
+      "'man' is extremely common in Danish and has no direct English equivalent. Use it for general statements about what 'people' or 'one' does: 'Man kan ikke parkere her' (You cannot park here).",
+      "In questions with 'hvem' and 'hvad', the word order is always inverted (V2): 'Hvem er du?' 'Hvad laver du?' — the verb comes right after the question word."
     ],
     "common_mistakes": [
       "Using subject form after prepositions: WRONG 'med jeg', CORRECT 'med mig'",
       "Mixing up sin/hans: WRONG 'Peter vasker hans bil' when meaning his own car, CORRECT 'Peter vasker sin bil'",
       "Not agreeing possessive with noun gender: WRONG 'min hus', CORRECT 'mit hus' (hus is et-word)",
       "Using 'sin' when subject is 'jeg/du/vi/I': sin is only for 3rd person. WRONG 'Jeg vasker sin bil', CORRECT 'Jeg vasker min bil'",
-      "Forgetting to use object form: WRONG 'Han ser jeg', CORRECT 'Han ser mig'"
+      "Forgetting to use object form: WRONG 'Han ser jeg', CORRECT 'Han ser mig'",
+      "Using 'der' as an object relative pronoun: WRONG 'Bogen, der jeg læser', CORRECT 'Bogen, som jeg læser' — 'der' can only be a subject pronoun",
+      "Forgetting gender agreement with 'hvilken': WRONG 'Hvilket bog vil du have?', CORRECT 'Hvilken bog vil du have?' (bog is en-word)",
+      "Using 'nogen' with uncountable nouns: WRONG 'Er der nogen mælk?', CORRECT 'Er der noget mælk?' — use 'noget' for uncountable things",
+      "Confusing 'ingen' and 'intet': WRONG 'Der er intet mennesker her', CORRECT 'Der er ingen mennesker her' — 'ingen' for countable/plural, 'intet' for uncountable/et-words"
     ],
     "sort_order": 6
   }

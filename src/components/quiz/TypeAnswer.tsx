@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Exercise } from '@/types/quiz'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface TypeAnswerProps {
   exercise: Exercise
@@ -10,6 +11,7 @@ interface TypeAnswerProps {
 }
 
 export function TypeAnswer({ exercise, onSubmit, disabled }: TypeAnswerProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
 
   function handleSubmit() {
@@ -22,7 +24,7 @@ export function TypeAnswer({ exercise, onSubmit, disabled }: TypeAnswerProps) {
     <div className="space-y-4">
       <p className="font-medium leading-relaxed">{exercise.question}</p>
       {exercise.hint && (
-        <p className="text-sm text-muted-foreground italic">Hint: {exercise.hint}</p>
+        <p className="text-sm text-muted-foreground italic">{t('common.hint')} {exercise.hint}</p>
       )}
       <DanishInput
         value={value}
@@ -36,8 +38,17 @@ export function TypeAnswer({ exercise, onSubmit, disabled }: TypeAnswerProps) {
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Check answer
+        {t('quiz.checkAnswer')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }
