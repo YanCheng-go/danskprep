@@ -1,6 +1,6 @@
 # DanskPrep Backlog
 
-> Last updated: 2026-03-02 | Total: 2 | Ready: 1 | In Progress: 0
+> Last updated: 2026-03-02 | Total: 3 | Ready: 2 | In Progress: 0
 
 ## Summary
 
@@ -8,6 +8,7 @@
 |--------|------------------------------------------------|---------|------------|-----|--------|--------|-------|------|
 | BL-001 | Cloud storage for speaking recordings          | feature | ui         | p2  | l      | idea   | all   | —    |
 | BL-002 | LLM-based seed data validation script          | infra   | dx         | p2  | m      | ready  | PD3M2 | —    |
+| BL-003 | Add post length customization to /some skill   | chore   | dx         | p3  | xs     | ready  | —     | —    |
 
 ## Items
 
@@ -57,6 +58,21 @@ Build a Python script (`scripts/validate-seed-data.py`) that uses Claude to scan
 - Catches the known issue: 143 verbs with empty inflections
 - Zero false positives on current clean data (exercises, grammar, prompts)
 - Report format: JSON or markdown, machine-readable for CI integration
+
+#### Notes
+
+_No notes yet._
+
+---
+
+### BL-003: Add post length customization to /some skill
+
+- **Type:** chore | **Area:** dx | **Priority:** p3 | **Effort:** xs
+- **Status:** ready | **Scope:** —
+- **Created:** 2026-03-02
+- **Dependencies:** none
+
+The `/some` skill currently generates posts at a fixed length per platform. Add a `--length` flag (short/medium/long) so users can control verbosity for different contexts. Short = hook + 2-3 lines + CTA. Medium = current default. Long = full story with background and details.
 
 #### Notes
 

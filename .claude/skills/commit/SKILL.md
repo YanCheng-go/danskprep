@@ -25,8 +25,13 @@ Commit → branch → PR → self-review → fix → CI → merge. **Never push 
 ## Step 2 — Branch and PR
 
 1. `git checkout -b <type>/<short-name>` (types: `fix/`, `feat/`, `docs/`, `chore/`, `refactor/`)
-2. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
-3. Create PR — include backlog reference if applicable:
+2. Merge latest main into the branch to catch conflicts early:
+   ```bash
+   git fetch origin main && git merge origin/main
+   ```
+   If there are conflicts, resolve them, commit, and verify (`tsc --noEmit && npm run build && npx vitest run`) before continuing.
+3. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
+4. Create PR — include backlog reference if applicable:
 
 ```bash
 gh pr create --title "<title>" --body "$(cat <<'EOF'
