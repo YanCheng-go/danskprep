@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+import { LogIn, UserPlus } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useProgress } from '@/hooks/useProgress'
 import { useTranslation } from '@/lib/i18n'
@@ -6,6 +8,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { StatsChart } from '@/components/progress/StatsChart'
 import { StreakCounter } from '@/components/progress/StreakCounter'
 import { Skeleton } from '@/components/ui/skeleton'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export function ProgressPage() {
   const { user } = useAuth()
@@ -20,6 +24,42 @@ export function ProgressPage() {
           <Skeleton className="h-32 w-full" />
           <Skeleton className="h-40 w-full" />
         </div>
+      </PageContainer>
+    )
+  }
+
+  // Guest state — show login CTA instead of zero stats
+  if (!user) {
+    return (
+      <PageContainer>
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold">{t('progress.title')}</h1>
+          <p className="text-muted-foreground text-sm mt-1">{t('progress.subtitle')}</p>
+        </div>
+        <Card>
+          <CardContent className="py-10 text-center space-y-4">
+            <h2 className="text-lg font-semibold">{t('guest.studyTitle')}</h2>
+            <p className="text-sm text-muted-foreground max-w-md mx-auto">
+              {t('guest.progressDesc')}
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <Link
+                to="/login"
+                className={cn(buttonVariants({ size: 'default' }), 'gap-1.5')}
+              >
+                <LogIn className="h-4 w-4" />
+                {t('guest.signIn')}
+              </Link>
+              <Link
+                to="/signup"
+                className={cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1.5')}
+              >
+                <UserPlus className="h-4 w-4" />
+                {t('guest.signUp')}
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
       </PageContainer>
     )
   }

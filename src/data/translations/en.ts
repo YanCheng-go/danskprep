@@ -28,6 +28,7 @@ const en = {
   'header.signOut': 'Sign out',
   'header.soon': 'Soon',
   'header.module': 'Module',
+  'header.signIn': 'Sign in',
   'header.lookupPlaceholder': 'Look up...',
 
   // Home
@@ -332,6 +333,29 @@ const en = {
   'rating.2': 'Hard',
   'rating.3': 'Good',
   'rating.4': 'Easy',
+
+  // Guest CTAs
+  'guest.studyTitle': 'Track Your Progress',
+  'guest.studyDesc': 'Sign in to use spaced repetition and track your learning over time.',
+  'guest.signIn': 'Sign in',
+  'guest.signUp': 'Create account',
+  'guest.tryQuiz': 'Try Quiz instead',
+  'guest.progressDesc': 'Sign in to track your streak, accuracy, and card progress.',
+  'guest.dashboardDesc': 'Sign in to track your progress with spaced repetition.',
+
+  // Welcome
+  'welcome.title': 'Prepare for Prøve i Dansk',
+  'welcome.subtitle': 'Evidence-based learning with spaced repetition, active recall, and production exercises',
+  'welcome.studyTitle': 'Spaced Repetition',
+  'welcome.studyDesc': 'Review cards on a scientifically optimized schedule that adapts to your memory',
+  'welcome.quizTitle': 'Quiz & Drill',
+  'welcome.quizDesc': 'Practice grammar and vocabulary with cloze, word order, conjugation, and more',
+  'welcome.writingTitle': 'Writing & Speaking',
+  'welcome.writingDesc': 'Write and speak Danish with AI-powered feedback on grammar and vocabulary',
+  'welcome.grammarTitle': 'Grammar Reference',
+  'welcome.grammarDesc': 'Clear explanations of Danish grammar rules organized by exam topic',
+  'welcome.supportNote': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying the developer a coffee.',
+  'welcome.getStarted': 'Get Started',
 
   // Footer
   'footer.builtBy': 'Built by',
