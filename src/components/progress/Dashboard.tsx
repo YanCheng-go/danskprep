@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Brain, Dumbbell, List, LogIn, UserPlus } from 'lucide-react'
+import { Brain, Check, Dumbbell, List, LogIn, Shield, UserPlus } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { StreakCounter } from './StreakCounter'
@@ -89,12 +89,31 @@ export function Dashboard({
       {/* Guest sign-in CTA */}
       {isGuest && (
         <Card className="border-primary/40 bg-primary/5 dark:bg-primary/10">
-          <CardContent className="pt-6 pb-6 text-center">
-            <LogIn className="h-8 w-8 text-primary mx-auto mb-3" />
-            <h2 className="text-base font-semibold mb-1">{t('guest.studyTitle')}</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              {t('guest.dashboardDesc')}
-            </p>
+          <CardContent className="pt-6 pb-6">
+            <div className="text-center mb-4">
+              <LogIn className="h-8 w-8 text-primary mx-auto mb-3" />
+              <h2 className="text-base font-semibold mb-1">{t('guest.studyTitle')}</h2>
+              <p className="text-sm text-muted-foreground">
+                {t('guest.dashboardDesc')}
+              </p>
+            </div>
+
+            {/* Benefits list */}
+            <ul className="space-y-2 mb-4 max-w-xs mx-auto">
+              {(['guest.benefit1', 'guest.benefit2', 'guest.benefit3', 'guest.benefit4'] as const).map(key => (
+                <li key={key} className="flex items-start gap-2 text-sm">
+                  <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                  <span>{t(key)}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Privacy note */}
+            <div className="flex items-start gap-2 rounded-md bg-background/60 px-3 py-2 mb-4 max-w-xs mx-auto">
+              <Shield className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" />
+              <p className="text-xs text-muted-foreground">{t('guest.privacyNote')}</p>
+            </div>
+
             <div className="flex items-center justify-center gap-3">
               <Link
                 to="/login"

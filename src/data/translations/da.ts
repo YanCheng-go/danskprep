@@ -346,6 +346,11 @@ const da: Record<TranslationKeys, string> = {
   'guest.tryQuiz': 'Prøv Quiz i stedet',
   'guest.progressDesc': 'Log ind for at følge din stime, nøjagtighed og kortfremskridt.',
   'guest.dashboardDesc': 'Log ind for at følge dine fremskridt med spredt gentagelse.',
+  'guest.benefit1': 'Spredt gentagelse der tilpasser sig din hukommelse',
+  'guest.benefit2': 'Daglig stime- og nøjagtighedssporing',
+  'guest.benefit3': 'Gennemgangshistorik synkroniseret på tværs af enheder',
+  'guest.benefit4': 'Brugerdefinerede øvelser gemt på din konto',
+  'guest.privacyNote': 'Vi gemmer kun din e-mail og læringsdata (kort, gennemgange, fremskridt). Ingen personlige data deles med tredjeparter.',
   'guest.signInRequired': 'Log ind påkrævet',
   'guest.signInRequiredDesc': 'Du skal have en konto for at bruge denne funktion.',
 
