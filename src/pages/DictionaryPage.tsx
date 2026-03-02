@@ -98,7 +98,9 @@ export function DictionaryPage() {
   // Use a ref for handleSearch so the effect only re-runs when the query changes,
   // not when handleSearch is recreated (which would cancel the pending RAF).
   const handleSearchRef = useRef(handleSearch)
-  handleSearchRef.current = handleSearch
+  useEffect(() => {
+    handleSearchRef.current = handleSearch
+  }, [handleSearch])
   const pendingQuery = searchParams.get('q')
   const pendingQueryRef = useRef<string | null>(null)
   useEffect(() => {
