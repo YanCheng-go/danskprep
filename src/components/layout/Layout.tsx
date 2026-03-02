@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
+import { ChatButton } from '@/components/chat/ChatButton'
 import { useAuth } from '@/hooks/useAuth'
 import { cn } from '@/lib/utils'
 
@@ -20,7 +21,7 @@ export function Layout() {
 
       <div className="flex">
         {/* Desktop sidebar */}
-        <aside className="hidden md:block w-52 shrink-0 border-r min-h-[calc(100vh-3.5rem)] sticky top-14">
+        <aside className="hidden md:block w-52 shrink-0 border-r h-[calc(100vh-3.5rem)] sticky top-14 overflow-y-auto">
           <Sidebar />
         </aside>
 
@@ -35,7 +36,7 @@ export function Layout() {
         {/* Mobile drawer */}
         <aside
           className={cn(
-            'fixed top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-64 bg-background border-r transition-transform duration-200 md:hidden',
+            'fixed top-14 left-0 z-40 h-[calc(100vh-3.5rem)] w-64 bg-background border-r transition-transform duration-200 md:hidden overflow-y-auto',
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           )}
         >
@@ -47,6 +48,9 @@ export function Layout() {
           <Outlet />
         </div>
       </div>
+
+      {/* Floating chat */}
+      <ChatButton />
     </div>
   )
 }

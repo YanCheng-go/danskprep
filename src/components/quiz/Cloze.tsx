@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Exercise } from '@/types/quiz'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface ClozeProps {
   exercise: Exercise
@@ -10,6 +11,7 @@ interface ClozeProps {
 }
 
 export function Cloze({ exercise, onSubmit, disabled }: ClozeProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
 
   // Render question with ___ highlighted
@@ -36,7 +38,7 @@ export function Cloze({ exercise, onSubmit, disabled }: ClozeProps) {
         ))}
       </div>
       {exercise.hint && (
-        <p className="text-sm text-muted-foreground italic">Hint: {exercise.hint}</p>
+        <p className="text-sm text-muted-foreground italic">{t('common.hint')} {exercise.hint}</p>
       )}
       <DanishInput
         value={value}
@@ -51,8 +53,17 @@ export function Cloze({ exercise, onSubmit, disabled }: ClozeProps) {
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Check answer
+        {t('quiz.checkAnswer')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

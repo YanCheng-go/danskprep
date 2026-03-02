@@ -1,0 +1,92 @@
+[
+  {
+    "id": "wp-01",
+    "title": "Email til en ven",
+    "prompt": "Skriv en email til din ven. Fortæl om din weekend. Brug mindst 50 ord.",
+    "prompt_en": "Write an email to your friend. Tell about your weekend. Use at least 50 words.",
+    "tips": ["Use past tense (datid)", "Include time expressions (i lørdags, om søndagen)", "V2 rule in main clauses"],
+    "min_words": 50,
+    "max_words": 200
+  },
+  {
+    "id": "wp-02",
+    "title": "Beskriv dit hjem",
+    "prompt": "Beskriv din lejlighed eller dit hus. Hvor mange værelser har du? Hvad kan du lide ved dit hjem?",
+    "prompt_en": "Describe your apartment or house. How many rooms do you have? What do you like about your home?",
+    "tips": ["Use en/et correctly with nouns", "Adjective inflection (stor/stort/store)", "Prepositions: i, på, ved"],
+    "min_words": 60,
+    "max_words": 200
+  },
+  {
+    "id": "wp-03",
+    "title": "Din dagligdag",
+    "prompt": "Fortæl om en typisk dag i dit liv. Hvad gør du fra morgen til aften?",
+    "prompt_en": "Tell about a typical day in your life. What do you do from morning to evening?",
+    "tips": ["Use present tense (nutid)", "Reflexive verbs: jeg vågner, jeg vasker mig", "Time: om morgenen, klokken..."],
+    "min_words": 60,
+    "max_words": 200
+  },
+  {
+    "id": "wp-04",
+    "title": "En ferie du husker",
+    "prompt": "Skriv om en ferie, du husker godt. Hvor rejste du hen? Hvad lavede du? Hvad syntes du om rejsen?",
+    "prompt_en": "Write about a holiday you remember well. Where did you travel? What did you do? What did you think of the trip?",
+    "tips": ["Past tense throughout", "Subordinate clauses: fordi, da, at", "Comparatives: bedre end, mere interessant end"],
+    "min_words": 60,
+    "max_words": 250
+  },
+  {
+    "id": "wp-05",
+    "title": "Madlavning",
+    "prompt": "Beskriv din yndlingsret. Hvordan laver man den? Skriv opskriften med enkle trin.",
+    "prompt_en": "Describe your favourite dish. How do you make it? Write the recipe with simple steps.",
+    "tips": ["Imperative forms: skær, bland, kog, bag", "Quantities: gram, liter, en spiseskefuld", "Sequencing: først, derefter, til sidst"],
+    "min_words": 50,
+    "max_words": 200
+  },
+  {
+    "id": "wp-06",
+    "title": "Klage over et produkt",
+    "prompt": "Du har købt et produkt, der ikke virker. Skriv en klage-email til butikken. Forklar problemet og hvad du vil have.",
+    "prompt_en": "You bought a product that doesn't work. Write a complaint email to the shop. Explain the problem and what you want.",
+    "tips": ["Formal tone: Kære..., Med venlig hilsen", "Past tense: jeg købte, den virkede ikke", "Polite requests: Jeg vil gerne bede om..."],
+    "min_words": 60,
+    "max_words": 200
+  },
+  {
+    "id": "wp-07",
+    "title": "Job ansøgning",
+    "prompt": "Du søger et job i en butik. Skriv en kort ansøgning. Fortæl om dig selv, din erfaring, og hvorfor du vil have jobbet.",
+    "prompt_en": "You are applying for a job in a shop. Write a short application. Tell about yourself, your experience, and why you want the job.",
+    "tips": ["Formal language", "Present perfect: Jeg har arbejdet...", "Relative clauses: som, der"],
+    "min_words": 60,
+    "max_words": 250
+  },
+  {
+    "id": "wp-08",
+    "title": "Dit nabolag",
+    "prompt": "Beskriv dit nabolag. Hvad er der i nærheden? Hvad kan du godt lide, og hvad kan du ikke lide?",
+    "prompt_en": "Describe your neighbourhood. What is nearby? What do you like and dislike?",
+    "tips": ["There is/are: Der er..., Der ligger...", "Prepositions of place: ved siden af, overfor, i nærheden af", "Opinion: Jeg synes at..."],
+    "min_words": 50,
+    "max_words": 200
+  },
+  {
+    "id": "wp-09",
+    "title": "Sundhed og motion",
+    "prompt": "Hvad gør du for at holde dig sund? Fortæl om dine motionsvaner og din kost.",
+    "prompt_en": "What do you do to stay healthy? Tell about your exercise habits and diet.",
+    "tips": ["Frequency: ofte, sjældent, hver dag, to gange om ugen", "Infinitive constructions: for at holde..., forsøger at...", "Modal verbs: skal, bør, kan"],
+    "min_words": 50,
+    "max_words": 200
+  },
+  {
+    "id": "wp-10",
+    "title": "Invitér til fest",
+    "prompt": "Skriv en invitation til en fest (fødselsdagsfest, havefest, nytårsfest). Skriv hvornår, hvor, og hvad man skal medbringe.",
+    "prompt_en": "Write an invitation to a party. Include when, where, and what to bring.",
+    "tips": ["Imperative: Kom til..., Tag gerne... med", "Time and date: lørdag den 15. marts klokken 19", "Informal tone appropriate"],
+    "min_words": 40,
+    "max_words": 150
+  }
+]

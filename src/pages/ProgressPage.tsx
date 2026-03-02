@@ -1,5 +1,6 @@
 import { useAuth } from '@/hooks/useAuth'
 import { useProgress } from '@/hooks/useProgress'
+import { useTranslation } from '@/lib/i18n'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { StatsChart } from '@/components/progress/StatsChart'
@@ -9,6 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 export function ProgressPage() {
   const { user } = useAuth()
   const { stats, isLoading } = useProgress(user)
+  const { t } = useTranslation()
 
   if (isLoading) {
     return (
@@ -25,8 +27,8 @@ export function ProgressPage() {
   return (
     <PageContainer>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold">Progress</h1>
-        <p className="text-muted-foreground text-sm mt-1">Your learning statistics</p>
+        <h1 className="text-2xl font-bold">{t('progress.title')}</h1>
+        <p className="text-muted-foreground text-sm mt-1">{t('progress.subtitle')}</p>
       </div>
 
       <div className="space-y-4">
@@ -40,7 +42,7 @@ export function ProgressPage() {
           <Card>
             <CardContent className="pt-6">
               <p className="text-2xl font-bold">{stats.accuracyPercent}%</p>
-              <p className="text-xs text-muted-foreground">Accuracy (30d)</p>
+              <p className="text-xs text-muted-foreground">{t('progress.accuracy30d')}</p>
             </CardContent>
           </Card>
         </div>
@@ -49,9 +51,9 @@ export function ProgressPage() {
         <Card>
           <CardHeader>
             <CardTitle className="text-base">
-              Cards by state
+              {t('progress.cardsByState')}
               <span className="ml-2 text-sm font-normal text-muted-foreground">
-                ({stats.total} total)
+                {t('progress.total', { count: stats.total })}
               </span>
             </CardTitle>
           </CardHeader>
@@ -66,7 +68,7 @@ export function ProgressPage() {
               />
             ) : (
               <p className="text-sm text-muted-foreground text-center py-4">
-                Start studying to see your progress here.
+                {t('progress.startStudying')}
               </p>
             )}
           </CardContent>
@@ -77,10 +79,10 @@ export function ProgressPage() {
           <CardContent className="pt-6">
             <div className="grid grid-cols-2 gap-4 text-sm">
               {[
-                { label: 'New', value: stats.newCards },
-                { label: 'Learning', value: stats.learning },
-                { label: 'Review', value: stats.review },
-                { label: 'Relearning', value: stats.relearning },
+                { label: t('progress.new'), value: stats.newCards },
+                { label: t('progress.learning'), value: stats.learning },
+                { label: t('progress.review'), value: stats.review },
+                { label: t('progress.relearning'), value: stats.relearning },
               ].map(({ label, value }) => (
                 <div key={label} className="flex justify-between items-center border-b pb-2">
                   <span className="text-muted-foreground">{label}</span>

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { Exercise } from '@/types/quiz'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface WordOrderProps {
   exercise: Exercise
@@ -19,6 +20,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export function WordOrder({ exercise, onSubmit, disabled }: WordOrderProps) {
+  const { t } = useTranslation()
   // Parse word chips from question (format: "word1 / word2 / word3 / word4")
   const wordBank = useMemo(() => {
     const raw = exercise.question.replace(/^Put in correct order:\s*/i, '')
@@ -44,12 +46,12 @@ export function WordOrder({ exercise, onSubmit, disabled }: WordOrderProps) {
 
   return (
     <div className="space-y-4">
-      <p className="font-medium">Arrange the words into a correct sentence:</p>
+      <p className="font-medium">{t('quiz.arrangeWords')}</p>
 
       {/* Answer area */}
       <div className="min-h-[52px] rounded-lg border-2 border-dashed border-border p-3 flex flex-wrap gap-2">
         {selected.length === 0 && (
-          <p className="text-sm text-muted-foreground self-center">Tap words below to add them</p>
+          <p className="text-sm text-muted-foreground self-center">{t('quiz.tapWords')}</p>
         )}
         {selected.map(item => (
           <button
@@ -83,8 +85,17 @@ export function WordOrder({ exercise, onSubmit, disabled }: WordOrderProps) {
         disabled={selected.length === 0 || disabled}
         className="w-full"
       >
-        Check order
+        {t('quiz.checkOrder')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => onSubmit('')}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

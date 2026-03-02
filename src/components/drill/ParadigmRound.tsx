@@ -3,6 +3,7 @@ import type { DrillQuestion } from '@/types/drill'
 import { DanishInput } from '@/components/ui/DanishInput'
 import { Button } from '@/components/ui/button'
 import { getInflectionLabels } from '@/lib/drill-engine'
+import { useTranslation } from '@/lib/i18n'
 
 interface ParadigmRoundProps {
   question: DrillQuestion
@@ -11,6 +12,7 @@ interface ParadigmRoundProps {
 }
 
 export function ParadigmRound({ question, onSubmit, disabled }: ParadigmRoundProps) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
   const word = question.word
   const labels = getInflectionLabels(word.part_of_speech)
@@ -42,7 +44,7 @@ export function ParadigmRound({ question, onSubmit, disabled }: ParadigmRoundPro
     <div className="space-y-4">
       <div>
         <p className="font-medium text-lg">{header}</p>
-        <p className="text-sm text-muted-foreground">Fill in the missing form</p>
+        <p className="text-sm text-muted-foreground">{t('drill.fillMissing')}</p>
       </div>
 
       <div className="rounded-lg border overflow-hidden">
@@ -85,8 +87,17 @@ export function ParadigmRound({ question, onSubmit, disabled }: ParadigmRoundPro
         disabled={!value.trim() || disabled}
         className="w-full"
       >
-        Check answer
+        {t('quiz.checkAnswer')}
       </Button>
+      {!disabled && (
+        <Button
+          variant="ghost"
+          onClick={() => { onSubmit(''); setValue('') }}
+          className="w-full text-muted-foreground"
+        >
+          {t('quiz.dontKnow')}
+        </Button>
+      )}
     </div>
   )
 }

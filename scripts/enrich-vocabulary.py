@@ -36,7 +36,7 @@ except ImportError:
     sys.exit(1)
 
 PROJECT_ROOT = Path(__file__).parent.parent
-SCRAPED_JSON = PROJECT_ROOT / "src/data/seed/_speakspeak_raw_pd3m2_20260301_192523.json"
+SCRAPED_JSON = PROJECT_ROOT / "scripts/data/_speakspeak_raw_pd3m2_20260301_192523.json"
 WORDS_JSON = PROJECT_ROOT / "src/data/seed/words-pd3m2.json"
 
 # How many exercise questions to send per API call (batched to stay within token limits)

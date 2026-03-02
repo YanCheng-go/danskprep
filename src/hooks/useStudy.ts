@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { User } from '@supabase/supabase-js'
 import { supabase } from '@/lib/supabase'
 import { scheduleReview, getSchedulingOptions, createNewCard } from '@/lib/fsrs'
@@ -7,7 +7,7 @@ import type { ReviewableCard, SchedulingOptions } from '@/types/study'
 import type { Exercise } from '@/types/quiz'
 import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import wordsData from '@/data/seed/words-pd3m2.json'
-import { DAILY_NEW_CARDS_LIMIT, DAILY_REVIEW_LIMIT } from '@/lib/constants'
+import { DAILY_NEW_CARDS_LIMIT, DAILY_REVIEW_LIMIT, SETTINGS_KEYS } from '@/lib/constants'
 
 const localExercises = exercisesData as Exercise[]
 // Strip id/created_at that are absent in the seed file
@@ -22,6 +22,7 @@ interface UseStudyReturn {
   currentCard: ReviewableCard | null
   schedulingOptions: SchedulingOptions | null
   cardsRemaining: number
+  totalCards: number
   isLoading: boolean
   error: string | null
   reviewCard: (rating: 1 | 2 | 3 | 4, response?: string, wasCorrect?: boolean, timeTakenMs?: number) => Promise<void>
@@ -32,16 +33,23 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
   const [queue, setQueue] = useState<ReviewableCard[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const initialQueueSize = useRef(0)
+
+  function setInitialQueue(cards: ReviewableCard[]) {
+    initialQueueSize.current = cards.length
+    setQueue(cards)
+  }
 
   const currentCard = queue[0] ?? null
   const schedulingOptions = currentCard ? getSchedulingOptions(currentCard.userCard) : null
 
   useEffect(() => {
-    if (!user) return
+    if (!user || !supabase) return
     loadQueue(user.id)
   }, [user, mode])
 
   async function loadQueue(userId: string) {
+    if (!supabase) return
     setIsLoading(true)
     setError(null)
     try {
@@ -58,7 +66,10 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
   }
 
   async function loadDailyQueue(userId: string) {
+    if (!supabase) return
     const now = new Date().toISOString()
+    const storedLimit = localStorage.getItem(SETTINGS_KEYS.DAILY_NEW_LIMIT)
+    const dailyNewLimit = storedLimit ? Number(storedLimit) : DAILY_NEW_CARDS_LIMIT
 
     const { data: dueCards, error: dueErr } = await supabase
       .from('user_cards')
@@ -76,7 +87,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
       .select('*')
       .eq('user_id', userId)
       .eq('state', 0)
-      .limit(DAILY_NEW_CARDS_LIMIT)
+      .limit(dailyNewLimit)
 
     if (newErr) throw newErr
 
@@ -88,10 +99,11 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     }
 
     const reviewable = buildReviewableCards(allCards)
-    setQueue(reviewable)
+    setInitialQueue(reviewable)
   }
 
   async function loadAllQueue(userId: string) {
+    if (!supabase) return
     const { data: existingCards, error: fetchErr } = await supabase
       .from('user_cards')
       .select('*')
@@ -112,10 +124,11 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
 
     const allCards = [...existing, ...topped]
     const reviewable = buildReviewableCards(allCards)
-    setQueue(reviewable)
+    setInitialQueue(reviewable)
   }
 
   async function initializeUserCards(userId: string) {
+    if (!supabase) return
     const emptyCard = createNewCard()
     const now = new Date().toISOString()
 
@@ -149,21 +162,38 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
       last_review: null,
     }))
 
-    const { data, error: insertErr } = await supabase
+    // Insert all cards into the DB so they exist for future sessions
+    const { error: insertErr } = await supabase
       .from('user_cards')
       .insert([...exerciseInserts, ...wordInserts])
-      .select()
 
     if (insertErr) {
       setError('Failed to initialize study cards')
       return
     }
 
-    const reviewable = buildReviewableCards((data ?? []) as UserCard[])
-    setQueue(reviewable)
+    // Respect the daily new card limit for the initial queue
+    const storedLimit = localStorage.getItem(SETTINGS_KEYS.DAILY_NEW_LIMIT)
+    const dailyNewLimit = storedLimit ? Number(storedLimit) : DAILY_NEW_CARDS_LIMIT
+
+    const { data: initialCards, error: fetchErr } = await supabase
+      .from('user_cards')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('state', 0)
+      .limit(dailyNewLimit)
+
+    if (fetchErr) {
+      setError('Failed to load initial study cards')
+      return
+    }
+
+    const reviewable = buildReviewableCards((initialCards ?? []) as UserCard[])
+    setInitialQueue(reviewable)
   }
 
   async function topUpUserCards(userId: string, existingIds: Set<string>): Promise<UserCard[]> {
+    if (!supabase) return []
     const emptyCard = createNewCard()
     const now = new Date().toISOString()
 
@@ -410,35 +440,37 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
 
     const updatedFields = scheduleReview(currentCard.userCard, rating)
 
-    const { error: updateErr } = await supabase
-      .from('user_cards')
-      .update({
-        state: updatedFields.state,
-        due: updatedFields.due.toISOString(),
-        stability: updatedFields.stability,
-        difficulty: updatedFields.difficulty,
-        elapsed_days: updatedFields.elapsed_days,
-        scheduled_days: updatedFields.scheduled_days,
-        reps: updatedFields.reps,
-        lapses: updatedFields.lapses,
-        last_review: updatedFields.last_review?.toISOString() ?? null,
-        updated_at: new Date().toISOString(),
+    if (supabase) {
+      const { error: updateErr } = await supabase
+        .from('user_cards')
+        .update({
+          state: updatedFields.state,
+          due: updatedFields.due.toISOString(),
+          stability: updatedFields.stability,
+          difficulty: updatedFields.difficulty,
+          elapsed_days: updatedFields.elapsed_days,
+          scheduled_days: updatedFields.scheduled_days,
+          reps: updatedFields.reps,
+          lapses: updatedFields.lapses,
+          last_review: updatedFields.last_review?.toISOString() ?? null,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', currentCard.userCard.id)
+
+      if (updateErr) {
+        console.error('Failed to update card:', updateErr)
+      }
+
+      await supabase.from('review_logs').insert({
+        user_id: user.id,
+        card_id: currentCard.userCard.id,
+        rating,
+        response: response ?? null,
+        was_correct: wasCorrect ?? null,
+        time_taken_ms: timeTakenMs ?? null,
+        reviewed_at: new Date().toISOString(),
       })
-      .eq('id', currentCard.userCard.id)
-
-    if (updateErr) {
-      console.error('Failed to update card:', updateErr)
     }
-
-    await supabase.from('review_logs').insert({
-      user_id: user.id,
-      card_id: currentCard.userCard.id,
-      rating,
-      response: response ?? null,
-      was_correct: wasCorrect ?? null,
-      time_taken_ms: timeTakenMs ?? null,
-      reviewed_at: new Date().toISOString(),
-    })
 
     setQueue(prev => prev.slice(1))
   }, [currentCard, user])
@@ -451,6 +483,7 @@ export function useStudy(user: User | null, mode: 'daily' | 'all' = 'daily'): Us
     currentCard,
     schedulingOptions,
     cardsRemaining: queue.length,
+    totalCards: initialQueueSize.current || queue.length,
     isLoading,
     error,
     reviewCard,

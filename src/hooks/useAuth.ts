@@ -17,6 +17,11 @@ export function useAuth(): UseAuthReturn {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    if (!supabase) {
+      setIsLoading(false)
+      return
+    }
+
     // Get initial session
     supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s)
@@ -37,16 +42,19 @@ export function useAuth(): UseAuthReturn {
   }, [])
 
   async function signUp(email: string, password: string) {
+    if (!supabase) return { error: new Error('Supabase not configured') }
     const { error } = await supabase.auth.signUp({ email, password })
     return { error }
   }
 
   async function signIn(email: string, password: string) {
+    if (!supabase) return { error: new Error('Supabase not configured') }
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     return { error }
   }
 
   async function signOut() {
+    if (!supabase) return
     await supabase.auth.signOut()
   }
 
