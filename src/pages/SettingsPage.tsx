@@ -7,7 +7,7 @@ import { SETTINGS_KEYS, DAILY_NEW_CARDS_LIMIT } from '@/lib/constants'
 import type { AIProvider } from '@/lib/ai-provider'
 import { getProviderConfig, saveProviderConfig, testOllamaConnection } from '@/lib/ai-provider'
 import { useTranslation } from '@/lib/i18n'
-import { Heart, AlertTriangle } from 'lucide-react'
+import { AlertTriangle } from 'lucide-react'
 
 export function SettingsPage() {
   const { t } = useTranslation()
@@ -311,31 +311,6 @@ export function SettingsPage() {
           {t('settings.moduleNote')}
         </p>
 
-        {/* Donation card */}
-        <Card className="border-dashed">
-          <CardContent className="pt-4 pb-4">
-            <div className="flex items-start gap-3">
-              <Heart className="h-5 w-5 text-pink-500 shrink-0 mt-0.5" />
-              <div>
-                <p className="text-sm font-medium">{t('donate.title')}</p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('donate.description')}
-                </p>
-                <div className="mt-2 flex items-center gap-3">
-                  <span className="font-mono text-sm font-medium">{t('donate.mobilepayNumber')}</span>
-                  <a
-                    href="https://www.mobilepay.dk/erhverv/betalingslink/betalingslink-LandingPage?phone=4552728520"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-md bg-[#5a78ff] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#4a68ef] transition-colors"
-                  >
-                    {t('donate.button')}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </PageContainer>
   )

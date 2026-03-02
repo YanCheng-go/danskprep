@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { useProgress } from '@/hooks/useProgress'
 import { PageContainer } from '@/components/layout/PageContainer'
+import { SupportDialog } from '@/components/layout/SupportDialog'
 import { Dashboard } from '@/components/progress/Dashboard'
 import { WhatsNew } from '@/components/progress/WhatsNew'
 import { useTranslation } from '@/lib/i18n'
@@ -16,6 +17,7 @@ export function HomePage() {
   const [milestoneDismissed, setMilestoneDismissed] = useState(
     () => localStorage.getItem(MILESTONE_DISMISSED_KEY) === 'true'
   )
+  const [supportOpen, setSupportOpen] = useState(false)
 
   const dueCount = stats.learning + stats.review + stats.relearning
   const showMilestone = !milestoneDismissed && (stats.streakDays >= 7 || stats.total >= 100)
@@ -42,14 +44,12 @@ export function HomePage() {
             <Heart className="h-5 w-5 text-pink-500 shrink-0 mt-0.5" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium">{t('donate.milestone')}</p>
-              <a
-                href="https://www.mobilepay.dk/erhverv/betalingslink/betalingslink-LandingPage?phone=4552728520"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setSupportOpen(true)}
                 className="inline-flex items-center gap-1.5 mt-2 rounded-md bg-[#5a78ff] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#4a68ef] transition-colors"
               >
                 {t('donate.milestoneAction')}
-              </a>
+              </button>
             </div>
             <button
               onClick={dismissMilestone}
@@ -72,6 +72,7 @@ export function HomePage() {
         accuracyPercent={stats.accuracyPercent}
         isLoading={isLoading}
       />
+      <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
     </PageContainer>
   )
 }
