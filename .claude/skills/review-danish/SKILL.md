@@ -22,7 +22,7 @@ Check for:
 - **Adjective agreement**: e-form vs t-form based on noun gender and definiteness
 - **Pronoun case**: subject vs object forms (han/ham, hun/hende)
 - **Negation placement**: "ikke" after verb in main clause, before verb in subordinate clause
-- **Spelling**: ae/oe/aa used correctly (not ae/oe/aa unless testing that specifically)
+- **Spelling**: æ/ø/å used correctly (not ae/oe/aa unless testing that specifically)
 
 ### 2. Register & Naturalness
 - Is the phrasing natural for everyday spoken/written Danish?

@@ -1,4 +1,4 @@
--- DanskPrep: Combined migrations (001–007)
+-- DanskPrep: Combined migrations (001–008)
 -- Run this in the Supabase SQL Editor to set up all tables.
 -- Safe to re-run: uses IF NOT EXISTS and will skip existing objects.
 
@@ -310,6 +310,9 @@ exception when duplicate_object then null;
 end $$;
 do $$ begin
   create policy "bubble_scores_update" on bubble_scores for update using (
+    (auth.uid() is not null and user_id = auth.uid())
+    or (auth.uid() is null and is_guest = true and user_id is null)
+  ) with check (
     (auth.uid() is not null and user_id = auth.uid())
     or (auth.uid() is null and is_guest = true and user_id is null)
   );

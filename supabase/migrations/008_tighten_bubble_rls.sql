@@ -11,8 +11,11 @@ create policy "bubble_scores_insert" on bubble_scores for insert with check (
   or (auth.uid() is null and user_id is null and is_guest = true)
 );
 
--- Update: signed-in users can only update their own rows; guests can only update guest rows
+-- Update: signed-in users can only update their own rows; guests can only update their own nickname row
 create policy "bubble_scores_update" on bubble_scores for update using (
+  (auth.uid() is not null and user_id = auth.uid())
+  or (auth.uid() is null and is_guest = true and user_id is null)
+) with check (
   (auth.uid() is not null and user_id = auth.uid())
   or (auth.uid() is null and is_guest = true and user_id is null)
 );

@@ -21,7 +21,7 @@ Implement or extend quiz functionality. Key files: `src/types/quiz.ts`, `src/lib
 
 ## Answer checking rules
 - **Always use `checkAnswer()` from `src/lib/answer-check.ts`** — never compare strings with `===`
-- Accepts both ae/oe/aa and ae/oe/aa input by default
+- Accepts both ae/oe/aa and æ/ø/å input by default
 - Returns `{ isCorrect, isAlmostCorrect, closestMatch }` — show "almost" feedback when edit distance = 1
 - Uses Damerau-Levenshtein (transpositions count as 1 edit, not 2)
 
