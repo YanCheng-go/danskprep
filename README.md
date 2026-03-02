@@ -20,6 +20,7 @@ Active recall, spaced repetition (FSRS), and exam-focused exercises for learners
 - **Progress** — stats dashboard, streak tracking, accuracy metrics
 - **i18n** — English/Danish UI toggle (flag button in header)
 - **Danish Tutor** — AI chatbot for grammar questions and conversation practice
+- **Bubble Word Game** — floating Danish words to discover, with leaderboard rankings, clickable resume, and session persistence for signed-in users (see [docs/games.md](docs/games.md))
 - **Dark mode** — persistent theme toggle
 
 ## Stack
@@ -44,6 +45,7 @@ danskprep/
 │   │   ├── study/            # FlashCard, ReviewQueue, CardRating
 │   │   ├── ui/               # shadcn components (Button, Input, Card, Dialog, etc.)
 │   │   ├── vocabulary/       # WordList, WordDetail, InflectionTable
+│   │   ├── welcome/           # FloatingWords, WordBubble, BubbleLeaderboard, GamePanel
 │   │   └── writing/          # WritingPrompt, WritingFeedback
 │   ├── data/
 │   │   ├── seed/             # JSON seed files (exercises, words, grammar, prompts, episodes)
@@ -56,7 +58,7 @@ danskprep/
 ├── scripts/                  # Python tooling (scrapers, data enrichment, seeding)
 │   └── data/                 # Scraper output artifacts (raw JSON, screenshots)
 ├── supabase/
-│   └── migrations/           # SQL schema migrations (001–004)
+│   └── migrations/           # SQL schema migrations (001–008)
 ├── docs/                     # Architecture diagrams (Excalidraw)
 └── references/               # Data source documentation
 ```
@@ -123,16 +125,20 @@ uv run python enrich-vocabulary.py
 - [x] Vercel Analytics + Speed Insights
 - [x] Lazy-loaded routes
 - [x] AI chatbot tutor
-- [x] EN/DA language toggle
+- [x] EN/DA language toggle (browser language auto-detection)
 - [x] In-app feedback system
+- [x] Supabase migrations 001-008 applied via CLI
+- [x] Nix + direnv dev environment (`.envrc` + `flake.nix`)
 
 ### Next
-- [ ] Connect Supabase (auth + FSRS persistence)
+- [ ] Generate real DB types (`npm run types` → replace `createClient<any>()`)
+- [ ] Seed remote database (`cd scripts && uv run python seed-database.py`)
 - [ ] Fill 143 empty verb inflections (run `enrich-vocabulary.py`)
 - [ ] Refresh progress stats after study session
 - [ ] WordOrder drag-and-drop reorder
 - [ ] Lazy-load seed JSON (reduce initial bundle)
 - [ ] PD3 Module 1 content
+- [ ] Additional mini-games (Word Match, Sentence Builder, Speed Conjugation)
 - [ ] PD2 content
 
 ### Long-term

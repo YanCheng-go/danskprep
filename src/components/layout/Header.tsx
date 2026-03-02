@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Menu, X, LogIn, LogOut, ChevronDown, Coffee, Search, BookOpen } from 'lucide-react'
+import { Menu, X, LogIn, LogOut, ChevronDown, Coffee, Search, BookOpen, Gamepad2, Moon, Sun, Trophy } from 'lucide-react'
 import { track } from '@vercel/analytics'
 import { Button } from '@/components/ui/button'
 import { SupportDialog } from './SupportDialog'
@@ -13,12 +13,19 @@ interface HeaderProps {
   menuOpen: boolean
   onToggleMenu: () => void
   onSignOut: () => void
+  bubblesEnabled?: boolean
+  onToggleBubbles?: () => void
+  bubbleScore?: number
+  onOpenGamePanel?: () => void
 }
 
-export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps) {
+export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled = false, onToggleBubbles, bubbleScore = 0, onOpenGamePanel }: HeaderProps) {
   const { locale, setLocale, t } = useTranslation()
   const navigate = useNavigate()
   const [supportOpen, setSupportOpen] = useState(false)
+  const [isDark, setIsDark] = useState(
+    () => document.documentElement.classList.contains('dark')
+  )
   const [moduleDropdownOpen, setModuleDropdownOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [activeModuleId, setActiveModuleId] = useState(
@@ -26,6 +33,12 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
   )
 
   const activeModule = AVAILABLE_MODULES.find(m => m.id === activeModuleId)
+
+  function handleThemeToggle() {
+    const nowDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(nowDark))
+    setIsDark(nowDark)
+  }
 
   function selectModule(id: string) {
     setActiveModuleId(id)
@@ -79,7 +92,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
         </Button>
 
         <div className="flex items-center bg-background pr-3">
-          <Link to="/" className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity">
+          <Link to="/home" className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity">
             🇩🇰 DanskPrep
           </Link>
 
@@ -123,20 +136,59 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
             )}
           </div>
 
-          {/* Language toggle */}
-          <button
-            onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
-            className="ml-2 rounded-md border px-1.5 py-0.5 text-sm hover:bg-accent transition-colors"
-            title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
-            aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
-          >
-            {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
-          </button>
         </div>
 
         <div className="flex-1" />
 
         <div className="flex items-center gap-1 bg-background pl-3">
+          {/* Game toggle */}
+          <button
+            onClick={onToggleBubbles}
+            className={`relative inline-flex items-center justify-center rounded-md p-1.5 hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
+            title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
+            aria-label={t('bubble.game.tooltip')}
+          >
+            <Gamepad2 className="h-4 w-4" />
+            {!bubblesEnabled && (
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="block w-5 h-px bg-muted-foreground/60 rotate-45" />
+              </span>
+            )}
+          </button>
+          {/* Trophy — opens rankings, only when game is on */}
+          {bubblesEnabled && (
+            <button
+              onClick={onOpenGamePanel}
+              className="inline-flex items-center gap-0.5 rounded-md px-1.5 py-1 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 transition-colors"
+              title={t('bubble.game.tooltip')}
+            >
+              <Trophy className="h-4 w-4 text-yellow-500" />
+              {bubbleScore > 0 && <span>{bubbleScore}</span>}
+            </button>
+          )}
+
+          {/* Dark mode toggle */}
+          <button
+            onClick={handleThemeToggle}
+            className="inline-flex items-center justify-center rounded-md p-1.5 text-muted-foreground hover:bg-accent transition-colors"
+            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+
+          {/* Language toggle */}
+          <button
+            onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
+            className="inline-flex items-center justify-center rounded-md px-1.5 py-0.5 text-sm text-muted-foreground hover:bg-accent transition-colors"
+            title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+            aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+          >
+            {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
+          </button>
+
+          <span className="w-px h-4 bg-foreground/[0.08] mx-0.5" />
+
+
           <button
             onClick={() => { setSupportOpen(true); track('support_click') }}
             className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"

@@ -21,6 +21,8 @@ const en = {
   'nav.practice': 'Practice',
   'nav.reference': 'Reference',
   'nav.app': 'App',
+  'nav.signIn': 'Sign in',
+  'nav.signUp': 'Sign up',
 
   // Header
   'header.openMenu': 'Open menu',
@@ -354,21 +356,134 @@ const en = {
   'guest.signInRequired': 'Sign in required',
   'guest.signInRequiredDesc': 'You need an account to use this feature.',
 
-  // Welcome
-  'welcome.title': 'Pass Your Danish Exam',
-  'welcome.subtitle': 'Exercises, grammar, writing, speaking, listening, dictionary & AI tutor \u2014 everything you need for Pr\u00f8ve i Dansk',
-  'welcome.socialProof': 'Free & open-source \u00b7 {exercises} exercises, {words} words \u00b7 PD3 Module 2 (more modules coming)',
+  // Welcome — Hero
+  'welcome.eyebrow': '{exercises} exercises \u00b7 {words} words \u00b7 Free',
+  'welcome.headline.line1': 'Pass your',
+  'welcome.headline.line2': 'Danish Exam',
+  'welcome.subtitle': 'Exercises, grammar, writing, speaking, listening, dictionary & AI tutor \u2014 everything you need for Pr\u00f8ve i Dansk.',
   'welcome.startPracticing': 'Start practicing',
-  'welcome.haveAccount': 'Already have an account? {link}',
-  'welcome.orSignUp': 'Or {link} for personalized study progress tracking',
-  'welcome.step4': 'Sign in to track streaks, accuracy & sync across devices',
-  'welcome.howItWorks': 'How it works',
-  'welcome.step1': 'Practice with exercises matched to your exam',
-  'welcome.step2': 'Spaced repetition adapts to your memory',
-  'welcome.step3': 'Get AI feedback on writing & speaking',
-  'welcome.supportNote': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying the developer a coffee.',
-  'welcome.continueAsGuest': 'Continue as guest',
+  'welcome.createAccount': 'Create free account',
+  'welcome.signInLink': 'Already have an account? Sign in',
+  'welcome.socialProof.module': 'PD3 Module 2 covered',
+  'welcome.socialProof.coming': 'More modules coming soon',
+  'welcome.socialProof.openSource': 'Open source on GitHub',
+  'welcome.scrollHint': 'Scroll',
+
+  // Welcome — Stats bar
+  'welcome.stats.exercises': 'Exercises',
+  'welcome.stats.words': 'Words',
+  'welcome.stats.grammarTopics': 'Grammar Topics',
+  'welcome.stats.practiceModes': 'Practice Modes',
+
+  // Welcome — Features
+  'welcome.features.overline': 'Everything in one place',
+  'welcome.features.title': 'Built for the real exam',
+  'welcome.features.subtitle': 'Every feature maps directly to what\'s tested in Pr\u00f8ve i Dansk. No filler, no fluff.',
+  'welcome.feature.quiz.title': 'Quiz & Drill',
+  'welcome.feature.quiz.desc': 'Cloze, word order, error correction, conjugation, matching \u2014 {exercises} exercises covering all {topics} grammar topics. Practice exactly what appears on the exam.',
+  'welcome.feature.quiz.tag': '7 exercise types',
+  'welcome.feature.srs.title': 'Spaced Repetition',
+  'welcome.feature.srs.desc': 'FSRS algorithm adapts to your memory. Cards come back right before you forget them.',
+  'welcome.feature.writing.title': 'Writing',
+  'welcome.feature.writing.desc': 'Write Danish texts and get AI feedback on grammar, vocabulary, and sentence structure.',
+  'welcome.feature.speaking.title': 'Speaking & Listening',
+  'welcome.feature.speaking.desc': 'Record yourself, self-transcribe, then get AI feedback. Plus podcast-based listening comprehension with quizzes. Build all four language skills.',
+  'welcome.feature.speaking.tag': 'AI-powered feedback',
+  'welcome.feature.grammar.title': 'Grammar Reference',
+  'welcome.feature.grammar.desc': 'Clear explanations of all Danish grammar rules organized by exam topic.',
+  'welcome.feature.dictionary.title': 'Dictionary & AI Tutor',
+  'welcome.feature.dictionary.desc': 'Look up any word with inflections. Ask the AI tutor about grammar or practice conversations.',
+
+  // Welcome — How it works
+  'welcome.howItWorks.overline': 'Simple and effective',
+  'welcome.howItWorks.title': 'How it works',
+  'welcome.howItWorks.subtitle': 'Three steps to exam readiness.',
+  'welcome.step.practice.title': 'Practice',
+  'welcome.step.practice.desc': 'Work through exercises matched to your exam module and grammar topics.',
+  'welcome.step.review.title': 'Review',
+  'welcome.step.review.desc': 'Spaced repetition brings back what you\'re about to forget. 10 minutes a day is enough.',
+  'welcome.step.track.title': 'Track',
+  'welcome.step.track.desc': 'See your streak, accuracy, and progress. Know exactly where you stand before exam day.',
+
+  // Welcome — Sign-in benefits
+  'welcome.benefits.overline': 'Free account',
+  'welcome.benefits.title': 'Even better with an account',
+  'welcome.benefits.subtitle': 'Practice as a guest anytime. Sign up to unlock personalized learning. We only store your email and learning data \u2014 nothing else.',
+  'welcome.benefit.srs.title': 'Spaced repetition',
+  'welcome.benefit.srs.desc': 'that adapts to your memory over time',
+  'welcome.benefit.streak.title': 'Daily streak',
+  'welcome.benefit.streak.desc': 'and accuracy tracking to stay motivated',
+  'welcome.benefit.sync.title': 'Sync across devices',
+  'welcome.benefit.sync.desc': '\u2014 phone, tablet, laptop',
+  'welcome.benefit.exercises.title': 'Custom exercises',
+  'welcome.benefit.exercises.desc': 'saved to your account',
+
+  // Welcome — Final CTA + support
+  'welcome.finalCta.title': 'Ready to pass your exam?',
+  'welcome.finalCta.subtitle': 'Jump in and start practicing. No signup required.',
+  'welcome.support.text': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying the developer a coffee.',
+  'welcome.support.moduleBadge': 'PD3 Module 2 \u00b7 More modules coming',
   'welcome.wordsDiscovered': '{count} words discovered',
+
+  // Bubble game leaderboard
+  'bubble.leaderboard.title': 'Bubble Game',
+  'bubble.leaderboard.subtitle': 'Click floating words to discover them',
+  'bubble.leaderboard.rank': '#',
+  'bubble.leaderboard.player': 'Player',
+  'bubble.leaderboard.score': 'Score',
+  'bubble.leaderboard.empty': 'No scores yet — be the first!',
+  'bubble.leaderboard.nickname': 'Nickname',
+  'bubble.leaderboard.submit': 'Submit score',
+  'bubble.leaderboard.saved': 'Score saved!',
+  'bubble.leaderboard.synced': 'Synced',
+  'bubble.leaderboard.syncing': 'Saving...',
+  'bubble.leaderboard.shuffle': 'New nickname (old score stays on board)',
+  'bubble.leaderboard.yourScore': 'Your score: {count}',
+  'bubble.leaderboard.error': 'Could not save score. Try again.',
+  'bubble.leaderboard.clickToResume': 'Click a name to resume as that player',
+  'bubble.game.tooltip': 'Game & rankings',
+  'bubble.game.description': 'Click the floating Danish words to discover their meaning. The more you find, the higher your score!',
+  'bubble.ranking.yourNickname': 'Your nickname',
+  'bubble.ranking.nicknameSaved': 'Nickname saved',
+  'bubble.ranking.playToScore': 'Click floating words to earn a score!',
+  'bubble.game.toggleLabel': 'Show floating bubbles',
+  'bubble.game.turnOn': 'Turn on bubbles',
+  'bubble.game.turnOff': 'Turn off bubbles',
+  'bubble.leaderboard.shuffleGuest': 'New nickname (old score stays on board)',
+  'bubble.ranking.guestMode': 'Guest — shuffle resets your score',
+  'bubble.ranking.signedInMode': 'Signed in — score persists across sessions',
+
+  // Mini-games — shared
+  'game.panelTitle': 'Mini-Games',
+  'game.start': 'Start',
+  'game.playAgain': 'Play Again',
+  'game.finalScore': 'Final Score',
+  'game.answered': 'Answered',
+  'game.accuracy': 'Accuracy',
+  'game.bestStreak': 'Best Streak',
+  'game.streak': '{count} streak',
+  'game.leaderboard.title': 'Top Scores',
+  'game.leaderboard.empty': 'No scores yet — play to get on the board!',
+
+  // Mini-games — Bubbles
+  'game.bubbles.title': 'Bubbles',
+  'game.bubbles.description': 'Click floating words to discover their meaning.',
+
+  // Mini-games — Gender Snap
+  'game.genderSnap.title': 'Gender Snap',
+  'game.genderSnap.description': 'Is it en or et? Pick the correct gender before time runs out. 30 seconds — how many can you get?',
+
+  // Mini-games — Cloze Tap (coming soon)
+  'game.clozeTap.title': 'Cloze Tap',
+  'game.clozeTap.description': 'Tap the missing word to complete the sentence.',
+
+  // Mini-games — Speed Match (coming soon)
+  'game.speedMatch.title': 'Speed Match',
+  'game.speedMatch.description': 'Is this the right translation? Swipe right or left.',
+
+  // Mini-games — Word Order (coming soon)
+  'game.wordOrder.title': 'Word Order',
+  'game.wordOrder.description': 'Tap the words in the correct order to build a sentence.',
 
   // Footer
   'footer.builtBy': 'Built by',

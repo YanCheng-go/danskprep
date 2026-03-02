@@ -1,3 +1,9 @@
+---
+name: update-changelog
+description: Add a new changelog entry, bump version, sync all three locations
+user-invocable: true
+---
+
 # /update-changelog — Add a new changelog entry
 
 ## When to use
@@ -37,4 +43,3 @@ After a batch of features/fixes are ready, before creating a PR. Summarizes the 
 - Highlights should be user-facing (no "refactored X" unless it changes UX)
 - Keep title under 50 chars
 - **Version must be synced** in changelog.json, constants.ts, and package.json
-- On merge to main, `.github/workflows/release.yml` automatically creates a GitHub Release from the latest changelog entry

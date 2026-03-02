@@ -23,6 +23,8 @@ const da: Record<TranslationKeys, string> = {
   'nav.practice': 'Øv',
   'nav.reference': 'Opslagsværk',
   'nav.app': 'App',
+  'nav.signIn': 'Log ind',
+  'nav.signUp': 'Opret konto',
 
   // Header
   'header.openMenu': 'Åbn menu',
@@ -356,21 +358,134 @@ const da: Record<TranslationKeys, string> = {
   'guest.signInRequired': 'Log ind påkrævet',
   'guest.signInRequiredDesc': 'Du skal have en konto for at bruge denne funktion.',
 
-  // Welcome
-  'welcome.title': 'Bestå din danskprøve',
-  'welcome.subtitle': 'Opgaver, grammatik, skrivning, tale, lytning, ordbog & AI-tutor \u2014 alt du skal bruge til Pr\u00f8ve i Dansk',
-  'welcome.socialProof': 'Gratis og open source \u00b7 {exercises} opgaver, {words} ord \u00b7 PD3 Modul 2 (flere moduler kommer)',
+  // Welcome — Hero
+  'welcome.eyebrow': '{exercises} opgaver \u00b7 {words} ord \u00b7 Gratis',
+  'welcome.headline.line1': 'Bestå din',
+  'welcome.headline.line2': 'Danskprøve',
+  'welcome.subtitle': 'Opgaver, grammatik, skrivning, tale, lytning, ordbog & AI-tutor \u2014 alt du skal bruge til Pr\u00f8ve i Dansk.',
   'welcome.startPracticing': 'Begynd at øve',
-  'welcome.haveAccount': 'Har du allerede en konto? {link}',
-  'welcome.orSignUp': 'Eller {link} for personlig studiefremgang',
-  'welcome.step4': 'Log ind for at følge stimer, nøjagtighed & synkroniser på tværs af enheder',
-  'welcome.howItWorks': 'Sådan fungerer det',
-  'welcome.step1': 'Øv med opgaver der matcher din eksamen',
-  'welcome.step2': 'Spredt gentagelse tilpasser sig din hukommelse',
-  'welcome.step3': 'Få AI-feedback på skrivning og tale',
-  'welcome.supportNote': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe udvikleren en kaffe.',
-  'welcome.continueAsGuest': 'Fortsæt som gæst',
+  'welcome.createAccount': 'Opret gratis konto',
+  'welcome.signInLink': 'Har du allerede en konto? Log ind',
+  'welcome.socialProof.module': 'PD3 Modul 2 dækket',
+  'welcome.socialProof.coming': 'Flere moduler kommer snart',
+  'welcome.socialProof.openSource': 'Open source på GitHub',
+  'welcome.scrollHint': 'Rul',
+
+  // Welcome — Stats bar
+  'welcome.stats.exercises': 'Opgaver',
+  'welcome.stats.words': 'Ord',
+  'welcome.stats.grammarTopics': 'Grammatikemner',
+  'welcome.stats.practiceModes': 'Øvelsestyper',
+
+  // Welcome — Features
+  'welcome.features.overline': 'Alt samlet ét sted',
+  'welcome.features.title': 'Bygget til den rigtige eksamen',
+  'welcome.features.subtitle': 'Alle funktioner er direkte knyttet til det der testes i Pr\u00f8ve i Dansk. Ingen fyld.',
+  'welcome.feature.quiz.title': 'Quiz & øvelse',
+  'welcome.feature.quiz.desc': 'Udfyldning, ordrækkefølge, fejlrettelse, bøjning, sammensætning \u2014 {exercises} opgaver der dækker alle {topics} grammatikemner. Øv præcis det der kommer til eksamen.',
+  'welcome.feature.quiz.tag': '7 opgavetyper',
+  'welcome.feature.srs.title': 'Spredt gentagelse',
+  'welcome.feature.srs.desc': 'FSRS-algoritmen tilpasser sig din hukommelse. Kort kommer tilbage lige før du glemmer dem.',
+  'welcome.feature.writing.title': 'Skrivning',
+  'welcome.feature.writing.desc': 'Skriv danske tekster og få AI-feedback på grammatik, ordforråd og sætningsstruktur.',
+  'welcome.feature.speaking.title': 'Tale & lytning',
+  'welcome.feature.speaking.desc': 'Optag dig selv, transskribér, og få AI-feedback. Plus podcastbaseret lytteforståelse med quizzer. Byg alle fire sprogfærdigheder.',
+  'welcome.feature.speaking.tag': 'AI-drevet feedback',
+  'welcome.feature.grammar.title': 'Grammatikreference',
+  'welcome.feature.grammar.desc': 'Klare forklaringer af alle danske grammatikregler organiseret efter eksamenemne.',
+  'welcome.feature.dictionary.title': 'Ordbog & AI-tutor',
+  'welcome.feature.dictionary.desc': 'Slå ethvert ord op med bøjninger. Spørg AI-tutoren om grammatik eller øv samtaler.',
+
+  // Welcome — How it works
+  'welcome.howItWorks.overline': 'Enkelt og effektivt',
+  'welcome.howItWorks.title': 'Sådan fungerer det',
+  'welcome.howItWorks.subtitle': 'Tre trin til eksamenparathed.',
+  'welcome.step.practice.title': 'Øv',
+  'welcome.step.practice.desc': 'Arbejd dig igennem opgaver der matcher dit eksamensmodul og grammatikemner.',
+  'welcome.step.review.title': 'Gentag',
+  'welcome.step.review.desc': 'Spredt gentagelse bringer det tilbage du er ved at glemme. 10 minutter om dagen er nok.',
+  'welcome.step.track.title': 'Følg',
+  'welcome.step.track.desc': 'Se din stime, nøjagtighed og fremskridt. Vid præcis hvor du står inden eksamendagen.',
+
+  // Welcome — Sign-in benefits
+  'welcome.benefits.overline': 'Gratis konto',
+  'welcome.benefits.title': 'Endnu bedre med en konto',
+  'welcome.benefits.subtitle': 'Øv som gæst når som helst. Opret konto for personlig læring. Vi gemmer kun din e-mail og læringsdata \u2014 intet andet.',
+  'welcome.benefit.srs.title': 'Spredt gentagelse',
+  'welcome.benefit.srs.desc': 'der tilpasser sig din hukommelse over tid',
+  'welcome.benefit.streak.title': 'Daglig stime',
+  'welcome.benefit.streak.desc': 'og nøjagtighedssporing for at holde motivationen',
+  'welcome.benefit.sync.title': 'Synkroniser på tværs',
+  'welcome.benefit.sync.desc': '\u2014 telefon, tablet, laptop',
+  'welcome.benefit.exercises.title': 'Egne opgaver',
+  'welcome.benefit.exercises.desc': 'gemt på din konto',
+
+  // Welcome — Final CTA + support
+  'welcome.finalCta.title': 'Klar til at bestå din eksamen?',
+  'welcome.finalCta.subtitle': 'Hop ind og begynd at øve. Ingen tilmelding nødvendig.',
+  'welcome.support.text': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe udvikleren en kaffe.',
+  'welcome.support.moduleBadge': 'PD3 Modul 2 \u00b7 Flere moduler kommer',
   'welcome.wordsDiscovered': '{count} ord opdaget',
+
+  // Bubble game leaderboard
+  'bubble.leaderboard.title': 'Boblespil',
+  'bubble.leaderboard.subtitle': 'Klik på svævende ord for at opdage dem',
+  'bubble.leaderboard.rank': '#',
+  'bubble.leaderboard.player': 'Spiller',
+  'bubble.leaderboard.score': 'Score',
+  'bubble.leaderboard.empty': 'Ingen scorer endnu — vær den første!',
+  'bubble.leaderboard.nickname': 'Kaldenavn',
+  'bubble.leaderboard.submit': 'Indsend score',
+  'bubble.leaderboard.saved': 'Score gemt!',
+  'bubble.leaderboard.synced': 'Synkroniseret',
+  'bubble.leaderboard.syncing': 'Gemmer...',
+  'bubble.leaderboard.shuffle': 'Nyt kaldenavn (gammel score forbliver)',
+  'bubble.leaderboard.yourScore': 'Din score: {count}',
+  'bubble.leaderboard.error': 'Kunne ikke gemme score. Prøv igen.',
+  'bubble.leaderboard.clickToResume': 'Klik på et navn for at fortsætte som den spiller',
+  'bubble.game.tooltip': 'Spil & rangliste',
+  'bubble.game.description': 'Klik på de svævende danske ord for at opdage deres betydning. Jo flere du finder, jo højere scorer du!',
+  'bubble.ranking.yourNickname': 'Dit kaldenavn',
+  'bubble.ranking.nicknameSaved': 'Kaldenavn gemt',
+  'bubble.ranking.playToScore': 'Klik på svævende ord for at optjene point!',
+  'bubble.game.toggleLabel': 'Vis svævende bobler',
+  'bubble.game.turnOn': 'Tænd bobler',
+  'bubble.game.turnOff': 'Sluk bobler',
+  'bubble.leaderboard.shuffleGuest': 'Nyt kaldenavn (gammel score forbliver)',
+  'bubble.ranking.guestMode': 'Gæst — nyt navn nulstiller din score',
+  'bubble.ranking.signedInMode': 'Logget ind — score bevares på tværs af sessioner',
+
+  // Mini-games — shared
+  'game.panelTitle': 'Minispil',
+  'game.start': 'Start',
+  'game.playAgain': 'Spil igen',
+  'game.finalScore': 'Slutscore',
+  'game.answered': 'Besvaret',
+  'game.accuracy': 'Nøjagtighed',
+  'game.bestStreak': 'Bedste stime',
+  'game.streak': '{count} i stime',
+  'game.leaderboard.title': 'Topscorer',
+  'game.leaderboard.empty': 'Ingen scorer endnu — spil for at komme på listen!',
+
+  // Mini-games — Bubbles
+  'game.bubbles.title': 'Bobler',
+  'game.bubbles.description': 'Klik på svævende ord for at opdage deres betydning.',
+
+  // Mini-games — Gender Snap
+  'game.genderSnap.title': 'Kønssnap',
+  'game.genderSnap.description': 'Er det en eller et? Vælg det rigtige køn inden tiden løber ud. 30 sekunder — hvor mange kan du nå?',
+
+  // Mini-games — Cloze Tap (coming soon)
+  'game.clozeTap.title': 'Udfyld',
+  'game.clozeTap.description': 'Tryk på det manglende ord for at fuldføre sætningen.',
+
+  // Mini-games — Speed Match (coming soon)
+  'game.speedMatch.title': 'Hurtigmatch',
+  'game.speedMatch.description': 'Er dette den rigtige oversættelse? Swipe til højre eller venstre.',
+
+  // Mini-games — Word Order (coming soon)
+  'game.wordOrder.title': 'Ordrækkefølge',
+  'game.wordOrder.description': 'Tryk på ordene i den rigtige rækkefølge for at bygge en sætning.',
 
   // Footer
   'footer.builtBy': 'Bygget af',

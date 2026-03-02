@@ -1,13 +1,21 @@
+---
+name: fsrs-integration
+description: Implement or extend spaced repetition with ts-fsrs
+user-invocable: true
+---
+
 # FSRS Integration
 
-Implement or extend spaced repetition in DanskPrep. See `.claude/rules/fsrs-rules.md` for the authoritative rules (auto-attached when editing `src/lib/fsrs.ts` or `src/hooks/useStudy.ts`).
+Implement or extend spaced repetition in DanskPrep.
+
+> **Reference:** Read `.claude/references/fsrs-rules.md` first — it covers ts-fsrs configuration, card lifecycle, due queue logic, and TypeScript pitfalls.
 
 ## Key files
 - `src/lib/fsrs.ts` — scheduler init, `dbToFsrsCard`, `fsrsCardToDb`, `scheduleReview`, `getSchedulingOptions`
 - `src/hooks/useStudy.ts` — due queue, `reviewCard()`, Supabase sync
 - `src/components/study/CardRating.tsx` — 4-button rating UI with interval preview
 
-## DB ↔ FSRS field mapping
+## DB <-> FSRS field mapping
 ```typescript
 // Supabase user_cards → ts-fsrs Card
 { state, difficulty, stability, due, last_review, reps, lapses }

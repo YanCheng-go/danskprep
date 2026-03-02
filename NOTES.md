@@ -57,13 +57,14 @@ Affects: `useStudy.ts`, `useWords.ts`, `useQuiz.ts`, `useGrammar.ts`
 ## 🔐 Requires Credentials
 
 ### 4. Connect Supabase
-**Needs:** `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `.env.local`
+**Status:** Migrations applied, types + seeding remaining
 
-Steps:
-1. Add `.env.local` with Supabase credentials
-2. Run `npx supabase db push` or apply migrations in Supabase dashboard
-3. Run `npm run types` to generate real DB types → replace `createClient<any>()` in `src/lib/supabase.ts`
-4. Run `python scripts/seed-database.py` to populate DB
+`.env.local` configured. Supabase CLI linked. Migrations 001-008 applied via `supabase db push`.
+
+Remaining steps:
+1. ~~Apply migrations~~ ✅ Done (001-008 pushed via CLI)
+2. Run `npm run types` to generate real DB types → replace `createClient<any>()` in `src/lib/supabase.ts`
+3. Run `cd scripts && uv run python seed-database.py` to populate DB (needs `SUPABASE_SERVICE_KEY`)
 
 ### 5. Enrich Vocabulary — Fill 143 Empty Verb Inflections
 **Needs:** `ANTHROPIC_API_KEY`
@@ -101,18 +102,16 @@ Fix: on failure, push to `localStorage` key `danskprep_review_queue`. On next lo
 Queue shape: `{ card_id, rating, reviewed_at, response, was_correct, time_taken_ms }[]`
 
 ### 8. Automate Supabase Integration During Development
-**Branch:** `feature/supabase-dev-automation`
+**Status:** Partially done — CLI linked, `/supabase-sync` skill created
 
-Currently migrations must be manually pasted into the Supabase SQL Editor. This is error-prone and slows down development.
-
-Goals:
-- [ ] **Link Supabase project**: run `supabase login` + `supabase link --project-ref <ref>` to connect CLI to remote project
-- [ ] **Push migrations via CLI**: `supabase db push` to apply all pending migrations (001–005) automatically
-- [ ] **Generate real DB types**: `npm run types` → `supabase gen types typescript --linked > src/types/database.ts`, then replace `createClient<any>()` with `createClient<Database>()`
-- [ ] **CI migration check**: add a GitHub Actions step that runs `supabase db push --dry-run` on PRs touching `supabase/migrations/` to catch SQL errors before merge
-- [ ] **Seed script**: `uv run python scripts/seed-database.py` to bulk-insert seed JSON into Supabase tables after migrations
-- [ ] **Remove `apply-all-migrations.sql`**: once CLI push works, the combined script is no longer needed
-- [ ] **Local Supabase dev** (optional): `supabase start` for a local Postgres instance — faster iteration, no cloud round-trips during development
+- [x] **Link Supabase project**: CLI linked via `supabase link --project-ref`
+- [x] **Push migrations via CLI**: `supabase db push` applies pending migrations (001-008 done)
+- [x] **`/supabase-sync` skill**: auto-runs on new migration files (see `.claude/rules/supabase-workflow.md`)
+- [ ] **Generate real DB types**: `npm run types` → replace `createClient<any>()`
+- [ ] **CI migration check**: GitHub Actions `supabase db push --dry-run` on PRs touching migrations
+- [ ] **Seed script**: `uv run python scripts/seed-database.py` (needs `SUPABASE_SERVICE_KEY`)
+- [ ] **Keep `apply-all-migrations.sql`**: maintained as convenience copy for SQL Editor fallback
+- [ ] **Local Supabase dev** (optional): `supabase start` for local Postgres
 
 ---
 
@@ -132,6 +131,50 @@ Goals:
 ---
 
 ## ✅ Completed
+
+### Session 2026-03-02 cont. #6 — Infrastructure & tooling (branch: feature/dashboard-drill-button)
+- [x] **Supabase migrations pushed** — CLI linked, migrations 001-005 marked as applied (existed from SQL Editor), 006-008 pushed successfully
+- [x] **`/supabase-sync` skill** — created skill for pushing migrations via CLI with auth check, dry-run, and repair docs
+- [x] **Skills format fix** — converted all 17 skills from flat `.md` to `<name>/SKILL.md` directory format with YAML frontmatter
+- [x] **Rules vs References split** — moved `danish-content`, `fsrs-rules`, `supabase-patterns`, `ui-feedback` from rules (always-loaded) to references (on-demand); updated 7 skills with reference pointers
+- [x] **Nix + direnv** — created `.envrc` (`use flake`), trimmed `flake.nix` to 4 packages (nodejs_20, python312, uv, supabase-cli), added `nix-system-deps.md` rule
+- [x] **`supabase-workflow.md` rule** — auto-triggers `/supabase-sync` when new migration files are created
+- [x] **CLAUDE.md slimmed** — 308 → 106 lines; removed sections duplicated in rules/references; total always-loaded context reduced from 693 → 488 lines
+
+### Session 2026-03-02 cont. #5 — PR #25 code review fixes (branch: feature/dashboard-drill-button)
+- [x] **[CRITICAL] Tighten RLS policies** — `bubble_scores` insert/update policies now enforce ownership (`auth.uid()` match for signed-in, `null` user_id + `is_guest` for guests); Migration 008
+- [x] **[CRITICAL] Fix timer cleanup leak** — `WordBubble.tsx` timers stored in refs with cleanup `useEffect` on unmount; removed dead `return` from `handleClick`
+- [x] **WelcomeGate redirect** — navigating to `/welcome` while signed in now redirects to `/home` instead of force-signing the user out
+- [x] **Browser locale detection** — default locale uses `navigator.language` (Danish browser → `da`, else → `en`) instead of hardcoded `'da'`
+- [x] **Seed script error handling** — delete-then-insert for exercises/sentences wrapped in try/except with `sys.exit(1)` on failure
+- [x] **Extract `useBubbleGame` hook** — deduplicated identical bubble game state from `Layout.tsx` and `WelcomePage.tsx` into `src/hooks/useBubbleGame.ts`
+- [x] **Fix user object dependency** — `BubbleLeaderboard` useEffect dependency changed from `[isGuest, user]` to `[isGuest, user?.id]` to avoid re-fires on object identity changes
+- [x] **Delete prototype HTML** — `prototype-welcome.html` removed; `prototype-*.html` added to `.gitignore`
+- [x] **Fix pointer-events hack** — added `input`, `select`, `textarea` to pointer-events-auto list on WelcomePage content wrapper
+- [x] **localStorage key prefix** — `BUBBLE_NICKNAME` and `BUBBLE_SCORES` now use `danskprep_` prefix; one-time migration in `useBubbleGame.ts` moves old keys
+- [x] **Type-safe translation keys** — `Feature` interface uses `TranslationKeys` type for `titleKey`, `descKey`, `tagKey`
+
+### Session 2026-03-02 cont. #4 (branch: feature/dashboard-drill-button)
+- [x] **Bubble session redesign** — proper session model where signed-in users persist score across page loads; guests start fresh but can resume from leaderboard
+- [x] **Multi-nickname DB model** — Migration 007: signed-in users can have multiple leaderboard entries (one per nickname), replacing single-row model
+- [x] **Clickable leaderboard rows** — click any name on the rankings board to adopt that nickname and resume its score
+- [x] **Guest nickname resume** — guests can type or click an old nickname to resume accumulated score from localStorage/Supabase
+- [x] **Signed-in session restore** — on page refresh/navigation, signed-in user's nickname + score loaded from Supabase (most recent entry)
+- [x] **onScoreLoad architecture** — score restoration flows from BubbleLeaderboard → GamePanel → Layout/WelcomePage; race-condition guard lives in BubbleLeaderboard (not parent)
+- [x] **Welcome page auth links** — Sign In / Sign Up buttons added to WelcomeTopBar
+- [x] **Seed script fix** — exercises and sentences use delete-then-insert (no natural unique key); `acceptable_answers` null handling; error handling on insert failure
+- [x] **Combined migration file** — `apply-all-migrations.sql` updated to include 006 + 007 + 008 (tightened RLS)
+- [x] **Comprehensive tests** — 35 tests covering pure functions (getLocalScores, saveLocalScore), component rendering, shuffle, row-click resume, post-refresh resume, nickname persistence, and session lifecycle
+
+### Session 2026-03-02 cont. #3 (branch: feature/dashboard-drill-button)
+- [x] **Bubble Word Game** — floating Danish word bubbles with click-to-discover, auto-rising animation, configurable per context (welcome ON, app OFF)
+- [x] **Game Leaderboard** — nickname-based rankings with localStorage primary + Supabase optional sync
+- [x] **Guest vs signed-in scoring** — guest shuffle resets score (one nickname per try); signed-in accumulates across nicknames with history tracking
+- [x] **Auto-sync scores** — removed submit button; localStorage immediate + Supabase debounced (3s); handles high traffic via upsert pattern
+- [x] **Trophy badge** — hanging trophy icon below game icon in header; opens rankings side panel
+- [x] **GamePanel inline** — rankings panel squeezes page content instead of overlapping
+- [x] **Migration 006** — `bubble_scores` + `bubble_nickname_history` tables with RLS and conditional unique indexes
+- [x] **Documentation** — `docs/games.md` with architecture, data flow diagrams, and future game ideas
 
 ### Session 2026-03-02 cont. #2 (branch: feature/feedback-session)
 - [x] **Support redesign** — renamed "Donate" to "Support" with Coffee icon (pink), removed MobilePay `<a href>` link (security), hardcoded number as JS constant, Vercel Analytics `support_click` event
@@ -195,12 +238,10 @@ Goals:
 
 ## Known Issues
 
-- **Supabase not yet connected** — app runs entirely on local seed JSON. Auth and FSRS state won't persist across sessions.
 - **143 verbs with empty inflections** — form-test questions will be skipped for these; run `enrich-vocabulary.py` with `ANTHROPIC_API_KEY`
 - **WordOrder UX** — no way to reorder placed words without clearing all; click-to-remove or drag-and-drop needed
 - **HomePage stats go stale** — `useProgress` doesn't refresh after returning from Study; needs refresh mechanism
 - **Scrapers need manual review** — search output JSON for `"REVIEW"` and fill in missing answers
 - **`npm run types`** — must be run after Supabase is connected to get real DB types
-- **Vercel URL** — update README line 8 once actual deployment URL is known
 - **Writing & Speaking modes** — need ANTHROPIC_API_KEY for AI scoring; see Step 0 in High Priority
 - **Listening exercises** — need SpeakSpeak scraper update to capture audio files
