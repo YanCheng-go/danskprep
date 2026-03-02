@@ -100,6 +100,20 @@ If Supabase update fails during review, FSRS state is currently lost.
 Fix: on failure, push to `localStorage` key `danskprep_review_queue`. On next load, flush queue first.
 Queue shape: `{ card_id, rating, reviewed_at, response, was_correct, time_taken_ms }[]`
 
+### 8. Automate Supabase Integration During Development
+**Branch:** `feature/supabase-dev-automation`
+
+Currently migrations must be manually pasted into the Supabase SQL Editor. This is error-prone and slows down development.
+
+Goals:
+- [ ] **Link Supabase project**: run `supabase login` + `supabase link --project-ref <ref>` to connect CLI to remote project
+- [ ] **Push migrations via CLI**: `supabase db push` to apply all pending migrations (001–005) automatically
+- [ ] **Generate real DB types**: `npm run types` → `supabase gen types typescript --linked > src/types/database.ts`, then replace `createClient<any>()` with `createClient<Database>()`
+- [ ] **CI migration check**: add a GitHub Actions step that runs `supabase db push --dry-run` on PRs touching `supabase/migrations/` to catch SQL errors before merge
+- [ ] **Seed script**: `uv run python scripts/seed-database.py` to bulk-insert seed JSON into Supabase tables after migrations
+- [ ] **Remove `apply-all-migrations.sql`**: once CLI push works, the combined script is no longer needed
+- [ ] **Local Supabase dev** (optional): `supabase start` for a local Postgres instance — faster iteration, no cloud round-trips during development
+
 ---
 
 ### ~~10. In-App Feedback Mode~~ ✅ COMPLETED (feature/feedback-session)

@@ -300,8 +300,12 @@ function openrouterMessages(system: string, messages: ChatMessageData[]) {
 }
 
 async function openrouterComplete(config: ProviderConfig, system: string, userMessage: string): Promise<string> {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-  if (config.apiKey) headers['Authorization'] = `Bearer ${config.apiKey}`
+  if (!config.apiKey) throw new Error('No OpenRouter API key configured. Add it in Settings.')
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${config.apiKey}`,
+  }
 
   const res = await fetch(OPENROUTER_URL, {
     method: 'POST',
@@ -329,8 +333,15 @@ async function openrouterStream(
   onDone: () => void,
   onError: (error: Error) => void
 ): Promise<void> {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-  if (config.apiKey) headers['Authorization'] = `Bearer ${config.apiKey}`
+  if (!config.apiKey) {
+    onError(new Error('No OpenRouter API key configured. Add it in Settings.'))
+    return
+  }
+
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${config.apiKey}`,
+  }
 
   try {
     const res = await fetch(OPENROUTER_URL, {

@@ -268,8 +268,9 @@ const da: Record<TranslationKeys, string> = {
   'settings.model': 'Model',
   'settings.testConnection': 'Test forbindelse',
   'settings.testing': 'Tester...',
-  'settings.ollamaCorsTitle': 'Kører du DanskPrep online?',
-  'settings.ollamaCorsHelp': 'Hvis du kører DanskPrep på Vercel eller et andet domæne, blokerer Ollama forespørgsler på tværs af domæner som standard. Start Ollama med:',
+  'settings.ollamaCorsTitle': 'Ollama virker kun lokalt',
+  'settings.ollamaCorsHelp': 'Ollama kan ikke bruges når DanskPrep kører på Vercel (HTTPS). Browsere blokerer forespørgsler fra HTTPS-sider til http://localhost. Brug kun Ollama lokalt (npm run dev), eller skift til Anthropic/OpenRouter ved cloud-hosting.',
+  'settings.ollamaHttpsWarning': 'Du tilgår DanskPrep via HTTPS — Ollama vil ikke virke. Brug Anthropic eller OpenRouter i stedet.',
   'settings.aiKeyNote': 'API-nøgler gemmes kun i din browser — sendes aldrig til vores servere.',
 
   // Chat
