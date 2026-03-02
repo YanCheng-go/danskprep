@@ -1,21 +1,21 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Brain, Dumbbell, PenLine, BookOpen, Coffee, LogIn } from 'lucide-react'
+import { Coffee } from 'lucide-react'
+import { Agentation } from 'agentation'
 import { SupportDialog } from '@/components/layout/SupportDialog'
 import { FloatingWords } from '@/components/welcome/FloatingWords'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/lib/i18n'
 import { SETTINGS_KEYS } from '@/lib/constants'
 import changelogData from '@/data/seed/changelog.json'
 
 const latestStats = (changelogData as { stats: Record<string, number> }[])[0].stats
 
-const FEATURES = [
-  { icon: Brain, titleKey: 'welcome.studyTitle', descKey: 'welcome.studyDesc' },
-  { icon: Dumbbell, titleKey: 'welcome.quizTitle', descKey: 'welcome.quizDesc' },
-  { icon: PenLine, titleKey: 'welcome.writingTitle', descKey: 'welcome.writingDesc' },
-  { icon: BookOpen, titleKey: 'welcome.grammarTitle', descKey: 'welcome.grammarDesc' },
+const STEPS = [
+  { emoji: '\u{1F4DD}', key: 'welcome.step1' },
+  { emoji: '\u{1F9E0}', key: 'welcome.step2' },
+  { emoji: '\u270D\uFE0F', key: 'welcome.step3' },
+  { emoji: '\u{1F4CA}', key: 'welcome.step4' },
 ] as const
 
 export function WelcomePage() {
@@ -23,7 +23,7 @@ export function WelcomePage() {
   const navigate = useNavigate()
   const [supportOpen, setSupportOpen] = useState(false)
 
-  function handleGuest() {
+  function handleStart() {
     localStorage.setItem(SETTINGS_KEYS.WELCOME_SEEN, 'true')
     navigate('/')
   }
@@ -31,7 +31,7 @@ export function WelcomePage() {
   return (
     <div className="relative min-h-screen bg-background overflow-hidden">
       <FloatingWords />
-      <div className="relative z-20 mx-auto max-w-2xl px-4 pt-4 pb-8 sm:pt-6 sm:pb-12">
+      <div className="relative z-20 mx-auto max-w-2xl px-4 pt-4 pb-8 sm:pt-6 sm:pb-12 pointer-events-none [&_button]:pointer-events-auto [&_a]:pointer-events-auto">
         {/* Language toggle */}
         <div className="mb-6">
           <button
@@ -44,67 +44,62 @@ export function WelcomePage() {
         </div>
 
         {/* Hero */}
-        <div className="text-center mb-10">
-          <div className="text-4xl mb-4">🇩🇰</div>
+        <div className="text-center mb-8">
+          <div className="text-4xl mb-4">{'\u{1F1E9}\u{1F1F0}'}</div>
           <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             {t('welcome.title')}
           </h1>
           <p className="mt-3 text-muted-foreground text-base sm:text-lg">
             {t('welcome.subtitle')}
           </p>
-        </div>
-
-        {/* Feature cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-          {FEATURES.map(({ icon: Icon, titleKey, descKey }) => (
-            <div
-              key={titleKey}
-              className="rounded-lg border bg-card p-5 flex gap-4 items-start"
-            >
-              <div className="shrink-0 rounded-md bg-primary/10 p-2.5">
-                <Icon className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <h2 className="font-semibold text-sm">{t(titleKey)}</h2>
-                <p className="text-muted-foreground text-sm mt-1">{t(descKey)}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Content stats */}
-        <div className="flex flex-wrap justify-center gap-4 mb-10">
-          {Object.entries(latestStats).map(([key, value]) => (
-            <div key={key} className="rounded-md border bg-card px-4 py-3 text-center min-w-[100px]">
-              <p className="text-2xl font-bold">{value}</p>
-              <p className="text-xs text-muted-foreground">{key.replace(/_/g, ' ')}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* CTAs */}
-        <div className="flex flex-col items-center gap-3 mb-10">
-          <Link
-            to="/login"
-            className={cn(buttonVariants({ size: 'lg' }), 'gap-2 w-full sm:w-auto sm:min-w-[240px]')}
-          >
-            <LogIn className="h-4 w-4" />
-            {t('guest.signIn')}
-          </Link>
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={handleGuest}
-            className="w-full sm:w-auto sm:min-w-[240px]"
-          >
-            {t('welcome.continueAsGuest')}
-          </Button>
-          <p className="text-xs text-muted-foreground mt-1">
-            {t('welcome.noAccountYet')}{' '}
-            <Link to="/signup" className="text-primary underline underline-offset-4">
-              {t('guest.signUp')}
-            </Link>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {t('welcome.socialProof')
+              .replace('{exercises}', String(latestStats.exercises))
+              .replace('{words}', String(latestStats.words))}
           </p>
+        </div>
+
+        {/* Single primary CTA */}
+        <div className="flex flex-col items-center gap-3 mb-12">
+          <Button
+            size="lg"
+            onClick={handleStart}
+            className="w-full sm:w-auto sm:min-w-[240px] text-base"
+          >
+            {t('welcome.startPracticing')}
+          </Button>
+          <p className="text-sm text-muted-foreground">
+            {t('welcome.orSignUp').split('{link}')[0]}
+            <Link to="/signup" className="text-primary underline underline-offset-4">
+              {t('guest.signUp').toLowerCase()}
+            </Link>
+            {t('welcome.orSignUp').split('{link}')[1]}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {t('welcome.haveAccount').split('{link}')[0]}
+            <Link to="/login" className="text-primary underline underline-offset-4">
+              {t('guest.signIn')}
+            </Link>
+            {t('welcome.haveAccount').split('{link}')[1]}
+          </p>
+        </div>
+
+        {/* How it works — 3-step strip */}
+        <div className="mb-10">
+          <h2 className="text-center text-sm font-medium uppercase tracking-wider text-muted-foreground mb-6">
+            {t('welcome.howItWorks')}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {STEPS.map(({ emoji, key }) => (
+              <div
+                key={key}
+                className="rounded-lg border bg-card p-4 text-center"
+              >
+                <div className="text-2xl mb-2">{emoji}</div>
+                <p className="text-sm text-muted-foreground">{t(key)}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Support note */}
@@ -123,6 +118,7 @@ export function WelcomePage() {
       </div>
 
       <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
+      {import.meta.env.DEV && <Agentation />}
     </div>
   )
 }
