@@ -1,10 +1,7 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Dumbbell, List, Sparkles, X } from 'lucide-react'
+import { Sparkles, X } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { buttonVariants } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 import changelogData from '@/data/seed/changelog.json'
 
@@ -83,29 +80,6 @@ export function WhatsNew({ alwaysShow = false }: WhatsNewProps) {
           </div>
         )}
 
-        {/* CTA */}
-        <div className="flex flex-wrap gap-2 pt-1">
-          <Link
-            to="/quiz"
-            className={cn(
-              buttonVariants({ size: 'sm' }),
-              'gap-1.5'
-            )}
-          >
-            <List className="h-3.5 w-3.5" />
-            {t('updates.tryQuiz')}
-          </Link>
-          <Link
-            to="/drill"
-            className={cn(
-              buttonVariants({ variant: 'outline', size: 'sm' }),
-              'gap-1.5'
-            )}
-          >
-            <Dumbbell className="h-3.5 w-3.5" />
-            {t('updates.tryDrill')}
-          </Link>
-        </div>
       </CardContent>
     </Card>
   )

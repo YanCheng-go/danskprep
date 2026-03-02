@@ -35,6 +35,10 @@ export function SettingsPage() {
     () => localStorage.getItem(SETTINGS_KEYS.OPENROUTER_KEY) ?? ''
   )
   const [openrouterModel, setOpenrouterModel] = useState(providerConfig.provider === 'openrouter' ? providerConfig.model : 'qwen/qwen3-80b:free')
+  const [openaiKey, setOpenaiKey] = useState(
+    () => localStorage.getItem(SETTINGS_KEYS.OPENAI_KEY) ?? ''
+  )
+  const [openaiModel, setOpenaiModel] = useState(providerConfig.provider === 'openai' ? providerConfig.model : 'gpt-4o-mini')
   const [anthropicModel, setAnthropicModel] = useState(providerConfig.provider === 'anthropic' ? providerConfig.model : 'claude-haiku-4-5-20251001')
   const [ollamaTestResult, setOllamaTestResult] = useState<string | null>(null)
   const [ollamaTesting, setOllamaTesting] = useState(false)
@@ -78,6 +82,11 @@ export function SettingsPage() {
         localStorage.setItem(SETTINGS_KEYS.OPENROUTER_KEY, openrouterKey.trim())
       }
       saveProviderConfig({ provider: 'openrouter', apiKey: openrouterKey.trim() || undefined, model: openrouterModel })
+    } else if (aiProvider === 'openai') {
+      if (openaiKey.trim()) {
+        localStorage.setItem(SETTINGS_KEYS.OPENAI_KEY, openaiKey.trim())
+      }
+      saveProviderConfig({ provider: 'openai', apiKey: openaiKey.trim() || undefined, model: openaiModel })
     }
 
     setSaved(true)
@@ -162,7 +171,7 @@ export function SettingsPage() {
           <CardContent className="space-y-4">
             {/* Provider radio buttons */}
             <div className="space-y-2">
-              {(['anthropic', 'ollama', 'openrouter'] as const).map(provider => (
+              {(['anthropic', 'ollama', 'openrouter', 'openai'] as const).map(provider => (
                 <label key={provider} className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="radio"
@@ -289,6 +298,39 @@ export function SettingsPage() {
                     onClick={() => {
                       localStorage.removeItem(SETTINGS_KEYS.OPENROUTER_KEY)
                       setOpenrouterKey('')
+                    }}
+                  >
+                    {t('settings.remove')}
+                  </Button>
+                )}
+              </div>
+            )}
+
+            {/* OpenAI config */}
+            {aiProvider === 'openai' && (
+              <div className="space-y-2 border-t pt-3">
+                <label className="text-xs font-medium">{t('settings.apiKey')}</label>
+                <Input
+                  type="password"
+                  value={openaiKey}
+                  onChange={e => setOpenaiKey(e.target.value)}
+                  placeholder="sk-..."
+                  className="font-mono text-sm"
+                />
+                <label className="text-xs font-medium">{t('settings.model')}</label>
+                <Input
+                  value={openaiModel}
+                  onChange={e => setOpenaiModel(e.target.value)}
+                  placeholder="gpt-4o-mini"
+                  className="font-mono text-sm"
+                />
+                {openaiKey && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => {
+                      localStorage.removeItem(SETTINGS_KEYS.OPENAI_KEY)
+                      setOpenaiKey('')
                     }}
                   >
                     {t('settings.remove')}

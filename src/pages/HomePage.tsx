@@ -27,9 +27,6 @@ export function HomePage() {
           {user?.email ? t('home.signedIn', { email: user.email }) : t('home.welcome')}
         </p>
       </div>
-      <div className="mb-4">
-        <WhatsNew />
-      </div>
       <Dashboard
         dueCount={dueCount}
         streakDays={stats.streakDays}
@@ -42,6 +39,10 @@ export function HomePage() {
         isLoading={isLoading}
         isGuest={!user}
       />
+      <div className="mt-6">
+        <h2 className="text-sm font-semibold text-muted-foreground mb-2">{t('home.latestUpdates')}</h2>
+        <WhatsNew />
+      </div>
     </PageContainer>
   )
 }

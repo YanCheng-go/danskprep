@@ -59,6 +59,7 @@ export const SETTINGS_KEYS = {
   ANTHROPIC_KEY: 'danskprep_anthropic_api_key',
   OLLAMA_URL: 'danskprep_ollama_url',
   OPENROUTER_KEY: 'danskprep_openrouter_key',
+  OPENAI_KEY: 'danskprep_openai_api_key',
   WELCOME_SEEN: 'danskprep_welcome_seen',
 } as const
 
@@ -70,7 +71,6 @@ export interface ModuleInfo {
 }
 
 export const AVAILABLE_MODULES: ModuleInfo[] = [
-  { id: 'pd2', label: 'PD2 (Modul 2)', shortLabel: 'PD2', hasContent: false },
   { id: 'pd3m1', label: 'PD3 Module 1', shortLabel: 'PD3 M1', hasContent: false },
   { id: 'pd3m2', label: 'PD3 Module 2', shortLabel: 'PD3 M2', hasContent: true },
 ]
