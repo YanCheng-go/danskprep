@@ -39,6 +39,7 @@ vi.mock('@/lib/bubble-names', () => ({
 }))
 
 // Build a chainable mock for Supabase queries
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- used via ReturnType<typeof createMockQuery>
 function createMockQuery(resolveData: unknown = null, resolveError: unknown = null) {
   const chain: Record<string, ReturnType<typeof vi.fn>> = {}
   const methods = ['from', 'select', 'insert', 'update', 'eq', 'order', 'limit', 'maybeSingle']
@@ -475,7 +476,7 @@ describe('Session lifecycle (parent-level guards)', () => {
   })
 
   it('toggle bubbles off then on preserves score (parent state unchanged)', () => {
-    let parentScore = 10
+    const parentScore = 10
     // Toggle off: component unmounts, but parentScore stays
     // Toggle on: component remounts with same parentScore
     expect(parentScore).toBe(10) // Preserved

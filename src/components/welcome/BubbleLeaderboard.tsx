@@ -75,15 +75,17 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
 
   // Refs to avoid stale closures in debounced sync
   const nicknameRef = useRef(nickname)
-  nicknameRef.current = nickname
   const isGuestRef = useRef(isGuest)
-  isGuestRef.current = isGuest
   const userRef = useRef(user)
-  userRef.current = user
   const dbAvailableRef = useRef(dbAvailable)
-  dbAvailableRef.current = dbAvailable
   const onScoreLoadRef = useRef(onScoreLoad)
-  onScoreLoadRef.current = onScoreLoad
+  useEffect(() => {
+    nicknameRef.current = nickname
+    isGuestRef.current = isGuest
+    userRef.current = user
+    dbAvailableRef.current = dbAvailable
+    onScoreLoadRef.current = onScoreLoad
+  })
 
   // Persist nickname to localStorage whenever it changes
   useEffect(() => {
@@ -91,6 +93,37 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
       localStorage.setItem(NICKNAME_KEY, nickname.trim())
     }
   }, [nickname])
+
+  // ---- Remote score fetch ----
+
+  // Try to fetch remote scores — merge with local
+  const fetchRemoteScores = useCallback(async () => {
+    if (!supabase) return
+    const { data, error: fetchErr } = await supabase
+      .from('bubble_scores')
+      .select('nickname, score, is_guest')
+      .order('score', { ascending: false })
+      .limit(10)
+    if (fetchErr) {
+      setDbAvailable(false)
+      return
+    }
+    setDbAvailable(true)
+    if (data && data.length > 0) {
+      const local = getLocalScores()
+      const merged = new Map<string, BubbleScore>()
+      for (const entry of [...local, ...(data as BubbleScore[])]) {
+        const prev = merged.get(entry.nickname)
+        if (!prev || entry.score > prev.score) {
+          merged.set(entry.nickname, entry)
+        }
+      }
+      const combined = Array.from(merged.values())
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 10)
+      setScores(combined)
+    }
+  }, [])
 
   // ---- Remote score sync (debounced) ----
 
@@ -153,35 +186,6 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Try to fetch remote scores — merge with local
-  const fetchRemoteScores = useCallback(async () => {
-    if (!supabase) return
-    const { data, error: fetchErr } = await supabase
-      .from('bubble_scores')
-      .select('nickname, score, is_guest')
-      .order('score', { ascending: false })
-      .limit(10)
-    if (fetchErr) {
-      setDbAvailable(false)
-      return
-    }
-    setDbAvailable(true)
-    if (data && data.length > 0) {
-      const local = getLocalScores()
-      const merged = new Map<string, BubbleScore>()
-      for (const entry of [...local, ...(data as BubbleScore[])]) {
-        const prev = merged.get(entry.nickname)
-        if (!prev || entry.score > prev.score) {
-          merged.set(entry.nickname, entry)
-        }
-      }
-      const combined = Array.from(merged.values())
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 10)
-      setScores(combined)
-    }
-  }, [])
-
   useEffect(() => {
     fetchRemoteScores()
   }, [fetchRemoteScores])
@@ -189,7 +193,7 @@ export function BubbleLeaderboard({ currentScore, onScoreReset, onScoreLoad }: B
   // Ref to track the score at mount time — used to guard auto-restore from
   // clobbering bubbles the user already clicked before the async fetch returns.
   const currentScoreRef = useRef(currentScore)
-  currentScoreRef.current = currentScore
+  useEffect(() => { currentScoreRef.current = currentScore })
 
   // ---- Signed-in user: restore nickname + score from Supabase ----
   useEffect(() => {
