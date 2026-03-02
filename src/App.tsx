@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
@@ -8,6 +8,8 @@ import { AuthGuard } from '@/components/layout/AuthGuard'
 import { HomePage } from '@/pages/HomePage'
 import { LoginPage } from '@/pages/LoginPage'
 import { SignupPage } from '@/pages/SignupPage'
+import { SETTINGS_KEYS } from '@/lib/constants'
+import { useAuth } from '@/hooks/useAuth'
 
 // Lazy-load heavy pages to reduce initial bundle size
 const StudyPage = lazy(() =>
@@ -59,6 +61,32 @@ const WelcomePage = lazy(() =>
   import('@/pages/WelcomePage').then(m => ({ default: m.WelcomePage }))
 )
 
+/** Show welcome page on first visit, home page after that */
+function LandingGate() {
+  const seen = localStorage.getItem(SETTINGS_KEYS.WELCOME_SEEN) === 'true'
+  if (!seen) return <WelcomePage />
+  return <Navigate to="/home" replace />
+}
+
+/** Navigating to /welcome signs the user out (fresh start) and shows welcome */
+function WelcomeGate() {
+  const { user, signOut } = useAuth()
+  const signedOutRef = useRef(false)
+
+  useEffect(() => {
+    if (user && !signedOutRef.current) {
+      signedOutRef.current = true
+      localStorage.removeItem(SETTINGS_KEYS.BUBBLE_NICKNAME)
+      localStorage.removeItem(SETTINGS_KEYS.WELCOME_SEEN)
+      signOut()
+    }
+  }, [user, signOut])
+
+  // While signing out, show loader
+  if (user) return <PageLoader />
+  return <WelcomePage />
+}
+
 function PageLoader() {
   return (
     <div
@@ -77,12 +105,13 @@ export function App() {
       <I18nProvider>
       <Suspense fallback={<PageLoader />}>
         <Routes>
-          {/* Public routes (no layout) */}
-          <Route path="/welcome" element={<WelcomePage />} />
+          {/* Landing: welcome for first visit, redirect to /home after */}
+          <Route index element={<LandingGate />} />
+          <Route path="/welcome" element={<WelcomeGate />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
-          {/* Protected app routes */}
+          {/* App routes */}
           <Route
             element={
               <AuthGuard>
@@ -90,7 +119,7 @@ export function App() {
               </AuthGuard>
             }
           >
-            <Route index element={<HomePage />} />
+            <Route path="home" element={<HomePage />} />
             <Route path="study" element={<StudyPage />} />
             <Route path="grammar" element={<GrammarPage />} />
             <Route path="grammar/:slug" element={<GrammarTopicPage />} />
@@ -109,7 +138,7 @@ export function App() {
           </Route>
 
           {/* Fallback */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Suspense>
 

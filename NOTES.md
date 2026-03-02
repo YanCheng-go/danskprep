@@ -133,6 +133,28 @@ Goals:
 
 ## ✅ Completed
 
+### Session 2026-03-02 cont. #4 (branch: feature/dashboard-drill-button)
+- [x] **Bubble session redesign** — proper session model where signed-in users persist score across page loads; guests start fresh but can resume from leaderboard
+- [x] **Multi-nickname DB model** — Migration 007: signed-in users can have multiple leaderboard entries (one per nickname), replacing single-row model
+- [x] **Clickable leaderboard rows** — click any name on the rankings board to adopt that nickname and resume its score
+- [x] **Guest nickname resume** — guests can type or click an old nickname to resume accumulated score from localStorage/Supabase
+- [x] **Signed-in session restore** — on page refresh/navigation, signed-in user's nickname + score loaded from Supabase (most recent entry)
+- [x] **onScoreLoad architecture** — score restoration flows from BubbleLeaderboard → GamePanel → Layout/WelcomePage; race-condition guard lives in BubbleLeaderboard (not parent)
+- [x] **Welcome page auth links** — Sign In / Sign Up buttons added to WelcomeTopBar
+- [x] **Seed script fix** — exercises and sentences use delete-then-insert (no natural unique key); `acceptable_answers` null handling
+- [x] **Combined migration file** — `apply-all-migrations.sql` updated to include 006 + 007
+- [x] **Comprehensive tests** — 35 tests covering pure functions (getLocalScores, saveLocalScore), component rendering, shuffle, row-click resume, post-refresh resume, nickname persistence, and session lifecycle
+
+### Session 2026-03-02 cont. #3 (branch: feature/dashboard-drill-button)
+- [x] **Bubble Word Game** — floating Danish word bubbles with click-to-discover, auto-rising animation, configurable per context (welcome ON, app OFF)
+- [x] **Game Leaderboard** — nickname-based rankings with localStorage primary + Supabase optional sync
+- [x] **Guest vs signed-in scoring** — guest shuffle resets score (one nickname per try); signed-in accumulates across nicknames with history tracking
+- [x] **Auto-sync scores** — removed submit button; localStorage immediate + Supabase debounced (3s); handles high traffic via upsert pattern
+- [x] **Trophy badge** — hanging trophy icon below game icon in header; opens rankings side panel
+- [x] **GamePanel inline** — rankings panel squeezes page content instead of overlapping
+- [x] **Migration 006** — `bubble_scores` + `bubble_nickname_history` tables with RLS and conditional unique indexes
+- [x] **Documentation** — `docs/games.md` with architecture, data flow diagrams, and future game ideas
+
 ### Session 2026-03-02 cont. #2 (branch: feature/feedback-session)
 - [x] **Support redesign** — renamed "Donate" to "Support" with Coffee icon (pink), removed MobilePay `<a href>` link (security), hardcoded number as JS constant, Vercel Analytics `support_click` event
 - [x] **Dictionary inflections** — `api/dictionary.ts` now extracts gender, normalizes POS (Danish→English), builds structured inflections from DDO suffixes

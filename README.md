@@ -20,6 +20,7 @@ Active recall, spaced repetition (FSRS), and exam-focused exercises for learners
 - **Progress** — stats dashboard, streak tracking, accuracy metrics
 - **i18n** — English/Danish UI toggle (flag button in header)
 - **Danish Tutor** — AI chatbot for grammar questions and conversation practice
+- **Bubble Word Game** — floating Danish words to discover, with leaderboard rankings, clickable resume, and session persistence for signed-in users (see [docs/games.md](docs/games.md))
 - **Dark mode** — persistent theme toggle
 
 ## Stack
@@ -44,6 +45,7 @@ danskprep/
 │   │   ├── study/            # FlashCard, ReviewQueue, CardRating
 │   │   ├── ui/               # shadcn components (Button, Input, Card, Dialog, etc.)
 │   │   ├── vocabulary/       # WordList, WordDetail, InflectionTable
+│   │   ├── welcome/           # FloatingWords, WordBubble, BubbleLeaderboard, GamePanel
 │   │   └── writing/          # WritingPrompt, WritingFeedback
 │   ├── data/
 │   │   ├── seed/             # JSON seed files (exercises, words, grammar, prompts, episodes)
@@ -56,7 +58,7 @@ danskprep/
 ├── scripts/                  # Python tooling (scrapers, data enrichment, seeding)
 │   └── data/                 # Scraper output artifacts (raw JSON, screenshots)
 ├── supabase/
-│   └── migrations/           # SQL schema migrations (001–004)
+│   └── migrations/           # SQL schema migrations (001–007)
 ├── docs/                     # Architecture diagrams (Excalidraw)
 └── references/               # Data source documentation
 ```
@@ -133,6 +135,7 @@ uv run python enrich-vocabulary.py
 - [ ] WordOrder drag-and-drop reorder
 - [ ] Lazy-load seed JSON (reduce initial bundle)
 - [ ] PD3 Module 1 content
+- [ ] Additional mini-games (Word Match, Sentence Builder, Speed Conjugation)
 - [ ] PD2 content
 
 ### Long-term

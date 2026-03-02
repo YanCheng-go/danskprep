@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { SETTINGS_KEYS } from '@/lib/constants'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -22,7 +23,8 @@ export function LoginPage() {
     if (authError) {
       setError(authError.message)
     } else {
-      navigate('/')
+      localStorage.setItem(SETTINGS_KEYS.WELCOME_SEEN, 'true')
+      navigate('/home')
     }
   }
 

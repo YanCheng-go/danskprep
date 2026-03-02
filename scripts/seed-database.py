@@ -60,10 +60,13 @@ def seed_exercises(client: Client) -> None:
         e.pop("id", None)
         e.pop("created_at", None)
         # Ensure required fields
-        e.setdefault("acceptable_answers", [])
+        if not e.get("acceptable_answers"):
+            e["acceptable_answers"] = []
         e.setdefault("source", "generated")
+    # Delete existing exercises first, then re-insert (no natural unique key)
+    client.table("exercises").delete().neq("id", "00000000-0000-0000-0000-000000000000").execute()
     client.table("exercises").insert(exercises).execute()
-    print(f"  → {len(exercises)} exercises inserted")
+    print(f"  → {len(exercises)} exercises inserted (replaced)")
 
 
 def seed_sentences(client: Client) -> None:
@@ -75,8 +78,10 @@ def seed_sentences(client: Client) -> None:
         s.pop("created_at", None)
         s.pop("topic_tags", None)  # not in DB schema; stored in JSON for reference only
         s.setdefault("source", "generated")
+    # Delete existing sentences first, then re-insert (no natural unique key)
+    client.table("sentences").delete().neq("id", "00000000-0000-0000-0000-000000000000").execute()
     client.table("sentences").insert(sentences).execute()
-    print(f"  → {len(sentences)} sentences inserted")
+    print(f"  → {len(sentences)} sentences inserted (replaced)")
 
 
 def main() -> None:
