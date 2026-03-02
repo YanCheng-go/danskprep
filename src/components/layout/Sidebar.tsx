@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {
   BookOpen,
   Brain,
@@ -8,6 +8,7 @@ import {
   Github,
   Home,
   List,
+  LogIn,
   Mic,
   MessageSquare,
   Newspaper,
@@ -19,11 +20,13 @@ import {
   BarChart2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { buttonVariants } from '@/components/ui/button'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { FeedbackDialog } from '@/components/feedback/FeedbackDialog'
 import { AddExerciseDialog } from '@/components/exercise/AddExerciseDialog'
 import { useTranslation } from '@/lib/i18n'
 import { APP_VERSION } from '@/lib/constants'
+import type { User } from '@supabase/supabase-js'
 
 interface NavItem {
   to: string
@@ -45,12 +48,14 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 interface SidebarProps {
+  user?: User | null
   onClose?: () => void
 }
 
-export function Sidebar({ onClose }: SidebarProps) {
+export function Sidebar({ user, onClose }: SidebarProps) {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [addExerciseOpen, setAddExerciseOpen] = useState(false)
+  const [signInPromptOpen, setSignInPromptOpen] = useState(false)
   const { t } = useTranslation()
 
   const practiceItems: NavItem[] = [
@@ -134,7 +139,7 @@ export function Sidebar({ onClose }: SidebarProps) {
 
       {/* Add exercise button */}
       <button
-        onClick={() => setAddExerciseOpen(true)}
+        onClick={() => user ? setAddExerciseOpen(true) : setSignInPromptOpen(true)}
         className={linkClass}
       >
         <PlusCircle className="h-5 w-5" />
@@ -143,7 +148,7 @@ export function Sidebar({ onClose }: SidebarProps) {
 
       {/* General feedback button */}
       <button
-        onClick={() => setFeedbackOpen(true)}
+        onClick={() => user ? setFeedbackOpen(true) : setSignInPromptOpen(true)}
         className={linkClass}
       >
         <MessageSquare className="h-5 w-5" />
@@ -159,6 +164,33 @@ export function Sidebar({ onClose }: SidebarProps) {
       <Dialog open={feedbackOpen} onOpenChange={setFeedbackOpen}>
         <DialogContent>
           <FeedbackDialog onClose={() => setFeedbackOpen(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* Sign-in prompt for guests */}
+      <Dialog open={signInPromptOpen} onOpenChange={setSignInPromptOpen}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>{t('guest.signInRequired')}</DialogTitle>
+            <DialogDescription>{t('guest.signInRequiredDesc')}</DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-2 pt-2">
+            <Link
+              to="/login"
+              onClick={() => setSignInPromptOpen(false)}
+              className={cn(buttonVariants({ size: 'default' }), 'gap-1.5')}
+            >
+              <LogIn className="h-4 w-4" />
+              {t('guest.signIn')}
+            </Link>
+            <Link
+              to="/signup"
+              onClick={() => setSignInPromptOpen(false)}
+              className={cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-1.5')}
+            >
+              {t('guest.signUp')}
+            </Link>
+          </div>
         </DialogContent>
       </Dialog>
 

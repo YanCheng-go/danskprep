@@ -34,72 +34,12 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
   }
 
   return (
-    <header className="sticky top-0 z-40 flex h-14 items-center border-b bg-background px-4">
-      {/* Mobile menu toggle */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="mr-3 md:hidden"
-        onClick={onToggleMenu}
-        aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
-      >
-        {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-      </Button>
-
-      <span className="text-lg font-bold tracking-tight">
-        🇩🇰 DanskPrep
-      </span>
-
-      {/* Module selector dropdown */}
-      <div className="relative ml-2">
-        <button
-          onClick={() => setModuleDropdownOpen(o => !o)}
-          className="flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium hover:bg-accent transition-colors"
-        >
-          {activeModule?.shortLabel ?? t('header.module')}
-          <ChevronDown className="h-3 w-3" />
-        </button>
-        {moduleDropdownOpen && (
-          <>
-            <div
-              className="fixed inset-0 z-50"
-              onClick={() => setModuleDropdownOpen(false)}
-            />
-            <div className="absolute top-full left-0 mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1">
-              {AVAILABLE_MODULES.map(mod => (
-                <button
-                  key={mod.id}
-                  onClick={() => selectModule(mod.id)}
-                  className={`w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors flex items-center justify-between ${
-                    activeModuleId === mod.id ? 'font-medium text-primary' : ''
-                  }`}
-                >
-                  <span>{mod.label}</span>
-                  {!mod.hasContent && (
-                    <span className="text-[10px] text-muted-foreground ml-2">{t('header.soon')}</span>
-                  )}
-                </button>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Language toggle */}
-      <button
-        onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
-        className="ml-2 rounded-md border px-1.5 py-0.5 text-sm hover:bg-accent transition-colors"
-        title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
-        aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
-      >
-        {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
-      </button>
-
-      {/* Dictionary search — centered, hidden on mobile */}
-      <div className="hidden sm:flex flex-1 justify-center px-2">
-        <div className="flex items-center gap-1 max-w-xs w-full">
+    <header className="sticky top-0 z-40 h-14 border-b bg-background relative">
+      {/* Search layer — absolutely positioned to align with content area (sidebar-offset on desktop) */}
+      <div className="absolute inset-y-0 left-0 right-0 md:left-52 flex items-center px-4 pointer-events-none">
+        <div className="w-full max-w-2xl mx-auto flex items-center gap-1.5 pointer-events-auto">
           <div className="relative flex-1">
-            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-pink-400 pointer-events-none" />
             <input
               type="text"
               value={searchTerm}
@@ -111,12 +51,12 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
                 }
               }}
               placeholder={t('header.lookupPlaceholder')}
-              className="h-8 w-full rounded-md border bg-background pl-8 pr-2 text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring transition-colors"
+              className="h-9 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all hidden sm:block"
             />
           </div>
           <button
             onClick={() => navigate('/dictionary')}
-            className="inline-flex items-center justify-center h-8 w-8 rounded-md border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors shrink-0"
+            className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all shrink-0"
             title={t('nav.dictionary')}
             aria-label={t('nav.dictionary')}
           >
@@ -125,32 +65,104 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut }: HeaderProps)
         </div>
       </div>
 
-      <div className="ml-auto sm:ml-0 flex items-center gap-1">
-        <button
-          onClick={() => { setSupportOpen(true); track('support_click') }}
-          className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
+      {/* Header chrome — sits on top of the search layer */}
+      <div className="relative z-10 flex h-full items-center px-4">
+        {/* Mobile menu toggle */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="mr-3 md:hidden"
+          onClick={onToggleMenu}
+          aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
         >
-          <Coffee className="h-4 w-4 text-pink-500" />
-          <span className="hidden sm:inline">{t('support.title')}</span>
-        </button>
-        {user ? (
-          <>
-            <span className="hidden text-xs text-muted-foreground sm:block truncate max-w-[160px] ml-1">
-              {user.email}
-            </span>
-            <Button variant="ghost" size="icon" onClick={onSignOut} aria-label={t('header.signOut')}>
-              <LogOut className="h-4 w-4" />
-            </Button>
-          </>
-        ) : (
-          <Link
-            to="/login"
-            className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
-          >
-            <LogIn className="h-4 w-4" />
-            <span className="hidden sm:inline">{t('header.signIn')}</span>
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </Button>
+
+        <div className="flex items-center bg-background pr-3">
+          <Link to="/" className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity">
+            🇩🇰 DanskPrep
           </Link>
-        )}
+
+          {/* Module selector dropdown */}
+          <div className="relative ml-2">
+            <button
+              onClick={() => setModuleDropdownOpen(o => !o)}
+              className="flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium hover:bg-accent transition-colors"
+            >
+              {activeModule?.shortLabel ?? t('header.module')}
+              <ChevronDown className="h-3 w-3" />
+            </button>
+            {moduleDropdownOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-50"
+                  onClick={() => setModuleDropdownOpen(false)}
+                />
+                <div className="absolute top-full left-0 mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1">
+                  {AVAILABLE_MODULES.map(mod => (
+                    <button
+                      key={mod.id}
+                      onClick={() => mod.hasContent && selectModule(mod.id)}
+                      disabled={!mod.hasContent}
+                      className={`w-full text-left px-3 py-2 text-sm transition-colors flex items-center justify-between ${
+                        !mod.hasContent
+                          ? 'opacity-50 cursor-not-allowed'
+                          : 'hover:bg-accent'
+                      } ${
+                        activeModuleId === mod.id ? 'font-medium text-primary' : ''
+                      }`}
+                    >
+                      <span>{mod.label}</span>
+                      {!mod.hasContent && (
+                        <span className="text-[10px] text-muted-foreground ml-2">{t('header.soon')}</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Language toggle */}
+          <button
+            onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
+            className="ml-2 rounded-md border px-1.5 py-0.5 text-sm hover:bg-accent transition-colors"
+            title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+            aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+          >
+            {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
+          </button>
+        </div>
+
+        <div className="flex-1" />
+
+        <div className="flex items-center gap-1 bg-background pl-3">
+          <button
+            onClick={() => { setSupportOpen(true); track('support_click') }}
+            className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
+          >
+            <Coffee className="h-4 w-4 text-pink-500" />
+            <span className="hidden sm:inline">{t('support.title')}</span>
+          </button>
+          {user ? (
+            <>
+              <span className="hidden text-xs text-muted-foreground sm:block truncate max-w-[160px] ml-1">
+                {user.email}
+              </span>
+              <Button variant="ghost" size="icon" onClick={onSignOut} aria-label={t('header.signOut')}>
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+            >
+              <LogIn className="h-4 w-4" />
+              <span className="hidden sm:inline">{t('header.signIn')}</span>
+            </Link>
+          )}
+        </div>
       </div>
 
       <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
