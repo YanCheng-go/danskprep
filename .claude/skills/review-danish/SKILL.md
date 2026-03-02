@@ -1,6 +1,14 @@
+---
+name: review-danish
+description: Review Danish text for grammatical accuracy and exam suitability
+user-invocable: true
+---
+
 # Review Danish
 
 Review Danish text (exercises, explanations, example sentences) for grammatical accuracy, natural phrasing, and suitability for Module 2 exam-level learners.
+
+> **Reference:** Read `.claude/references/danish-content.md` first — it covers the grammatical accuracy rules to check against.
 
 ## Instructions
 
@@ -14,7 +22,7 @@ Check for:
 - **Adjective agreement**: e-form vs t-form based on noun gender and definiteness
 - **Pronoun case**: subject vs object forms (han/ham, hun/hende)
 - **Negation placement**: "ikke" after verb in main clause, before verb in subordinate clause
-- **Spelling**: æ/ø/å used correctly (not ae/oe/aa unless testing that specifically)
+- **Spelling**: ae/oe/aa used correctly (not ae/oe/aa unless testing that specifically)
 
 ### 2. Register & Naturalness
 - Is the phrasing natural for everyday spoken/written Danish?
@@ -44,4 +52,4 @@ Rule: which grammar rule applies
 
 Severity levels: `ERROR` (incorrect), `WARNING` (unnatural/ambiguous), `NOTE` (style suggestion).
 
-End with a summary count: X errors, Y warnings, Z notes. Give an overall quality rating: ✓ Ready / ⚠ Needs fixes / ✗ Major issues.
+End with a summary count: X errors, Y warnings, Z notes. Give an overall quality rating: Ready / Needs fixes / Major issues.

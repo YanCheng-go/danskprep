@@ -1,3 +1,9 @@
+---
+name: quiz-engine
+description: Implement or extend quiz functionality and answer checking
+user-invocable: true
+---
+
 # Quiz Engine
 
 Implement or extend quiz functionality. Key files: `src/types/quiz.ts`, `src/lib/quiz-engine.ts`, `src/lib/answer-check.ts`, `src/hooks/useQuiz.ts`.
@@ -10,12 +16,12 @@ Implement or extend quiz functionality. Key files: `src/types/quiz.ts`, `src/lib
 | Multiple choice | `multiple_choice` | Button pick | 4 options; distractors same POS |
 | Word order | `word_order` | Drag/tap chips | Exactly one correct arrangement |
 | Error correction | `error_correction` | Text field | Exactly one grammatical error |
-| Matching | `matching` | Pair selection | DA ↔ EN pairs |
+| Matching | `matching` | Pair selection | DA <-> EN pairs |
 | Conjugation | `conjugation` | Multiple fields | All tense forms for one verb |
 
 ## Answer checking rules
 - **Always use `checkAnswer()` from `src/lib/answer-check.ts`** — never compare strings with `===`
-- Accepts both æøå and ae/oe/aa input by default
+- Accepts both ae/oe/aa and ae/oe/aa input by default
 - Returns `{ isCorrect, isAlmostCorrect, closestMatch }` — show "almost" feedback when edit distance = 1
 - Uses Damerau-Levenshtein (transpositions count as 1 edit, not 2)
 

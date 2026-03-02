@@ -1,3 +1,9 @@
+---
+name: pull-request
+description: Create a PR with documentation updates and build verification
+user-invocable: true
+---
+
 # Pull Request
 
 Create a pull request and ensure all project documentation is up to date with the changes being merged.
@@ -24,14 +30,14 @@ When the user asks to create a PR (or when wrapping up a session of changes), fo
 
 Check whether any of these sections need updating:
 
-| Section | Update if… |
+| Section | Update if... |
 |---------|-----------|
 | Live app URL | Deployment URL changed |
 | Stack table | New dependency added (npm or Python) |
 | Commands table | New `npm run` script or `uv run` command added |
 | Data Enrichment section | New scraper added or scraper usage changed |
-| Roadmap — ✅ completed items | New features shipped |
-| Roadmap — 🔜 next items | Priorities shifted |
+| Roadmap — completed items | New features shipped |
+| Roadmap — next items | Priorities shifted |
 | Content Scope table | New module added or status changed |
 | Analytics badge | Badge URL updated |
 
@@ -95,6 +101,6 @@ For tiny PRs (typo fix, single-file change), the documentation update can be min
 
 - Never force-push to `main`
 - Commit messages should explain *why*, not just *what*
-- Co-author line: `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>`
+- Co-author line: `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 - If the PR adds a new Python dependency: confirm it's in `scripts/pyproject.toml`, not installed ad-hoc with pip
 - If the PR adds a new npm dependency: confirm it's in the right section (`dependencies` vs `devDependencies`)

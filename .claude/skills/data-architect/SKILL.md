@@ -1,6 +1,14 @@
+---
+name: data-architect
+description: Design and review database schema, migrations, RLS policies
+user-invocable: true
+---
+
 # Data Architect
 
 Design, review, and evolve the DanskPrep database schema. Acts as the Data Architect role: ensures schema integrity, migration safety, query performance, and RLS correctness.
+
+> **Reference:** Read `.claude/references/supabase-patterns.md` first — it covers client usage, RLS patterns, query conventions, and migration rules.
 
 ## Instructions
 
