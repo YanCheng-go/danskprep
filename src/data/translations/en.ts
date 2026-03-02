@@ -29,7 +29,7 @@ const en = {
   'header.soon': 'Soon',
   'header.module': 'Module',
   'header.signIn': 'Sign in',
-  'header.lookupPlaceholder': 'Look up...',
+  'header.lookupPlaceholder': 'Look up a word in the dictionary — for sentences, try the AI Tutor',
 
   // Home
   'home.greeting': 'Good day!',
