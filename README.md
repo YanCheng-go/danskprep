@@ -166,6 +166,8 @@ This project is built using an **AI-first development methodology** powered by [
 | `/scope` | Skill | Break a backlog item into sub-tasks with effort and risk |
 | `/release` | Skill | Cut a release — assess changes since last tag → changelog → version bump → release PR |
 | `/retro` | Skill | End-of-session retrospective, update backlog and session log |
+| `/daily` | Skill | Daily session wrapper — start with backlog, work, simplify, commit, retro |
+| `/weekly` | Skill | Weekly review — prioritize backlog, review progress, release check, plan ahead |
 | `/some` | Skill | Social media post generator (LinkedIn, Twitter, Facebook) |
 
 ### How it works

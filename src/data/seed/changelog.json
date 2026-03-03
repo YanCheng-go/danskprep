@@ -1,5 +1,27 @@
 [
   {
+    "version": "0.7.0",
+    "date": "2026-03-04",
+    "title": "Quiz Customization & Process Automation",
+    "highlights": [
+      "Configurable quiz length — choose 5, 10, 15, 20, or all questions per session (BL-035)",
+      "Header module dropdown now fully accessible with ARIA roles and Escape key (BL-030)",
+      "Search placeholder updated to 'Type a Danish word…' for clarity (BL-037)",
+      "Cleaned up AI provider defaults — no more pre-filled settings (BL-036)",
+      "GitHub issue templates for bugs, features, and content contributions",
+      "Branch name validation, label sync, and auto-project workflows",
+      "Added /daily and /weekly session workflow skills",
+      "Commit skill now runs /simplify before self-review"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 376,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
     "version": "0.6.0",
     "date": "2026-03-03",
     "title": "Accessibility & Developer Experience",
