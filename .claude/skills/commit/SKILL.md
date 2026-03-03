@@ -73,7 +73,23 @@ Fix errors on the same branch → commit → push → re-verify (`tsc --noEmit &
 3. `git checkout main && git pull --rebase`
 4. `git branch -d <branch>` — delete the local branch to keep the workspace clean
 
-## Step 6 — Update backlog
+## Step 6 — Update documentation
+
+**As the very last step before merge**, review and update all relevant docs in the same PR branch. Commit doc updates separately from code changes.
+
+Checklist — update each file **only if the PR makes it stale**:
+
+| Doc | When to update |
+|-----|---------------|
+| `README.md` | Content counts (words, exercises), Roadmap checkboxes, Features list, Python Scripts, Stack |
+| `NOTES.md` | Check off completed items, remove stale todos, update Known Issues |
+| `CLAUDE.md` | New conventions, changed directory structure, new exercise types, new env vars |
+| `src/data/seed/changelog.json` | Every user-visible change — add new version entry at top |
+| `docs/backlog.md` | Mark related BL-NNN items as `done`, update header counts |
+
+**Do not update a doc if the PR doesn't affect it.** Only touch what's stale.
+
+## Step 7 — Update backlog
 
 If PR relates to a backlog item: update `docs/backlog.md` status (`done` or add note), update header counts.
 
@@ -85,4 +101,4 @@ If PR relates to a backlog item: update `docs/backlog.md` status (`done` or add 
 - **Never skip CI** — wait for checks before merge
 - **Clean up unused imports** in the same edit
 - **One concern per commit** — separate unrelated changes
-- **Docs check**: update README roadmap/commands/stack when user-facing changes ship
+- **Docs last**: update docs as the final commit on the branch, after all code is done
