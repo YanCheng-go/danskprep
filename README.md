@@ -164,7 +164,7 @@ This project is built using an **AI-first development methodology** powered by [
 | **content-generator** | Agent | Danish exercise and grammar content generation |
 | `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
 | `/scope` | Skill | Break a backlog item into sub-tasks with effort and risk |
-| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/release` | Skill | Cut a release — assess changes since last tag → changelog → version bump → release PR |
 | `/retro` | Skill | End-of-session retrospective, update backlog and session log |
 | `/some` | Skill | Social media post generator (LinkedIn, Twitter, Facebook) |
 

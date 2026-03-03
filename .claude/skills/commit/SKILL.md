@@ -1,12 +1,12 @@
 ---
 name: commit
-description: Commit, PR, self-review, fix, merge — full ship cycle
+description: Commit, branch, PR, self-review, fix — then stop for human approval before merge
 user-invocable: true
 ---
 
 # /commit — Ship Cycle
 
-Commit → branch → PR → self-review → fix → CI → merge. **Never push directly to main.**
+Commit → branch → PR → self-review → fix → docs → **STOP for human approval** → merge. **Never push directly to main.**
 
 | Invocation | Behaviour |
 |---|---|
@@ -41,10 +41,6 @@ gh pr create --title "<title>" --body "$(cat <<'EOF'
 ## Backlog
 - Relates to: BL-NNN (or "None")
 
-## Docs updated
-- [ ] README.md (if user-facing: roadmap, stack, commands)
-- [ ] NOTES.md (check off completed items)
-
 ## Test plan
 - [ ] `npx tsc --noEmit` + `npm run build` + `npx vitest run`
 - [ ] Manually verified: <description>
@@ -66,16 +62,9 @@ EOF
 
 Fix errors on the same branch → commit → push → re-verify (`tsc --noEmit && build && vitest run`).
 
-## Step 5 — CI and merge
+## Step 5 — Update documentation
 
-1. `gh pr checks <number>` — wait for CI to pass (fix failures if any)
-2. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
-3. `git checkout main && git pull --rebase`
-4. `git branch -d <branch>` — delete the local branch to keep the workspace clean
-
-## Step 6 — Update documentation
-
-**As the very last step before merge**, review and update all relevant docs in the same PR branch. Commit doc updates separately from code changes.
+Review and update all relevant docs on the PR branch. Commit doc updates separately from code changes.
 
 Checklist — update each file **only if the PR makes it stale**:
 
@@ -84,21 +73,56 @@ Checklist — update each file **only if the PR makes it stale**:
 | `README.md` | Content counts (words, exercises), Roadmap checkboxes, Features list, Python Scripts, Stack |
 | `NOTES.md` | Check off completed items, remove stale todos, update Known Issues |
 | `CLAUDE.md` | New conventions, changed directory structure, new exercise types, new env vars |
-| `src/data/seed/changelog.json` | Every user-visible change — add new version entry at top |
 | `docs/backlog.md` | Mark related BL-NNN items as `done`, update header counts |
 
 **Do not update a doc if the PR doesn't affect it.** Only touch what's stale.
 
-## Step 7 — Update backlog
+## Step 6 — Human checkpoint ⛔
 
-If PR relates to a backlog item: update `docs/backlog.md` status (`done` or add note), update header counts.
+**STOP HERE.** Present the following summary to the user and wait for their decision:
+
+```
+## PR ready for review
+
+- PR: <PR URL>
+- Branch: <branch name>
+- Diff: +N / -N lines across M files
+- Self-review verdict: Clean / Needs fixes
+- CI status: <passing / pending / failing>
+
+Please review the PR. Reply with:
+- "merge" — to proceed with squash merge
+- "fix <issue>" — to address something before merge
+- or any other feedback
+```
+
+**Do NOT proceed to Step 7 unless the user explicitly approves the merge.**
+
+## Step 7 — Merge (only on user approval)
+
+1. `gh pr checks <number>` — confirm CI passes (fix failures if any)
+2. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
+3. `git checkout main && git pull --rebase`
+4. `git branch -d <branch>` — delete the local branch to keep the workspace clean
+
+## Step 8 — Release reminder
+
+After merge, ask the user:
+
+```
+Merged to main. Want to cut a release?
+Run /release to assess changes since the last tag and create a release PR.
+```
+
+This is just a reminder — the user decides. Do not run `/release` automatically.
 
 ---
 
 ## Rules
 
 - **Never push to main** — always PR
+- **Never merge without user approval** — always stop at Step 6
 - **Never skip CI** — wait for checks before merge
 - **Clean up unused imports** in the same edit
 - **One concern per commit** — separate unrelated changes
-- **Docs last**: update docs as the final commit on the branch, after all code is done
+- **Docs before merge**: update docs as the final commit on the branch, before requesting review
