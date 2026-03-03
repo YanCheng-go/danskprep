@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { SETTINGS_KEYS, DAILY_NEW_CARDS_LIMIT } from '@/lib/constants'
 import type { AIProvider } from '@/lib/ai-provider'
-import { getProviderConfig, saveProviderConfig, testOllamaConnection } from '@/lib/ai-provider'
+import { getProviderConfig, saveProviderConfig, testOllamaConnection, PROVIDER_DEFAULTS } from '@/lib/ai-provider'
 import { useTranslation } from '@/lib/i18n'
 import { ExternalLink } from 'lucide-react'
 
@@ -29,17 +29,27 @@ export function SettingsPage() {
   const [anthropicKey, setAnthropicKey] = useState(
     () => localStorage.getItem(SETTINGS_KEYS.ANTHROPIC_KEY) ?? ''
   )
-  const [ollamaUrl, setOllamaUrl] = useState(providerConfig.provider === 'ollama' ? providerConfig.baseUrl ?? 'http://localhost:11434' : 'http://localhost:11434')
-  const [ollamaModel, setOllamaModel] = useState(providerConfig.provider === 'ollama' ? providerConfig.model : 'llama3.1')
+  const [ollamaUrl, setOllamaUrl] = useState(
+    () => localStorage.getItem(SETTINGS_KEYS.OLLAMA_URL) ?? ''
+  )
+  const [ollamaModel, setOllamaModel] = useState(
+    () => providerConfig.provider === 'ollama' ? providerConfig.model : ''
+  )
   const [openrouterKey, setOpenrouterKey] = useState(
     () => localStorage.getItem(SETTINGS_KEYS.OPENROUTER_KEY) ?? ''
   )
-  const [openrouterModel, setOpenrouterModel] = useState(providerConfig.provider === 'openrouter' ? providerConfig.model : 'qwen/qwen3-80b:free')
+  const [openrouterModel, setOpenrouterModel] = useState(
+    () => providerConfig.provider === 'openrouter' ? providerConfig.model : ''
+  )
   const [openaiKey, setOpenaiKey] = useState(
     () => localStorage.getItem(SETTINGS_KEYS.OPENAI_KEY) ?? ''
   )
-  const [openaiModel, setOpenaiModel] = useState(providerConfig.provider === 'openai' ? providerConfig.model : 'gpt-4o-mini')
-  const [anthropicModel, setAnthropicModel] = useState(providerConfig.provider === 'anthropic' ? providerConfig.model : 'claude-haiku-4-5-20251001')
+  const [openaiModel, setOpenaiModel] = useState(
+    () => providerConfig.provider === 'openai' ? providerConfig.model : ''
+  )
+  const [anthropicModel, setAnthropicModel] = useState(
+    () => providerConfig.provider === 'anthropic' ? providerConfig.model : ''
+  )
   const [ollamaTestResult, setOllamaTestResult] = useState<string | null>(null)
   const [ollamaTesting, setOllamaTesting] = useState(false)
 
@@ -55,7 +65,7 @@ export function SettingsPage() {
   async function handleOllamaTest() {
     setOllamaTesting(true)
     setOllamaTestResult(null)
-    const result = await testOllamaConnection(ollamaUrl)
+    const result = await testOllamaConnection(ollamaUrl.trim() || PROVIDER_DEFAULTS.ollama.baseUrl!)
     if (result.ok) {
       setOllamaTestResult(`Connected! Models: ${result.models?.join(', ') ?? 'none'}`)
     } else {
@@ -69,24 +79,28 @@ export function SettingsPage() {
     localStorage.setItem(SETTINGS_KEYS.ACCEPT_LATIN_FALLBACK, String(acceptLatin))
     localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(darkMode))
 
-    // Save AI provider config
+    // Save AI provider config — use provider defaults when fields are left empty
     if (aiProvider === 'anthropic') {
       if (anthropicKey.trim()) {
         localStorage.setItem(SETTINGS_KEYS.ANTHROPIC_KEY, anthropicKey.trim())
       }
-      saveProviderConfig({ provider: 'anthropic', apiKey: anthropicKey.trim() || undefined, model: anthropicModel })
+      saveProviderConfig({ provider: 'anthropic', apiKey: anthropicKey.trim() || undefined, model: anthropicModel.trim() || PROVIDER_DEFAULTS.anthropic.model })
     } else if (aiProvider === 'ollama') {
-      saveProviderConfig({ provider: 'ollama', baseUrl: ollamaUrl, model: ollamaModel })
+      saveProviderConfig({
+        provider: 'ollama',
+        baseUrl: ollamaUrl.trim() || PROVIDER_DEFAULTS.ollama.baseUrl,
+        model: ollamaModel.trim() || PROVIDER_DEFAULTS.ollama.model,
+      })
     } else if (aiProvider === 'openrouter') {
       if (openrouterKey.trim()) {
         localStorage.setItem(SETTINGS_KEYS.OPENROUTER_KEY, openrouterKey.trim())
       }
-      saveProviderConfig({ provider: 'openrouter', apiKey: openrouterKey.trim() || undefined, model: openrouterModel })
+      saveProviderConfig({ provider: 'openrouter', apiKey: openrouterKey.trim() || undefined, model: openrouterModel.trim() || PROVIDER_DEFAULTS.openrouter.model })
     } else if (aiProvider === 'openai') {
       if (openaiKey.trim()) {
         localStorage.setItem(SETTINGS_KEYS.OPENAI_KEY, openaiKey.trim())
       }
-      saveProviderConfig({ provider: 'openai', apiKey: openaiKey.trim() || undefined, model: openaiModel })
+      saveProviderConfig({ provider: 'openai', apiKey: openaiKey.trim() || undefined, model: openaiModel.trim() || PROVIDER_DEFAULTS.openai.model })
     }
 
     setSaved(true)
