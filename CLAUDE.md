@@ -109,7 +109,7 @@ Never commit `.env.local`.
 
 | Name | Type | Purpose |
 |------|------|---------|
-| `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
+| `/backlog` | Skill | Manage backlog via GitHub Projects (#15) — add, list, filter, update, prioritize |
 | `/retro` | Skill | End-of-session retrospective, update backlog + session log |
 | `/scope` | Skill | Break a backlog item into sub-tasks with effort/risk |
 | `/release` | Skill | Cut a release — assess changes since last tag → changelog → version bump → release PR |
