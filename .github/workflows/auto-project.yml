@@ -12,7 +12,7 @@ jobs:
       issues: read
 
     steps:
-      - name: Add to GitHub Project #15
+      - name: Add to project board
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
