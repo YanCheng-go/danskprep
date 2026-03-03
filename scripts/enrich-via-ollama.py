@@ -96,7 +96,7 @@ def parse_response(text: str, expected_count: int) -> list[dict] | None:
     if text.startswith("```"):
         lines = text.split("\n")
         # Remove first line (```json or ```) and last line (```)
-        lines = [l for l in lines if not l.strip().startswith("```")]
+        lines = [line for line in lines if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
 
     # Find JSON array
@@ -179,7 +179,7 @@ def main() -> None:
 
         parsed = parse_response(response, len(batch_words))
         if not parsed:
-            print(f"  FAILED: Could not parse JSON from response")
+            print("  FAILED: Could not parse JSON from response")
             print(f"  Response preview: {response[:200]}")
             failed_verbs.extend(w["danish"] for w in batch_words)
             continue

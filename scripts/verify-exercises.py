@@ -120,7 +120,7 @@ def parse_response(text: str) -> list[dict] | None:
     # Strip markdown code fences
     if text.startswith("```"):
         lines = text.split("\n")
-        lines = [l for l in lines if not l.strip().startswith("```")]
+        lines = [line for line in lines if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
 
     start = text.find("[")
@@ -192,7 +192,7 @@ def main() -> None:
 
         parsed = parse_response(response)
         if not parsed:
-            print(f"FAILED (parse error)")
+            print("FAILED (parse error)")
             # Try to save partial response for debugging
             failed_indices.extend(range(start_idx, start_idx + len(batch)))
             for i in range(len(batch)):
@@ -297,7 +297,7 @@ def generate_markdown(
     lines = [
         "# Exercise Verification Report",
         "",
-        f"**Date:** 2026-03-03",
+        "**Date:** 2026-03-03",
         f"**Model:** {MODEL} (Ollama local)",
         f"**Total exercises:** {len(exercises)}",
         f"**Verified:** {len(exercises) - len(failed_indices)}",
@@ -305,8 +305,8 @@ def generate_markdown(
         "",
         "## Summary",
         "",
-        f"| Category | Count |",
-        f"|----------|-------|",
+        "| Category | Count |",
+        "|----------|-------|",
         f"| Answer issues | {len(answer_issues)} |",
         f"| Hint issues | {len(hint_issues)} |",
         f"| Danish/mixed hints (need English) | {len(danish_hints)} |",
