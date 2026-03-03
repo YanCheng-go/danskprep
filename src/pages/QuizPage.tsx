@@ -15,7 +15,7 @@ import { FeedbackPanel } from '@/components/quiz/FeedbackPanel'
 import { QuizResults } from '@/components/quiz/QuizResults'
 import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import type { Exercise } from '@/types/quiz'
-import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS } from '@/lib/constants'
+import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS, SETTINGS_KEYS } from '@/lib/constants'
 import { cn, shuffle } from '@/lib/utils'
 import { FeedbackButton } from '@/components/feedback/FeedbackButton'
 import { loadUserExercises, toExercise } from '@/lib/user-exercises'
@@ -32,9 +32,12 @@ const TOPIC_LABELS: Record<string, string> = {
   'pronouns': 'Pronouns',
 }
 
+const QUIZ_SESSION_LENGTHS = [10, 15, 20, 30, 0] as const  // 0 = all
+
 interface QuizConfig {
   topicSlug: string
   exerciseType: string
+  maxQuestions: number  // 0 = unlimited
 }
 
 export function QuizPage() {
@@ -60,7 +63,8 @@ export function QuizPage() {
     if (cfg.exerciseType !== 'all') {
       filtered = filtered.filter(e => e.exercise_type === cfg.exerciseType)
     }
-    return shuffle(filtered).slice(0, 15)
+    const shuffled = shuffle(filtered)
+    return cfg.maxQuestions > 0 ? shuffled.slice(0, cfg.maxQuestions) : shuffled
   }
 
   function startQuiz(cfg: QuizConfig) {
@@ -125,7 +129,7 @@ export function QuizPage() {
         <h1 className="text-2xl font-bold">{t('quiz.title')}</h1>
         <p className="text-muted-foreground text-sm mt-1">{t('quiz.subtitle')}</p>
       </div>
-      <QuizSelector onStart={startQuiz} initialTopic={initialTopic} />
+      <QuizSelector onStart={startQuiz} initialTopic={initialTopic} allExercises={allExercises} />
     </PageContainer>
   )
 }
@@ -261,14 +265,33 @@ function FilterChip({ active, onClick, children }: FilterChipProps) {
 interface QuizSelectorProps {
   onStart: (config: QuizConfig) => void
   initialTopic?: string
+  allExercises: Exercise[]
 }
 
-function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSelectorProps) {
+function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0], allExercises }: QuizSelectorProps) {
   const [topicSlug, setTopicSlug] = useState<string>(initialTopic)
   const [exerciseType, setExerciseType] = useState('all')
+  const [maxQuestions, setMaxQuestions] = useState<number>(() => {
+    const stored = localStorage.getItem(SETTINGS_KEYS.QUIZ_MAX_QUESTIONS)
+    return stored ? Number(stored) : 15
+  })
   const { t } = useTranslation()
 
   const availableTypes = ['all', ...Object.keys(EXERCISE_TYPE_LABELS)]
+
+  // Count matching exercises for the current filters
+  const matchingCount = useMemo(() => {
+    let filtered = allExercises.filter(e => e.grammar_topic_slug === topicSlug)
+    if (exerciseType !== 'all') {
+      filtered = filtered.filter(e => e.exercise_type === exerciseType)
+    }
+    return filtered.length
+  }, [allExercises, topicSlug, exerciseType])
+
+  function handleMaxQuestionsChange(value: number) {
+    setMaxQuestions(value)
+    localStorage.setItem(SETTINGS_KEYS.QUIZ_MAX_QUESTIONS, String(value))
+  }
 
   return (
     <div className="space-y-6">
@@ -310,9 +333,28 @@ function QuizSelector({ onStart, initialTopic = GRAMMAR_TOPIC_SLUGS[0] }: QuizSe
         </div>
       </div>
 
+      {/* Session length */}
+      <div className="space-y-2">
+        <p className="text-sm font-medium">{t('quiz.sessionLength')}</p>
+        <div className="flex flex-wrap gap-2">
+          {QUIZ_SESSION_LENGTHS.map(n => (
+            <FilterChip
+              key={n}
+              active={maxQuestions === n}
+              onClick={() => handleMaxQuestionsChange(n)}
+            >
+              {n === 0 ? t('quiz.allCount', { count: matchingCount }) : String(n)}
+            </FilterChip>
+          ))}
+        </div>
+        <p className="text-xs text-muted-foreground">
+          {t('quiz.exercises', { count: matchingCount })}
+        </p>
+      </div>
+
       <Button
         className="w-full"
-        onClick={() => onStart({ topicSlug, exerciseType })}
+        onClick={() => onStart({ topicSlug, exerciseType, maxQuestions })}
       >
         {t('quiz.start')}
       </Button>

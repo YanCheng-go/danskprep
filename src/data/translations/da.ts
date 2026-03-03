@@ -33,7 +33,7 @@ const da: Record<TranslationKeys, string> = {
   'header.soon': 'Snart',
   'header.module': 'Modul',
   'header.signIn': 'Log ind',
-  'header.lookupPlaceholder': 'Slå et ord op',
+  'header.lookupPlaceholder': 'Skriv et dansk ord',
   'header.selectModule': 'Vælg modul',
   'header.darkMode.light': 'Skift til lys tilstand',
   'header.darkMode.dark': 'Skift til mørk tilstand',
@@ -73,6 +73,8 @@ const da: Record<TranslationKeys, string> = {
   'quiz.grammarTopic': 'Grammatisk emne',
   'quiz.exerciseType': 'Øvelsestype',
   'quiz.exercises': '{count} øvelser',
+  'quiz.sessionLength': 'Spørgsmål per session',
+  'quiz.allCount': 'Alle ({count})',
   'quiz.backToSelector': 'Tilbage til vælger',
 
   // Drill
@@ -196,7 +198,7 @@ const da: Record<TranslationKeys, string> = {
   // Dictionary
   'dictionary.title': 'Dansk Ordbog',
   'dictionary.subtitle': 'Slå danske ord op — betydning, bøjning og eksempler',
-  'dictionary.placeholder': 'Skriv et dansk ord...',
+  'dictionary.placeholder': 'Skriv et dansk ord',
   'dictionary.lookup': 'Slå op',
   'dictionary.poweredBy': 'Drevet af Den Danske Ordbog (ordnet.dk)',
   'dictionary.recent': 'Seneste søgninger',
