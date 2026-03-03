@@ -38,11 +38,7 @@ Ask the user what they want to work on today:
 2. **Start** one of the ready items (suggest the top pick from `/backlog next` scoring)
 3. **Something else** — ad-hoc task (create a backlog item for it)
 
-Once decided, set the item to in-progress:
-```bash
-gh project item-edit --project-id PVT_kwHOAtALr84BQs_6 --id <item_id> \
-  --field-id PVTSSF_lAHOAtALr84BQs_6zg-vxHc --single-select-option-id 47fc9ee4
-```
+Once decided, set the item to in-progress via `/backlog update BL-NNN status=in-progress`.
 
 Then hand off to the user: "Ready to go. Work on the task, then run `/daily wrap` when you're done — or I'll remind you."
 
