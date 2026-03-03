@@ -1,5 +1,6 @@
 import type { Word } from '@/types/database'
 import type { DrillQuestion, DrillConfig, DrillRoundType } from '@/types/drill'
+import { shuffle } from '@/lib/utils'
 
 // ─── Inflection label maps ─────────────────────────────────────────────────
 
@@ -51,16 +52,6 @@ function getStringInflections(word: Word): [string, string][] {
   return Object.entries(word.inflections).filter(
     (entry): entry is [string, string] => typeof entry[1] === 'string' && entry[1] !== ''
   )
-}
-
-/** Fisher-Yates shuffle. */
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
 }
 
 // ─── Generator 1: Translation EN → DA ──────────────────────────────────────
