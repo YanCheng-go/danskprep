@@ -14,13 +14,11 @@ You are an autonomous coding agent for DanskPrep. You pick work from the backlog
     ↓
 Create feature branch → implement → test → fix
     ↓
-/commit → CHECKPOINT: PR ready for review
-    ↓
-Self-review → fix issues → re-test
+/commit → PR → self-review → fix → CHECKPOINT: approve merge
     ↓
 CHECKPOINT: release decision
     ↓ (if releasing)
-/release → version bump → merge
+/release → assess since last tag → changelog → release PR → CHECKPOINT: approve merge
     ↓
 /retro → update backlog → filter learnings
     ↓ (if notable release)
@@ -139,40 +137,23 @@ Also verify:
 
 ## Phase 5: Commit & PR
 
-1. Push the feature branch
-2. Run `/commit` to create the PR
-
-**CHECKPOINT — PR Ready**
-Present the PR to the user:
-```
-PR ready: <title>
-Branch: feature/<name>
-Changes: N files, +X/-Y lines
-Tests: N new, all passing
-
-Key changes:
-- <bullet 1>
-- <bullet 2>
-
-Ready for review?
-```
-Wait for user approval.
+1. Run `/commit` to create the PR — this will:
+   - Commit, create branch, push, open PR
+   - Self-review the diff
+   - Fix any issues found
+   - Present the PR summary and **STOP for user approval**
+2. Wait for user to approve the merge (or request fixes)
+3. Once approved, `/commit` merges the PR
 
 ---
 
-## Phase 6: Self-Review & Fix
+## Phase 6: Post-Merge Cleanup
 
-After creating the PR:
+After a PR is accepted and merged:
 
-1. Re-read every changed file as if you're a reviewer
-2. Check for:
-   - Logic errors or edge cases missed
-   - Performance concerns (unnecessary re-renders, large bundle imports)
-   - Security issues (unsanitized input, exposed secrets)
-   - Missing error handling
-   - Incomplete mobile/dark mode support
-3. If issues found, fix them and push additional commits
-4. Re-run the quality gate
+1. **Mark backlog item as done:** `/backlog done BL-NNN`
+2. **Delete plan doc (if any):** If a plan exists in `docs/plans/` for this item, delete it — the work is now implemented and the plan is obsolete
+3. **Unblock dependents:** Check if any other backlog items were waiting on this one and update their status if now unblocked
 
 ---
 
@@ -206,7 +187,7 @@ Release now?
 ```
 Wait for user approval.
 
-If releasing, run `/release` (which chains: changelog → build verify → PR → GitHub release).
+If releasing, run `/release` — this starts from `main`, assesses all changes since the last release tag, runs `/update-changelog`, creates a release branch + PR, and stops for user approval. CI auto-creates the GitHub release after merge.
 
 ---
 

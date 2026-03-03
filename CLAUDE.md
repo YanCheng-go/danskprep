@@ -80,7 +80,7 @@ feature branch → PR → CI/CD → Claude review → human merge
 
 - Never push directly to `main`
 - Never merge without passing CI + Claude review
-- Use `/commit` skill to ship changes (branch → PR → review → merge)
+- Use `/commit` skill to ship changes (branch → PR → review → STOP for approval → merge)
 - Commit messages: explain *why*, not *what*
 
 ## Strict TypeScript — Unused Imports
@@ -112,7 +112,7 @@ Never commit `.env.local`.
 | `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
 | `/retro` | Skill | End-of-session retrospective, update backlog + session log |
 | `/scope` | Skill | Break a backlog item into sub-tasks with effort/risk |
-| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/release` | Skill | Cut a release — assess changes since last tag → changelog → version bump → release PR |
 | `/some` | Skill | Social media post generator (LinkedIn/Twitter/FB) |
 | `coder` | Agent | Autonomous dev cycle: pick item → code → test → PR → retro |
 | `pm` | Agent | Exam-aligned research, roadmap planning, feature breakdown |
