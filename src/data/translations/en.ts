@@ -32,6 +32,10 @@ const en = {
   'header.module': 'Module',
   'header.signIn': 'Sign in',
   'header.lookupPlaceholder': 'Look up a word',
+  'header.selectModule': 'Select module',
+  'header.darkMode.light': 'Switch to light mode',
+  'header.darkMode.dark': 'Switch to dark mode',
+  'header.closePanel': 'Close panel',
 
   // Home
   'home.greeting': 'Good day!',
