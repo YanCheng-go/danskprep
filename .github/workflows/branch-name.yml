@@ -1,0 +1,32 @@
+name: Branch Name
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    name: Validate branch name
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branch name convention
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          PATTERN="^(fix|feat|docs|chore|refactor|release)/"
+
+          # Skip Dependabot and renovate branches
+          if [[ "$BRANCH" =~ ^dependabot/ ]] || [[ "$BRANCH" =~ ^renovate/ ]]; then
+            echo "Dependency bot branch — skipping validation"
+            exit 0
+          fi
+
+          if [[ ! "$BRANCH" =~ $PATTERN ]]; then
+            echo "::error::Branch name '$BRANCH' does not match convention."
+            echo ""
+            echo "Branch must start with one of: fix/, feat/, docs/, chore/, refactor/, release/"
+            echo "Examples: fix/quiz-answer-check, feat/listening-exercises, chore/update-deps"
+            exit 1
+          fi
+
+          echo "Branch name '$BRANCH' is valid"

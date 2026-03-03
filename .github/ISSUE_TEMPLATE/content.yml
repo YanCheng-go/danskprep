@@ -1,0 +1,62 @@
+name: Content Addition
+description: Add exercises, vocabulary, grammar topics, or prompts
+labels: ["type:content"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: "Use format: BL-NNN: Short description"
+      placeholder: "BL-040: Add 50 PD3M1 noun-gender exercises"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - area:quiz
+        - area:vocabulary
+        - area:grammar
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Exam scope
+      options:
+        - PD3M2
+        - PD3M1
+        - PD2
+        - all
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Effort
+      options:
+        - xs — one-liner / trivial
+        - s — small / straightforward
+        - m — medium (default)
+        - l — complex / multiple files
+        - xl — epic / multi-session
+      default: 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What content should be added? Include grammar topic, word list, or exercise type details.
+      placeholder: |
+        Add 50 noun-gender exercises for PD3 Module 1:
+        - 25 multiple choice (en/et)
+        - 25 type_answer (write the article)
+        - Source: speakandlearn.dk vocabulary list
+    validations:
+      required: true
