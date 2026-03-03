@@ -12,8 +12,25 @@ Commit → branch → PR → self-review → fix → docs → **STOP for human a
 |---|---|
 | `/commit` | Auto-detect changes, run full cycle |
 | `/commit <message>` | Use provided message as commit summary |
+| `/commit --auto-merge` | Skip human checkpoint (Step 6) — merge immediately after self-review passes |
+| `/commit <message> --auto-merge` | Combined: custom message + auto-merge |
+
+> **`--auto-merge`**: Skips the human checkpoint at Step 6. Only use when the user has explicitly confirmed they want to skip review (e.g., trivial changes, docs-only, or user said "just ship it"). The self-review (Step 3) still runs — if it finds errors, stop and fix before merging. Never auto-merge if the self-review verdict is "Needs fixes" without resolving them first.
 
 ---
+
+## Step 0 — Pre-flight: sync local main
+
+Before starting, ensure local main is up to date with remote. This catches PRs merged in previous sessions.
+
+```bash
+git fetch origin main
+```
+
+If currently on a stale branch from a previously merged PR, clean up first:
+```bash
+git checkout main && git pull --rebase origin main && git branch -d <stale-branch>
+```
 
 ## Step 1 — Commit
 
@@ -98,12 +115,21 @@ Please review the PR. Reply with:
 
 **Do NOT proceed to Step 7 unless the user explicitly approves the merge.**
 
-## Step 7 — Merge (only on user approval)
+## Step 7 — Merge and sync local (only on user approval)
 
 1. `gh pr checks <number>` — confirm CI passes (fix failures if any)
 2. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
-3. `git checkout main && git pull --rebase`
-4. `git branch -d <branch>` — delete the local branch to keep the workspace clean
+3. Sync local main — **always do this immediately after merge**:
+   ```bash
+   git checkout main && git pull --rebase origin main
+   ```
+4. Delete the local branch to keep the workspace clean:
+   ```bash
+   git branch -d <branch>
+   ```
+5. Verify you're on an up-to-date main: `git log --oneline -3` should show the merge commit
+
+**If the merge happened in a previous session** (e.g., merged via GitHub UI), still run step 3-5 to sync before starting new work.
 
 ## Step 8 — Release reminder
 
