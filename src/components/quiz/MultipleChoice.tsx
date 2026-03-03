@@ -1,22 +1,13 @@
 import { useMemo } from 'react'
 import type { Exercise } from '@/types/quiz'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { cn, shuffle } from '@/lib/utils'
 import { useTranslation } from '@/lib/i18n'
 
 interface MultipleChoiceProps {
   exercise: Exercise
   onSubmit: (response: string) => void
   disabled?: boolean
-}
-
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
 }
 
 export function MultipleChoice({ exercise, onSubmit, disabled }: MultipleChoiceProps) {

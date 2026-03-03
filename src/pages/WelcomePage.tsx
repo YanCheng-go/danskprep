@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense, lazy } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ClipboardCheck,
@@ -11,8 +11,9 @@ import {
   Check,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { Agentation } from 'agentation'
 import { SupportDialog } from '@/components/layout/SupportDialog'
+
+const Agentation = lazy(() => import('agentation').then(m => ({ default: m.Agentation })))
 import { WelcomeTopBar } from '@/components/welcome/WelcomeTopBar'
 import { FloatingWords } from '@/components/welcome/FloatingWords'
 import { GamePanel } from '@/components/welcome/GamePanel'
@@ -410,7 +411,7 @@ export function WelcomePage() {
       </div>
 
       <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
-      {import.meta.env.DEV && <Agentation />}
+      {import.meta.env.DEV && <Suspense><Agentation /></Suspense>}
     </div>
   )
 }

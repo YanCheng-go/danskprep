@@ -112,6 +112,8 @@ const en = {
   'vocab.adjectives': 'Adjectives',
   'vocab.pronouns': 'Pronouns',
   'vocab.adverbs': 'Adverbs',
+  'vocab.prepositions': 'Prepositions',
+  'vocab.conjunctions': 'Conjunctions',
 
   // Grammar
   'grammar.title': 'Grammar',

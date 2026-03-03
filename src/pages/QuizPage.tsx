@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useQuiz } from '@/hooks/useQuiz'
@@ -16,16 +16,12 @@ import { QuizResults } from '@/components/quiz/QuizResults'
 import exercisesData from '@/data/seed/exercises-pd3m2.json'
 import type { Exercise } from '@/types/quiz'
 import { GRAMMAR_TOPIC_SLUGS, EXERCISE_TYPE_LABELS } from '@/lib/constants'
-import { cn } from '@/lib/utils'
+import { cn, shuffle } from '@/lib/utils'
 import { FeedbackButton } from '@/components/feedback/FeedbackButton'
 import { loadUserExercises, toExercise } from '@/lib/user-exercises'
 import { useTranslation } from '@/lib/i18n'
 
 const seedExercises = exercisesData as Exercise[]
-const allExercises: Exercise[] = [
-  ...seedExercises,
-  ...loadUserExercises().map(toExercise),
-]
 
 const TOPIC_LABELS: Record<string, string> = {
   'noun-gender': 'T-ord og N-ord',
@@ -46,6 +42,11 @@ export function QuizPage() {
   const topicFromUrl = searchParams.get('topic') ?? ''
   const { t } = useTranslation()
 
+  const allExercises = useMemo<Exercise[]>(() => [
+    ...seedExercises,
+    ...loadUserExercises().map(toExercise),
+  ], [])
+
   const [pageMode, setPageMode] = useState<'quiz' | 'list'>('quiz')
   const [config, setConfig] = useState<QuizConfig | null>(null)
   // Pre-select topic from URL query param (e.g. /quiz?topic=noun-gender)
@@ -59,7 +60,7 @@ export function QuizPage() {
     if (cfg.exerciseType !== 'all') {
       filtered = filtered.filter(e => e.exercise_type === cfg.exerciseType)
     }
-    return [...filtered].sort(() => Math.random() - 0.5).slice(0, 15)
+    return shuffle(filtered).slice(0, 15)
   }
 
   function startQuiz(cfg: QuizConfig) {
@@ -112,7 +113,7 @@ export function QuizPage() {
     return (
       <PageContainer>
         {modeToggle}
-        <AllQuestionsList />
+        <AllQuestionsList allExercises={allExercises} />
       </PageContainer>
     )
   }
@@ -131,7 +132,7 @@ export function QuizPage() {
 
 // ─── All Questions List ──────────────────────────────────────────────────────
 
-function AllQuestionsList() {
+function AllQuestionsList({ allExercises }: { allExercises: Exercise[] }) {
   const [topicFilter, setTopicFilter] = useState('all')
   const [typeFilter, setTypeFilter] = useState('all')
   const [revealedIds, setRevealedIds] = useState<Set<number>>(new Set())
