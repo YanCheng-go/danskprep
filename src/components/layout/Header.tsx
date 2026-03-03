@@ -71,6 +71,8 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
               onClick={() => setModuleDropdownOpen(o => !o)}
               className="flex items-center gap-1 rounded-md border px-2 py-1 text-xs font-medium hover:bg-accent transition-colors"
               aria-label={t('header.selectModule')}
+              aria-expanded={moduleDropdownOpen}
+              aria-haspopup="menu"
             >
               {activeModule?.shortLabel ?? t('header.module')}
               <ChevronDown className="h-3 w-3" />
@@ -80,11 +82,18 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
                 <div
                   className="fixed inset-0 z-50"
                   onClick={() => setModuleDropdownOpen(false)}
+                  role="presentation"
                 />
-                <div className="absolute top-full left-0 sm:left-auto mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1">
+                <div
+                  className="absolute top-full left-0 sm:left-auto mt-1 z-50 min-w-[180px] rounded-md border bg-background shadow-lg py-1"
+                  role="menu"
+                  aria-label={t('header.selectModule')}
+                  onKeyDown={e => { if (e.key === 'Escape') setModuleDropdownOpen(false) }}
+                >
                   {AVAILABLE_MODULES.map(mod => (
                     <button
                       key={mod.id}
+                      role="menuitem"
                       onClick={() => mod.hasContent && selectModule(mod.id)}
                       disabled={!mod.hasContent}
                       className={`w-full text-left px-3 py-2 text-sm transition-colors flex items-center justify-between ${
