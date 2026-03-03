@@ -157,3 +157,4 @@ This is just a reminder — the user decides. Do not run `/release` automaticall
 - **Clean up unused imports** in the same edit
 - **One concern per commit** — separate unrelated changes
 - **Docs before merge**: update docs as the final commit on the branch, before requesting review
+- **Update PR description on new pushes** — when pushing additional commits to an existing PR, update the PR body (`gh pr edit <number> --body ...`) to reflect the new changes
