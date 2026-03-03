@@ -80,7 +80,10 @@ export function SettingsPage() {
     localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(darkMode))
 
     // Save AI provider config — use provider defaults when fields are left empty
-    if (aiProvider === 'anthropic') {
+    if (aiProvider === 'none') {
+      localStorage.removeItem(SETTINGS_KEYS.AI_PROVIDER)
+      localStorage.removeItem(SETTINGS_KEYS.AI_MODEL)
+    } else if (aiProvider === 'anthropic') {
       if (anthropicKey.trim()) {
         localStorage.setItem(SETTINGS_KEYS.ANTHROPIC_KEY, anthropicKey.trim())
       }
@@ -185,7 +188,7 @@ export function SettingsPage() {
           <CardContent className="space-y-4">
             {/* Provider radio buttons */}
             <div className="space-y-2">
-              {(['anthropic', 'ollama', 'openrouter', 'openai'] as const).map(provider => (
+              {(['none', 'anthropic', 'ollama', 'openrouter', 'openai'] as const).map(provider => (
                 <label key={provider} className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="radio"

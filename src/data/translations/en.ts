@@ -270,6 +270,8 @@ const en = {
   'settings.languageDesc': 'Choose display language for the app interface',
   'settings.aiProvider': 'AI Provider',
   'settings.aiProviderDesc': 'Choose which AI service to use for Writing, Speaking, and Chat features',
+  'settings.provider.none': 'Not configured',
+  'settings.provider.noneDesc': 'AI features (Writing, Speaking, Chat) are disabled until you choose a provider',
   'settings.provider.anthropic': 'Anthropic (Claude)',
   'settings.provider.anthropicDesc': 'Cloud — requires API key (paid)',
   'settings.provider.ollama': 'Ollama (Local)',
