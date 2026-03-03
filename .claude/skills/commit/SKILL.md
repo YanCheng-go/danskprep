@@ -15,7 +15,7 @@ Commit → branch → PR → self-review → fix → docs → **STOP for human a
 | `/commit --auto-merge` | Skip human checkpoint (Step 6) — merge immediately after self-review passes |
 | `/commit <message> --auto-merge` | Combined: custom message + auto-merge |
 
-> **`--auto-merge`**: Skips the human checkpoint at Step 6. Only use when the user has explicitly confirmed they want to skip review (e.g., trivial changes, docs-only, or user said "just ship it"). The self-review (Step 3) still runs — if it finds errors, stop and fix before merging. Never auto-merge if the self-review verdict is "Needs fixes" without resolving them first.
+> **`--auto-merge`**: Skips the human checkpoint at Step 7. Only use when the user has explicitly confirmed they want to skip review (e.g., trivial changes, docs-only, or user said "just ship it"). The self-review (Step 3) still runs — if it finds errors, stop and fix before merging. Never auto-merge if the self-review verdict is "Needs fixes" without resolving them first.
 
 ---
 
@@ -54,7 +54,11 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
 3. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
 4. Create PR using the **Standard PR** template from `.claude/references/pr-templates.md`
 
-## Step 3 — Self-review
+## Step 3 — Simplify
+
+Run `/simplify` on the changed files — review for code reuse, quality, and efficiency. Fix any issues found (duplicated logic, dead code, missing abstractions, over-engineering). Commit fixes on the same branch.
+
+## Step 4 — Self-review
 
 1. `gh pr diff <number>` — read the full diff as a reviewer
 2. Check for: unused imports, type issues, broken logic, convention violations (CLAUDE.md + `.claude/rules/`), regressions
@@ -62,11 +66,11 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
    - **Errors** (must fix), **Suggestions** (nice to have), **Trade-offs** (compromises worth noting)
    - **Verdict**: Clean / Needs fixes
 
-## Step 4 — Fix (if needed)
+## Step 5 — Fix (if needed)
 
 Fix errors on the same branch → commit → push → re-verify (`tsc --noEmit && build && vitest run`).
 
-## Step 5 — Update documentation
+## Step 6 — Update documentation
 
 Review and update all relevant docs on the PR branch. Commit doc updates separately from code changes.
 
@@ -81,7 +85,7 @@ Checklist — update each file **only if the PR makes it stale**:
 
 **Do not update a doc if the PR doesn't affect it.** Only touch what's stale.
 
-## Step 6 — Human checkpoint ⛔
+## Step 7 — Human checkpoint ⛔
 
 **STOP HERE.** Present the following summary to the user and wait for their decision:
 
@@ -100,9 +104,9 @@ Please review the PR. Reply with:
 - or any other feedback
 ```
 
-**Do NOT proceed to Step 7 unless the user explicitly approves the merge.**
+**Do NOT proceed to Step 8 unless the user explicitly approves the merge.**
 
-## Step 7 — Merge and sync local (only on user approval)
+## Step 8 — Merge and sync local (only on user approval)
 
 1. **Merge main into PR branch first** — catch conflicts before merging to main:
    ```bash
@@ -121,9 +125,9 @@ Please review the PR. Reply with:
    ```
 6. Verify you're on an up-to-date main: `git log --oneline -3` should show the merge commit
 
-**If the merge happened in a previous session** (e.g., merged via GitHub UI), still run step 3-5 to sync before starting new work.
+**If the merge happened in a previous session** (e.g., merged via GitHub UI), still run step 4-6 to sync before starting new work.
 
-## Step 8 — Release reminder
+## Step 9 — Release reminder
 
 After merge, ask the user:
 
@@ -139,7 +143,7 @@ This is just a reminder — the user decides. Do not run `/release` automaticall
 ## Rules
 
 - **Never push to main** — always PR
-- **Never merge without user approval** — always stop at Step 6
+- **Never merge without user approval** — always stop at Step 7
 - **Never skip CI** — wait for checks before merge
 - **Clean up unused imports** in the same edit
 - **One concern per commit** — separate unrelated changes
