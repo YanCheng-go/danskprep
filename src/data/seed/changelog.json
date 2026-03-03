@@ -1,5 +1,27 @@
 [
   {
+    "version": "0.6.0",
+    "date": "2026-03-03",
+    "title": "Accessibility & Developer Experience",
+    "highlights": [
+      "Skip-to-content link for keyboard and screen reader navigation (BL-004)",
+      "Aria-labels on all icon buttons and search inputs (BL-027, BL-029)",
+      "Fixed mobile horizontal overflow on all Layout pages (BL-026)",
+      "Lazy-loaded Agentation component — excluded from production bundle (BL-008)",
+      "User-added exercises now appear immediately in quiz without page reload (BL-016)",
+      "Extracted shared shuffle utility, replacing 3 duplicate implementations (BL-012)",
+      "Migrated project backlog from docs/backlog.md to GitHub Projects",
+      "Added preposition and conjunction vocabulary filter translations"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 376,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
     "version": "0.5.0",
     "date": "2026-03-03",
     "title": "Enriched Vocabulary & Exercise Verification",
