@@ -31,7 +31,7 @@ const en = {
   'header.soon': 'Soon',
   'header.module': 'Module',
   'header.signIn': 'Sign in',
-  'header.lookupPlaceholder': 'Look up a word',
+  'header.lookupPlaceholder': 'Type a Danish word',
   'header.selectModule': 'Select module',
   'header.darkMode.light': 'Switch to light mode',
   'header.darkMode.dark': 'Switch to dark mode',
@@ -71,6 +71,8 @@ const en = {
   'quiz.grammarTopic': 'Grammar topic',
   'quiz.exerciseType': 'Exercise type',
   'quiz.exercises': '{count} exercises',
+  'quiz.sessionLength': 'Questions per session',
+  'quiz.allCount': 'All ({count})',
   'quiz.backToSelector': 'Back to selector',
 
   // Drill
@@ -194,7 +196,7 @@ const en = {
   // Dictionary
   'dictionary.title': 'Danish Dictionary',
   'dictionary.subtitle': 'Look up Danish words, meanings, inflections, and usage examples',
-  'dictionary.placeholder': 'Type a Danish word...',
+  'dictionary.placeholder': 'Type a Danish word',
   'dictionary.lookup': 'Look up',
   'dictionary.poweredBy': 'Powered by Den Danske Ordbog (ordnet.dk)',
   'dictionary.recent': 'Recent searches',

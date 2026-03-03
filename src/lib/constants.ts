@@ -60,6 +60,7 @@ export const SETTINGS_KEYS = {
   OLLAMA_URL: 'danskprep_ollama_url',
   OPENROUTER_KEY: 'danskprep_openrouter_key',
   OPENAI_KEY: 'danskprep_openai_api_key',
+  QUIZ_MAX_QUESTIONS: 'danskprep_quiz_max_questions',
   WELCOME_SEEN: 'danskprep_welcome_seen',
   BUBBLE_NICKNAME: 'danskprep_bubble_nickname',
   BUBBLE_SCORES: 'danskprep_bubble_scores',
