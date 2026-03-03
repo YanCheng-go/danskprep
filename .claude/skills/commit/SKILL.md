@@ -117,17 +117,22 @@ Please review the PR. Reply with:
 
 ## Step 7 — Merge and sync local (only on user approval)
 
-1. `gh pr checks <number>` — confirm CI passes (fix failures if any)
-2. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
-3. Sync local main — **always do this immediately after merge**:
+1. **Merge main into PR branch first** — catch conflicts before merging to main:
+   ```bash
+   git fetch origin main && git merge origin/main
+   ```
+   If there are conflicts, resolve them, commit, push, and wait for CI to pass before continuing.
+2. `gh pr checks <number>` — confirm CI passes (fix failures if any)
+3. `gh pr merge <number> --squash --delete-branch` (deletes the remote branch)
+4. Sync local main — **always do this immediately after merge**:
    ```bash
    git checkout main && git pull --rebase origin main
    ```
-4. Delete the local branch to keep the workspace clean:
+5. Delete the local branch to keep the workspace clean:
    ```bash
    git branch -d <branch>
    ```
-5. Verify you're on an up-to-date main: `git log --oneline -3` should show the merge commit
+6. Verify you're on an up-to-date main: `git log --oneline -3` should show the merge commit
 
 **If the merge happened in a previous session** (e.g., merged via GitHub UI), still run step 3-5 to sync before starting new work.
 
@@ -152,3 +157,4 @@ This is just a reminder — the user decides. Do not run `/release` automaticall
 - **Clean up unused imports** in the same edit
 - **One concern per commit** — separate unrelated changes
 - **Docs before merge**: update docs as the final commit on the branch, before requesting review
+- **Update PR description on new pushes** — when pushing additional commits to an existing PR, read the current body first (`gh pr view <number> --json body`), add the new changes to the Summary section, then write the full updated body (`gh pr edit <number> --body ...`). The `--body` flag replaces the entire body, so always read-then-write — never write from scratch

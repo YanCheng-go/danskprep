@@ -24,6 +24,8 @@ const POS_OPTION_KEYS: { value: string; labelKey: string }[] = [
   { value: 'adjective', labelKey: 'vocab.adjectives' },
   { value: 'pronoun', labelKey: 'vocab.pronouns' },
   { value: 'adverb', labelKey: 'vocab.adverbs' },
+  { value: 'preposition', labelKey: 'vocab.prepositions' },
+  { value: 'conjunction', labelKey: 'vocab.conjunctions' },
 ]
 
 export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosChange }: WordListProps) {

@@ -219,6 +219,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
                 }
               }}
               placeholder={t('header.lookupPlaceholder')}
+              aria-label={t('header.lookupPlaceholder')}
               className="h-9 w-full rounded-lg border-2 border-pink-200 dark:border-pink-800/60 bg-pink-50/50 dark:bg-pink-950/20 pl-9 pr-3 text-sm placeholder:text-pink-300 dark:placeholder:text-pink-700 shadow-[0_0_8px_rgba(236,72,153,0.15)] focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-700 focus:border-pink-400 dark:focus:border-pink-600 focus:bg-background focus:shadow-[0_0_12px_rgba(236,72,153,0.25)] transition-all"
             />
           </div>
