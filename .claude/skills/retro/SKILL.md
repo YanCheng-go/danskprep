@@ -17,7 +17,7 @@ Run at the end of a working session, before you stop for the day. Captures what 
 1. Review the conversation history to identify all work completed this session
 2. Run `git log --oneline -20` to see commits made
 3. Run `git diff --stat HEAD~10` to see files changed
-4. Read `docs/backlog.md` to check current item statuses
+4. Check current backlog statuses: `gh project item-list 15 --owner YanCheng-go --format json --limit 200`
 
 ### Step 2 — Identify completed and progressed items
 
@@ -30,9 +30,9 @@ From the session work, determine:
 ### Step 3 — Update backlog statuses
 
 For each affected backlog item:
-- Completed → run `/backlog done BL-NNN`
+- Completed → run `/backlog done BL-NNN` (closes the GitHub Issue)
 - Started but not finished → run `/backlog update BL-NNN status=in-progress`
-- New items discovered → run `/backlog add <description>` for each
+- New items discovered → run `/backlog add <description>` for each (creates a GitHub Issue)
 
 If the backlog is empty (not yet imported), skip this step and note it.
 

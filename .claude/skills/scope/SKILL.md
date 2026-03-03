@@ -15,7 +15,7 @@ When a backlog item is too vague to start working on. This skill takes a `BL-NNN
 ### Step 1 — Load the item
 
 If given a backlog ID:
-1. Read `docs/backlog.md` and find the item detail section
+1. Find the issue: `gh issue list --repo YanCheng-go/danskprep --search "BL-NNN" --json number,title --limit 5`, then `gh issue view <number> --repo YanCheng-go/danskprep`
 2. If the item doesn't exist, tell the user and offer to create it first via `/backlog add`
 
 If given a raw description (no BL-NNN):
