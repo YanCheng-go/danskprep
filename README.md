@@ -13,7 +13,7 @@ Active recall, spaced repetition (FSRS), and exam-focused exercises for learners
 - **Quiz** — 292 exercises across 7 types (cloze, multiple choice, word order, error correction, conjugation, type answer, matching)
 - **Vocabulary Drill** — bidirectional translation, context cloze, paradigm fill, form choice
 - **Grammar** — 6 topic reference pages with rules, examples, and practice links
-- **Vocabulary** — 277 words with inflection tables, search and filter
+- **Vocabulary** — 376 words with inflection tables, search and filter
 - **Writing** — exam-style prompts with AI scoring
 - **Speaking** — record, self-transcribe, AI grammar feedback
 - **Listening** — podcast episodes with comprehension quizzes and vocabulary highlights
@@ -101,6 +101,12 @@ uv run python scrape-speakspeak.py --exam PD3M2 --cookies cookies.json
 
 # Enrich vocabulary with AI-generated inflections (requires ANTHROPIC_API_KEY)
 uv run python enrich-vocabulary.py
+
+# Enrich verb inflections via local Ollama (no API key needed)
+uv run python enrich-via-ollama.py
+
+# Verify exercise answers and hints
+uv run python verify-exercises.py
 ```
 
 ## Content
@@ -108,7 +114,7 @@ uv run python enrich-vocabulary.py
 | Dataset | File | Count |
 |---------|------|-------|
 | Exercises | `exercises-pd3m2.json` | 292 |
-| Vocabulary | `words-pd3m2.json` | 277 |
+| Vocabulary | `words-pd3m2.json` | 376 |
 | Grammar topics | `grammar-pd3m2.json` | 6 |
 | Writing prompts | `writing-prompts-pd3m2.json` | 10 |
 | Speaking prompts | `speaking-prompts-pd3m2.json` | 8 |
@@ -158,7 +164,7 @@ This project is built using an **AI-first development methodology** powered by [
 | **content-generator** | Agent | Danish exercise and grammar content generation |
 | `/backlog` | Skill | Manage backlog items — add, list, filter, update, prioritize |
 | `/scope` | Skill | Break a backlog item into sub-tasks with effort and risk |
-| `/release` | Skill | Changelog → build verify → PR → GitHub release |
+| `/release` | Skill | Cut a release — assess changes since last tag → changelog → version bump → release PR |
 | `/retro` | Skill | End-of-session retrospective, update backlog and session log |
 | `/some` | Skill | Social media post generator (LinkedIn, Twitter, Facebook) |
 
@@ -193,7 +199,7 @@ All agent definitions live in `.claude/agents/`, skills in `.claude/skills/`. Re
 ### Next
 - [ ] Generate real DB types (`npm run types` → replace `createClient<any>()`)
 - [ ] Seed remote database (`cd scripts && uv run python seed-database.py`)
-- [ ] Fill 143 empty verb inflections (run `enrich-vocabulary.py`)
+- [x] Fill verb inflections (376 words, 222 verbs with complete conjugations)
 - [ ] Refresh progress stats after study session
 - [ ] WordOrder drag-and-drop reorder
 - [ ] Lazy-load seed JSON (reduce initial bundle)

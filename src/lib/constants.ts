@@ -1,4 +1,4 @@
-export const APP_VERSION = '0.4.1'
+export const APP_VERSION = '0.5.0'
 
 // Feature flags
 export const FEATURES = {

@@ -1,21 +1,20 @@
 ---
 name: release
-description: Orchestrate a release — changelog, build verification, PR creation, and GitHub release notes
+description: Cut a versioned release — assess changes since last tag, changelog, version bump, release PR
 user-invocable: true
 ---
 
-# /release — Ship a Release
+# /release — Cut a Release
 
 ## When to use
 
-When a batch of work is ready to ship. This skill chains together the release checklist: update the changelog, verify the build, create a PR, and draft GitHub release notes.
+When multiple PRs have been merged to `main` and you're ready to cut a versioned release. This skill looks at everything since the last release tag, creates a changelog entry, bumps the version, and opens a small release PR.
 
 ## Prerequisites
 
-Before running this skill:
-- All feature work is committed on a feature branch (not `main`)
-- Tests pass locally
-- No uncommitted changes
+- You are on `main` with a clean working tree (`git status` shows no changes)
+- One or more PRs have been merged since the last release tag
+- `gh auth switch --user YanCheng-go` has been run
 
 If any prerequisite fails, stop and tell the user what needs fixing.
 
@@ -23,8 +22,15 @@ If any prerequisite fails, stop and tell the user what needs fixing.
 
 ### Step 1 — Assess what's being released
 
-1. Run `git log --oneline main..HEAD` to see all commits on this branch
-2. Run `git diff --stat main..HEAD` to see all files changed
+1. Find the last release tag:
+   ```bash
+   LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+   ```
+2. List changes since that tag (or all commits if no tag exists):
+   ```bash
+   git log --oneline ${LAST_TAG:+$LAST_TAG..HEAD}
+   git diff --stat ${LAST_TAG:+$LAST_TAG..HEAD}
+   ```
 3. Read `docs/backlog.md` to identify which backlog items are addressed
 4. Categorize changes:
    - **Features** — new user-facing functionality
@@ -35,28 +41,33 @@ If any prerequisite fails, stop and tell the user what needs fixing.
 
 Present the summary to the user and confirm this is what should be released.
 
-### Step 2 — Update changelog
+### Step 2 — Create release branch
 
-Run the `/update-changelog` skill logic:
+```bash
+git checkout -b release/vX.Y.Z
+```
 
-1. Read `src/data/seed/changelog.json`
-2. Determine version bump:
-   - **Patch** (0.0.x) — bug fixes only
-   - **Minor** (0.x.0) — new features or content
-   - **Major** (x.0.0) — breaking changes (rare)
-3. Count current content:
-   ```bash
-   python3 -c "import json; print(len(json.load(open('src/data/seed/exercises-pd3m2.json'))))"
-   python3 -c "import json; print(len(json.load(open('src/data/seed/words-pd3m2.json'))))"
-   ```
-4. Write the new changelog entry at the TOP of the array
-5. Sync version in all three places:
-   - `src/data/seed/changelog.json` → latest entry `version`
-   - `src/lib/constants.ts` → `APP_VERSION`
-   - `package.json` → `version`
-6. Confirm the version bump with the user before writing
+### Step 3 — Update changelog and version
 
-### Step 3 — Verify build
+Run `/update-changelog` to create the changelog entry, bump the version, and sync all three locations (changelog.json, constants.ts, package.json).
+
+Pass the last release tag so it knows the correct range of changes to summarize.
+
+Confirm the version bump with the user before writing.
+
+### Step 4 — Update documentation
+
+Checklist — update each file **only if changes since last release make it stale**:
+
+| Doc | When to update |
+|-----|---------------|
+| `README.md` | Content counts, Roadmap checkboxes, Features list, Stack |
+| `NOTES.md` | Check off completed items, remove stale todos |
+| `docs/backlog.md` | Mark related BL-NNN items as `done`, update header counts |
+
+**Do not update a doc if the release doesn't affect it.**
+
+### Step 5 — Verify build
 
 Run all checks — stop if any fail:
 
@@ -67,38 +78,31 @@ npm test                  # All tests pass
 npm run build             # Production build succeeds
 ```
 
-If a check fails, fix the issue and re-run. Do not proceed to PR creation with failing checks.
+If a check fails, fix the issue and re-run. Do not proceed with a broken build.
 
-### Step 4 — Update documentation
-
-Follow the `/commit` skill's documentation checklist:
-
-1. **NOTES.md** — add session log entry under Completed, check off done items
-2. **docs/backlog.md** — mark completed items as done via `/backlog done BL-NNN`
-3. **README.md** — update if roadmap, commands, or stack changed
-
-### Step 5 — Commit release changes
-
-Stage and commit the changelog + version bump + documentation updates:
+### Step 6 — Commit and push
 
 ```bash
-git add src/data/seed/changelog.json src/lib/constants.ts package.json NOTES.md docs/backlog.md README.md
+git add src/data/seed/changelog.json src/lib/constants.ts package.json
+# Also stage any docs that were actually updated:
+# git add README.md NOTES.md docs/backlog.md
 git commit -m "$(cat <<'EOF'
-chore: bump version to X.Y.Z, update changelog
+chore: release vX.Y.Z
 
 Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
 EOF
 )"
+git push -u origin release/vX.Y.Z
 ```
 
 Only stage files that were actually modified. Do not use `git add -A`.
 
-### Step 6 — Create the PR
+### Step 7 — Create the PR
 
 ```bash
 gh pr create --title "release: vX.Y.Z — <short description>" --body "$(cat <<'EOF'
 ## Summary
-- <3-5 bullet points of user-facing changes>
+- <3-5 bullet points summarizing changes since last release>
 
 ## Release checklist
 - [x] Changelog updated (`src/data/seed/changelog.json`)
@@ -106,8 +110,6 @@ gh pr create --title "release: vX.Y.Z — <short description>" --body "$(cat <<'
 - [x] `npx tsc --noEmit` passes
 - [x] `npm test` passes
 - [x] `npm run build` succeeds
-- [x] NOTES.md session log updated
-- [x] Backlog items marked done
 
 ## Content stats
 - Exercises: N
@@ -119,57 +121,52 @@ EOF
 )"
 ```
 
-### Step 7 — Draft GitHub release notes
+### Step 8 — Human checkpoint ⛔
 
-After the PR is created, prepare release notes for after merge:
+**STOP HERE.** Present the summary and wait for the user to decide:
 
-```bash
-gh release create vX.Y.Z --draft --title "vX.Y.Z — <short description>" --notes "$(cat <<'EOF'
-## What's New
-
-- <user-facing highlights, 3-8 bullets>
-
-## Content
-- N exercises, N words, N grammar topics
-
-## Full Changelog
-https://github.com/YanCheng-go/danskprep/compare/vPREV...vX.Y.Z
-EOF
-)"
 ```
-
-Tell the user: "Draft release created. After merging the PR, publish the release from GitHub."
-
-### Step 8 — Final summary
-
-Output:
-```
-## Release vX.Y.Z ready
+## Release vX.Y.Z ready for review
 
 - PR: <PR URL>
-- Draft release: <release URL>
+- Branch: release/vX.Y.Z
 - Version: X.Y.Z (synced in 3 places)
+- Changes since last release: N commits across M PRs
 - Changelog: N highlights
-- Backlog items closed: BL-NNN, BL-NNN
 
-Next: merge the PR, then publish the draft release on GitHub.
+Please review the PR. Reply with:
+- "merge" — to squash-merge (CI will auto-create the GitHub release)
+- "fix <issue>" — to address something first
 ```
+
+**Do NOT merge unless the user explicitly approves.**
+
+### Step 9 — Merge (only on user approval)
+
+1. `gh pr checks <number>` — confirm CI passes
+2. `gh pr merge <number> --squash --delete-branch`
+3. `git checkout main && git pull --rebase`
+4. `git branch -d release/vX.Y.Z`
+
+CI will auto-create the GitHub release from the version in `package.json`.
 
 ## Rules
 
 - Always confirm the version bump with the user before writing
-- Never skip the build verification step — failing builds must be fixed first
+- Never skip the build verification step
 - Always switch to the correct GitHub account first: `gh auth switch --user YanCheng-go`
 - Never force-push or push directly to main
-- The draft release is created but NOT published — the user publishes after merge
-- If there are no user-facing changes, skip the changelog and just create a maintenance PR
+- **Never merge without user approval** — always stop at Step 8
+- CI auto-creates the GitHub release after merge — no manual draft needed
+- If there are no user-facing changes, skip the changelog and create a maintenance PR instead
 - Co-author line on all commits: `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 
 ## Troubleshooting
 
 | Problem | Fix |
 |---|---|
+| No release tag exists yet | Use full git log; `/update-changelog` handles this gracefully |
 | `gh: not authenticated` | Run `gh auth switch --user YanCheng-go` |
 | Version mismatch between 3 files | Re-read all three, fix the one that's wrong |
 | Build fails on type errors | Run `npx tsc --noEmit` to see the errors, fix them |
-| PR creation fails | Check branch is pushed: `git push -u origin <branch>` |
+| PR creation fails | Check branch is pushed: `git push -u origin release/vX.Y.Z` |
