@@ -151,9 +151,9 @@ Also verify:
 
 After a PR is accepted and merged:
 
-1. **Mark backlog item as done:** `/backlog done BL-NNN`
+1. **Mark backlog item as done:** `/backlog done BL-NNN` (closes the GitHub Issue)
 2. **Delete plan doc (if any):** If a plan exists in `docs/plans/` for this item, delete it — the work is now implemented and the plan is obsolete
-3. **Unblock dependents:** Check if any other backlog items were waiting on this one and update their status if now unblocked
+3. **Unblock dependents:** Check if any other backlog items were waiting on this one
 
 ---
 

@@ -31,7 +31,7 @@ If any prerequisite fails, stop and tell the user what needs fixing.
    git log --oneline ${LAST_TAG:+$LAST_TAG..HEAD}
    git diff --stat ${LAST_TAG:+$LAST_TAG..HEAD}
    ```
-3. Read `docs/backlog.md` to identify which backlog items are addressed
+3. Check GitHub Issues to identify which backlog items are addressed: `gh issue list --repo YanCheng-go/danskprep --search "BL-" --state open --json number,title --limit 50`
 4. Categorize changes:
    - **Features** — new user-facing functionality
    - **Fixes** — bug fixes
@@ -63,7 +63,7 @@ Checklist — update each file **only if changes since last release make it stal
 |-----|---------------|
 | `README.md` | Content counts, Roadmap checkboxes, Features list, Stack |
 | `NOTES.md` | Check off completed items, remove stale todos |
-| `docs/backlog.md` | Mark related BL-NNN items as `done`, update header counts |
+| GitHub Issues | Backlog items auto-close when PR merges via `Closes #NNN` in PR body |
 
 **Do not update a doc if the release doesn't affect it.**
 

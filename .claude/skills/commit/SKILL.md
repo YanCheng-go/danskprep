@@ -35,7 +35,7 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
 ## Step 1 — Commit
 
 1. `git status` + `git diff --stat HEAD` to see what changed
-2. Check `docs/backlog.md` for related items (match by file/feature keywords)
+2. Check GitHub Issues for related backlog items: `gh issue list --repo YanCheng-go/danskprep --search "<keywords>" --state open --json number,title --limit 5`
 3. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
 4. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 
@@ -56,7 +56,7 @@ gh pr create --title "<title>" --body "$(cat <<'EOF'
 - What and why
 
 ## Backlog
-- Relates to: BL-NNN (or "None")
+- Closes #NNN (or "None")
 
 ## Test plan
 - [ ] `npx tsc --noEmit` + `npm run build` + `npx vitest run`
@@ -90,7 +90,7 @@ Checklist — update each file **only if the PR makes it stale**:
 | `README.md` | Content counts (words, exercises), Roadmap checkboxes, Features list, Python Scripts, Stack |
 | `NOTES.md` | Check off completed items, remove stale todos, update Known Issues |
 | `CLAUDE.md` | New conventions, changed directory structure, new exercise types, new env vars |
-| `docs/backlog.md` | Mark related BL-NNN items as `done`, update header counts |
+| GitHub Issues | Close related BL-NNN issues via `Closes #NNN` in PR body (auto-closes on merge) |
 
 **Do not update a doc if the PR doesn't affect it.** Only touch what's stale.
 
