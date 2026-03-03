@@ -1,28 +1,33 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
   testDir: '.',
-  outputDir: '../docs/test-reports/screenshots',
+  outputDir: '../docs/test-reports/test-results',
   timeout: 30_000,
+  expect: { timeout: 10000 },
   retries: 0,
+  fullyParallel: false,
+  reporter: 'list',
   use: {
-    baseURL: 'http://localhost:5173',
-    screenshot: 'only-on-failure',
-    trace: 'on-first-retry',
+    baseURL: 'http://localhost:5180',
+    screenshot: 'off',
+    trace: 'off',
   },
   projects: [
     {
       name: 'mobile-light',
       use: {
-        ...devices['iPhone 13'],
+        viewport: { width: 375, height: 812 },
         colorScheme: 'light',
+        browserName: 'chromium',
       },
     },
     {
       name: 'mobile-dark',
       use: {
-        ...devices['iPhone 13'],
+        viewport: { width: 375, height: 812 },
         colorScheme: 'dark',
+        browserName: 'chromium',
       },
     },
     {
@@ -30,6 +35,7 @@ export default defineConfig({
       use: {
         viewport: { width: 768, height: 1024 },
         colorScheme: 'light',
+        browserName: 'chromium',
       },
     },
     {
@@ -37,6 +43,7 @@ export default defineConfig({
       use: {
         viewport: { width: 768, height: 1024 },
         colorScheme: 'dark',
+        browserName: 'chromium',
       },
     },
     {
@@ -44,6 +51,7 @@ export default defineConfig({
       use: {
         viewport: { width: 1280, height: 800 },
         colorScheme: 'light',
+        browserName: 'chromium',
       },
     },
     {
@@ -51,13 +59,8 @@ export default defineConfig({
       use: {
         viewport: { width: 1280, height: 800 },
         colorScheme: 'dark',
+        browserName: 'chromium',
       },
     },
   ],
-  webServer: {
-    command: 'npm run dev -- --port 5173',
-    port: 5173,
-    reuseExistingServer: true,
-    timeout: 30_000,
-  },
 })

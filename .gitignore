@@ -47,3 +47,10 @@ src/data/seed/exercises-pd3m2-split.json
 
 # HTML prototypes
 prototype-*.html
+
+# Nix / direnv
+.direnv/
+
+# E2E test artifacts (screenshots, traces, results)
+docs/test-reports/screenshots/
+docs/test-reports/test-results/
