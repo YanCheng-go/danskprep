@@ -36,8 +36,12 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
 
 1. `git status` + `git diff --stat HEAD` to see what changed
 2. Check GitHub Issues for related backlog items: `gh issue list --repo YanCheng-go/danskprep --search "<keywords>" --state open --json number,title --limit 5`
-3. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
-4. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
+3. **Update backlog status** — if a matching backlog item is found:
+   - If it's **Todo**, set it to **In Progress** via `/backlog update BL-NNN status=in-progress`
+   - If the PR will fully complete it, note the issue number for `Closes #NNN` in Step 2
+   - If no matching item found, skip this step
+4. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
+5. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
 
 ## Step 2 — Branch and PR
 
