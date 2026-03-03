@@ -1,0 +1,82 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+labels: ["type:feature"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: "Use format: BL-NNN: Short description"
+      placeholder: "BL-040: Add listening exercises for PD3M2"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - area:ui
+        - area:quiz
+        - area:vocabulary
+        - area:grammar
+        - area:srs
+        - area:auth
+        - area:db
+        - area:dx
+        - area:scraping
+        - area:analytics
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - p0 — critical / blocks users
+        - p1 — important / should do soon
+        - p2 — default
+        - p3 — nice to have / someday
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Effort
+      options:
+        - xs — one-liner / trivial
+        - s — small / straightforward
+        - m — medium (default)
+        - l — complex / multiple files
+        - xl — epic / multi-session
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Exam scope
+      options:
+        - all — cross-cutting
+        - PD3M2
+        - PD3M1
+        - PD2
+      default: 0
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What should the feature do and why?
+      placeholder: |
+        **Problem:** Users can't practice listening comprehension.
+        **Solution:** Add audio playback exercises using SpeakSpeak recordings.
+        **Acceptance criteria:**
+        - [ ] Audio plays on exercise load
+        - [ ] User types what they hear
+    validations:
+      required: true

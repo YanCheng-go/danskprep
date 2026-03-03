@@ -3,6 +3,12 @@
 -
 -
 
+## Backlog
+<!-- Link related GitHub Issues using #NNN so they auto-close on merge -->
+<!-- Example: Closes #77 (BL-037: Change search placeholder) -->
+- Closes #
+- None
+
 ## Type of change
 <!-- Check all that apply -->
 - [ ] Bug fix
