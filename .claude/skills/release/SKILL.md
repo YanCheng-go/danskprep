@@ -99,27 +99,7 @@ Only stage files that were actually modified. Do not use `git add -A`.
 
 ### Step 7 — Create the PR
 
-```bash
-gh pr create --title "release: vX.Y.Z — <short description>" --body "$(cat <<'EOF'
-## Summary
-- <3-5 bullet points summarizing changes since last release>
-
-## Release checklist
-- [x] Changelog updated (`src/data/seed/changelog.json`)
-- [x] Version synced (changelog, constants.ts, package.json)
-- [x] `npx tsc --noEmit` passes
-- [x] `npm test` passes
-- [x] `npm run build` succeeds
-
-## Content stats
-- Exercises: N
-- Words: N
-- Grammar topics: N
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-EOF
-)"
-```
+Create the PR using the **Release PR** template from `.claude/references/pr-templates.md`.
 
 ### Step 8 — Human checkpoint ⛔
 

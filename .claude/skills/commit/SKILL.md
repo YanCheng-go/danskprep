@@ -52,24 +52,7 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
    ```
    If there are conflicts, resolve them, commit, and verify (`tsc --noEmit && npm run build && npx vitest run`) before continuing.
 3. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
-4. Create PR — include backlog reference if applicable:
-
-```bash
-gh pr create --title "<title>" --body "$(cat <<'EOF'
-## Summary
-- What and why
-
-## Backlog
-- Closes #NNN (or "None")
-
-## Test plan
-- [ ] `npx tsc --noEmit` + `npm run build` + `npx vitest run`
-- [ ] Manually verified: <description>
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-EOF
-)"
-```
+4. Create PR using the **Standard PR** template from `.claude/references/pr-templates.md`
 
 ## Step 3 — Self-review
 
@@ -162,3 +145,4 @@ This is just a reminder — the user decides. Do not run `/release` automaticall
 - **One concern per commit** — separate unrelated changes
 - **Docs before merge**: update docs as the final commit on the branch, before requesting review
 - **Update PR description on new pushes** — when pushing additional commits to an existing PR, read the current body first (`gh pr view <number> --json body`), add the new changes to the Summary section, then write the full updated body (`gh pr edit <number> --body ...`). The `--body` flag replaces the entire body, so always read-then-write — never write from scratch
+- **Link backlog items correctly** — follow the rules in `.claude/references/pr-templates.md` for backlog references in PR bodies
