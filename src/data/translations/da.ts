@@ -114,6 +114,8 @@ const da: Record<TranslationKeys, string> = {
   'vocab.adjectives': 'Adjektiver',
   'vocab.pronouns': 'Pronominer',
   'vocab.adverbs': 'Adverbier',
+  'vocab.prepositions': 'Præpositioner',
+  'vocab.conjunctions': 'Konjunktioner',
 
   // Grammar
   'grammar.title': 'Grammatik',

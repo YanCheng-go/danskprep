@@ -1,6 +1,6 @@
 # DanskPrep Backlog
 
-> Last updated: 2026-03-03 | Total: 34 | Ready: 21 | Done: 2 | In Progress: 0 | Dropped: 1 | Idea: 10
+> Last updated: 2026-03-03 | Total: 37 | Ready: 24 | Done: 2 | In Progress: 0 | Dropped: 1 | Idea: 10
 
 ## Summary
 
@@ -40,6 +40,9 @@
 | BL-032 | Integrate local Danish LLM for app features    | feature | vocabulary | p1  | xl     | ready  | all   | —    |
 | BL-033 | Redesign mobile header — move icons to sidebar | feature | ui         | p1  | m      | ready  | all   | —    |
 | BL-034 | Evaluate backlog file vs GitHub Projects       | chore   | dx         | p3  | s      | idea   | —     | —    |
+| BL-035 | Allow setting max quiz questions per session   | feature | quiz       | p0  | s      | ready  | all   | —    |
+| BL-036 | Remove default AI provider settings            | bug     | ui         | p0  | xs     | ready  | all   | —    |
+| BL-037 | Change search placeholder to "Type a Danish... | chore   | ui         | p2  | xs     | ready  | all   | —    |
 
 ## Items
 
@@ -706,6 +709,57 @@ Investigate whether the current `docs/backlog.md` file-based approach or GitHub 
 - **Automation** — can items auto-close on PR merge, auto-assign, etc.?
 
 Produce a short recommendation in `docs/spikes/` with a clear "keep file" or "migrate to GitHub Projects" verdict.
+
+#### Notes
+
+_No notes yet._
+
+---
+
+### BL-035: Allow setting max quiz questions per session
+
+- **Type:** feature | **Area:** quiz | **Priority:** p0 | **Effort:** s
+- **Status:** ready | **Scope:** all
+- **Created:** 2026-03-03
+- **Dependencies:** none
+
+The quiz session length is currently hardcoded. Add a user-configurable setting to control the maximum number of questions per quiz session (e.g., 10, 20, 30, or unlimited). Persist the preference in localStorage so it survives page refreshes. Show the control on the quiz page before starting a session — a simple dropdown or number picker.
+
+**Files:** `src/pages/QuizPage.tsx`, `src/hooks/useQuiz.ts` (or related quiz logic)
+
+#### Notes
+
+_No notes yet._
+
+---
+
+### BL-036: Remove default AI provider settings
+
+- **Type:** bug | **Area:** ui | **Priority:** p0 | **Effort:** xs
+- **Status:** ready | **Scope:** all
+- **Created:** 2026-03-03
+- **Dependencies:** none
+
+The AI provider settings page pre-fills default values in the input fields. Remove the default values so inputs start empty, but keep placeholder text showing the expected format (e.g., `sk-ant-...` for API key, `https://api.anthropic.com` for URL) so users know what to enter. This prevents users from accidentally using incorrect default settings.
+
+**Files:** `src/lib/ai-provider.ts`, AI settings component(s)
+
+#### Notes
+
+_No notes yet._
+
+---
+
+### BL-037: Change search placeholder to "Type a Danish word"
+
+- **Type:** chore | **Area:** ui | **Priority:** p2 | **Effort:** xs
+- **Status:** ready | **Scope:** all
+- **Created:** 2026-03-03
+- **Dependencies:** none
+
+Update the dictionary/search input placeholder text from the current generic text to "Type a Danish word". Update both English and Danish translation strings in the i18n files.
+
+**Files:** `src/pages/DictionaryPage.tsx` (or Header search), i18n translation files
 
 #### Notes
 
