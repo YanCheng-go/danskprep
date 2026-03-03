@@ -15,7 +15,7 @@ export interface ProviderConfig {
   model: string
 }
 
-const PROVIDER_DEFAULTS: Record<AIProvider, { model: string; baseUrl?: string }> = {
+export const PROVIDER_DEFAULTS: Record<AIProvider, { model: string; baseUrl?: string }> = {
   anthropic: { model: 'claude-haiku-4-5-20251001' },
   ollama: { model: 'llama3.1', baseUrl: 'http://localhost:11434' },
   openrouter: { model: 'qwen/qwen3-80b:free' },
