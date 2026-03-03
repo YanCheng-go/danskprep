@@ -1,5 +1,26 @@
 [
   {
+    "version": "0.5.0",
+    "date": "2026-03-03",
+    "title": "Enriched Vocabulary & Exercise Verification",
+    "highlights": [
+      "Vocabulary expanded from 277 to 376 words (206 from speakandlearn, 99 extracted, 71 core)",
+      "All 222 verbs now have complete inflections (present, past, perfect, imperative)",
+      "83 verb conjugation errors corrected after manual grammar review",
+      "292 exercises verified for answer correctness and hint accuracy",
+      "91 Danish-language hints identified for English translation",
+      "New scripts: enrich-via-ollama.py, fix-inflections.py, verify-exercises.py",
+      "Danish LLM reference guide added for future local AI integration"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 376,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
     "version": "0.4.1",
     "date": "2026-03-02",
     "title": "Mobile Responsiveness & Quiz Fixes",
