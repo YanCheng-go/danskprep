@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Recategorize exercises by grammar_topic_slug using LLM analysis.
+Recategorize exercises by grammar_topic_slug using heuristic rules.
 
-Many exercises were assigned the wrong topic during generation — e.g. adjective
-agreement exercises tagged as "comparative-superlative". This script audits every
-exercise and corrects misclassifications.
+Many exercises were assigned the wrong topic during LLM generation — e.g.
+adjective agreement exercises tagged as "comparative-superlative". This script
+uses pattern-matching heuristics to detect and fix misclassifications without
+requiring an API key.
 
 Usage:
   cd scripts
-  export ANTHROPIC_API_KEY=sk-ant-...
 
   # Dry-run: audit all exercises, produce report
   uv run python recategorize-exercises.py
@@ -23,19 +23,10 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import sys
-import textwrap
-import time
+import re
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
-
-try:
-    import anthropic
-except ImportError:
-    print("ERROR: Run: cd scripts && uv sync")
-    sys.exit(1)
 
 PROJECT_ROOT = Path(__file__).parent.parent
 SEED_DIR = PROJECT_ROOT / "src" / "data" / "seed"
@@ -53,156 +44,211 @@ VALID_TOPICS = [
     "adjective-agreement",
 ]
 
-BATCH_SIZE = 20
-RATE_LIMIT_DELAY = 0.3
-
 
 # ---------------------------------------------------------------------------
-# LLM helpers (reused from generate-from-dump.py)
+# Heuristic classifier
 # ---------------------------------------------------------------------------
-def call_claude(
-    client: anthropic.Anthropic,
-    prompt: str,
-    system: str,
-    model: str = "claude-haiku-4-5-20251001",
-    max_tokens: int = 4096,
-) -> str:
-    message = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system=system,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return message.content[0].text.strip()
+
+# Comparative/superlative signal words in answer
+COMPARATIVE_PATTERNS = re.compile(
+    r"\b(mere|mest|bedre|bedst|værre|værst|mindre|mindst|"
+    r"større|størst|ældre|ældst|yngre|yngst|flere|flest|"
+    r"hurtigere|hurtigst|billigere|mørkere|anderledes|hellere)\b"
+    r"|ere\b|est\b",
+    re.IGNORECASE,
+)
+
+# Adjective agreement hint signals
+AGREEMENT_HINT_PATTERNS = re.compile(
+    r"(t-form|e-form|base.?form|adjective form|adjektiv|"
+    r"et-noun|en-noun|definite|plural|possessive|"
+    r"bestemt|flertal|base/-t/-e)",
+    re.IGNORECASE,
+)
+
+# Subordinate clause conjunctions
+SUBORDINATE_CONJUNCTIONS = re.compile(
+    r"\b(fordi|hvis|når|da|selvom|mens|inden|skønt|"
+    r"at\b.*\bhan|\bat\b.*\bhun|om\b.*\bhan|om\b.*\bhun)",
+    re.IGNORECASE,
+)
+
+# Passive voice patterns
+PASSIVE_PATTERNS = re.compile(
+    r"(passiv|omskriv til (aktiv|passiv)|s-passive|blive.*participium|"
+    r"\b\w+es\b.*→|\b\w+s\b.*passiv)",
+    re.IGNORECASE,
+)
+
+# Pronoun patterns
+PRONOUN_PATTERNS = re.compile(
+    r"\b(sin|sit|sine|hans|hendes|deres|mig|dig|ham|hende|"
+    r"os|jer|dem|min|mit|mine|din|dit|dine)\b",
+    re.IGNORECASE,
+)
+
+# Word order / V2 patterns
+V2_PATTERNS = re.compile(
+    r"(ordstilling|word.?order|V2|inversion|omvendt)",
+    re.IGNORECASE,
+)
 
 
-def parse_json_array(text: str) -> list[dict] | None:
-    text = text.strip()
-    if "```" in text:
-        lines = text.split("\n")
-        lines = [line for line in lines if not line.strip().startswith("```")]
-        text = "\n".join(lines).strip()
-    start = text.find("[")
-    end = text.rfind("]") + 1
-    if start == -1 or end == 0:
-        return None
-    try:
-        data = json.loads(text[start:end])
-        return data if isinstance(data, list) else None
-    except json.JSONDecodeError:
-        return None
+def classify_exercise(idx: int, ex: dict) -> dict | None:
+    """Classify a single exercise. Returns a change dict or None if no change."""
+    current = ex["grammar_topic_slug"]
+    q = ex.get("question", "")
+    a = ex.get("correct_answer", "")
+    hint = ex.get("hint", "") or ""
+    explanation = ex.get("explanation", "") or ""
+    ex_type = ex.get("exercise_type", "")
+    text = f"{q} {a} {hint} {explanation}"
 
+    recommended = None
+    reason = ""
 
-# ---------------------------------------------------------------------------
-# Classification prompt
-# ---------------------------------------------------------------------------
-SYSTEM_PROMPT = textwrap.dedent("""\
-    You are an expert Danish grammar classifier. Your job is to determine which
-    grammar topic each exercise ACTUALLY tests, based on what the student must
-    produce or identify (the blank, the answer, the error — not the surrounding
-    sentence content).
+    # ---- Rule 1: Adjective agreement detection ----
+    # Hint says "adjective form", "t-form", "e-form", "base/-t/-e" etc.
+    if AGREEMENT_HINT_PATTERNS.search(hint):
+        # But NOT if the answer is a comparative/superlative form
+        if not COMPARATIVE_PATTERNS.search(a):
+            recommended = "adjective-agreement"
+            reason = f"Hint indicates adjective agreement: '{hint[:60]}'"
 
-    The 7 grammar topics and what they cover:
+    # ---- Rule 2: Conjugation exercises asking for t-form or e-form ----
+    if ex_type == "conjugation" and recommended is None:
+        q_lower = q.lower()
+        if "t-formen" in q_lower or "t-form" in q_lower:
+            if not COMPARATIVE_PATTERNS.search(a):
+                recommended = "adjective-agreement"
+                reason = f"Conjugation asks for t-form: answer '{a}'"
+        elif "e-formen" in q_lower or "e-form" in q_lower:
+            if not COMPARATIVE_PATTERNS.search(a):
+                recommended = "adjective-agreement"
+                reason = f"Conjugation asks for e-form: answer '{a}'"
+        elif "komparativ" in q_lower:
+            recommended = "comparative-superlative"
+            reason = f"Conjugation asks for komparativ: answer '{a}'"
+        elif "superlativ" in q_lower:
+            recommended = "comparative-superlative"
+            reason = f"Conjugation asks for superlativ: answer '{a}'"
 
-    1. noun-gender — Determining whether a noun is en-word or et-word. Definite/
-       indefinite articles (en/et, -en/-et). Noun plurals (-er, -e, -ene, -erne).
+    # ---- Rule 3: da/når/om conjunction exercises ----
+    if recommended is None and current != "main-subordinate-clauses":
+        a_lower = a.strip().lower().rstrip(".")
+        if a_lower in ("da", "når", "om"):
+            recommended = "main-subordinate-clauses"
+            reason = f"Answer is conjunction '{a_lower}'"
+        elif "da/når" in hint.lower() or "indirect" in hint.lower():
+            recommended = "main-subordinate-clauses"
+            reason = "Hint mentions da/når or indirect questions"
+        # Error correction: når → da or vice versa
+        if ex_type == "error_correction" and recommended is None:
+            if re.search(r"\bNår\b.*→.*\bDa\b|\bda\b.*→.*\bnår\b", text):
+                recommended = "main-subordinate-clauses"
+                reason = "Error correction: da/når distinction"
+            elif re.search(r"\bom\b.*indirekte|indirect.*\bom\b", text, re.I):
+                recommended = "main-subordinate-clauses"
+                reason = "Indirect question with 'om'"
 
-    2. comparative-superlative — Comparative forms (-ere, mere), superlative forms
-       (-est, mest). Comparing two or more things. Irregular comparisons (god →
-       bedre → bedst). The tested element is a comparative or superlative FORM.
+    # ---- Rule 4: Passive voice / imperative exercises ----
+    if recommended is None and current != "verbs-tenses":
+        if PASSIVE_PATTERNS.search(text):
+            recommended = "verbs-tenses"
+            reason = "Tests passive voice or imperative conversion"
+        elif "participium" in text.lower() or "perfektum" in hint.lower():
+            recommended = "verbs-tenses"
+            reason = "Tests past participle"
 
-    3. adjective-agreement — Adjective inflection to match noun gender/number/
-       definiteness. T-form for et-words (et stort hus), e-form for definite/
-       plural/possessive (den store bil, store biler, min store bil). The tested
-       element is the FORM of an adjective matching its noun context.
-       KEY DISTINCTION from comparative-superlative: if the blank tests whether
-       an adjective gets -t, -e, or base form to agree with its noun, it is
-       adjective-agreement. If the blank tests -ere/-est/mere/mest or an
-       irregular comparative form, it is comparative-superlative.
+    # ---- Rule 5: Word order / V2 exercises ----
+    if recommended is None and current != "inverted-word-order":
+        if ex_type == "word_order" and "V2" in hint:
+            recommended = "inverted-word-order"
+            reason = "Word order exercise with V2 hint"
+        elif V2_PATTERNS.search(hint):
+            recommended = "inverted-word-order"
+            reason = f"Hint indicates word order: '{hint[:60]}'"
+        # Rewrite exercises that test V2 inversion
+        if recommended is None and ex_type == "type_answer":
+            if re.search(
+                r"(omskriv.*begynder med|subordinate.*first.*→.*invert)",
+                text, re.I,
+            ):
+                if "V2" in hint or "invert" in hint.lower() or "omvendt" in hint.lower():
+                    recommended = "inverted-word-order"
+                    reason = "Rewrite exercise testing V2 inversion"
+        # Error correction with V2
+        if recommended is None and ex_type == "error_correction":
+            if re.search(r"V2|invert|omvendt", hint, re.I):
+                recommended = "inverted-word-order"
+                reason = "Error correction testing V2 word order"
+            # subordinate clause first → V2 in main clause
+            elif re.search(
+                r"(Hvis|Når|Da|Selvom)\b.*,\s*(han|hun|jeg|vi|de|man)\s+\w+",
+                a,
+            ):
+                if re.search(
+                    r"(Hvis|Når|Da|Selvom)\b.*,\s+\w+\s+(han|hun|jeg|vi|de|man)",
+                    q,
+                ):
+                    recommended = "inverted-word-order"
+                    reason = "Error correction: V2 after subordinate clause"
 
-    4. inverted-word-order — V2 rule (verb must be second). Subject-verb inversion
-       after fronted adverbs, time expressions, subordinate clauses. Ordering the
-       subject and verb correctly when something other than the subject starts the
-       sentence.
+    # ---- Rule 6: Pronoun exercises misclassified under noun-gender ----
+    if recommended is None and current == "noun-gender":
+        if a.strip().lower() in (
+            "sin", "sit", "sine", "hans", "hendes", "deres",
+            "mig", "dig", "ham", "hende", "os", "jer", "dem",
+        ):
+            recommended = "pronouns"
+            reason = f"Answer is pronoun '{a}'"
+        elif ex_type == "error_correction" and re.search(
+            r"\b(sit|sin|sine)\b.*→.*\b(sine|sin|sit)\b", text,
+        ):
+            recommended = "pronouns"
+            reason = "Error correction testing sin/sit/sine"
 
-    5. main-subordinate-clauses — Adverb placement difference between main clauses
-       (verb before adverb: "han spiser ikke") and subordinate clauses (adverb
-       before verb: "fordi han ikke spiser"). Subordinating conjunctions (at,
-       fordi, hvis, når, da, selvom, mens). Comma placement at clause boundaries.
+    # ---- Rule 7: Definite article exercises misclassified under pronouns ----
+    if recommended is None and current == "pronouns":
+        if ex_type == "error_correction" and re.search(
+            r"[Ee]n (bil|hus|mand|kvinde)\w*\b.*→.*(bil|hus|mand|kvinde)\w+en\b",
+            text,
+        ):
+            recommended = "noun-gender"
+            reason = "Error correction about definite articles, not pronouns"
+        # Simpler check: hint mentions article/definite but no pronouns
+        if recommended is None and "article" in hint.lower() and not PRONOUN_PATTERNS.search(a):
+            recommended = "noun-gender"
+            reason = "Hint about articles, not pronouns"
 
-    6. verbs-tenses — Verb conjugation: present (-er), past (-ede/-te), perfect
-       (har + participle), future (vil/skal). Modal verbs (kan, skal, vil, må).
-       Passive voice (-s / blive). Irregular verb forms. Imperative.
+    # ---- Rule 8: Adjective agreement from noun-gender ----
+    if recommended is None and current == "noun-gender":
+        # Exercises asking to fill in adjective forms
+        if ex_type == "conjugation" and re.search(r"udfyld|adjektiv", q, re.I):
+            if not COMPARATIVE_PATTERNS.search(a):
+                recommended = "adjective-agreement"
+                reason = "Fill-in-the-blank for adjective form"
+        # Cloze where hint mentions possessive + adjective
+        if recommended is None and "possessive" in hint.lower() and "adjective" in hint.lower():
+            recommended = "adjective-agreement"
+            reason = "Hint: adjective after possessive"
+        # Hint explicitly says adjective/definite form
+        if recommended is None and AGREEMENT_HINT_PATTERNS.search(hint):
+            if not COMPARATIVE_PATTERNS.search(a):
+                recommended = "adjective-agreement"
+                reason = f"Hint indicates adjective agreement: '{hint[:60]}'"
 
-    7. pronouns — Subject/object pronoun forms (jeg/mig, han/ham). Possessive
-       pronouns (min/mit/mine). Reflexive sin/sit/sine vs hans/hendes. Relative
-       pronouns (som, der, hvis). Demonstrative, interrogative, indefinite
-       pronouns.
+    # ---- Only return if we recommend a different topic ----
+    if recommended and recommended != current and recommended in VALID_TOPICS:
+        return {
+            "global_index": idx,
+            "current_topic": current,
+            "recommended_topic": recommended,
+            "confidence": 0.9,
+            "reasoning": reason,
+        }
 
-    For each exercise, analyze:
-    - What is blanked/tested/asked? (the specific grammar point)
-    - Does the current topic match what is actually tested?
-
-    Return a JSON array. For EACH exercise in the batch, return an object with:
-    {
-      "index": <integer, position in batch starting at 0>,
-      "current_topic": "<the exercise's current grammar_topic_slug>",
-      "recommended_topic": "<your recommended grammar_topic_slug>",
-      "confidence": <float 0.0 to 1.0>,
-      "reasoning": "<brief explanation of what grammar point is tested>"
-    }
-
-    Return ALL exercises in the batch, even if current_topic == recommended_topic.
-    Use ONLY the 7 slugs listed above. Output ONLY the JSON array, no other text.
-""")
-
-
-def format_exercise_for_prompt(idx: int, ex: dict) -> str:
-    """Format a single exercise for the LLM prompt."""
-    parts = [f"[{idx}] topic={ex['grammar_topic_slug']}  type={ex['exercise_type']}"]
-    parts.append(f"  Q: {ex['question']}")
-    parts.append(f"  A: {ex['correct_answer']}")
-    if ex.get("hint"):
-        parts.append(f"  Hint: {ex['hint']}")
-    if ex.get("explanation"):
-        parts.append(f"  Explanation: {ex['explanation']}")
-    if ex.get("alternatives"):
-        parts.append(f"  Alternatives: {', '.join(ex['alternatives'])}")
-    return "\n".join(parts)
-
-
-def classify_batch(
-    client: anthropic.Anthropic, exercises: list[dict], batch_start: int
-) -> list[dict]:
-    """Send a batch of exercises to the LLM for classification."""
-    exercise_texts = []
-    for i, ex in enumerate(exercises):
-        exercise_texts.append(format_exercise_for_prompt(i, ex))
-
-    prompt = (
-        f"Classify these {len(exercises)} exercises (batch starting at global "
-        f"index {batch_start}):\n\n" + "\n\n".join(exercise_texts)
-    )
-
-    response = call_claude(client, prompt, SYSTEM_PROMPT, max_tokens=4096)
-    results = parse_json_array(response)
-
-    if results is None:
-        print(f"  WARNING: Failed to parse LLM response for batch at {batch_start}")
-        return []
-
-    # Validate results
-    validated = []
-    for item in results:
-        if not isinstance(item, dict):
-            continue
-        rec = item.get("recommended_topic", "")
-        if rec not in VALID_TOPICS:
-            print(f"  WARNING: Invalid topic '{rec}' at index {item.get('index')}")
-            continue
-        validated.append(item)
-
-    return validated
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -210,7 +256,6 @@ def classify_batch(
 # ---------------------------------------------------------------------------
 def generate_markdown_report(
     changes: list[dict],
-    all_results: list[dict],
     exercises: list[dict],
     timestamp: str,
 ) -> str:
@@ -218,9 +263,8 @@ def generate_markdown_report(
     lines = [
         f"# Exercise Recategorization Report — {timestamp}",
         "",
-        f"**Total exercises analyzed:** {len(all_results)}",
+        f"**Total exercises:** {len(exercises)}",
         f"**Changes recommended:** {len(changes)}",
-        f"**No change:** {len(all_results) - len(changes)}",
         "",
     ]
 
@@ -263,23 +307,6 @@ def generate_markdown_report(
         lines.append(f"| {topic} | {b} | {a} | {sign}{delta} |")
     lines.append("")
 
-    # Low-confidence flags
-    low_conf = [c for c in changes if c.get("confidence", 1.0) < 0.8]
-    if low_conf:
-        lines.append("## Low Confidence Changes (< 0.8)")
-        lines.append("")
-        for c in low_conf:
-            global_idx = c["global_index"]
-            ex = exercises[global_idx]
-            lines.append(
-                f"- **[{global_idx}]** {c['current_topic']} → {c['recommended_topic']} "
-                f"(conf: {c.get('confidence', '?')})"
-            )
-            lines.append(f"  - Q: {ex['question']}")
-            lines.append(f"  - A: {ex['correct_answer']}")
-            lines.append(f"  - Reason: {c.get('reasoning', 'N/A')}")
-        lines.append("")
-
     # All changes
     if changes:
         lines.append("## All Changes")
@@ -288,8 +315,7 @@ def generate_markdown_report(
             global_idx = c["global_index"]
             ex = exercises[global_idx]
             lines.append(
-                f"### [{global_idx}] {c['current_topic']} → {c['recommended_topic']} "
-                f"(conf: {c.get('confidence', '?')})"
+                f"### [{global_idx}] {c['current_topic']} → {c['recommended_topic']}"
             )
             lines.append(f"- **Q:** {ex['question']}")
             lines.append(f"- **A:** {ex['correct_answer']}")
@@ -304,7 +330,7 @@ def generate_markdown_report(
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="Recategorize exercises by grammar_topic_slug using LLM"
+        description="Recategorize exercises by grammar_topic_slug using heuristics"
     )
     parser.add_argument(
         "--topic",
@@ -316,18 +342,7 @@ def main():
         action="store_true",
         help="Apply changes to exercises-pd3m2.json (default: dry-run)",
     )
-    parser.add_argument(
-        "--confidence-threshold",
-        type=float,
-        default=0.7,
-        help="Only apply changes above this confidence (default: 0.7)",
-    )
     args = parser.parse_args()
-
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("ERROR: Set ANTHROPIC_API_KEY environment variable")
-        sys.exit(1)
 
     # Load exercises
     with open(EXERCISES_FILE) as f:
@@ -344,66 +359,16 @@ def main():
     else:
         indices = list(range(len(exercises)))
 
-    # Process in batches
-    client = anthropic.Anthropic(api_key=api_key)
-    all_results: list[dict] = []
+    # Classify each exercise
     changes: list[dict] = []
-    total_batches = (len(indices) + BATCH_SIZE - 1) // BATCH_SIZE
-
-    print(f"Processing {len(indices)} exercises in {total_batches} batches...")
-
-    for batch_num in range(total_batches):
-        batch_start = batch_num * BATCH_SIZE
-        batch_indices = indices[batch_start : batch_start + BATCH_SIZE]
-        batch_exercises = [exercises[i] for i in batch_indices]
-
-        print(
-            f"  Batch {batch_num + 1}/{total_batches} "
-            f"(exercises {batch_indices[0]}-{batch_indices[-1]})...",
-            end="",
-            flush=True,
-        )
-
-        results = classify_batch(client, batch_exercises, batch_indices[0])
-
-        batch_changes = 0
-        for item in results:
-            local_idx = item.get("index", -1)
-            if local_idx < 0 or local_idx >= len(batch_indices):
-                continue
-
-            global_idx = batch_indices[local_idx]
-            item["global_index"] = global_idx
-            all_results.append(item)
-
-            if item["current_topic"] != item["recommended_topic"]:
-                item["global_index"] = global_idx
-                changes.append(item)
-                batch_changes += 1
-
-        print(f" {len(results)} classified, {batch_changes} changes")
-
-        if batch_num < total_batches - 1:
-            time.sleep(RATE_LIMIT_DELAY)
+    for idx in indices:
+        result = classify_exercise(idx, exercises[idx])
+        if result:
+            changes.append(result)
 
     # Summary
-    print("\n--- Summary ---")
-    print(f"Total analyzed: {len(all_results)}")
-    print(f"Changes recommended: {len(changes)}")
+    print(f"\nChanges recommended: {len(changes)}")
 
-    above_threshold = [
-        c for c in changes if c.get("confidence", 0) >= args.confidence_threshold
-    ]
-    below_threshold = [
-        c for c in changes if c.get("confidence", 0) < args.confidence_threshold
-    ]
-    print(
-        f"Above confidence threshold ({args.confidence_threshold}): "
-        f"{len(above_threshold)}"
-    )
-    print(f"Below threshold (flagged for review): {len(below_threshold)}")
-
-    # Topic change counts
     change_counts: Counter = Counter()
     for c in changes:
         key = f"{c['current_topic']} → {c['recommended_topic']}"
@@ -421,12 +386,10 @@ def main():
     audit_data = {
         "timestamp": timestamp,
         "total_exercises": len(exercises),
-        "total_analyzed": len(all_results),
+        "total_analyzed": len(indices),
         "total_changes": len(changes),
-        "confidence_threshold": args.confidence_threshold,
         "topic_filter": args.topic,
         "changes": changes,
-        "all_results": all_results,
     }
     with open(audit_file, "w") as f:
         json.dump(audit_data, f, indent=2, ensure_ascii=False)
@@ -435,15 +398,15 @@ def main():
     # Markdown report
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
     report_file = DOCS_DIR / f"recategorization-report-{timestamp}.md"
-    report = generate_markdown_report(changes, all_results, exercises, timestamp)
+    report = generate_markdown_report(changes, exercises, timestamp)
     with open(report_file, "w") as f:
         f.write(report)
     print(f"Report saved: {report_file}")
 
     # Apply changes
-    if args.write and above_threshold:
-        print(f"\nApplying {len(above_threshold)} changes to {EXERCISES_FILE.name}...")
-        for c in above_threshold:
+    if args.write and changes:
+        print(f"\nApplying {len(changes)} changes to {EXERCISES_FILE.name}...")
+        for c in changes:
             global_idx = c["global_index"]
             old_topic = exercises[global_idx]["grammar_topic_slug"]
             new_topic = c["recommended_topic"]
@@ -452,7 +415,7 @@ def main():
 
         with open(EXERCISES_FILE, "w") as f:
             json.dump(exercises, f, indent=2, ensure_ascii=False)
-        print(f"Updated {EXERCISES_FILE.name} with {len(above_threshold)} changes")
+        print(f"Updated {EXERCISES_FILE.name} with {len(changes)} changes")
 
         # Show final topic distribution
         final_counts: Counter = Counter()
@@ -461,8 +424,8 @@ def main():
         print("\nFinal topic distribution:")
         for topic in VALID_TOPICS:
             print(f"  {topic}: {final_counts.get(topic, 0)}")
-    elif args.write and not above_threshold:
-        print("\nNo changes above confidence threshold to apply.")
+    elif args.write and not changes:
+        print("\nNo changes to apply.")
     else:
         print("\nDry-run complete. Use --write to apply changes.")
 
