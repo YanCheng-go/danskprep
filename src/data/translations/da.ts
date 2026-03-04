@@ -272,6 +272,8 @@ const da: Record<TranslationKeys, string> = {
   'settings.languageDesc': 'Vælg visningssprog for app-grænsefladen',
   'settings.aiProvider': 'AI-udbyder',
   'settings.aiProviderDesc': 'Vælg hvilken AI-tjeneste der skal bruges til skrive-, tale- og chatfunktioner',
+  'settings.provider.none': 'Ikke konfigureret',
+  'settings.provider.noneDesc': 'AI-funktioner (skrivning, tale, chat) er deaktiveret, indtil du vælger en udbyder',
   'settings.provider.anthropic': 'Anthropic (Claude)',
   'settings.provider.anthropicDesc': 'Cloud — kræver API-nøgle (betalt)',
   'settings.provider.ollama': 'Ollama (Lokal)',

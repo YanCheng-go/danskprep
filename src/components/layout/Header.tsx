@@ -48,20 +48,20 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
 
   return (
     <header className="sticky top-0 z-40 h-14 border-b bg-background">
-      <div className="flex h-full items-center px-4 overflow-hidden">
+      <div className="flex h-full items-center px-2 sm:px-4 overflow-x-clip">
         {/* Mobile menu toggle */}
         <Button
           variant="ghost"
           size="icon"
-          className="mr-3 md:hidden"
+          className="mr-1 sm:mr-3 md:hidden"
           onClick={onToggleMenu}
           aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </Button>
 
-        <div className="flex items-center bg-background pr-3">
-          <Link to="/home" className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity">
+        <div className="flex items-center bg-background pr-1 sm:pr-3">
+          <Link to="/home" className="text-base sm:text-lg font-bold tracking-tight hover:opacity-80 transition-opacity">
             🇩🇰 DanskPrep
           </Link>
 
@@ -117,21 +117,10 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
 
         </div>
 
-        {/* Spacer + mobile search icon */}
-        <div className="flex-1 flex items-center justify-center px-2 min-w-0 md:block">
-          <div className="flex items-center gap-1.5 md:hidden">
-            <button
-              onClick={() => navigate('/dictionary')}
-              className="inline-flex items-center justify-center h-9 w-9 rounded-lg border-2 border-pink-200 dark:border-pink-800/60 text-pink-400 hover:text-pink-500 hover:bg-pink-50 dark:hover:bg-pink-950/30 shadow-[0_0_8px_rgba(236,72,153,0.15)] transition-all"
-              title={t('header.lookupPlaceholder')}
-              aria-label={t('header.lookupPlaceholder')}
-            >
-              <Search className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
+        {/* Spacer */}
+        <div className="flex-1 min-w-0" />
 
-        <div className="flex items-center gap-1 bg-background pl-3 min-w-0 overflow-hidden">
+        <div className="flex items-center gap-0.5 sm:gap-1 bg-background pl-1 sm:pl-3 shrink-0">
           {/* Game controls — toggle + rankings, hidden on mobile */}
           <div className="hidden sm:flex items-center gap-0 rounded-lg border border-foreground/[0.08]">
             <button
@@ -163,7 +152,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Dark mode toggle */}
           <button
             onClick={handleThemeToggle}
-            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md h-9 w-9 sm:min-h-11 sm:min-w-11 p-1.5 sm:p-2 text-muted-foreground hover:bg-accent transition-colors"
             title={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
             aria-label={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
           >
@@ -173,19 +162,18 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Language toggle */}
           <button
             onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
-            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-sm text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md h-9 w-9 sm:min-h-11 sm:min-w-11 p-1.5 sm:p-2 text-sm text-muted-foreground hover:bg-accent transition-colors"
             title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
             aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
           >
             {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
           </button>
 
-          <span className="w-px h-4 bg-foreground/[0.08] mx-0.5" />
-
+          <span className="hidden sm:block w-px h-4 bg-foreground/[0.08] mx-0.5" />
 
           <button
             onClick={() => { setSupportOpen(true); track('support_click') }}
-            className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
             aria-label={t('support.title')}
           >
             <Coffee className="h-4 w-4 text-pink-500" />
