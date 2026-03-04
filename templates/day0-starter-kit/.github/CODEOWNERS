@@ -1,0 +1,20 @@
+# CODEOWNERS — auto-assigns reviewers on PRs
+# CUSTOMIZE: Replace @OWNER with your GitHub username
+
+# Global fallback
+* @OWNER
+
+# Architecture & Database
+# supabase/                         @OWNER
+# src/types/                        @OWNER
+
+# Security-sensitive paths
+# src/lib/supabase.ts               @OWNER
+# .env.example                      @OWNER
+
+# CI/CD
+.github/workflows/                @OWNER
+.github/CODEOWNERS                @OWNER
+
+# SDLC governance
+CLAUDE.md                         @OWNER

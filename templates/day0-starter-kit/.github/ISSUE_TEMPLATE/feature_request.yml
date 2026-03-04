@@ -1,0 +1,56 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+labels: ["type:feature"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      # CUSTOMIZE: Add project-specific areas
+      options:
+        - area:ui
+        - area:auth
+        - area:db
+        - area:dx
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - p0 — critical
+        - p1 — important
+        - p2 — default
+        - p3 — nice to have
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Effort
+      options:
+        - xs — trivial
+        - s — straightforward
+        - m — medium (default)
+        - l — complex
+        - xl — epic
+      default: 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What should the feature do and why?
+      placeholder: |
+        **Problem:** ...
+        **Solution:** ...
+        **Acceptance criteria:**
+        - [ ] ...
+    validations:
+      required: true
