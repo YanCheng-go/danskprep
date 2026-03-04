@@ -23,6 +23,7 @@ const da: Record<TranslationKeys, string> = {
   'nav.practice': 'Øv',
   'nav.reference': 'Opslagsværk',
   'nav.app': 'App',
+  'nav.quickActions': 'Genveje',
   'nav.signIn': 'Log ind',
   'nav.signUp': 'Opret konto',
 

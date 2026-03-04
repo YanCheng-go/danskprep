@@ -4,28 +4,36 @@ import {
   BookOpen,
   Brain,
   ClipboardCheck,
+  Coffee,
   Dumbbell,
+  Gamepad2,
   Github,
   Home,
   List,
   LogIn,
+  LogOut,
   Mic,
   MessageSquare,
+  Moon,
   Newspaper,
   PenLine,
   PlusCircle,
   Radio,
   Settings,
   Sparkles,
+  Sun,
+  Trophy,
   BarChart2,
 } from 'lucide-react'
+import { track } from '@vercel/analytics'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { FeedbackDialog } from '@/components/feedback/FeedbackDialog'
 import { AddExerciseDialog } from '@/components/exercise/AddExerciseDialog'
+import { SupportDialog } from './SupportDialog'
 import { useTranslation } from '@/lib/i18n'
-import { APP_VERSION } from '@/lib/constants'
+import { APP_VERSION, SETTINGS_KEYS } from '@/lib/constants'
 import type { User } from '@supabase/supabase-js'
 
 interface NavItem {
@@ -50,13 +58,28 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 interface SidebarProps {
   user?: User | null
   onClose?: () => void
+  bubblesEnabled?: boolean
+  onToggleBubbles?: () => void
+  bubbleScore?: number
+  onOpenGamePanel?: () => void
+  onSignOut?: () => void
 }
 
-export function Sidebar({ user, onClose }: SidebarProps) {
+export function Sidebar({ user, onClose, bubblesEnabled = false, onToggleBubbles, bubbleScore = 0, onOpenGamePanel, onSignOut }: SidebarProps) {
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [addExerciseOpen, setAddExerciseOpen] = useState(false)
   const [signInPromptOpen, setSignInPromptOpen] = useState(false)
-  const { t } = useTranslation()
+  const [supportOpen, setSupportOpen] = useState(false)
+  const { locale, setLocale, t } = useTranslation()
+  const [isDark, setIsDark] = useState(
+    () => document.documentElement.classList.contains('dark')
+  )
+
+  function handleThemeToggle() {
+    const nowDark = document.documentElement.classList.toggle('dark')
+    localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(nowDark))
+    setIsDark(nowDark)
+  }
 
   const practiceItems: NavItem[] = [
     { to: '/study', labelKey: 'nav.study', icon: <Brain className="h-5 w-5" /> },
@@ -122,6 +145,70 @@ export function Sidebar({ user, onClose }: SidebarProps) {
         {t('nav.home')}
       </NavLink>
 
+      {/* Quick Actions — mobile only */}
+      <div className="md:hidden">
+        <SectionLabel>{t('nav.quickActions')}</SectionLabel>
+
+        {/* Dark mode toggle */}
+        <button onClick={handleThemeToggle} className={linkClass}>
+          {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          {isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
+        </button>
+
+        {/* Language toggle */}
+        <button
+          onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
+          className={linkClass}
+        >
+          <span className="h-5 w-5 flex items-center justify-center text-base">
+            {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
+          </span>
+          {locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
+        </button>
+
+        {/* Game toggle */}
+        <button onClick={onToggleBubbles} className={linkClass}>
+          <Gamepad2 className="h-5 w-5" />
+          {bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
+        </button>
+
+        {/* Game rankings */}
+        {bubblesEnabled && (
+          <button
+            onClick={() => { onOpenGamePanel?.(); onClose?.() }}
+            className={linkClass}
+          >
+            <Trophy className="h-5 w-5 text-yellow-500" />
+            {t('bubble.game.tooltip')}
+            {bubbleScore > 0 && (
+              <span className="ml-auto text-xs font-bold text-yellow-600 dark:text-yellow-400">{bubbleScore}</span>
+            )}
+          </button>
+        )}
+
+        {/* Support */}
+        <button
+          onClick={() => { setSupportOpen(true); track('support_click') }}
+          className={linkClass}
+        >
+          <Coffee className="h-5 w-5 text-pink-500" />
+          {t('support.title')}
+        </button>
+
+        {/* Sign out / Sign in */}
+        {user ? (
+          <button onClick={() => { onSignOut?.(); onClose?.() }} className={linkClass}>
+            <LogOut className="h-5 w-5" />
+            {t('header.signOut')}
+          </button>
+        ) : (
+          <Link to="/login" onClick={onClose} className={linkClass}>
+            <LogIn className="h-5 w-5" />
+            {t('header.signIn')}
+          </Link>
+        )}
+      </div>
+
       {/* Practice section */}
       <SectionLabel>{t('nav.practice')}</SectionLabel>
       {renderNavItems(practiceItems)}
@@ -166,6 +253,8 @@ export function Sidebar({ user, onClose }: SidebarProps) {
           <FeedbackDialog onClose={() => setFeedbackOpen(false)} />
         </DialogContent>
       </Dialog>
+
+      <SupportDialog open={supportOpen} onOpenChange={setSupportOpen} />
 
       {/* Sign-in prompt for guests */}
       <Dialog open={signInPromptOpen} onOpenChange={setSignInPromptOpen}>
