@@ -7312,5 +7312,4512 @@
     "example_da": "Jeg læser en dansk avis hver morgen.",
     "example_en": "I read a Danish newspaper every morning.",
     "source": "extracted-from-data"
+  },
+  {
+    "danish": "oplevelse",
+    "english": "experience (adventure/event)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "oplevelsen",
+      "plural_indef": "oplevelser",
+      "plural_def": "oplevelserne"
+    },
+    "example_da": "Det var en fantastisk oplevelse at besøge museet.",
+    "example_en": "It was a fantastic experience visiting the museum.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "erfaring",
+    "english": "experience (professional/CV)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "work",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "erfaringen",
+      "plural_indef": "erfaringer",
+      "plural_def": "erfaringerne"
+    },
+    "example_da": "Hun har mange års erfaring som lærer.",
+    "example_en": "She has many years of experience as a teacher.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "omvisning",
+    "english": "guided tour",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "culture",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "omvisningen",
+      "plural_indef": "omvisninger",
+      "plural_def": "omvisningerne"
+    },
+    "example_da": "De oplevede en omvisning med en guide.",
+    "example_en": "They experienced a guided tour with a guide.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "udstilling",
+    "english": "exhibition",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "culture",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "udstillingen",
+      "plural_indef": "udstillinger",
+      "plural_def": "udstillingerne"
+    },
+    "example_da": "Der så de en udstilling med Skagensmalerne.",
+    "example_en": "There they saw an exhibition of the Skagen painters.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "guide",
+    "english": "guide",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "guiden",
+      "plural_indef": "guider",
+      "plural_def": "guiderne"
+    },
+    "example_da": "Guiden fortalte om museets historie.",
+    "example_en": "The guide told about the museum's history.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "plakat",
+    "english": "poster",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "plakaten",
+      "plural_indef": "plakater",
+      "plural_def": "plakaterne"
+    },
+    "example_da": "De købte en plakat i museets butik.",
+    "example_en": "They bought a poster in the museum shop.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "museum",
+    "english": "museum",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "museet",
+      "plural_indef": "museer",
+      "plural_def": "museerne"
+    },
+    "example_da": "Hun syntes, museet var fantastisk.",
+    "example_en": "She thought the museum was fantastic.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "strand",
+    "english": "beach",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "nature",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "stranden",
+      "plural_indef": "strande",
+      "plural_def": "strandene"
+    },
+    "example_da": "I fredags var han på stranden.",
+    "example_en": "Last Friday he was at the beach.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "mark",
+    "english": "field",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "nature",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "marken",
+      "plural_indef": "marker",
+      "plural_def": "markerne"
+    },
+    "example_da": "Vi kørte til et sted, hvor der er marker og skov.",
+    "example_en": "We drove to a place where there are fields and forest.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "skov",
+    "english": "forest",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "nature",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "skoven",
+      "plural_indef": "skove",
+      "plural_def": "skovene"
+    },
+    "example_da": "De gik en lang tur i skoven.",
+    "example_en": "They went for a long walk in the forest.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "hotel",
+    "english": "hotel",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "hotellet",
+      "plural_indef": "hoteller",
+      "plural_def": "hotellerne"
+    },
+    "example_da": "Vi fandt et godt hotel i byen.",
+    "example_en": "We found a good hotel in the city.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "tøjbutik",
+    "english": "clothing store",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "shopping",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "tøjbutikken",
+      "plural_indef": "tøjbutikker",
+      "plural_def": "tøjbutikkerne"
+    },
+    "example_da": "Der var mange gode tøjbutikker i området.",
+    "example_en": "There were many good clothing stores in the area.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "paraply",
+    "english": "umbrella",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "paraplyen",
+      "plural_indef": "paraplyer",
+      "plural_def": "paraplyerne"
+    },
+    "example_da": "Hun havde taget en paraply med, så hun blev ikke våd.",
+    "example_en": "She had brought an umbrella, so she didn't get wet.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "studiekort",
+    "english": "student ID card",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "studiekortet",
+      "plural_indef": "studiekort",
+      "plural_def": "studiekortene"
+    },
+    "example_da": "Han havde ikke husket sit studiekort.",
+    "example_en": "He hadn't remembered his student ID card.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "studenterrabat",
+    "english": "student discount",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "studenterrabatten",
+      "plural_indef": "studenterrabatter",
+      "plural_def": "studenterrabatterne"
+    },
+    "example_da": "Han fik ikke studenterrabat, fordi han havde glemt sit kort.",
+    "example_en": "He didn't get the student discount because he had forgotten his card.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "billet",
+    "english": "ticket",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "billetten",
+      "plural_indef": "billetter",
+      "plural_def": "billetterne"
+    },
+    "example_da": "De havde ikke bestilt billetter, så de kom ikke ind.",
+    "example_en": "They hadn't ordered tickets, so they didn't get in.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "koncert",
+    "english": "concert",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "koncerten",
+      "plural_indef": "koncerter",
+      "plural_def": "koncerterne"
+    },
+    "example_da": "Søndag aften var han til koncert.",
+    "example_en": "Sunday evening he was at a concert.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "bytur",
+    "english": "night out / city trip",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "topic8",
+      "oplevelser"
+    ],
+    "inflections": {
+      "definite": "byturen",
+      "plural_indef": "byture",
+      "plural_def": "byturene"
+    },
+    "example_da": "I torsdags var han på bytur.",
+    "example_en": "Last Thursday he was on a night out.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "fødselsdag",
+    "english": "birthday",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "family",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "fødselsdagen",
+      "plural_indef": "fødselsdage",
+      "plural_def": "fødselsdagene"
+    },
+    "example_da": "I går aftes var han til fødselsdag hos sin bror.",
+    "example_en": "Yesterday evening he was at a birthday party at his brother's.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "kort",
+    "english": "map / card",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "kortet",
+      "plural_indef": "kort",
+      "plural_def": "kortene"
+    },
+    "example_da": "Hun havde printet et kort, så det var nemt at finde vej.",
+    "example_en": "She had printed a map, so it was easy to find the way.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "briller",
+    "english": "glasses",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "brillerne",
+      "plural_indef": null,
+      "plural_def": "brillerne"
+    },
+    "example_da": "Han havde glemt sine briller, så han kunne ikke se noget.",
+    "example_en": "He had forgotten his glasses, so he couldn't see anything.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "tøj",
+    "english": "clothing / clothes",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "tøjet",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Hun havde ikke hængt tøjet op, så det var ikke tørt.",
+    "example_en": "She hadn't hung up the clothes, so they weren't dry.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "veninde",
+    "english": "female friend",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "people",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "veninden",
+      "plural_indef": "veninder",
+      "plural_def": "veninderne"
+    },
+    "example_da": "Hun skulle mødes med en veninde.",
+    "example_en": "She was going to meet a female friend.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "kop",
+    "english": "cup",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "koppen",
+      "plural_indef": "kopper",
+      "plural_def": "kopperne"
+    },
+    "example_da": "De drak en kop kaffe og snakkede.",
+    "example_en": "They drank a cup of coffee and chatted.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "kaffe",
+    "english": "coffee",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "kaffen",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Der drak de kaffe og spiste kage.",
+    "example_en": "There they drank coffee and ate cake.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "kage",
+    "english": "cake",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "kagen",
+      "plural_indef": "kager",
+      "plural_def": "kagerne"
+    },
+    "example_da": "Der drak de kaffe og spiste kage.",
+    "example_en": "There they drank coffee and ate cake.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "eftermiddag",
+    "english": "afternoon",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time",
+      "daily",
+      "topic8"
+    ],
+    "inflections": {
+      "definite": "eftermiddagen",
+      "plural_indef": "eftermiddage",
+      "plural_def": "eftermiddagene"
+    },
+    "example_da": "Resten af eftermiddagen drak de en kop kaffe og snakkede.",
+    "example_en": "The rest of the afternoon they drank a cup of coffee and chatted.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "opleve",
+    "english": "to experience",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "topic8",
+      "oplevelser",
+      "group1"
+    ],
+    "inflections": {
+      "present": "oplever",
+      "past": "oplevede",
+      "perfect": "har oplevet",
+      "imperative": "oplev"
+    },
+    "example_da": "Man kan opleve meget i København.",
+    "example_en": "You can experience a lot in Copenhagen.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "mødes",
+    "english": "to meet (each other)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "topic8",
+      "reciprocal"
+    ],
+    "inflections": {
+      "present": "mødes",
+      "past": "mødtes",
+      "perfect": "har mødtes",
+      "imperative": null
+    },
+    "example_da": "Hun skulle mødes med en veninde.",
+    "example_en": "She was going to meet a friend.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "printe",
+    "english": "to print",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "topic8",
+      "group1"
+    ],
+    "inflections": {
+      "present": "printer",
+      "past": "printede",
+      "perfect": "har printet",
+      "imperative": "print"
+    },
+    "example_da": "Hun havde printet et kort, så det var nemt at finde vej.",
+    "example_en": "She had printed a map, so it was easy to find the way.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "klare",
+    "english": "to manage / to handle / to pass",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "education",
+      "topic8",
+      "group1"
+    ],
+    "inflections": {
+      "present": "klarer",
+      "past": "klarede",
+      "perfect": "har klaret",
+      "imperative": "klar"
+    },
+    "example_da": "Han havde ikke læst ret meget, så han klarede ikke prøven.",
+    "example_en": "He hadn't read much, so he didn't pass the exam.",
+    "source": "tavlenoter-topic8"
+  },
+  {
+    "danish": "ferie",
+    "english": "holiday, vacation",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel"
+    ],
+    "inflections": {
+      "definite": "ferien",
+      "plural_indef": "ferier",
+      "plural_def": "ferierne"
+    },
+    "example_da": "Vi holder ferie i Italien næste sommer.",
+    "example_en": "We are going on holiday in Italy next summer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 202
+  },
+  {
+    "danish": "job",
+    "english": "job",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "jobbet",
+      "plural_indef": "job",
+      "plural_def": "jobbene"
+    },
+    "example_da": "Han har fået et nyt job i København.",
+    "example_en": "He has got a new job in Copenhagen.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 175
+  },
+  {
+    "danish": "mave",
+    "english": "stomach",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "body",
+      "health"
+    ],
+    "inflections": {
+      "definite": "maven",
+      "plural_indef": "maver",
+      "plural_def": "maverne"
+    },
+    "example_da": "Jeg har ondt i maven efter middagen.",
+    "example_en": "I have a stomach ache after dinner.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 156
+  },
+  {
+    "danish": "uddannelse",
+    "english": "education, training",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "uddannelsen",
+      "plural_indef": "uddannelser",
+      "plural_def": "uddannelserne"
+    },
+    "example_da": "Hun har en lang uddannelse som ingeniør.",
+    "example_en": "She has a long education as an engineer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 153
+  },
+  {
+    "danish": "folk",
+    "english": "people",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "society"
+    ],
+    "inflections": {
+      "definite": "folket",
+      "plural_indef": "folk",
+      "plural_def": "folkene"
+    },
+    "example_da": "Der var mange folk i parken i dag.",
+    "example_en": "There were many people in the park today.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 139
+  },
+  {
+    "danish": "undervisning",
+    "english": "teaching, instruction",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "undervisningen",
+      "plural_indef": "undervisninger",
+      "plural_def": "undervisningerne"
+    },
+    "example_da": "Undervisningen begynder klokken otte hver morgen.",
+    "example_en": "The teaching starts at eight o'clock every morning.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 130
+  },
+  {
+    "danish": "nat",
+    "english": "night",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "natten",
+      "plural_indef": "nætter",
+      "plural_def": "nætterne"
+    },
+    "example_da": "Jeg sov dårligt i natten, fordi det stormede.",
+    "example_en": "I slept badly during the night because it was stormy.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 126
+  },
+  {
+    "danish": "kone",
+    "english": "wife",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "inflections": {
+      "definite": "konen",
+      "plural_indef": "koner",
+      "plural_def": "konerne"
+    },
+    "example_da": "Hans kone arbejder på et hospital.",
+    "example_en": "His wife works at a hospital.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 110
+  },
+  {
+    "danish": "arbejdsopgave",
+    "english": "work task, assignment",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "arbejdsopgaven",
+      "plural_indef": "arbejdsopgaver",
+      "plural_def": "arbejdsopgaverne"
+    },
+    "example_da": "Jeg har mange arbejdsopgaver, som skal være færdige i morgen.",
+    "example_en": "I have many work tasks that need to be finished tomorrow.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 110
+  },
+  {
+    "danish": "sted",
+    "english": "place",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "location"
+    ],
+    "inflections": {
+      "definite": "stedet",
+      "plural_indef": "steder",
+      "plural_def": "stederne"
+    },
+    "example_da": "Det er et dejligt sted at bo.",
+    "example_en": "It is a lovely place to live.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 110
+  },
+  {
+    "danish": "kontakt",
+    "english": "contact",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "communication"
+    ],
+    "inflections": {
+      "definite": "kontakten",
+      "plural_indef": "kontakter",
+      "plural_def": "kontakterne"
+    },
+    "example_da": "Jeg har stadig kontakt med mine gamle venner.",
+    "example_en": "I still have contact with my old friends.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 110
+  },
+  {
+    "danish": "lærer",
+    "english": "teacher",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "læreren",
+      "plural_indef": "lærere",
+      "plural_def": "lærerne"
+    },
+    "example_da": "Vores lærer er meget god til at forklare grammatik.",
+    "example_en": "Our teacher is very good at explaining grammar.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 107
+  },
+  {
+    "danish": "gang",
+    "english": "time (occurrence), hallway",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "gangen",
+      "plural_indef": "gange",
+      "plural_def": "gangene"
+    },
+    "example_da": "Det er tredje gang, jeg besøger det museum.",
+    "example_en": "It is the third time I visit that museum.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 101
+  },
+  {
+    "danish": "problem",
+    "english": "problem",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "definite": "problemet",
+      "plural_indef": "problemer",
+      "plural_def": "problemerne"
+    },
+    "example_da": "Vi har et problem med vores internet derhjemme.",
+    "example_en": "We have a problem with our internet at home.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 100
+  },
+  {
+    "danish": "farmor",
+    "english": "grandmother (paternal)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "inflections": {
+      "definite": "farmoren",
+      "plural_indef": "farmødre",
+      "plural_def": "farmødrene"
+    },
+    "example_da": "Min farmor bager altid en kage, når vi besøger hende.",
+    "example_en": "My grandmother always bakes a cake when we visit her.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 97
+  },
+  {
+    "danish": "form",
+    "english": "form, shape",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "definite": "formen",
+      "plural_indef": "former",
+      "plural_def": "formerne"
+    },
+    "example_da": "Han er i rigtig god form efter ferien.",
+    "example_en": "He is in really good shape after the holiday.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 97
+  },
+  {
+    "danish": "fri",
+    "english": "free, off (from work)",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "work",
+      "daily"
+    ],
+    "inflections": {
+      "t_form": "frit",
+      "e_form": "frie",
+      "comparative": "friere",
+      "superlative": "friest"
+    },
+    "example_da": "Jeg har fri om fredagen og kan slappe af.",
+    "example_en": "I am off on Fridays and can relax.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 96
+  },
+  {
+    "danish": "fald",
+    "english": "fall, case",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "definite": "faldet",
+      "plural_indef": "fald",
+      "plural_def": "faldene"
+    },
+    "example_da": "I hvert fald skal vi huske at købe mælk.",
+    "example_en": "In any case, we need to remember to buy milk.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 96
+  },
+  {
+    "danish": "par",
+    "english": "pair, couple",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "definite": "parret",
+      "plural_indef": "par",
+      "plural_def": "parrene"
+    },
+    "example_da": "De har været et par i over ti år.",
+    "example_en": "They have been a couple for over ten years.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 95
+  },
+  {
+    "danish": "minut",
+    "english": "minute",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "minuttet",
+      "plural_indef": "minutter",
+      "plural_def": "minutterne"
+    },
+    "example_da": "Bussen kommer om fem minutter.",
+    "example_en": "The bus is coming in five minutes.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 94
+  },
+  {
+    "danish": "million",
+    "english": "million",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "numbers"
+    ],
+    "inflections": {
+      "definite": "millionen",
+      "plural_indef": "millioner",
+      "plural_def": "millionerne"
+    },
+    "example_da": "Danmark har næsten seks millioner indbyggere.",
+    "example_en": "Denmark has almost six million inhabitants.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 93
+  },
+  {
+    "danish": "dronning",
+    "english": "queen",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "society",
+      "culture"
+    ],
+    "inflections": {
+      "definite": "dronningen",
+      "plural_indef": "dronninger",
+      "plural_def": "dronningerne"
+    },
+    "example_da": "Dronningen bor på Amalienborg Slot i København.",
+    "example_en": "The queen lives at Amalienborg Palace in Copenhagen.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 93
+  },
+  {
+    "danish": "viking",
+    "english": "Viking",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "culture",
+      "history"
+    ],
+    "inflections": {
+      "definite": "vikingen",
+      "plural_indef": "vikinger",
+      "plural_def": "vikingerne"
+    },
+    "example_da": "Vikingerne sejlede til mange lande for over tusind år siden.",
+    "example_en": "The Vikings sailed to many countries over a thousand years ago.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 92
+  },
+  {
+    "danish": "musik",
+    "english": "music",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture",
+      "hobby"
+    ],
+    "inflections": {
+      "definite": "musikken",
+      "plural_indef": "-",
+      "plural_def": "-"
+    },
+    "example_da": "Jeg lytter til dansk musik, mens jeg laver mad.",
+    "example_en": "I listen to Danish music while I cook.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "aktivitet",
+    "english": "activity",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "hobby"
+    ],
+    "inflections": {
+      "definite": "aktiviteten",
+      "plural_indef": "aktiviteter",
+      "plural_def": "aktiviteterne"
+    },
+    "example_da": "Der er mange aktiviteter for børn i sommerferien.",
+    "example_en": "There are many activities for children during the summer holiday.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "mobiltelefon",
+    "english": "mobile phone",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "technology",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "mobiltelefonen",
+      "plural_indef": "mobiltelefoner",
+      "plural_def": "mobiltelefonerne"
+    },
+    "example_da": "Min mobiltelefon er altid i min taske.",
+    "example_en": "My mobile phone is always in my bag.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "fraværsregel",
+    "english": "absence rule",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education",
+      "rules"
+    ],
+    "inflections": {
+      "definite": "fraværsreglen",
+      "plural_indef": "fraværsregler",
+      "plural_def": "fraværsreglerne"
+    },
+    "example_da": "Du skal kende fraværsreglerne, før du starter på kurset.",
+    "example_en": "You need to know the absence rules before you start the course.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "information",
+    "english": "information",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "communication"
+    ],
+    "inflections": {
+      "definite": "informationen",
+      "plural_indef": "informationer",
+      "plural_def": "informationerne"
+    },
+    "example_da": "Kan du give mig lidt mere information om kurset?",
+    "example_en": "Can you give me a bit more information about the course?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "video",
+    "english": "video",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "technology",
+      "media"
+    ],
+    "inflections": {
+      "definite": "videoen",
+      "plural_indef": "videoer",
+      "plural_def": "videoerne"
+    },
+    "example_da": "Vi så en video om dansk kultur i undervisningen.",
+    "example_en": "We watched a video about Danish culture in class.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "mål",
+    "english": "goal, target",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "abstract",
+      "education"
+    ],
+    "inflections": {
+      "definite": "målet",
+      "plural_indef": "mål",
+      "plural_def": "målene"
+    },
+    "example_da": "Mit mål er at bestå eksamen til sommer.",
+    "example_en": "My goal is to pass the exam in the summer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "billede",
+    "english": "picture, image",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily",
+      "media"
+    ],
+    "inflections": {
+      "definite": "billedet",
+      "plural_indef": "billeder",
+      "plural_def": "billederne"
+    },
+    "example_da": "Der hænger et smukt billede på væggen.",
+    "example_en": "There is a beautiful picture hanging on the wall.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "geografi",
+    "english": "geography",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education",
+      "culture"
+    ],
+    "inflections": {
+      "definite": "geografien",
+      "plural_indef": "geografier",
+      "plural_def": "geografierne"
+    },
+    "example_da": "Danmarks geografi er flad med mange øer.",
+    "example_en": "Denmark's geography is flat with many islands.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "pil",
+    "english": "arrow",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "definite": "pilen",
+      "plural_indef": "pile",
+      "plural_def": "pilene"
+    },
+    "example_da": "Følg den røde pil for at finde udgangen.",
+    "example_en": "Follow the red arrow to find the exit.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "flyvende",
+    "english": "flying",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "flyvende",
+      "e_form": "flyvende",
+      "comparative": "mere flyvende",
+      "superlative": "mest flyvende"
+    },
+    "example_da": "Børnene legede med en flyvende drage i parken.",
+    "example_en": "The children played with a flying kite in the park.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 91
+  },
+  {
+    "danish": "dagbog",
+    "english": "diary",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "education"
+    ],
+    "inflections": {
+      "definite": "dagbogen",
+      "plural_indef": "dagbøger",
+      "plural_def": "dagbøgerne"
+    },
+    "example_da": "Jeg skriver i min dagbog hver aften før sengetid.",
+    "example_en": "I write in my diary every evening before bedtime.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "placering",
+    "english": "placement, position",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "definite": "placeringen",
+      "plural_indef": "placeringer",
+      "plural_def": "placeringerne"
+    },
+    "example_da": "Placeringen af møblerne gør stuen hyggeligere.",
+    "example_en": "The placement of the furniture makes the living room cosier.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "firma",
+    "english": "company, firm",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "firmaet",
+      "plural_indef": "firmaer",
+      "plural_def": "firmaerne"
+    },
+    "example_da": "Han arbejder i et stort firma med mange ansatte.",
+    "example_en": "He works in a large company with many employees.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "vigtig",
+    "english": "important",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "t_form": "vigtigt",
+      "e_form": "vigtige",
+      "comparative": "vigtigere",
+      "superlative": "vigtigst"
+    },
+    "example_da": "Det er vigtigt at øve sig på dansk hver dag.",
+    "example_en": "It is important to practise Danish every day.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "ond",
+    "english": "sore, painful; evil",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "health",
+      "body"
+    ],
+    "inflections": {
+      "t_form": "ondt",
+      "e_form": "onde",
+      "comparative": "værre",
+      "superlative": "værst"
+    },
+    "example_da": "Jeg har ondt i hovedet og vil gerne gå hjem.",
+    "example_en": "I have a headache and would like to go home.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 172
+  },
+  {
+    "danish": "brug",
+    "english": "use, need",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "abstract",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "brugen",
+      "plural_indef": "brug",
+      "plural_def": "brugene"
+    },
+    "example_da": "Jeg har brug for en ny computer til mit arbejde.",
+    "example_en": "I need a new computer for my work.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 140
+  },
+  {
+    "danish": "måne",
+    "english": "moon",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "nature"
+    ],
+    "inflections": {
+      "definite": "månen",
+      "plural_indef": "måner",
+      "plural_def": "månerne"
+    },
+    "example_da": "Månen skinnede klart over søen i nat.",
+    "example_en": "The moon shone brightly over the lake last night.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 98
+  },
+  {
+    "danish": "terrier",
+    "english": "terrier",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "animals"
+    ],
+    "inflections": {
+      "definite": "terrieren",
+      "plural_indef": "terrierer",
+      "plural_def": "terriererne"
+    },
+    "example_da": "Vores terrier løber altid rundt i haven.",
+    "example_en": "Our terrier always runs around in the garden.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 98
+  },
+  {
+    "danish": "sidste",
+    "english": "last, latest",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "t_form": "sidste",
+      "e_form": "sidste",
+      "comparative": "-",
+      "superlative": "-"
+    },
+    "example_da": "Vi var i Sverige sidste sommer.",
+    "example_en": "We were in Sweden last summer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 98
+  },
+  {
+    "danish": "gnags",
+    "english": "blister",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "gnagset",
+      "plural_indef": "gnags",
+      "plural_def": "gnagsene"
+    },
+    "example_da": "Jeg har fået gnags på foden af mine nye sko.",
+    "example_en": "I got a blister on my foot from my new shoes.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "dejlig",
+    "english": "lovely, wonderful",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "dejligt",
+      "e_form": "dejlige",
+      "comparative": "dejligere",
+      "superlative": "dejligst"
+    },
+    "example_da": "Det var en dejlig dag ved stranden.",
+    "example_en": "It was a lovely day at the beach.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "krav",
+    "english": "requirement, demand",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "kravet",
+      "plural_indef": "krav",
+      "plural_def": "kravene"
+    },
+    "example_da": "Der er mange krav til den nye stilling.",
+    "example_en": "There are many requirements for the new position.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 89
+  },
+  {
+    "danish": "kursus",
+    "english": "course",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "kurset",
+      "plural_indef": "kurser",
+      "plural_def": "kurserne"
+    },
+    "example_da": "Hun tager et kursus i dansk grammatik.",
+    "example_en": "She is taking a course in Danish grammar.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 89
+  },
+  {
+    "danish": "sur",
+    "english": "angry, sour, grumpy",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "emotion"
+    ],
+    "inflections": {
+      "t_form": "surt",
+      "e_form": "sure",
+      "comparative": "surere",
+      "superlative": "surest"
+    },
+    "example_da": "Han blev sur, da bussen var forsinket.",
+    "example_en": "He got angry when the bus was delayed.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 81
+  },
+  {
+    "danish": "sommerhus",
+    "english": "summer house, holiday cottage",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "home",
+      "leisure"
+    ],
+    "inflections": {
+      "definite": "sommerhuset",
+      "plural_indef": "sommerhuse",
+      "plural_def": "sommerhusene"
+    },
+    "example_da": "Vi lejer et sommerhus ved havet hver sommer.",
+    "example_en": "We rent a summer house by the sea every summer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 81
+  },
+  {
+    "danish": "tyk",
+    "english": "fat, thick",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "tykt",
+      "e_form": "tykke",
+      "comparative": "tykkere",
+      "superlative": "tykkest"
+    },
+    "example_da": "Bogen er tyk, men meget interessant.",
+    "example_en": "The book is thick but very interesting.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 80
+  },
+  {
+    "danish": "weekend",
+    "english": "weekend",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "weekenden",
+      "plural_indef": "weekender",
+      "plural_def": "weekenderne"
+    },
+    "example_da": "Hvad lavede du i weekenden?",
+    "example_en": "What did you do on the weekend?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 78
+  },
+  {
+    "danish": "færdig",
+    "english": "finished, done, ready",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "færdigt",
+      "e_form": "færdige",
+      "comparative": "mere færdig",
+      "superlative": "mest færdig"
+    },
+    "example_da": "Er du færdig med din opgave?",
+    "example_en": "Are you done with your assignment?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 77
+  },
+  {
+    "danish": "menneske",
+    "english": "human, person",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "people"
+    ],
+    "inflections": {
+      "definite": "mennesket",
+      "plural_indef": "mennesker",
+      "plural_def": "menneskene"
+    },
+    "example_da": "Der var mange mennesker i parken i dag.",
+    "example_en": "There were many people in the park today.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 71
+  },
+  {
+    "danish": "spændende",
+    "english": "exciting, interesting",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "emotion"
+    ],
+    "inflections": {
+      "t_form": "spændende",
+      "e_form": "spændende",
+      "comparative": "mere spændende",
+      "superlative": "mest spændende"
+    },
+    "example_da": "Filmen var meget spændende fra start til slut.",
+    "example_en": "The movie was very exciting from start to finish.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 70
+  },
+  {
+    "danish": "taxa",
+    "english": "taxi",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "transport"
+    ],
+    "inflections": {
+      "definite": "taxaen",
+      "plural_indef": "taxaer",
+      "plural_def": "taxaerne"
+    },
+    "example_da": "Vi tog en taxa hjem fra festen.",
+    "example_en": "We took a taxi home from the party.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 69
+  },
+  {
+    "danish": "kæreste",
+    "english": "boyfriend, girlfriend, partner",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "people",
+      "relationship"
+    ],
+    "inflections": {
+      "definite": "kæresten",
+      "plural_indef": "kærester",
+      "plural_def": "kæresterne"
+    },
+    "example_da": "Min kæreste kommer fra Jylland.",
+    "example_en": "My partner comes from Jutland.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 68
+  },
+  {
+    "danish": "hård",
+    "english": "hard, tough",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "hårdt",
+      "e_form": "hårde",
+      "comparative": "hårdere",
+      "superlative": "hårdest"
+    },
+    "example_da": "Det var en hård dag på arbejdet.",
+    "example_en": "It was a tough day at work.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 67
+  },
+  {
+    "danish": "sjov",
+    "english": "fun, funny",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "emotion"
+    ],
+    "inflections": {
+      "t_form": "sjovt",
+      "e_form": "sjove",
+      "comparative": "sjovere",
+      "superlative": "sjovest"
+    },
+    "example_da": "Det var sjovt at spille brætspil med familien.",
+    "example_en": "It was fun to play board games with the family.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 65
+  },
+  {
+    "danish": "sol",
+    "english": "sun",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "weather",
+      "nature"
+    ],
+    "inflections": {
+      "definite": "solen",
+      "plural_indef": "sole",
+      "plural_def": "solene"
+    },
+    "example_da": "Solen skinner i dag, så vi går en tur.",
+    "example_en": "The sun is shining today, so we are going for a walk.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 65
+  },
+  {
+    "danish": "universitet",
+    "english": "university",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "universitetet",
+      "plural_indef": "universiteter",
+      "plural_def": "universiteterne"
+    },
+    "example_da": "Han studerer medicin på universitetet.",
+    "example_en": "He studies medicine at the university.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 62
+  },
+  {
+    "danish": "pleje",
+    "english": "to usually do, to tend to",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "present": "plejer",
+      "past": "plejede",
+      "perfect": "plejet",
+      "imperative": "plej"
+    },
+    "example_da": "Jeg plejer at stå op klokken syv.",
+    "example_en": "I usually get up at seven o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 60
+  },
+  {
+    "danish": "havn",
+    "english": "harbour, port",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "place",
+      "transport"
+    ],
+    "inflections": {
+      "definite": "havnen",
+      "plural_indef": "havne",
+      "plural_def": "havnene"
+    },
+    "example_da": "Vi gik en tur ned til havnen og så bådene.",
+    "example_en": "We went for a walk down to the harbour and looked at the boats.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 59
+  },
+  {
+    "danish": "skinne",
+    "english": "to shine",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "weather",
+      "nature"
+    ],
+    "inflections": {
+      "present": "skinner",
+      "past": "skinnede",
+      "perfect": "skinnet",
+      "imperative": "skin"
+    },
+    "example_da": "Solen skinnede hele dagen i går.",
+    "example_en": "The sun was shining all day yesterday.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 57
+  },
+  {
+    "danish": "blodtryk",
+    "english": "blood pressure",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "blodtrykket",
+      "plural_indef": "blodtryk",
+      "plural_def": "blodtrykkene"
+    },
+    "example_da": "Lægen målte mit blodtryk ved undersøgelsen.",
+    "example_en": "The doctor measured my blood pressure at the examination.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 57
+  },
+  {
+    "danish": "recept",
+    "english": "prescription, recipe",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "recepten",
+      "plural_indef": "recepter",
+      "plural_def": "recepterne"
+    },
+    "example_da": "Lægen skrev en recept på medicin til mig.",
+    "example_en": "The doctor wrote a prescription for medicine for me.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 57
+  },
+  {
+    "danish": "karakter",
+    "english": "grade, character",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "karakteren",
+      "plural_indef": "karakterer",
+      "plural_def": "karaktererne"
+    },
+    "example_da": "Han fik gode karakterer til eksamen.",
+    "example_en": "He got good grades at the exam.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 57
+  },
+  {
+    "danish": "søn",
+    "english": "son",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "inflections": {
+      "definite": "sønnen",
+      "plural_indef": "sønner",
+      "plural_def": "sønnerne"
+    },
+    "example_da": "Min søn går i skole i København.",
+    "example_en": "My son goes to school in Copenhagen.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 55
+  },
+  {
+    "danish": "rigtig",
+    "english": "right, correct, real",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "rigtigt",
+      "e_form": "rigtige",
+      "comparative": "mere rigtig",
+      "superlative": "mest rigtig"
+    },
+    "example_da": "Det er den rigtige vej til stationen.",
+    "example_en": "That is the right way to the station.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 53
+  },
+  {
+    "danish": "salt",
+    "english": "salt",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "saltet",
+      "plural_indef": "salte",
+      "plural_def": "saltene"
+    },
+    "example_da": "Kan du række mig saltet?",
+    "example_en": "Can you pass me the salt?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 52
+  },
+  {
+    "danish": "station",
+    "english": "station",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "transport",
+      "place"
+    ],
+    "inflections": {
+      "definite": "stationen",
+      "plural_indef": "stationer",
+      "plural_def": "stationerne"
+    },
+    "example_da": "Vi mødes foran stationen klokken tre.",
+    "example_en": "We meet in front of the station at three o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 52
+  },
+  {
+    "danish": "medicin",
+    "english": "medicine",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "medicinen",
+      "plural_indef": "mediciner",
+      "plural_def": "medicinerne"
+    },
+    "example_da": "Du skal tage medicinen to gange om dagen.",
+    "example_en": "You need to take the medicine twice a day.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 52
+  },
+  {
+    "danish": "morgenmad",
+    "english": "breakfast",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "morgenmaden",
+      "plural_indef": "morgenmader",
+      "plural_def": "morgenmaderne"
+    },
+    "example_da": "Vi spiser morgenmad klokken otte.",
+    "example_en": "We eat breakfast at eight o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 51
+  },
+  {
+    "danish": "ben",
+    "english": "leg, bone",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "body"
+    ],
+    "inflections": {
+      "definite": "benet",
+      "plural_indef": "ben",
+      "plural_def": "benene"
+    },
+    "example_da": "Han brækkede sit ben, da han faldt.",
+    "example_en": "He broke his leg when he fell.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 49
+  },
+  {
+    "danish": "knæ",
+    "english": "knee",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "body"
+    ],
+    "inflections": {
+      "definite": "knæet",
+      "plural_indef": "knæ",
+      "plural_def": "knæene"
+    },
+    "example_da": "Jeg har ondt i knæet efter løbeturen.",
+    "example_en": "My knee hurts after the run.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 48
+  },
+  {
+    "danish": "uddanne",
+    "english": "to educate, to train",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "present": "uddanner",
+      "past": "uddannede",
+      "perfect": "uddannet",
+      "imperative": "uddann"
+    },
+    "example_da": "Hun er uddannet lærer fra universitetet i Aarhus.",
+    "example_en": "She is trained as a teacher from the university in Aarhus.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 48
+  },
+  {
+    "danish": "klokke",
+    "english": "clock, bell",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "klokken",
+      "plural_indef": "klokker",
+      "plural_def": "klokkerne"
+    },
+    "example_da": "Hvad er klokken? Den er halv tre.",
+    "example_en": "What time is it? It is half past two.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 82
+  },
+  {
+    "danish": "måned",
+    "english": "month",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "definite": "måneden",
+      "plural_indef": "måneder",
+      "plural_def": "månederne"
+    },
+    "example_da": "Vi har boet her i tre måneder.",
+    "example_en": "We have lived here for three months.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 82
+  },
+  {
+    "danish": "øde",
+    "english": "deserted, desolate",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "description",
+      "nature"
+    ],
+    "inflections": {
+      "t_form": "øde",
+      "e_form": "øde",
+      "comparative": "mere øde",
+      "superlative": "mest øde"
+    },
+    "example_da": "Vi kørte forbi en øde strand uden mennesker.",
+    "example_en": "We drove past a deserted beach with no people.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 90
+  },
+  {
+    "danish": "tur",
+    "english": "trip, walk",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel"
+    ],
+    "inflections": {
+      "definite": "turen",
+      "plural_indef": "ture",
+      "plural_def": "turene"
+    },
+    "example_da": "Vi tog en lang tur langs stranden.",
+    "example_en": "We took a long walk along the beach.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 48
+  },
+  {
+    "danish": "forskellig",
+    "english": "different, various",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "forskelligt",
+      "e_form": "forskellige",
+      "comparative": "mere forskellig",
+      "superlative": "mest forskellig"
+    },
+    "example_da": "Vi har forskellige meninger om emnet.",
+    "example_en": "We have different opinions on the topic.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "anderledes",
+    "english": "different, unlike",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "anderledes",
+      "e_form": "anderledes",
+      "comparative": "mere anderledes",
+      "superlative": "mest anderledes"
+    },
+    "example_da": "Livet i Danmark er anderledes end i mit hjemland.",
+    "example_en": "Life in Denmark is different from my home country.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "bro",
+    "english": "bridge",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "infrastructure"
+    ],
+    "inflections": {
+      "definite": "broen",
+      "plural_indef": "broer",
+      "plural_def": "broerne"
+    },
+    "example_da": "Vi kørte over broen til den anden side.",
+    "example_en": "We drove over the bridge to the other side.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "båd",
+    "english": "boat",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "transport"
+    ],
+    "inflections": {
+      "definite": "båden",
+      "plural_indef": "både",
+      "plural_def": "bådene"
+    },
+    "example_da": "Vi sejlede med båden til øen.",
+    "example_en": "We sailed by boat to the island.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "hyggelig",
+    "english": "cosy, pleasant",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description",
+      "culture"
+    ],
+    "inflections": {
+      "t_form": "hyggeligt",
+      "e_form": "hyggelige",
+      "comparative": "hyggeligere",
+      "superlative": "hyggeligst"
+    },
+    "example_da": "Det var en hyggelig aften med vennerne.",
+    "example_en": "It was a cosy evening with friends.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "røge",
+    "english": "to smoke (food)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "present": "røger",
+      "past": "røgede",
+      "perfect": "røget",
+      "imperative": "røg"
+    },
+    "example_da": "Fisken blev røget i flere timer.",
+    "example_en": "The fish was smoked for several hours.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "sild",
+    "english": "herring",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "silden",
+      "plural_indef": "sild",
+      "plural_def": "sildene"
+    },
+    "example_da": "Røget sild er en klassisk dansk ret.",
+    "example_en": "Smoked herring is a classic Danish dish.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "ø",
+    "english": "island",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "geography"
+    ],
+    "inflections": {
+      "definite": "øen",
+      "plural_indef": "øer",
+      "plural_def": "øerne"
+    },
+    "example_da": "Bornholm er en smuk ø i Østersøen.",
+    "example_en": "Bornholm is a beautiful island in the Baltic Sea.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "høst",
+    "english": "harvest, autumn",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "nature",
+      "seasons"
+    ],
+    "inflections": {
+      "definite": "høsten",
+      "plural_indef": "høste",
+      "plural_def": "høstene"
+    },
+    "example_da": "Bønderne var travle med høsten i september.",
+    "example_en": "The farmers were busy with the harvest in September.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "vandretur",
+    "english": "hike, hiking trip",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "leisure",
+      "nature"
+    ],
+    "inflections": {
+      "definite": "vandreturen",
+      "plural_indef": "vandreture",
+      "plural_def": "vandreturene"
+    },
+    "example_da": "Vi tog på vandretur i skoven i weekenden.",
+    "example_en": "We went on a hike in the forest at the weekend.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "madpakke",
+    "english": "packed lunch",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "madpakken",
+      "plural_indef": "madpakker",
+      "plural_def": "madpakkerne"
+    },
+    "example_da": "Børnene tager altid en madpakke med i skole.",
+    "example_en": "The children always bring a packed lunch to school.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "frokosttid",
+    "english": "lunchtime",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "food",
+      "time"
+    ],
+    "inflections": {
+      "definite": "frokosttiden",
+      "plural_indef": "frokosttider",
+      "plural_def": "frokosttiderne"
+    },
+    "example_da": "Vi spiser altid sammen ved frokosttid.",
+    "example_en": "We always eat together at lunchtime.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "kilometer",
+    "english": "kilometre",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "measurement"
+    ],
+    "inflections": {
+      "definite": "kilometeren",
+      "plural_indef": "kilometer",
+      "plural_def": "kilometerne"
+    },
+    "example_da": "Der er fem kilometer fra mit hjem til skolen.",
+    "example_en": "It is five kilometres from my home to the school.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "pakke",
+    "english": "to pack; package",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "travel",
+      "daily"
+    ],
+    "inflections": {
+      "present": "pakker",
+      "past": "pakkede",
+      "perfect": "pakket",
+      "imperative": "pak"
+    },
+    "example_da": "Jeg pakkede kufferten aftenen før rejsen.",
+    "example_en": "I packed the suitcase the evening before the trip.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "aftale",
+    "english": "to agree; agreement",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "communication"
+    ],
+    "inflections": {
+      "present": "aftaler",
+      "past": "aftalte",
+      "perfect": "aftalt",
+      "imperative": "aftal"
+    },
+    "example_da": "Vi aftalte at mødes klokken ti.",
+    "example_en": "We agreed to meet at ten o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 47
+  },
+  {
+    "danish": "restaurant",
+    "english": "restaurant",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "leisure"
+    ],
+    "inflections": {
+      "definite": "restauranten",
+      "plural_indef": "restauranter",
+      "plural_def": "restauranterne"
+    },
+    "example_da": "Vi spiste på en god restaurant i byen.",
+    "example_en": "We ate at a good restaurant in the city.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 46
+  },
+  {
+    "danish": "svede",
+    "english": "to sweat",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "body",
+      "health"
+    ],
+    "inflections": {
+      "present": "sveder",
+      "past": "svedte",
+      "perfect": "svedt",
+      "imperative": "sved"
+    },
+    "example_da": "Jeg sveder altid, når jeg løber.",
+    "example_en": "I always sweat when I run.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 45
+  },
+  {
+    "danish": "vare",
+    "english": "to last; goods",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "time"
+    ],
+    "inflections": {
+      "present": "varer",
+      "past": "varede",
+      "perfect": "varet",
+      "imperative": "var"
+    },
+    "example_da": "Filmen varede mere end to timer.",
+    "example_en": "The film lasted more than two hours.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 45
+  },
+  {
+    "danish": "undersøge",
+    "english": "to examine, investigate",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health",
+      "work"
+    ],
+    "inflections": {
+      "present": "undersøger",
+      "past": "undersøgte",
+      "perfect": "undersøgt",
+      "imperative": "undersøg"
+    },
+    "example_da": "Lægen undersøgte patienten grundigt.",
+    "example_en": "The doctor examined the patient thoroughly.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 45
+  },
+  {
+    "danish": "fredag",
+    "english": "Friday",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "time",
+      "daily"
+    ],
+    "inflections": {
+      "definite": "fredagen",
+      "plural_indef": "fredage",
+      "plural_def": "fredagene"
+    },
+    "example_da": "Vi tager altid ud om fredagen.",
+    "example_en": "We always go out on Fridays.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 44
+  },
+  {
+    "danish": "lav",
+    "english": "low, short",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "lavt",
+      "e_form": "lave",
+      "comparative": "lavere",
+      "superlative": "lavest"
+    },
+    "example_da": "Priserne er meget lave i den butik.",
+    "example_en": "The prices are very low in that shop.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 43
+  },
+  {
+    "danish": "peber",
+    "english": "pepper",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "peberet",
+      "plural_indef": "pebre",
+      "plural_def": "pebrene"
+    },
+    "example_da": "Kan du give mig salt og peber?",
+    "example_en": "Can you pass me salt and pepper?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 43
+  },
+  {
+    "danish": "matematik",
+    "english": "mathematics",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "matematikken",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Min datter er god til matematik.",
+    "example_en": "My daughter is good at mathematics.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 43
+  },
+  {
+    "danish": "datter",
+    "english": "daughter",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "inflections": {
+      "definite": "datteren",
+      "plural_indef": "døtre",
+      "plural_def": "døtrene"
+    },
+    "example_da": "Min datter begynder i skole til august.",
+    "example_en": "My daughter starts school in August.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 42
+  },
+  {
+    "danish": "slik",
+    "english": "candy, sweets",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "slikket",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Børnene spiser for meget slik.",
+    "example_en": "The children eat too much candy.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 41
+  },
+  {
+    "danish": "fest",
+    "english": "party, celebration",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "leisure",
+      "social"
+    ],
+    "inflections": {
+      "definite": "festen",
+      "plural_indef": "fester",
+      "plural_def": "festerne"
+    },
+    "example_da": "Vi holdt en stor fest i haven.",
+    "example_en": "We held a big party in the garden.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 41
+  },
+  {
+    "danish": "begyndelse",
+    "english": "beginning",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "definite": "begyndelsen",
+      "plural_indef": "begyndelser",
+      "plural_def": "begyndelserne"
+    },
+    "example_da": "I begyndelsen var det svært at lære dansk.",
+    "example_en": "In the beginning it was hard to learn Danish.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 41
+  },
+  {
+    "danish": "stykke",
+    "english": "piece, bit",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "quantity"
+    ],
+    "inflections": {
+      "definite": "stykket",
+      "plural_indef": "stykker",
+      "plural_def": "stykkerne"
+    },
+    "example_da": "Må jeg få et stykke kage?",
+    "example_en": "May I have a piece of cake?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 41
+  },
+  {
+    "danish": "film",
+    "english": "film, movie",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "leisure",
+      "culture"
+    ],
+    "inflections": {
+      "definite": "filmen",
+      "plural_indef": "film",
+      "plural_def": "filmene"
+    },
+    "example_da": "Har du set den nye danske film?",
+    "example_en": "Have you seen the new Danish film?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "mæt",
+    "english": "full (after eating)",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food",
+      "body"
+    ],
+    "inflections": {
+      "t_form": "mæt",
+      "e_form": "mætte",
+      "comparative": "mere mæt",
+      "superlative": "mest mæt"
+    },
+    "example_da": "Jeg er helt mæt efter aftensmaden.",
+    "example_en": "I am completely full after dinner.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "vikar",
+    "english": "substitute, temp",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "work",
+      "education"
+    ],
+    "inflections": {
+      "definite": "vikaren",
+      "plural_indef": "vikarer",
+      "plural_def": "vikarerne"
+    },
+    "example_da": "Der var en vikar, fordi læreren var syg.",
+    "example_en": "There was a substitute because the teacher was ill.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "onkel",
+    "english": "uncle",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "family"
+    ],
+    "inflections": {
+      "definite": "onklen",
+      "plural_indef": "onkler",
+      "plural_def": "onklerne"
+    },
+    "example_da": "Min onkel bor i Jylland.",
+    "example_en": "My uncle lives in Jutland.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "swimmingpool",
+    "english": "swimming pool",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "leisure",
+      "home"
+    ],
+    "inflections": {
+      "definite": "swimmingpoolen",
+      "plural_indef": "swimmingpools",
+      "plural_def": "swimmingpoolene"
+    },
+    "example_da": "Hotellet har en stor swimmingpool.",
+    "example_en": "The hotel has a big swimming pool.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "regne",
+    "english": "to rain; to calculate",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "weather"
+    ],
+    "inflections": {
+      "present": "regner",
+      "past": "regnede",
+      "perfect": "regnet",
+      "imperative": "regn"
+    },
+    "example_da": "Det regner næsten hver dag i november.",
+    "example_en": "It rains almost every day in November.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "nærig",
+    "english": "stingy, mean (with money)",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "description",
+      "personality"
+    ],
+    "inflections": {
+      "t_form": "nærigt",
+      "e_form": "nærige",
+      "comparative": "mere nærig",
+      "superlative": "mest nærig"
+    },
+    "example_da": "Han er lidt nærig og vil aldrig betale for andre.",
+    "example_en": "He is a bit stingy and never wants to pay for others.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "snorke",
+    "english": "to snore",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "body",
+      "daily"
+    ],
+    "inflections": {
+      "present": "snorker",
+      "past": "snorkede",
+      "perfect": "snorket",
+      "imperative": "snork"
+    },
+    "example_da": "Min mand snorker meget om natten.",
+    "example_en": "My husband snores a lot at night.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "fastfood",
+    "english": "fast food",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "fastfooden",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Man bør ikke spise fastfood hver dag.",
+    "example_en": "You should not eat fast food every day.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "slankekur",
+    "english": "diet (weight loss)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health",
+      "food"
+    ],
+    "inflections": {
+      "definite": "slankekuren",
+      "plural_indef": "slankekure",
+      "plural_def": "slankekurene"
+    },
+    "example_da": "Hun er på slankekur og spiser kun salat.",
+    "example_en": "She is on a diet and only eats salad.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "sprogskole",
+    "english": "language school",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "sprogskolen",
+      "plural_indef": "sprogskoler",
+      "plural_def": "sprogskolerne"
+    },
+    "example_da": "Jeg går på sprogskole tre gange om ugen.",
+    "example_en": "I attend language school three times a week.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "udtale",
+    "english": "pronunciation",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "language",
+      "education"
+    ],
+    "inflections": {
+      "definite": "udtalen",
+      "plural_indef": "udtaler",
+      "plural_def": "udtalerne"
+    },
+    "example_da": "Dansk udtale er svær for mange udlændinge.",
+    "example_en": "Danish pronunciation is hard for many foreigners.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 40
+  },
+  {
+    "danish": "ting",
+    "english": "thing",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "abstract"
+    ],
+    "inflections": {
+      "definite": "tingen",
+      "plural_indef": "ting",
+      "plural_def": "tingene"
+    },
+    "example_da": "Der er mange ting, jeg vil opleve i Danmark.",
+    "example_en": "There are many things I want to experience in Denmark.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 38
+  },
+  {
+    "danish": "klasse",
+    "english": "class",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "klassen",
+      "plural_indef": "klasser",
+      "plural_def": "klasserne"
+    },
+    "example_da": "Der er femten elever i min klasse.",
+    "example_en": "There are fifteen students in my class.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 37
+  },
+  {
+    "danish": "bar",
+    "english": "bar",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "leisure",
+      "social"
+    ],
+    "inflections": {
+      "definite": "baren",
+      "plural_indef": "barer",
+      "plural_def": "barerne"
+    },
+    "example_da": "Vi mødtes på en bar i centrum.",
+    "example_en": "We met at a bar in the city centre.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 36
+  },
+  {
+    "danish": "pizza",
+    "english": "pizza",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "pizzaen",
+      "plural_indef": "pizzaer",
+      "plural_def": "pizzaerne"
+    },
+    "example_da": "Vi bestilte en stor pizza med ost og skinke.",
+    "example_en": "We ordered a big pizza with cheese and ham.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 35
+  },
+  {
+    "danish": "travl",
+    "english": "busy",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "work",
+      "daily"
+    ],
+    "inflections": {
+      "t_form": "travlt",
+      "e_form": "travle",
+      "comparative": "travlere",
+      "superlative": "travlest"
+    },
+    "example_da": "Jeg har meget travlt på arbejdet i denne uge.",
+    "example_en": "I am very busy at work this week.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 34
+  },
+  {
+    "danish": "smag",
+    "english": "taste, flavour",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "smagen",
+      "plural_indef": "smage",
+      "plural_def": "smagene"
+    },
+    "example_da": "Suppen har en god smag af krydderier.",
+    "example_en": "The soup has a good flavour of spices.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 34
+  },
+  {
+    "danish": "puls",
+    "english": "pulse",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "health",
+      "body"
+    ],
+    "inflections": {
+      "definite": "pulsen",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Min puls stiger, når jeg løber.",
+    "example_en": "My pulse rises when I run.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 34
+  },
+  {
+    "danish": "kvalme",
+    "english": "nausea",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health",
+      "body"
+    ],
+    "inflections": {
+      "definite": "kvalmen",
+      "plural_indef": null,
+      "plural_def": null
+    },
+    "example_da": "Hun havde kvalme hele morgenen.",
+    "example_en": "She had nausea all morning.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "skynde",
+    "english": "to hurry",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily",
+      "time"
+    ],
+    "inflections": {
+      "present": "skynder",
+      "past": "skyndte",
+      "perfect": "skyndt",
+      "imperative": "skynd"
+    },
+    "example_da": "Du skal skynde dig, ellers kommer du for sent.",
+    "example_en": "You need to hurry, otherwise you will be late.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "badeværelse",
+    "english": "bathroom",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "home"
+    ],
+    "inflections": {
+      "definite": "badeværelset",
+      "plural_indef": "badeværelser",
+      "plural_def": "badeværelserne"
+    },
+    "example_da": "Lejligheden har to badeværelser.",
+    "example_en": "The flat has two bathrooms.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "forfærdelig",
+    "english": "terrible, awful",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "forfærdeligt",
+      "e_form": "forfærdelige",
+      "comparative": "mere forfærdelig",
+      "superlative": "mest forfærdelig"
+    },
+    "example_da": "Vejret var forfærdeligt i går.",
+    "example_en": "The weather was terrible yesterday.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "bekymre",
+    "english": "to worry",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "emotion"
+    ],
+    "inflections": {
+      "present": "bekymrer",
+      "past": "bekymrede",
+      "perfect": "bekymret",
+      "imperative": "bekymr"
+    },
+    "example_da": "Du skal ikke bekymre dig om eksamen.",
+    "example_en": "You should not worry about the exam.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "kraftig",
+    "english": "strong, powerful, heavy",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description",
+      "weather"
+    ],
+    "inflections": {
+      "t_form": "kraftigt",
+      "e_form": "kraftige",
+      "comparative": "kraftigere",
+      "superlative": "kraftigst"
+    },
+    "example_da": "Der var kraftig regn hele weekenden.",
+    "example_en": "There was heavy rain all weekend.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "smerte",
+    "english": "pain",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "smerten",
+      "plural_indef": "smerter",
+      "plural_def": "smerterne"
+    },
+    "example_da": "Hun har smerter i ryggen efter ulykken.",
+    "example_en": "She has pain in her back after the accident.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "akut",
+    "english": "acute, urgent",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "t_form": "akut",
+      "e_form": "akutte",
+      "comparative": "mere akut",
+      "superlative": "mest akut"
+    },
+    "example_da": "Han blev indlagt med akutte mavesmerter.",
+    "example_en": "He was admitted with acute stomach pains.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "venteværelse",
+    "english": "waiting room",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "venteværelset",
+      "plural_indef": "venteværelser",
+      "plural_def": "venteværelserne"
+    },
+    "example_da": "Der sad mange mennesker i venteværelset.",
+    "example_en": "There were many people sitting in the waiting room.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "buffet",
+    "english": "buffet",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "buffeten",
+      "plural_indef": "buffeter",
+      "plural_def": "buffeterne"
+    },
+    "example_da": "Vi spiste fra buffeten på hotellet.",
+    "example_en": "We ate from the buffet at the hotel.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "ret",
+    "english": "dish, course (food)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "retten",
+      "plural_indef": "retter",
+      "plural_def": "retterne"
+    },
+    "example_da": "Dagens ret er stegt kylling med ris.",
+    "example_en": "Today's dish is fried chicken with rice.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "apotek",
+    "english": "pharmacy",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "apoteket",
+      "plural_indef": "apoteker",
+      "plural_def": "apotekerne"
+    },
+    "example_da": "Jeg hentede medicin på apoteket i går.",
+    "example_en": "I picked up medicine at the pharmacy yesterday.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "pille",
+    "english": "pill, tablet",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "pillen",
+      "plural_indef": "piller",
+      "plural_def": "pillerne"
+    },
+    "example_da": "Du skal tage to piller tre gange om dagen.",
+    "example_en": "You must take two pills three times a day.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "pause",
+    "english": "break, pause",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "pausen",
+      "plural_indef": "pauser",
+      "plural_def": "pauserne"
+    },
+    "example_da": "Vi holder en kort pause kl. 10.",
+    "example_en": "We take a short break at 10 o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
+  },
+  {
+    "danish": "hund",
+    "english": "dog",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "animals"
+    ],
+    "inflections": {
+      "definite": "hunden",
+      "plural_indef": "hunde",
+      "plural_def": "hundene"
+    },
+    "example_da": "Deres hund løber i parken hver morgen.",
+    "example_en": "Their dog runs in the park every morning.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 32
+  },
+  {
+    "danish": "sukker",
+    "english": "sugar",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "sukkeret",
+      "plural_indef": "sukkerarter",
+      "plural_def": "sukkerarterne"
+    },
+    "example_da": "Vil du have sukker i kaffen?",
+    "example_en": "Would you like sugar in your coffee?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 32
+  },
+  {
+    "danish": "studerende",
+    "english": "student (university)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "den studerende",
+      "plural_indef": "studerende",
+      "plural_def": "de studerende"
+    },
+    "example_da": "De studerende har eksamen i næste uge.",
+    "example_en": "The students have exams next week.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 32
+  },
+  {
+    "danish": "kunst",
+    "english": "art",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "culture"
+    ],
+    "inflections": {
+      "definite": "kunsten",
+      "plural_indef": "kunster",
+      "plural_def": "kunsterne"
+    },
+    "example_da": "Hun interesserer sig for moderne kunst.",
+    "example_en": "She is interested in modern art.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 32
+  },
+  {
+    "danish": "arbejdstid",
+    "english": "working hours",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "arbejdstiden",
+      "plural_indef": "arbejdstider",
+      "plural_def": "arbejdstiderne"
+    },
+    "example_da": "Min arbejdstid er fra 8 til 16.",
+    "example_en": "My working hours are from 8 to 4.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 32
+  },
+  {
+    "danish": "høj",
+    "english": "tall, high",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "højt",
+      "e_form": "høje",
+      "comparative": "højere",
+      "superlative": "højest"
+    },
+    "example_da": "Han er den højeste i klassen.",
+    "example_en": "He is the tallest in the class.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 31
+  },
+  {
+    "danish": "venlig",
+    "english": "friendly, kind",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "venligt",
+      "e_form": "venlige",
+      "comparative": "venligere",
+      "superlative": "venligst"
+    },
+    "example_da": "Læreren er meget venlig over for de nye elever.",
+    "example_en": "The teacher is very kind to the new students.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 31
+  },
+  {
+    "danish": "virkelig",
+    "english": "real, really",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "virkeligt",
+      "e_form": "virkelige",
+      "comparative": "mere virkelig",
+      "superlative": "mest virkelig"
+    },
+    "example_da": "Er det en virkelig historie?",
+    "example_en": "Is it a real story?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "skolekammerat",
+    "english": "classmate, school friend",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "skolekammeraten",
+      "plural_indef": "skolekammerater",
+      "plural_def": "skolekammeraterne"
+    },
+    "example_da": "Min skolekammerat hjalp mig med lektierne.",
+    "example_en": "My classmate helped me with the homework.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "drille",
+    "english": "to tease",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "social"
+    ],
+    "inflections": {
+      "present": "driller",
+      "past": "drillede",
+      "perfect": "drillet",
+      "imperative": "dril"
+    },
+    "example_da": "De andre børn drillede ham i skolen.",
+    "example_en": "The other children teased him at school.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "pige",
+    "english": "girl",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "people"
+    ],
+    "inflections": {
+      "definite": "pigen",
+      "plural_indef": "piger",
+      "plural_def": "pigerne"
+    },
+    "example_da": "Pigen leger med sin lillesøster i haven.",
+    "example_en": "The girl is playing with her little sister in the garden.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "forelsket",
+    "english": "in love",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "emotions"
+    ],
+    "inflections": {
+      "t_form": "forelsket",
+      "e_form": "forelskede",
+      "comparative": "mere forelsket",
+      "superlative": "mest forelsket"
+    },
+    "example_da": "Han er forelsket i sin nabo.",
+    "example_en": "He is in love with his neighbour.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "stoppested",
+    "english": "bus stop",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "transport"
+    ],
+    "inflections": {
+      "definite": "stoppestedet",
+      "plural_indef": "stoppesteder",
+      "plural_def": "stoppestederne"
+    },
+    "example_da": "Vi mødes ved stoppestedet kl. 8.",
+    "example_en": "We will meet at the bus stop at 8 o'clock.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "energi",
+    "english": "energy",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "energien",
+      "plural_indef": "energier",
+      "plural_def": "energierne"
+    },
+    "example_da": "Jeg har ikke så meget energi i dag.",
+    "example_en": "I do not have much energy today.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "lektie",
+    "english": "homework (assignment)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "lektien",
+      "plural_indef": "lektier",
+      "plural_def": "lektierne"
+    },
+    "example_da": "Børnene laver lektier efter skole.",
+    "example_en": "The children do homework after school.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 30
+  },
+  {
+    "danish": "olie",
+    "english": "oil",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "olien",
+      "plural_indef": "olier",
+      "plural_def": "olierne"
+    },
+    "example_da": "Hæld lidt olie i panden, før du steger.",
+    "example_en": "Pour a little oil in the pan before frying.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 29
+  },
+  {
+    "danish": "sikker",
+    "english": "sure, certain, safe",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "sikkert",
+      "e_form": "sikre",
+      "comparative": "sikrere",
+      "superlative": "sikrest"
+    },
+    "example_da": "Er du sikker på, at du vil rejse alene?",
+    "example_en": "Are you sure that you want to travel alone?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "fag",
+    "english": "subject (school)",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "faget",
+      "plural_indef": "fag",
+      "plural_def": "fagene"
+    },
+    "example_da": "Matematik er mit yndlingsfag.",
+    "example_en": "Mathematics is my favourite subject.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 29
+  },
+  {
+    "danish": "kedelig",
+    "english": "boring",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "kedeligt",
+      "e_form": "kedelige",
+      "comparative": "kedeligere",
+      "superlative": "kedeligst"
+    },
+    "example_da": "Filmen var virkelig kedelig.",
+    "example_en": "The film was really boring.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 29
+  },
+  {
+    "danish": "skifte",
+    "english": "to change, to switch",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "present": "skifter",
+      "past": "skiftede",
+      "perfect": "skiftet",
+      "imperative": "skift"
+    },
+    "example_da": "Han skiftede job efter to år.",
+    "example_en": "He changed jobs after two years.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 29
+  },
+  {
+    "danish": "yndlingsfag",
+    "english": "favourite subject",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "yndlingsfaget",
+      "plural_indef": "yndlingsfag",
+      "plural_def": "yndlingsfagene"
+    },
+    "example_da": "Mit yndlingsfag i skolen var historie.",
+    "example_en": "My favourite subject at school was history.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 29
+  },
+  {
+    "danish": "slappe",
+    "english": "to relax (slappe af)",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "leisure"
+    ],
+    "inflections": {
+      "present": "slapper",
+      "past": "slappede",
+      "perfect": "slappet",
+      "imperative": "slap"
+    },
+    "example_da": "Vi slappede af derhjemme hele weekenden.",
+    "example_en": "We relaxed at home the whole weekend.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "aktiv",
+    "english": "active",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "aktivt",
+      "e_form": "aktive",
+      "comparative": "mere aktiv",
+      "superlative": "mest aktiv"
+    },
+    "example_da": "Hun er meget aktiv og dyrker sport hver dag.",
+    "example_en": "She is very active and does sports every day.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "bade",
+    "english": "to bathe, to swim",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "leisure"
+    ],
+    "inflections": {
+      "present": "bader",
+      "past": "badede",
+      "perfect": "badet",
+      "imperative": "bad"
+    },
+    "example_da": "Børnene badede i søen hele eftermiddagen.",
+    "example_en": "The children swam in the lake all afternoon.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "tradition",
+    "english": "tradition",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "culture"
+    ],
+    "inflections": {
+      "definite": "traditionen",
+      "plural_indef": "traditioner",
+      "plural_def": "traditionerne"
+    },
+    "example_da": "Det er en dansk tradition at fejre Sankt Hans.",
+    "example_en": "It is a Danish tradition to celebrate Midsummer.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "videreuddannelse",
+    "english": "further education, continuing education",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "videreuddannelsen",
+      "plural_indef": "videreuddannelser",
+      "plural_def": "videreuddannelserne"
+    },
+    "example_da": "Han overvejer en videreuddannelse inden for IT.",
+    "example_en": "He is considering further education in IT.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "videnskabsteori",
+    "english": "philosophy of science",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "videnskabsteorien",
+      "plural_indef": "videnskabsteorier",
+      "plural_def": "videnskabsteorierne"
+    },
+    "example_da": "Videnskabsteori er et obligatorisk fag på universitetet.",
+    "example_en": "Philosophy of science is a mandatory subject at university.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "ingeniør",
+    "english": "engineer",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "ingeniøren",
+      "plural_indef": "ingeniører",
+      "plural_def": "ingeniørerne"
+    },
+    "example_da": "Min bror arbejder som ingeniør hos Vestas.",
+    "example_en": "My brother works as an engineer at Vestas.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "fokusere",
+    "english": "to focus",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "present": "fokuserer",
+      "past": "fokuserede",
+      "perfect": "fokuseret",
+      "imperative": "fokusér"
+    },
+    "example_da": "Det er svært at fokusere, når der er meget larm.",
+    "example_en": "It is hard to focus when there is a lot of noise.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "netværk",
+    "english": "network",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "netværket",
+      "plural_indef": "netværk",
+      "plural_def": "netværkene"
+    },
+    "example_da": "Det er vigtigt at have et godt netværk.",
+    "example_en": "It is important to have a good network.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "kunsthistorie",
+    "english": "art history",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "kunsthistorien",
+      "plural_indef": "kunsthistorier",
+      "plural_def": "kunsthistorierne"
+    },
+    "example_da": "Hun studerer kunsthistorie på Københavns Universitet.",
+    "example_en": "She studies art history at the University of Copenhagen.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "ærlig",
+    "english": "honest",
+    "part_of_speech": "adjective",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "description"
+    ],
+    "inflections": {
+      "t_form": "ærligt",
+      "e_form": "ærlige",
+      "comparative": "ærligere",
+      "superlative": "ærligst"
+    },
+    "example_da": "Ærligt talt synes jeg, at filmen var dårlig.",
+    "example_en": "Honestly, I think the film was bad.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "kemi",
+    "english": "chemistry",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "education"
+    ],
+    "inflections": {
+      "definite": "kemien",
+      "plural_indef": "kemier",
+      "plural_def": "kemierne"
+    },
+    "example_da": "Kemi var det sværeste fag i gymnasiet.",
+    "example_en": "Chemistry was the hardest subject in high school.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "baggrund",
+    "english": "background",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "work"
+    ],
+    "inflections": {
+      "definite": "baggrunden",
+      "plural_indef": "baggrunde",
+      "plural_def": "baggrundene"
+    },
+    "example_da": "Hvad er din faglige baggrund?",
+    "example_en": "What is your professional background?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 28
+  },
+  {
+    "danish": "bedring",
+    "english": "improvement, recovery",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "bedringen",
+      "plural_indef": "bedringer",
+      "plural_def": "bedringerne"
+    },
+    "example_da": "God bedring! Jeg håber, du snart har det bedre.",
+    "example_en": "Get well soon! I hope you feel better soon.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 27
+  },
+  {
+    "danish": "krone",
+    "english": "crown, krone (currency)",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "definite": "kronen",
+      "plural_indef": "kroner",
+      "plural_def": "kronerne"
+    },
+    "example_da": "Mælken koster ti kroner i Netto.",
+    "example_en": "The milk costs ten kroner at Netto.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 27
+  },
+  {
+    "danish": "passe",
+    "english": "to take care of, to look after",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "daily"
+    ],
+    "inflections": {
+      "present": "passer",
+      "past": "passede",
+      "perfect": "passet",
+      "imperative": "pas"
+    },
+    "example_da": "Kan du passe børnene i aften?",
+    "example_en": "Can you look after the children this evening?",
+    "source": "speakspeak-dump",
+    "occurrence_count": 27
+  },
+  {
+    "danish": "løg",
+    "english": "onion",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "løget",
+      "plural_indef": "løg",
+      "plural_def": "løgene"
+    },
+    "example_da": "Skær løget i små stykker.",
+    "example_en": "Cut the onion into small pieces.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "hvidløg",
+    "english": "garlic",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "hvidløget",
+      "plural_indef": "hvidløg",
+      "plural_def": "hvidløgene"
+    },
+    "example_da": "Tilsæt to fed hvidløg til saucen.",
+    "example_en": "Add two cloves of garlic to the sauce.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "gulerod",
+    "english": "carrot",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "guleroden",
+      "plural_indef": "gulerødder",
+      "plural_def": "gulerødderne"
+    },
+    "example_da": "Skræl gulerødderne og skær dem i skiver.",
+    "example_en": "Peel the carrots and cut them into slices.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "peberfrugt",
+    "english": "bell pepper",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "peberfrugten",
+      "plural_indef": "peberfrugter",
+      "plural_def": "peberfrugtterne"
+    },
+    "example_da": "Køb en rød peberfrugt til salaten.",
+    "example_en": "Buy a red bell pepper for the salad.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "hakke",
+    "english": "to chop, to mince",
+    "part_of_speech": "verb",
+    "gender": null,
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "present": "hakker",
+      "past": "hakkede",
+      "perfect": "hakket",
+      "imperative": "hak"
+    },
+    "example_da": "Hak løget fint, inden du putter det i gryden.",
+    "example_en": "Chop the onion finely before putting it in the pot.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "tomat",
+    "english": "tomato",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "tomaten",
+      "plural_indef": "tomater",
+      "plural_def": "tomaterne"
+    },
+    "example_da": "Vi bruger friske tomater i salaten.",
+    "example_en": "We use fresh tomatoes in the salad.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "linse",
+    "english": "lentil",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "linsen",
+      "plural_indef": "linser",
+      "plural_def": "linserne"
+    },
+    "example_da": "Linsesuppe er en sund og billig ret.",
+    "example_en": "Lentil soup is a healthy and cheap dish.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "gryde",
+    "english": "pot, saucepan",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 2,
+    "tags": [
+      "food"
+    ],
+    "inflections": {
+      "definite": "gryden",
+      "plural_indef": "gryder",
+      "plural_def": "gryderne"
+    },
+    "example_da": "Kog vandet i en stor gryde.",
+    "example_en": "Boil the water in a large pot.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "øje",
+    "english": "eye",
+    "part_of_speech": "noun",
+    "gender": "et",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "body"
+    ],
+    "inflections": {
+      "definite": "øjet",
+      "plural_indef": "øjne",
+      "plural_def": "øjnene"
+    },
+    "example_da": "Barnet har blå øjne ligesom sin far.",
+    "example_en": "The child has blue eyes like their father.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "hånd",
+    "english": "hand",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 1,
+    "tags": [
+      "body"
+    ],
+    "inflections": {
+      "definite": "hånden",
+      "plural_indef": "hænder",
+      "plural_def": "hænderne"
+    },
+    "example_da": "Vask dine hænder, før du spiser.",
+    "example_en": "Wash your hands before eating.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 26
+  },
+  {
+    "danish": "salmonellainfektion",
+    "english": "salmonella infection",
+    "part_of_speech": "noun",
+    "gender": "en",
+    "module_level": 3,
+    "difficulty": 3,
+    "tags": [
+      "health"
+    ],
+    "inflections": {
+      "definite": "salmonellainfektionen",
+      "plural_indef": "salmonellainfektioner",
+      "plural_def": "salmonellainfektionerne"
+    },
+    "example_da": "Tre personer fik salmonellainfektion efter middagen.",
+    "example_en": "Three people got a salmonella infection after dinner.",
+    "source": "speakspeak-dump",
+    "occurrence_count": 33
   }
 ]

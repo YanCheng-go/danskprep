@@ -48,6 +48,7 @@ def seed_words(client: Client) -> None:
     for w in words:
         w.pop("id", None)
         w.pop("created_at", None)
+        w.pop("occurrence_count", None)
     client.table("words").upsert(words, on_conflict="danish,part_of_speech").execute()
     print(f"  → {len(words)} words upserted")
 
@@ -66,13 +67,18 @@ def seed_exercises(client: Client) -> None:
     # Delete existing exercises first, then re-insert (no natural unique key —
     # exercises lack a stable composite key for upsert)
     client.table("exercises").delete().neq("id", "00000000-0000-0000-0000-000000000000").execute()
+    # Insert in batches of 200 to avoid payload limits
+    BATCH = 200
     try:
-        client.table("exercises").insert(exercises).execute()
+        for i in range(0, len(exercises), BATCH):
+            batch = exercises[i:i + BATCH]
+            client.table("exercises").insert(batch).execute()
+            print(f"  → batch {i // BATCH + 1}: {len(batch)} inserted")
     except Exception as exc:
-        print("  ✗ Insert failed after delete — exercises table is now empty!")
+        print("  ✗ Insert failed after delete — exercises table may be incomplete!")
         print(f"    Error: {exc}")
         sys.exit(1)
-    print(f"  → {len(exercises)} exercises inserted (replaced)")
+    print(f"  → {len(exercises)} exercises inserted total (replaced)")
 
 
 def seed_sentences(client: Client) -> None:
