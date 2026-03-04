@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+# CUSTOMIZE: Update URL to your project board
+contact_links:
+  - name: Project Board
+    url: https://github.com/users/OWNER/projects/NUMBER
+    about: View the full backlog on GitHub Projects

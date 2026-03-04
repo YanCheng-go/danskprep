@@ -1,0 +1,41 @@
+# Type labels
+- name: "type:feature"
+  color: "0E8A16"
+  description: "New user-facing functionality"
+- name: "type:bug"
+  color: "D73A4A"
+  description: "Something is broken"
+- name: "type:chore"
+  color: "FEF2C0"
+  description: "Refactoring, cleanup, DX improvements"
+- name: "type:infra"
+  color: "D4C5F9"
+  description: "CI/CD, deploy, build, tooling"
+
+# CUSTOMIZE: Add project-specific area labels
+# Area labels
+- name: "area:ui"
+  color: "BFD4F2"
+  description: "Layout, components, styling, mobile"
+- name: "area:auth"
+  color: "E4E669"
+  description: "Login, signup, sessions"
+- name: "area:db"
+  color: "F9C4D2"
+  description: "Database schema, migrations"
+- name: "area:dx"
+  color: "C2E0C6"
+  description: "Developer experience, tooling, scripts"
+
+# Status labels
+- name: "status:idea"
+  color: "EDEDED"
+  description: "Not yet ready — needs more thought"
+
+# Dependency labels (used by Dependabot)
+- name: "dependencies"
+  color: "0366D6"
+  description: "Dependency updates"
+- name: "ci"
+  color: "795548"
+  description: "GitHub Actions / CI dependencies"

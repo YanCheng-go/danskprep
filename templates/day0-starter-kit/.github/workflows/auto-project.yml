@@ -1,0 +1,23 @@
+name: Auto-add to Project
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  add-to-project:
+    name: Add issue to Project board
+    runs-on: ubuntu-latest
+    permissions:
+      issues: read
+
+    steps:
+      - name: Add to project board
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # CUSTOMIZE: Replace PROJECT_NUMBER and OWNER with your values
+          gh project item-add PROJECT_NUMBER \
+            --owner OWNER \
+            --url "${{ github.event.issue.html_url }}" \
+            --format json || echo "Failed to add — may need a PAT with project scope"

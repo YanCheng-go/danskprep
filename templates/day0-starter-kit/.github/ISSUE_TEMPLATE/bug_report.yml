@@ -1,0 +1,58 @@
+name: Bug Report
+description: Report a bug or incorrect behaviour
+labels: ["type:bug"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      # CUSTOMIZE: Add project-specific areas
+      options:
+        - area:ui
+        - area:auth
+        - area:db
+        - area:dx
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - p0 — critical / blocks users
+        - p1 — important / should fix soon
+        - p2 — default
+        - p3 — nice to have
+      default: 2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: effort
+    attributes:
+      label: Effort
+      options:
+        - xs — trivial
+        - s — straightforward
+        - m — medium (default)
+        - l — complex / multiple files
+        - xl — epic / multi-session
+      default: 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened? What did you expect?
+      placeholder: |
+        **Steps to reproduce:**
+        1. Go to ...
+        2. Click ...
+
+        **Expected:** ...
+        **Actual:** ...
+    validations:
+      required: true
