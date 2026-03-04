@@ -66,6 +66,7 @@ VALID_TOPICS = [
     "main-subordinate-clauses",
     "verbs-tenses",
     "pronouns",
+    "adjective-agreement",
 ]
 
 VALID_TYPES = [

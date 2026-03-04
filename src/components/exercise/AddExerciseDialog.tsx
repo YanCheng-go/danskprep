@@ -30,6 +30,7 @@ const TOPIC_LABELS: Record<string, string> = {
   'main-subordinate-clauses': 'Main & Subordinate Clauses',
   'verbs-tenses': 'Verbs & Tenses',
   'pronouns': 'Pronouns',
+  'adjective-agreement': 'Adjective Agreement',
 }
 
 const EXERCISE_TEMPLATES: Record<string, string> = {
