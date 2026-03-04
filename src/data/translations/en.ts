@@ -117,6 +117,7 @@ const en = {
   'vocab.adverbs': 'Adverbs',
   'vocab.prepositions': 'Prepositions',
   'vocab.conjunctions': 'Conjunctions',
+  'vocab.tapHint': 'Tap a word to see all forms',
 
   // Grammar
   'grammar.title': 'Grammar',

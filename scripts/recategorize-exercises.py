@@ -1,30 +1,39 @@
 #!/usr/bin/env python3
 """
-Recategorize exercises by grammar_topic_slug using heuristic rules.
+Recategorize exercises by grammar_topic_slug via Claude Code review.
 
-Many exercises were assigned the wrong topic during LLM generation — e.g.
-adjective agreement exercises tagged as "comparative-superlative". This script
-uses pattern-matching heuristics to detect and fix misclassifications without
-requiring an API key.
+Two-step workflow:
+  1. Generate a prompt file with exercises formatted for Claude Code review
+  2. Apply the JSON results back to the seed file
 
 Usage:
   cd scripts
 
-  # Dry-run: audit all exercises, produce report
+  # Step 1: Generate prompt for Claude Code (all exercises or one topic)
   uv run python recategorize-exercises.py
-
-  # Audit only one topic
   uv run python recategorize-exercises.py --topic comparative-superlative
 
-  # Apply changes to seed file
-  uv run python recategorize-exercises.py --write
+  # Step 2: After Claude reviews, save JSON to data/recategorize-changes.json
+  uv run python recategorize-exercises.py --apply data/recategorize-changes.json
+  uv run python recategorize-exercises.py --apply data/recategorize-changes.json --write
+
+Orchestration:
+  The script is designed for human-in-the-loop AI review:
+
+  1. Run without flags → generates prompt file(s) in scripts/data/
+  2. Copy the prompt content into Claude Code (or any LLM)
+  3. Claude analyzes each exercise and returns a JSON array of changes
+  4. Save that JSON to scripts/data/recategorize-changes.json
+  5. Run --apply to preview, then --apply --write to commit changes
+
+  Each --write run appends to scripts/data/recategorization-log.jsonl
+  so there is a permanent audit trail of all AI-assisted changes.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import re
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
@@ -32,7 +41,7 @@ PROJECT_ROOT = Path(__file__).parent.parent
 SEED_DIR = PROJECT_ROOT / "src" / "data" / "seed"
 EXERCISES_FILE = SEED_DIR / "exercises-pd3m2.json"
 DATA_DIR = Path(__file__).parent / "data"
-DOCS_DIR = PROJECT_ROOT / "docs" / "reviews"
+LOG_FILE = DATA_DIR / "recategorization-log.jsonl"
 
 VALID_TOPICS = [
     "noun-gender",
@@ -44,285 +53,251 @@ VALID_TOPICS = [
     "adjective-agreement",
 ]
 
-
-# ---------------------------------------------------------------------------
-# Heuristic classifier
-# ---------------------------------------------------------------------------
-
-# Comparative/superlative signal words in answer
-COMPARATIVE_PATTERNS = re.compile(
-    r"\b(mere|mest|bedre|bedst|værre|værst|mindre|mindst|"
-    r"større|størst|ældre|ældst|yngre|yngst|flere|flest|"
-    r"hurtigere|hurtigst|billigere|mørkere|anderledes|hellere)\b"
-    r"|ere\b|est\b",
-    re.IGNORECASE,
-)
-
-# Adjective agreement hint signals
-AGREEMENT_HINT_PATTERNS = re.compile(
-    r"(t-form|e-form|base.?form|adjective form|adjektiv|"
-    r"et-noun|en-noun|definite|plural|possessive|"
-    r"bestemt|flertal|base/-t/-e)",
-    re.IGNORECASE,
-)
-
-# Subordinate clause conjunctions
-SUBORDINATE_CONJUNCTIONS = re.compile(
-    r"\b(fordi|hvis|når|da|selvom|mens|inden|skønt|"
-    r"at\b.*\bhan|\bat\b.*\bhun|om\b.*\bhan|om\b.*\bhun)",
-    re.IGNORECASE,
-)
-
-# Passive voice patterns
-PASSIVE_PATTERNS = re.compile(
-    r"(passiv|omskriv til (aktiv|passiv)|s-passive|blive.*participium|"
-    r"\b\w+es\b.*→|\b\w+s\b.*passiv)",
-    re.IGNORECASE,
-)
-
-# Pronoun patterns
-PRONOUN_PATTERNS = re.compile(
-    r"\b(sin|sit|sine|hans|hendes|deres|mig|dig|ham|hende|"
-    r"os|jer|dem|min|mit|mine|din|dit|dine)\b",
-    re.IGNORECASE,
-)
-
-# Word order / V2 patterns
-V2_PATTERNS = re.compile(
-    r"(ordstilling|word.?order|V2|inversion|omvendt)",
-    re.IGNORECASE,
-)
-
-
-def classify_exercise(idx: int, ex: dict) -> dict | None:
-    """Classify a single exercise. Returns a change dict or None if no change."""
-    current = ex["grammar_topic_slug"]
-    q = ex.get("question", "")
-    a = ex.get("correct_answer", "")
-    hint = ex.get("hint", "") or ""
-    explanation = ex.get("explanation", "") or ""
-    ex_type = ex.get("exercise_type", "")
-    text = f"{q} {a} {hint} {explanation}"
-
-    recommended = None
-    reason = ""
-
-    # ---- Rule 1: Adjective agreement detection ----
-    # Hint says "adjective form", "t-form", "e-form", "base/-t/-e" etc.
-    if AGREEMENT_HINT_PATTERNS.search(hint):
-        # But NOT if the answer is a comparative/superlative form
-        if not COMPARATIVE_PATTERNS.search(a):
-            recommended = "adjective-agreement"
-            reason = f"Hint indicates adjective agreement: '{hint[:60]}'"
-
-    # ---- Rule 2: Conjugation exercises asking for t-form or e-form ----
-    if ex_type == "conjugation" and recommended is None:
-        q_lower = q.lower()
-        if "t-formen" in q_lower or "t-form" in q_lower:
-            if not COMPARATIVE_PATTERNS.search(a):
-                recommended = "adjective-agreement"
-                reason = f"Conjugation asks for t-form: answer '{a}'"
-        elif "e-formen" in q_lower or "e-form" in q_lower:
-            if not COMPARATIVE_PATTERNS.search(a):
-                recommended = "adjective-agreement"
-                reason = f"Conjugation asks for e-form: answer '{a}'"
-        elif "komparativ" in q_lower:
-            recommended = "comparative-superlative"
-            reason = f"Conjugation asks for komparativ: answer '{a}'"
-        elif "superlativ" in q_lower:
-            recommended = "comparative-superlative"
-            reason = f"Conjugation asks for superlativ: answer '{a}'"
-
-    # ---- Rule 3: da/når/om conjunction exercises ----
-    if recommended is None and current != "main-subordinate-clauses":
-        a_lower = a.strip().lower().rstrip(".")
-        if a_lower in ("da", "når", "om"):
-            recommended = "main-subordinate-clauses"
-            reason = f"Answer is conjunction '{a_lower}'"
-        elif "da/når" in hint.lower() or "indirect" in hint.lower():
-            recommended = "main-subordinate-clauses"
-            reason = "Hint mentions da/når or indirect questions"
-        # Error correction: når → da or vice versa
-        if ex_type == "error_correction" and recommended is None:
-            if re.search(r"\bNår\b.*→.*\bDa\b|\bda\b.*→.*\bnår\b", text):
-                recommended = "main-subordinate-clauses"
-                reason = "Error correction: da/når distinction"
-            elif re.search(r"\bom\b.*indirekte|indirect.*\bom\b", text, re.I):
-                recommended = "main-subordinate-clauses"
-                reason = "Indirect question with 'om'"
-
-    # ---- Rule 4: Passive voice / imperative exercises ----
-    if recommended is None and current != "verbs-tenses":
-        if PASSIVE_PATTERNS.search(text):
-            recommended = "verbs-tenses"
-            reason = "Tests passive voice or imperative conversion"
-        elif "participium" in text.lower() or "perfektum" in hint.lower():
-            recommended = "verbs-tenses"
-            reason = "Tests past participle"
-
-    # ---- Rule 5: Word order / V2 exercises ----
-    if recommended is None and current != "inverted-word-order":
-        if ex_type == "word_order" and "V2" in hint:
-            recommended = "inverted-word-order"
-            reason = "Word order exercise with V2 hint"
-        elif V2_PATTERNS.search(hint):
-            recommended = "inverted-word-order"
-            reason = f"Hint indicates word order: '{hint[:60]}'"
-        # Rewrite exercises that test V2 inversion
-        if recommended is None and ex_type == "type_answer":
-            if re.search(
-                r"(omskriv.*begynder med|subordinate.*first.*→.*invert)",
-                text, re.I,
-            ):
-                if "V2" in hint or "invert" in hint.lower() or "omvendt" in hint.lower():
-                    recommended = "inverted-word-order"
-                    reason = "Rewrite exercise testing V2 inversion"
-        # Error correction with V2
-        if recommended is None and ex_type == "error_correction":
-            if re.search(r"V2|invert|omvendt", hint, re.I):
-                recommended = "inverted-word-order"
-                reason = "Error correction testing V2 word order"
-            # subordinate clause first → V2 in main clause
-            elif re.search(
-                r"(Hvis|Når|Da|Selvom)\b.*,\s*(han|hun|jeg|vi|de|man)\s+\w+",
-                a,
-            ):
-                if re.search(
-                    r"(Hvis|Når|Da|Selvom)\b.*,\s+\w+\s+(han|hun|jeg|vi|de|man)",
-                    q,
-                ):
-                    recommended = "inverted-word-order"
-                    reason = "Error correction: V2 after subordinate clause"
-
-    # ---- Rule 6: Pronoun exercises misclassified under noun-gender ----
-    if recommended is None and current == "noun-gender":
-        if a.strip().lower() in (
-            "sin", "sit", "sine", "hans", "hendes", "deres",
-            "mig", "dig", "ham", "hende", "os", "jer", "dem",
-        ):
-            recommended = "pronouns"
-            reason = f"Answer is pronoun '{a}'"
-        elif ex_type == "error_correction" and re.search(
-            r"\b(sit|sin|sine)\b.*→.*\b(sine|sin|sit)\b", text,
-        ):
-            recommended = "pronouns"
-            reason = "Error correction testing sin/sit/sine"
-
-    # ---- Rule 7: Definite article exercises misclassified under pronouns ----
-    if recommended is None and current == "pronouns":
-        if ex_type == "error_correction" and re.search(
-            r"[Ee]n (bil|hus|mand|kvinde)\w*\b.*→.*(bil|hus|mand|kvinde)\w+en\b",
-            text,
-        ):
-            recommended = "noun-gender"
-            reason = "Error correction about definite articles, not pronouns"
-        # Simpler check: hint mentions article/definite but no pronouns
-        if recommended is None and "article" in hint.lower() and not PRONOUN_PATTERNS.search(a):
-            recommended = "noun-gender"
-            reason = "Hint about articles, not pronouns"
-
-    # ---- Rule 8: Adjective agreement from noun-gender ----
-    if recommended is None and current == "noun-gender":
-        # Exercises asking to fill in adjective forms
-        if ex_type == "conjugation" and re.search(r"udfyld|adjektiv", q, re.I):
-            if not COMPARATIVE_PATTERNS.search(a):
-                recommended = "adjective-agreement"
-                reason = "Fill-in-the-blank for adjective form"
-        # Cloze where hint mentions possessive + adjective
-        if recommended is None and "possessive" in hint.lower() and "adjective" in hint.lower():
-            recommended = "adjective-agreement"
-            reason = "Hint: adjective after possessive"
-        # Hint explicitly says adjective/definite form
-        if recommended is None and AGREEMENT_HINT_PATTERNS.search(hint):
-            if not COMPARATIVE_PATTERNS.search(a):
-                recommended = "adjective-agreement"
-                reason = f"Hint indicates adjective agreement: '{hint[:60]}'"
-
-    # ---- Only return if we recommend a different topic ----
-    if recommended and recommended != current and recommended in VALID_TOPICS:
-        return {
-            "global_index": idx,
-            "current_topic": current,
-            "recommended_topic": recommended,
-            "confidence": 0.9,
-            "reasoning": reason,
-        }
-
-    return None
+BATCH_SIZE = 30
 
 
 # ---------------------------------------------------------------------------
-# Report generation
+# Prompt generation
 # ---------------------------------------------------------------------------
-def generate_markdown_report(
-    changes: list[dict],
-    exercises: list[dict],
-    timestamp: str,
-) -> str:
-    """Generate a markdown report of the recategorization audit."""
-    lines = [
-        f"# Exercise Recategorization Report — {timestamp}",
-        "",
-        f"**Total exercises:** {len(exercises)}",
-        f"**Changes recommended:** {len(changes)}",
-        "",
-    ]
+def format_exercise(idx: int, ex: dict) -> str:
+    """Format a single exercise as a readable block for Claude."""
+    lines = [f"[{idx}] topic={ex['grammar_topic_slug']}  type={ex.get('exercise_type', '?')}"]
+    lines.append(f"  Q: {ex.get('question', '')}")
+    lines.append(f"  A: {ex.get('correct_answer', '')}")
+    hint = ex.get("hint") or ""
+    if hint:
+        lines.append(f"  Hint: {hint}")
+    explanation = ex.get("explanation") or ""
+    if explanation:
+        lines.append(f"  Explanation: {explanation[:120]}")
+    return "\n".join(lines)
 
-    # Migration matrix
-    matrix: dict[str, Counter] = defaultdict(Counter)
+
+def generate_prompt(exercises: list[dict], indices: list[int], batch_num: int, total_batches: int) -> str:
+    """Generate a prompt for Claude Code to classify a batch of exercises."""
+    topic_list = "\n".join(f"  - {t}" for t in VALID_TOPICS)
+
+    header = f"""## Exercise Recategorization — Batch {batch_num}/{total_batches}
+
+Review each exercise below. For each one, decide whether its `grammar_topic_slug`
+is correct. Focus on **what the exercise actually tests** (what is blanked, what
+the student must produce), not just what the sentence is about.
+
+### Valid topics:
+{topic_list}
+
+### Key distinctions:
+- **adjective-agreement**: t-form (et-words), e-form (definite/plural/possessive), base form
+- **comparative-superlative**: -ere/-est forms, "mere/mest", "bedre/bedst" etc.
+- **noun-gender**: en/et gender, definite articles (-en/-et/-erne)
+- **pronouns**: sin/sit/sine, personal pronouns, possessive pronouns
+- **inverted-word-order**: V2 rule, inversion after adverbial/subordinate clause
+- **main-subordinate-clauses**: da/når/om, fordi/hvis, clause connectors
+- **verbs-tenses**: present/past/perfect, passive voice, imperative
+
+### Output format:
+Return a JSON array with ONLY the exercises that need reclassification:
+```json
+[
+  {{"index": 42, "current_topic": "comparative-superlative", "recommended_topic": "adjective-agreement", "reasoning": "Tests t-form agreement, not comparison"}}
+]
+```
+If all exercises are correctly classified, return `[]`.
+
+---
+
+### Exercises:
+
+"""
+    blocks = []
+    for idx in indices:
+        blocks.append(format_exercise(idx, exercises[idx]))
+
+    return header + "\n\n".join(blocks) + "\n"
+
+
+def cmd_generate(exercises: list[dict], topic_filter: str | None) -> None:
+    """Generate prompt files for Claude Code review."""
+    if topic_filter:
+        indices = [
+            i for i, ex in enumerate(exercises)
+            if ex["grammar_topic_slug"] == topic_filter
+        ]
+        print(f"Filtering to {len(indices)} exercises with topic '{topic_filter}'")
+    else:
+        indices = list(range(len(exercises)))
+
+    # Split into batches
+    batches = []
+    for i in range(0, len(indices), BATCH_SIZE):
+        batches.append(indices[i:i + BATCH_SIZE])
+
+    total = len(batches)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    if total == 1:
+        prompt = generate_prompt(exercises, batches[0], 1, 1)
+        out_file = DATA_DIR / f"recategorize-prompt-{timestamp}.md"
+        with open(out_file, "w") as f:
+            f.write(prompt)
+        print(f"Prompt saved: {out_file}")
+        print(f"  {len(batches[0])} exercises")
+    else:
+        print(f"Generating {total} batch files ({BATCH_SIZE} exercises each)...")
+        for i, batch in enumerate(batches):
+            prompt = generate_prompt(exercises, batch, i + 1, total)
+            out_file = DATA_DIR / f"recategorize-prompt-{timestamp}-batch{i + 1:02d}.md"
+            with open(out_file, "w") as f:
+                f.write(prompt)
+            print(f"  Batch {i + 1}: {out_file.name} ({len(batch)} exercises)")
+
+    # Show current topic distribution
+    counts: Counter = Counter()
+    for ex in exercises:
+        counts[ex["grammar_topic_slug"]] += 1
+    print("\nCurrent topic distribution:")
+    for topic in VALID_TOPICS:
+        print(f"  {topic}: {counts.get(topic, 0)}")
+
+    print("\nNext steps:")
+    print("  1. Open the prompt file(s) and paste into Claude Code")
+    print("  2. Save Claude's JSON response to scripts/data/recategorize-changes.json")
+    print("  3. Preview: uv run python recategorize-exercises.py --apply data/recategorize-changes.json")
+    print("  4. Apply:   uv run python recategorize-exercises.py --apply data/recategorize-changes.json --write")
+
+
+# ---------------------------------------------------------------------------
+# Audit log
+# ---------------------------------------------------------------------------
+def append_audit_log(changes: list[dict], source: str) -> None:
+    """Append an entry to the persistent JSONL audit log."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "source": source,
+        "changes_applied": len(changes),
+        "method": "claude-code-review",
+        "changes": changes,
+    }
+    with open(LOG_FILE, "a") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    print(f"Audit log appended: {LOG_FILE.name} ({len(changes)} changes)")
+
+
+# ---------------------------------------------------------------------------
+# Apply changes
+# ---------------------------------------------------------------------------
+def cmd_apply(exercises: list[dict], changes_file: Path, write: bool) -> None:
+    """Apply classification changes from a JSON file."""
+    with open(changes_file) as f:
+        changes = json.load(f)
+
+    if not changes:
+        print("No changes in the file.")
+        return
+
+    print(f"Loaded {len(changes)} changes from {changes_file.name}")
+
+    # Validate
+    errors = []
     for c in changes:
-        matrix[c["current_topic"]][c["recommended_topic"]] += 1
+        idx = c.get("index")
+        if idx is None:
+            errors.append(f"Missing 'index' in: {c}")
+            continue
+        if idx < 0 or idx >= len(exercises):
+            errors.append(f"Index {idx} out of range (0-{len(exercises) - 1})")
+            continue
+        rec = c.get("recommended_topic", "")
+        if rec not in VALID_TOPICS:
+            errors.append(f"[{idx}] Invalid topic '{rec}'")
+            continue
+        cur = c.get("current_topic", "")
+        actual = exercises[idx]["grammar_topic_slug"]
+        if cur and cur != actual:
+            errors.append(
+                f"[{idx}] current_topic mismatch: file says '{cur}', "
+                f"actual is '{actual}'"
+            )
 
-    if changes:
-        lines.append("## Migration Matrix")
-        lines.append("")
-        lines.append("| From | To | Count |")
-        lines.append("|------|----|-------|")
-        for from_topic in sorted(matrix):
-            for to_topic in sorted(matrix[from_topic]):
-                lines.append(
-                    f"| {from_topic} | {to_topic} | {matrix[from_topic][to_topic]} |"
-                )
-        lines.append("")
+    if errors:
+        print(f"\nValidation errors ({len(errors)}):")
+        for e in errors:
+            print(f"  - {e}")
+        print("\nFix these before applying.")
+        return
+
+    # Filter to actual changes (skip no-ops)
+    real_changes = []
+    for c in changes:
+        idx = c["index"]
+        rec = c["recommended_topic"]
+        if exercises[idx]["grammar_topic_slug"] != rec:
+            real_changes.append(c)
+
+    if not real_changes:
+        print("All recommended topics already match. No changes needed.")
+        return
+
+    # Show summary
+    change_counts: Counter = Counter()
+    for c in real_changes:
+        key = f"{exercises[c['index']]['grammar_topic_slug']} → {c['recommended_topic']}"
+        change_counts[key] += 1
+
+    print(f"\nChanges to apply: {len(real_changes)}")
+    print("\nBreakdown:")
+    for key, count in change_counts.most_common():
+        print(f"  {key}: {count}")
+
+    # Show each change
+    print("\nDetails:")
+    for c in real_changes:
+        idx = c["index"]
+        ex = exercises[idx]
+        old = ex["grammar_topic_slug"]
+        new = c["recommended_topic"]
+        reason = c.get("reasoning", "")
+        print(f"  [{idx}] {old} → {new}")
+        print(f"    Q: {ex['question'][:80]}")
+        if reason:
+            print(f"    Reason: {reason[:80]}")
 
     # Topic distribution before/after
     before: Counter = Counter()
-    after: Counter = Counter()
     for ex in exercises:
         before[ex["grammar_topic_slug"]] += 1
     after = Counter(before)
-    for c in changes:
-        after[c["current_topic"]] -= 1
+    for c in real_changes:
+        idx = c["index"]
+        old = exercises[idx]["grammar_topic_slug"]
+        after[old] -= 1
         after[c["recommended_topic"]] += 1
 
-    lines.append("## Topic Distribution")
-    lines.append("")
-    lines.append("| Topic | Before | After | Delta |")
-    lines.append("|-------|--------|-------|-------|")
+    print("\nTopic distribution (before → after):")
     for topic in VALID_TOPICS:
         b = before.get(topic, 0)
         a = after.get(topic, 0)
         delta = a - b
-        sign = "+" if delta > 0 else ""
-        lines.append(f"| {topic} | {b} | {a} | {sign}{delta} |")
-    lines.append("")
+        marker = f" ({'+' if delta > 0 else ''}{delta})" if delta != 0 else ""
+        print(f"  {topic}: {b} → {a}{marker}")
 
-    # All changes
-    if changes:
-        lines.append("## All Changes")
-        lines.append("")
-        for c in changes:
-            global_idx = c["global_index"]
-            ex = exercises[global_idx]
-            lines.append(
-                f"### [{global_idx}] {c['current_topic']} → {c['recommended_topic']}"
-            )
-            lines.append(f"- **Q:** {ex['question']}")
-            lines.append(f"- **A:** {ex['correct_answer']}")
-            lines.append(f"- **Reason:** {c.get('reasoning', 'N/A')}")
-            lines.append("")
+    if not write:
+        print("\nDry-run complete. Add --write to apply.")
+        return
 
-    return "\n".join(lines)
+    # Apply
+    print(f"\nApplying {len(real_changes)} changes to {EXERCISES_FILE.name}...")
+    for c in real_changes:
+        exercises[c["index"]]["grammar_topic_slug"] = c["recommended_topic"]
+
+    with open(EXERCISES_FILE, "w") as f:
+        json.dump(exercises, f, indent=2, ensure_ascii=False)
+    print(f"Updated {EXERCISES_FILE.name}")
+
+    # Append to persistent audit log
+    append_audit_log(real_changes, str(changes_file))
 
 
 # ---------------------------------------------------------------------------
@@ -330,104 +305,53 @@ def generate_markdown_report(
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="Recategorize exercises by grammar_topic_slug using heuristics"
+        description="Recategorize exercises via Claude Code review"
     )
     parser.add_argument(
         "--topic",
         choices=VALID_TOPICS,
-        help="Only audit exercises currently assigned to this topic",
+        help="Only include exercises currently assigned to this topic",
+    )
+    parser.add_argument(
+        "--apply",
+        type=Path,
+        metavar="CHANGES.json",
+        help="Apply changes from a JSON file (output from Claude review)",
     )
     parser.add_argument(
         "--write",
         action="store_true",
-        help="Apply changes to exercises-pd3m2.json (default: dry-run)",
+        help="Actually modify exercises-pd3m2.json (default: dry-run)",
+    )
+    parser.add_argument(
+        "--log",
+        action="store_true",
+        help="Show the audit log of all past recategorizations",
     )
     args = parser.parse_args()
+
+    # Show log
+    if args.log:
+        if not LOG_FILE.exists():
+            print("No audit log found yet.")
+            return
+        print(f"Audit log: {LOG_FILE}\n")
+        with open(LOG_FILE) as f:
+            for line in f:
+                entry = json.loads(line)
+                print(f"  {entry['timestamp']}  {entry['changes_applied']} changes  ({entry.get('method', '?')})")
+                print(f"    Source: {entry.get('source', '?')}")
+        return
 
     # Load exercises
     with open(EXERCISES_FILE) as f:
         exercises = json.load(f)
     print(f"Loaded {len(exercises)} exercises from {EXERCISES_FILE.name}")
 
-    # Filter by topic if specified
-    if args.topic:
-        indices = [
-            i for i, ex in enumerate(exercises)
-            if ex["grammar_topic_slug"] == args.topic
-        ]
-        print(f"Filtering to {len(indices)} exercises with topic '{args.topic}'")
+    if args.apply:
+        cmd_apply(exercises, args.apply, args.write)
     else:
-        indices = list(range(len(exercises)))
-
-    # Classify each exercise
-    changes: list[dict] = []
-    for idx in indices:
-        result = classify_exercise(idx, exercises[idx])
-        if result:
-            changes.append(result)
-
-    # Summary
-    print(f"\nChanges recommended: {len(changes)}")
-
-    change_counts: Counter = Counter()
-    for c in changes:
-        key = f"{c['current_topic']} → {c['recommended_topic']}"
-        change_counts[key] += 1
-    if change_counts:
-        print("\nChange breakdown:")
-        for key, count in change_counts.most_common():
-            print(f"  {key}: {count}")
-
-    # Save outputs
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-
-    audit_file = DATA_DIR / f"recategorization-audit-{timestamp}.json"
-    audit_data = {
-        "timestamp": timestamp,
-        "total_exercises": len(exercises),
-        "total_analyzed": len(indices),
-        "total_changes": len(changes),
-        "topic_filter": args.topic,
-        "changes": changes,
-    }
-    with open(audit_file, "w") as f:
-        json.dump(audit_data, f, indent=2, ensure_ascii=False)
-    print(f"\nAudit saved: {audit_file}")
-
-    # Markdown report
-    DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    report_file = DOCS_DIR / f"recategorization-report-{timestamp}.md"
-    report = generate_markdown_report(changes, exercises, timestamp)
-    with open(report_file, "w") as f:
-        f.write(report)
-    print(f"Report saved: {report_file}")
-
-    # Apply changes
-    if args.write and changes:
-        print(f"\nApplying {len(changes)} changes to {EXERCISES_FILE.name}...")
-        for c in changes:
-            global_idx = c["global_index"]
-            old_topic = exercises[global_idx]["grammar_topic_slug"]
-            new_topic = c["recommended_topic"]
-            exercises[global_idx]["grammar_topic_slug"] = new_topic
-            print(f"  [{global_idx}] {old_topic} → {new_topic}")
-
-        with open(EXERCISES_FILE, "w") as f:
-            json.dump(exercises, f, indent=2, ensure_ascii=False)
-        print(f"Updated {EXERCISES_FILE.name} with {len(changes)} changes")
-
-        # Show final topic distribution
-        final_counts: Counter = Counter()
-        for ex in exercises:
-            final_counts[ex["grammar_topic_slug"]] += 1
-        print("\nFinal topic distribution:")
-        for topic in VALID_TOPICS:
-            print(f"  {topic}: {final_counts.get(topic, 0)}")
-    elif args.write and not changes:
-        print("\nNo changes to apply.")
-    else:
-        print("\nDry-run complete. Use --write to apply changes.")
+        cmd_generate(exercises, args.topic)
 
 
 if __name__ == "__main__":
