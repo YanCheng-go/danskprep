@@ -30,6 +30,7 @@ const TOPIC_LABELS: Record<string, string> = {
   'main-subordinate-clauses': 'Main & Subordinate Clauses',
   'verbs-tenses': 'Verbs & Tenses',
   'pronouns': 'Pronouns',
+  'adjective-agreement': 'Adjective Agreement',
 }
 
 const QUIZ_SESSION_LENGTHS = [10, 15, 20, 30, 0] as const  // 0 = all

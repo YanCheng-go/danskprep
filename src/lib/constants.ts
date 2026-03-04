@@ -19,6 +19,7 @@ export const GRAMMAR_TOPIC_SLUGS = [
   'main-subordinate-clauses',
   'verbs-tenses',
   'pronouns',
+  'adjective-agreement',
 ] as const
 
 export const EXERCISE_TYPE_LABELS: Record<string, string> = {
