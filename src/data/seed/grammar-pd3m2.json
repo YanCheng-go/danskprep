@@ -411,5 +411,65 @@
       "Confusing 'ingen' and 'intet': WRONG 'Der er intet mennesker her', CORRECT 'Der er ingen mennesker her' — 'ingen' for countable/plural, 'intet' for uncountable/et-words"
     ],
     "sort_order": 6
+  },
+  {
+    "title": "Adjective Agreement (Adjektivbøjning)",
+    "slug": "adjective-agreement",
+    "module_level": 2,
+    "category": "adjectives",
+    "explanation": "Danish adjectives must agree with the noun they describe in gender, number, and definiteness. The base form is used with indefinite en-words (en stor bil). The t-form is used with indefinite et-words (et stort hus). The e-form is used with definite nouns (den store bil), plural nouns (store biler), and after possessives (min store bil). This is different from comparative/superlative — agreement is about matching the adjective to the noun form, not comparing things.",
+    "rules": [
+      {
+        "rule": "Base form: used with indefinite en-words (common gender singular)",
+        "example_da": "en stor bil, en ny bog, en lang dag",
+        "example_en": "a big car, a new book, a long day"
+      },
+      {
+        "rule": "T-form: add -t for indefinite et-words (neuter singular)",
+        "example_da": "et stort hus, et nyt bord, et langt møde",
+        "example_en": "a big house, a new table, a long meeting"
+      },
+      {
+        "rule": "E-form: add -e for definite nouns (with den/det/de or -en/-et suffix + adjective)",
+        "example_da": "den store bil, det nye hus, de lange dage",
+        "example_en": "the big car, the new house, the long days"
+      },
+      {
+        "rule": "E-form with plurals: all plural nouns take the -e form",
+        "example_da": "store biler, nye bøger, lange dage",
+        "example_en": "big cars, new books, long days"
+      },
+      {
+        "rule": "E-form after possessives: min/din/sin/hans/hendes etc. + adjective-e + noun",
+        "example_da": "min store bil, hans nye hus, vores lange rejse",
+        "example_en": "my big car, his new house, our long trip"
+      },
+      {
+        "rule": "Some adjectives are irregular in the t-form: adjectives ending in -ig get -t (vigtig → vigtigt), adjectives ending in -sk usually don't add -t (dansk → dansk)",
+        "example_da": "et vigtigt møde, et dansk flag, et gratis tilbud",
+        "example_en": "an important meeting, a Danish flag, a free offer"
+      },
+      {
+        "rule": "Adjectives ending in a stressed vowel or -d sometimes double or change: god → godt, rød → rødt, ny → nyt, fri → frit",
+        "example_da": "et godt liv, et rødt hus, et nyt job, et frit valg",
+        "example_en": "a good life, a red house, a new job, a free choice"
+      }
+    ],
+    "tips": [
+      "Think of three forms: BASE (en-word), T-FORM (et-word), E-FORM (definite/plural/possessive).",
+      "If you see den/det/de before a noun, the adjective always gets -e: den gamle mand, det gamle hus, de gamle mænd.",
+      "Possessives (min, din, sin, hans, etc.) work like the definite — adjective gets -e: min gamle bil.",
+      "The t-form and e-form are NOT about comparison. 'et stort hus' (agreement) vs 'et større hus' (comparative) are different grammar concepts.",
+      "When unsure about t-form irregularities, listen for what sounds natural — 'et danskt flag' sounds wrong, 'et dansk flag' is correct."
+    ],
+    "common_mistakes": [
+      "Forgetting -t with et-words: WRONG 'et stor hus', CORRECT 'et stort hus'",
+      "Forgetting -e with definite nouns: WRONG 'den stor bil', CORRECT 'den store bil'",
+      "Using base form with plurals: WRONG 'stor biler', CORRECT 'store biler'",
+      "Adding -t to adjectives ending in -sk: WRONG 'et danskt flag', CORRECT 'et dansk flag'",
+      "Forgetting -e after possessives: WRONG 'min stor bil', CORRECT 'min store bil'",
+      "Confusing agreement with comparison: 'et stort hus' (agreement — big house) is not the same as 'et større hus' (comparison — bigger house)"
+    ],
+    "sort_order": 7
   }
 ]
