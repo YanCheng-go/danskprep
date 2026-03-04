@@ -119,6 +119,7 @@ const da: Record<TranslationKeys, string> = {
   'vocab.adverbs': 'Adverbier',
   'vocab.prepositions': 'Præpositioner',
   'vocab.conjunctions': 'Konjunktioner',
+  'vocab.tapHint': 'Tryk på et ord for at se alle bøjninger',
 
   // Grammar
   'grammar.title': 'Grammatik',

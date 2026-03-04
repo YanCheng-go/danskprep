@@ -1,47 +1,47 @@
 #!/usr/bin/env python3
 """
-Recategorize exercises by grammar_topic_slug using LLM analysis.
+Recategorize exercises by grammar_topic_slug via Claude Code review.
 
-Many exercises were assigned the wrong topic during generation — e.g. adjective
-agreement exercises tagged as "comparative-superlative". This script audits every
-exercise and corrects misclassifications.
+Two-step workflow:
+  1. Generate a prompt file with exercises formatted for Claude Code review
+  2. Apply the JSON results back to the seed file
 
 Usage:
   cd scripts
-  export ANTHROPIC_API_KEY=sk-ant-...
 
-  # Dry-run: audit all exercises, produce report
+  # Step 1: Generate prompt for Claude Code (all exercises or one topic)
   uv run python recategorize-exercises.py
-
-  # Audit only one topic
   uv run python recategorize-exercises.py --topic comparative-superlative
 
-  # Apply changes to seed file
-  uv run python recategorize-exercises.py --write
+  # Step 2: After Claude reviews, save JSON to data/recategorize-changes.json
+  uv run python recategorize-exercises.py --apply data/recategorize-changes.json
+  uv run python recategorize-exercises.py --apply data/recategorize-changes.json --write
+
+Orchestration:
+  The script is designed for human-in-the-loop AI review:
+
+  1. Run without flags → generates prompt file(s) in scripts/data/
+  2. Copy the prompt content into Claude Code (or any LLM)
+  3. Claude analyzes each exercise and returns a JSON array of changes
+  4. Save that JSON to scripts/data/recategorize-changes.json
+  5. Run --apply to preview, then --apply --write to commit changes
+
+  Each --write run appends to scripts/data/recategorization-log.jsonl
+  so there is a permanent audit trail of all AI-assisted changes.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
-import sys
-import textwrap
-import time
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
-
-try:
-    import anthropic
-except ImportError:
-    print("ERROR: Run: cd scripts && uv sync")
-    sys.exit(1)
 
 PROJECT_ROOT = Path(__file__).parent.parent
 SEED_DIR = PROJECT_ROOT / "src" / "data" / "seed"
 EXERCISES_FILE = SEED_DIR / "exercises-pd3m2.json"
 DATA_DIR = Path(__file__).parent / "data"
-DOCS_DIR = PROJECT_ROOT / "docs" / "reviews"
+LOG_FILE = DATA_DIR / "recategorization-log.jsonl"
 
 VALID_TOPICS = [
     "noun-gender",
@@ -53,250 +53,251 @@ VALID_TOPICS = [
     "adjective-agreement",
 ]
 
-BATCH_SIZE = 20
-RATE_LIMIT_DELAY = 0.3
+BATCH_SIZE = 30
 
 
 # ---------------------------------------------------------------------------
-# LLM helpers (reused from generate-from-dump.py)
+# Prompt generation
 # ---------------------------------------------------------------------------
-def call_claude(
-    client: anthropic.Anthropic,
-    prompt: str,
-    system: str,
-    model: str = "claude-haiku-4-5-20251001",
-    max_tokens: int = 4096,
-) -> str:
-    message = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        system=system,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    return message.content[0].text.strip()
+def format_exercise(idx: int, ex: dict) -> str:
+    """Format a single exercise as a readable block for Claude."""
+    lines = [f"[{idx}] topic={ex['grammar_topic_slug']}  type={ex.get('exercise_type', '?')}"]
+    lines.append(f"  Q: {ex.get('question', '')}")
+    lines.append(f"  A: {ex.get('correct_answer', '')}")
+    hint = ex.get("hint") or ""
+    if hint:
+        lines.append(f"  Hint: {hint}")
+    explanation = ex.get("explanation") or ""
+    if explanation:
+        lines.append(f"  Explanation: {explanation[:120]}")
+    return "\n".join(lines)
 
 
-def parse_json_array(text: str) -> list[dict] | None:
-    text = text.strip()
-    if "```" in text:
-        lines = text.split("\n")
-        lines = [line for line in lines if not line.strip().startswith("```")]
-        text = "\n".join(lines).strip()
-    start = text.find("[")
-    end = text.rfind("]") + 1
-    if start == -1 or end == 0:
-        return None
-    try:
-        data = json.loads(text[start:end])
-        return data if isinstance(data, list) else None
-    except json.JSONDecodeError:
-        return None
+def generate_prompt(exercises: list[dict], indices: list[int], batch_num: int, total_batches: int) -> str:
+    """Generate a prompt for Claude Code to classify a batch of exercises."""
+    topic_list = "\n".join(f"  - {t}" for t in VALID_TOPICS)
+
+    header = f"""## Exercise Recategorization — Batch {batch_num}/{total_batches}
+
+Review each exercise below. For each one, decide whether its `grammar_topic_slug`
+is correct. Focus on **what the exercise actually tests** (what is blanked, what
+the student must produce), not just what the sentence is about.
+
+### Valid topics:
+{topic_list}
+
+### Key distinctions:
+- **adjective-agreement**: t-form (et-words), e-form (definite/plural/possessive), base form
+- **comparative-superlative**: -ere/-est forms, "mere/mest", "bedre/bedst" etc.
+- **noun-gender**: en/et gender, definite articles (-en/-et/-erne)
+- **pronouns**: sin/sit/sine, personal pronouns, possessive pronouns
+- **inverted-word-order**: V2 rule, inversion after adverbial/subordinate clause
+- **main-subordinate-clauses**: da/når/om, fordi/hvis, clause connectors
+- **verbs-tenses**: present/past/perfect, passive voice, imperative
+
+### Output format:
+Return a JSON array with ONLY the exercises that need reclassification:
+```json
+[
+  {{"index": 42, "current_topic": "comparative-superlative", "recommended_topic": "adjective-agreement", "reasoning": "Tests t-form agreement, not comparison"}}
+]
+```
+If all exercises are correctly classified, return `[]`.
+
+---
+
+### Exercises:
+
+"""
+    blocks = []
+    for idx in indices:
+        blocks.append(format_exercise(idx, exercises[idx]))
+
+    return header + "\n\n".join(blocks) + "\n"
+
+
+def cmd_generate(exercises: list[dict], topic_filter: str | None) -> None:
+    """Generate prompt files for Claude Code review."""
+    if topic_filter:
+        indices = [
+            i for i, ex in enumerate(exercises)
+            if ex["grammar_topic_slug"] == topic_filter
+        ]
+        print(f"Filtering to {len(indices)} exercises with topic '{topic_filter}'")
+    else:
+        indices = list(range(len(exercises)))
+
+    # Split into batches
+    batches = []
+    for i in range(0, len(indices), BATCH_SIZE):
+        batches.append(indices[i:i + BATCH_SIZE])
+
+    total = len(batches)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    if total == 1:
+        prompt = generate_prompt(exercises, batches[0], 1, 1)
+        out_file = DATA_DIR / f"recategorize-prompt-{timestamp}.md"
+        with open(out_file, "w") as f:
+            f.write(prompt)
+        print(f"Prompt saved: {out_file}")
+        print(f"  {len(batches[0])} exercises")
+    else:
+        print(f"Generating {total} batch files ({BATCH_SIZE} exercises each)...")
+        for i, batch in enumerate(batches):
+            prompt = generate_prompt(exercises, batch, i + 1, total)
+            out_file = DATA_DIR / f"recategorize-prompt-{timestamp}-batch{i + 1:02d}.md"
+            with open(out_file, "w") as f:
+                f.write(prompt)
+            print(f"  Batch {i + 1}: {out_file.name} ({len(batch)} exercises)")
+
+    # Show current topic distribution
+    counts: Counter = Counter()
+    for ex in exercises:
+        counts[ex["grammar_topic_slug"]] += 1
+    print("\nCurrent topic distribution:")
+    for topic in VALID_TOPICS:
+        print(f"  {topic}: {counts.get(topic, 0)}")
+
+    print("\nNext steps:")
+    print("  1. Open the prompt file(s) and paste into Claude Code")
+    print("  2. Save Claude's JSON response to scripts/data/recategorize-changes.json")
+    print("  3. Preview: uv run python recategorize-exercises.py --apply data/recategorize-changes.json")
+    print("  4. Apply:   uv run python recategorize-exercises.py --apply data/recategorize-changes.json --write")
 
 
 # ---------------------------------------------------------------------------
-# Classification prompt
+# Audit log
 # ---------------------------------------------------------------------------
-SYSTEM_PROMPT = textwrap.dedent("""\
-    You are an expert Danish grammar classifier. Your job is to determine which
-    grammar topic each exercise ACTUALLY tests, based on what the student must
-    produce or identify (the blank, the answer, the error — not the surrounding
-    sentence content).
-
-    The 7 grammar topics and what they cover:
-
-    1. noun-gender — Determining whether a noun is en-word or et-word. Definite/
-       indefinite articles (en/et, -en/-et). Noun plurals (-er, -e, -ene, -erne).
-
-    2. comparative-superlative — Comparative forms (-ere, mere), superlative forms
-       (-est, mest). Comparing two or more things. Irregular comparisons (god →
-       bedre → bedst). The tested element is a comparative or superlative FORM.
-
-    3. adjective-agreement — Adjective inflection to match noun gender/number/
-       definiteness. T-form for et-words (et stort hus), e-form for definite/
-       plural/possessive (den store bil, store biler, min store bil). The tested
-       element is the FORM of an adjective matching its noun context.
-       KEY DISTINCTION from comparative-superlative: if the blank tests whether
-       an adjective gets -t, -e, or base form to agree with its noun, it is
-       adjective-agreement. If the blank tests -ere/-est/mere/mest or an
-       irregular comparative form, it is comparative-superlative.
-
-    4. inverted-word-order — V2 rule (verb must be second). Subject-verb inversion
-       after fronted adverbs, time expressions, subordinate clauses. Ordering the
-       subject and verb correctly when something other than the subject starts the
-       sentence.
-
-    5. main-subordinate-clauses — Adverb placement difference between main clauses
-       (verb before adverb: "han spiser ikke") and subordinate clauses (adverb
-       before verb: "fordi han ikke spiser"). Subordinating conjunctions (at,
-       fordi, hvis, når, da, selvom, mens). Comma placement at clause boundaries.
-
-    6. verbs-tenses — Verb conjugation: present (-er), past (-ede/-te), perfect
-       (har + participle), future (vil/skal). Modal verbs (kan, skal, vil, må).
-       Passive voice (-s / blive). Irregular verb forms. Imperative.
-
-    7. pronouns — Subject/object pronoun forms (jeg/mig, han/ham). Possessive
-       pronouns (min/mit/mine). Reflexive sin/sit/sine vs hans/hendes. Relative
-       pronouns (som, der, hvis). Demonstrative, interrogative, indefinite
-       pronouns.
-
-    For each exercise, analyze:
-    - What is blanked/tested/asked? (the specific grammar point)
-    - Does the current topic match what is actually tested?
-
-    Return a JSON array. For EACH exercise in the batch, return an object with:
-    {
-      "index": <integer, position in batch starting at 0>,
-      "current_topic": "<the exercise's current grammar_topic_slug>",
-      "recommended_topic": "<your recommended grammar_topic_slug>",
-      "confidence": <float 0.0 to 1.0>,
-      "reasoning": "<brief explanation of what grammar point is tested>"
+def append_audit_log(changes: list[dict], source: str) -> None:
+    """Append an entry to the persistent JSONL audit log."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    entry = {
+        "timestamp": datetime.now().isoformat(),
+        "source": source,
+        "changes_applied": len(changes),
+        "method": "claude-code-review",
+        "changes": changes,
     }
-
-    Return ALL exercises in the batch, even if current_topic == recommended_topic.
-    Use ONLY the 7 slugs listed above. Output ONLY the JSON array, no other text.
-""")
-
-
-def format_exercise_for_prompt(idx: int, ex: dict) -> str:
-    """Format a single exercise for the LLM prompt."""
-    parts = [f"[{idx}] topic={ex['grammar_topic_slug']}  type={ex['exercise_type']}"]
-    parts.append(f"  Q: {ex['question']}")
-    parts.append(f"  A: {ex['correct_answer']}")
-    if ex.get("hint"):
-        parts.append(f"  Hint: {ex['hint']}")
-    if ex.get("explanation"):
-        parts.append(f"  Explanation: {ex['explanation']}")
-    if ex.get("alternatives"):
-        parts.append(f"  Alternatives: {', '.join(ex['alternatives'])}")
-    return "\n".join(parts)
-
-
-def classify_batch(
-    client: anthropic.Anthropic, exercises: list[dict], batch_start: int
-) -> list[dict]:
-    """Send a batch of exercises to the LLM for classification."""
-    exercise_texts = []
-    for i, ex in enumerate(exercises):
-        exercise_texts.append(format_exercise_for_prompt(i, ex))
-
-    prompt = (
-        f"Classify these {len(exercises)} exercises (batch starting at global "
-        f"index {batch_start}):\n\n" + "\n\n".join(exercise_texts)
-    )
-
-    response = call_claude(client, prompt, SYSTEM_PROMPT, max_tokens=4096)
-    results = parse_json_array(response)
-
-    if results is None:
-        print(f"  WARNING: Failed to parse LLM response for batch at {batch_start}")
-        return []
-
-    # Validate results
-    validated = []
-    for item in results:
-        if not isinstance(item, dict):
-            continue
-        rec = item.get("recommended_topic", "")
-        if rec not in VALID_TOPICS:
-            print(f"  WARNING: Invalid topic '{rec}' at index {item.get('index')}")
-            continue
-        validated.append(item)
-
-    return validated
+    with open(LOG_FILE, "a") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    print(f"Audit log appended: {LOG_FILE.name} ({len(changes)} changes)")
 
 
 # ---------------------------------------------------------------------------
-# Report generation
+# Apply changes
 # ---------------------------------------------------------------------------
-def generate_markdown_report(
-    changes: list[dict],
-    all_results: list[dict],
-    exercises: list[dict],
-    timestamp: str,
-) -> str:
-    """Generate a markdown report of the recategorization audit."""
-    lines = [
-        f"# Exercise Recategorization Report — {timestamp}",
-        "",
-        f"**Total exercises analyzed:** {len(all_results)}",
-        f"**Changes recommended:** {len(changes)}",
-        f"**No change:** {len(all_results) - len(changes)}",
-        "",
-    ]
+def cmd_apply(exercises: list[dict], changes_file: Path, write: bool) -> None:
+    """Apply classification changes from a JSON file."""
+    with open(changes_file) as f:
+        changes = json.load(f)
 
-    # Migration matrix
-    matrix: dict[str, Counter] = defaultdict(Counter)
+    if not changes:
+        print("No changes in the file.")
+        return
+
+    print(f"Loaded {len(changes)} changes from {changes_file.name}")
+
+    # Validate
+    errors = []
     for c in changes:
-        matrix[c["current_topic"]][c["recommended_topic"]] += 1
+        idx = c.get("index")
+        if idx is None:
+            errors.append(f"Missing 'index' in: {c}")
+            continue
+        if idx < 0 or idx >= len(exercises):
+            errors.append(f"Index {idx} out of range (0-{len(exercises) - 1})")
+            continue
+        rec = c.get("recommended_topic", "")
+        if rec not in VALID_TOPICS:
+            errors.append(f"[{idx}] Invalid topic '{rec}'")
+            continue
+        cur = c.get("current_topic", "")
+        actual = exercises[idx]["grammar_topic_slug"]
+        if cur and cur != actual:
+            errors.append(
+                f"[{idx}] current_topic mismatch: file says '{cur}', "
+                f"actual is '{actual}'"
+            )
 
-    if changes:
-        lines.append("## Migration Matrix")
-        lines.append("")
-        lines.append("| From | To | Count |")
-        lines.append("|------|----|-------|")
-        for from_topic in sorted(matrix):
-            for to_topic in sorted(matrix[from_topic]):
-                lines.append(
-                    f"| {from_topic} | {to_topic} | {matrix[from_topic][to_topic]} |"
-                )
-        lines.append("")
+    if errors:
+        print(f"\nValidation errors ({len(errors)}):")
+        for e in errors:
+            print(f"  - {e}")
+        print("\nFix these before applying.")
+        return
+
+    # Filter to actual changes (skip no-ops)
+    real_changes = []
+    for c in changes:
+        idx = c["index"]
+        rec = c["recommended_topic"]
+        if exercises[idx]["grammar_topic_slug"] != rec:
+            real_changes.append(c)
+
+    if not real_changes:
+        print("All recommended topics already match. No changes needed.")
+        return
+
+    # Show summary
+    change_counts: Counter = Counter()
+    for c in real_changes:
+        key = f"{exercises[c['index']]['grammar_topic_slug']} → {c['recommended_topic']}"
+        change_counts[key] += 1
+
+    print(f"\nChanges to apply: {len(real_changes)}")
+    print("\nBreakdown:")
+    for key, count in change_counts.most_common():
+        print(f"  {key}: {count}")
+
+    # Show each change
+    print("\nDetails:")
+    for c in real_changes:
+        idx = c["index"]
+        ex = exercises[idx]
+        old = ex["grammar_topic_slug"]
+        new = c["recommended_topic"]
+        reason = c.get("reasoning", "")
+        print(f"  [{idx}] {old} → {new}")
+        print(f"    Q: {ex['question'][:80]}")
+        if reason:
+            print(f"    Reason: {reason[:80]}")
 
     # Topic distribution before/after
     before: Counter = Counter()
-    after: Counter = Counter()
     for ex in exercises:
         before[ex["grammar_topic_slug"]] += 1
     after = Counter(before)
-    for c in changes:
-        after[c["current_topic"]] -= 1
+    for c in real_changes:
+        idx = c["index"]
+        old = exercises[idx]["grammar_topic_slug"]
+        after[old] -= 1
         after[c["recommended_topic"]] += 1
 
-    lines.append("## Topic Distribution")
-    lines.append("")
-    lines.append("| Topic | Before | After | Delta |")
-    lines.append("|-------|--------|-------|-------|")
+    print("\nTopic distribution (before → after):")
     for topic in VALID_TOPICS:
         b = before.get(topic, 0)
         a = after.get(topic, 0)
         delta = a - b
-        sign = "+" if delta > 0 else ""
-        lines.append(f"| {topic} | {b} | {a} | {sign}{delta} |")
-    lines.append("")
+        marker = f" ({'+' if delta > 0 else ''}{delta})" if delta != 0 else ""
+        print(f"  {topic}: {b} → {a}{marker}")
 
-    # Low-confidence flags
-    low_conf = [c for c in changes if c.get("confidence", 1.0) < 0.8]
-    if low_conf:
-        lines.append("## Low Confidence Changes (< 0.8)")
-        lines.append("")
-        for c in low_conf:
-            global_idx = c["global_index"]
-            ex = exercises[global_idx]
-            lines.append(
-                f"- **[{global_idx}]** {c['current_topic']} → {c['recommended_topic']} "
-                f"(conf: {c.get('confidence', '?')})"
-            )
-            lines.append(f"  - Q: {ex['question']}")
-            lines.append(f"  - A: {ex['correct_answer']}")
-            lines.append(f"  - Reason: {c.get('reasoning', 'N/A')}")
-        lines.append("")
+    if not write:
+        print("\nDry-run complete. Add --write to apply.")
+        return
 
-    # All changes
-    if changes:
-        lines.append("## All Changes")
-        lines.append("")
-        for c in changes:
-            global_idx = c["global_index"]
-            ex = exercises[global_idx]
-            lines.append(
-                f"### [{global_idx}] {c['current_topic']} → {c['recommended_topic']} "
-                f"(conf: {c.get('confidence', '?')})"
-            )
-            lines.append(f"- **Q:** {ex['question']}")
-            lines.append(f"- **A:** {ex['correct_answer']}")
-            lines.append(f"- **Reason:** {c.get('reasoning', 'N/A')}")
-            lines.append("")
+    # Apply
+    print(f"\nApplying {len(real_changes)} changes to {EXERCISES_FILE.name}...")
+    for c in real_changes:
+        exercises[c["index"]]["grammar_topic_slug"] = c["recommended_topic"]
 
-    return "\n".join(lines)
+    with open(EXERCISES_FILE, "w") as f:
+        json.dump(exercises, f, indent=2, ensure_ascii=False)
+    print(f"Updated {EXERCISES_FILE.name}")
+
+    # Append to persistent audit log
+    append_audit_log(real_changes, str(changes_file))
 
 
 # ---------------------------------------------------------------------------
@@ -304,167 +305,53 @@ def generate_markdown_report(
 # ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(
-        description="Recategorize exercises by grammar_topic_slug using LLM"
+        description="Recategorize exercises via Claude Code review"
     )
     parser.add_argument(
         "--topic",
         choices=VALID_TOPICS,
-        help="Only audit exercises currently assigned to this topic",
+        help="Only include exercises currently assigned to this topic",
+    )
+    parser.add_argument(
+        "--apply",
+        type=Path,
+        metavar="CHANGES.json",
+        help="Apply changes from a JSON file (output from Claude review)",
     )
     parser.add_argument(
         "--write",
         action="store_true",
-        help="Apply changes to exercises-pd3m2.json (default: dry-run)",
+        help="Actually modify exercises-pd3m2.json (default: dry-run)",
     )
     parser.add_argument(
-        "--confidence-threshold",
-        type=float,
-        default=0.7,
-        help="Only apply changes above this confidence (default: 0.7)",
+        "--log",
+        action="store_true",
+        help="Show the audit log of all past recategorizations",
     )
     args = parser.parse_args()
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        print("ERROR: Set ANTHROPIC_API_KEY environment variable")
-        sys.exit(1)
+    # Show log
+    if args.log:
+        if not LOG_FILE.exists():
+            print("No audit log found yet.")
+            return
+        print(f"Audit log: {LOG_FILE}\n")
+        with open(LOG_FILE) as f:
+            for line in f:
+                entry = json.loads(line)
+                print(f"  {entry['timestamp']}  {entry['changes_applied']} changes  ({entry.get('method', '?')})")
+                print(f"    Source: {entry.get('source', '?')}")
+        return
 
     # Load exercises
     with open(EXERCISES_FILE) as f:
         exercises = json.load(f)
     print(f"Loaded {len(exercises)} exercises from {EXERCISES_FILE.name}")
 
-    # Filter by topic if specified
-    if args.topic:
-        indices = [
-            i for i, ex in enumerate(exercises)
-            if ex["grammar_topic_slug"] == args.topic
-        ]
-        print(f"Filtering to {len(indices)} exercises with topic '{args.topic}'")
+    if args.apply:
+        cmd_apply(exercises, args.apply, args.write)
     else:
-        indices = list(range(len(exercises)))
-
-    # Process in batches
-    client = anthropic.Anthropic(api_key=api_key)
-    all_results: list[dict] = []
-    changes: list[dict] = []
-    total_batches = (len(indices) + BATCH_SIZE - 1) // BATCH_SIZE
-
-    print(f"Processing {len(indices)} exercises in {total_batches} batches...")
-
-    for batch_num in range(total_batches):
-        batch_start = batch_num * BATCH_SIZE
-        batch_indices = indices[batch_start : batch_start + BATCH_SIZE]
-        batch_exercises = [exercises[i] for i in batch_indices]
-
-        print(
-            f"  Batch {batch_num + 1}/{total_batches} "
-            f"(exercises {batch_indices[0]}-{batch_indices[-1]})...",
-            end="",
-            flush=True,
-        )
-
-        results = classify_batch(client, batch_exercises, batch_indices[0])
-
-        batch_changes = 0
-        for item in results:
-            local_idx = item.get("index", -1)
-            if local_idx < 0 or local_idx >= len(batch_indices):
-                continue
-
-            global_idx = batch_indices[local_idx]
-            item["global_index"] = global_idx
-            all_results.append(item)
-
-            if item["current_topic"] != item["recommended_topic"]:
-                item["global_index"] = global_idx
-                changes.append(item)
-                batch_changes += 1
-
-        print(f" {len(results)} classified, {batch_changes} changes")
-
-        if batch_num < total_batches - 1:
-            time.sleep(RATE_LIMIT_DELAY)
-
-    # Summary
-    print("\n--- Summary ---")
-    print(f"Total analyzed: {len(all_results)}")
-    print(f"Changes recommended: {len(changes)}")
-
-    above_threshold = [
-        c for c in changes if c.get("confidence", 0) >= args.confidence_threshold
-    ]
-    below_threshold = [
-        c for c in changes if c.get("confidence", 0) < args.confidence_threshold
-    ]
-    print(
-        f"Above confidence threshold ({args.confidence_threshold}): "
-        f"{len(above_threshold)}"
-    )
-    print(f"Below threshold (flagged for review): {len(below_threshold)}")
-
-    # Topic change counts
-    change_counts: Counter = Counter()
-    for c in changes:
-        key = f"{c['current_topic']} → {c['recommended_topic']}"
-        change_counts[key] += 1
-    if change_counts:
-        print("\nChange breakdown:")
-        for key, count in change_counts.most_common():
-            print(f"  {key}: {count}")
-
-    # Save outputs
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-
-    audit_file = DATA_DIR / f"recategorization-audit-{timestamp}.json"
-    audit_data = {
-        "timestamp": timestamp,
-        "total_exercises": len(exercises),
-        "total_analyzed": len(all_results),
-        "total_changes": len(changes),
-        "confidence_threshold": args.confidence_threshold,
-        "topic_filter": args.topic,
-        "changes": changes,
-        "all_results": all_results,
-    }
-    with open(audit_file, "w") as f:
-        json.dump(audit_data, f, indent=2, ensure_ascii=False)
-    print(f"\nAudit saved: {audit_file}")
-
-    # Markdown report
-    DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    report_file = DOCS_DIR / f"recategorization-report-{timestamp}.md"
-    report = generate_markdown_report(changes, all_results, exercises, timestamp)
-    with open(report_file, "w") as f:
-        f.write(report)
-    print(f"Report saved: {report_file}")
-
-    # Apply changes
-    if args.write and above_threshold:
-        print(f"\nApplying {len(above_threshold)} changes to {EXERCISES_FILE.name}...")
-        for c in above_threshold:
-            global_idx = c["global_index"]
-            old_topic = exercises[global_idx]["grammar_topic_slug"]
-            new_topic = c["recommended_topic"]
-            exercises[global_idx]["grammar_topic_slug"] = new_topic
-            print(f"  [{global_idx}] {old_topic} → {new_topic}")
-
-        with open(EXERCISES_FILE, "w") as f:
-            json.dump(exercises, f, indent=2, ensure_ascii=False)
-        print(f"Updated {EXERCISES_FILE.name} with {len(above_threshold)} changes")
-
-        # Show final topic distribution
-        final_counts: Counter = Counter()
-        for ex in exercises:
-            final_counts[ex["grammar_topic_slug"]] += 1
-        print("\nFinal topic distribution:")
-        for topic in VALID_TOPICS:
-            print(f"  {topic}: {final_counts.get(topic, 0)}")
-    elif args.write and not above_threshold:
-        print("\nNo changes above confidence threshold to apply.")
-    else:
-        print("\nDry-run complete. Use --write to apply changes.")
+        cmd_generate(exercises, args.topic)
 
 
 if __name__ == "__main__":
