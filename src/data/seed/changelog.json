@@ -1,5 +1,27 @@
 [
   {
+    "version": "0.8.0",
+    "date": "2026-03-04",
+    "title": "Content Pipeline & Developer Guide",
+    "highlights": [
+      "Exercises expanded from 292 to 933 — full SpeakSpeak H5P content pipeline with per-blank extraction",
+      "Vocabulary expanded from 376 to 595 words with AI-enriched inflections",
+      "All exercise hints translated to English (were mixed Danish/English)",
+      "14 writing prompts (up from 10), 11 speaking prompts (up from 8)",
+      "New DEVELOPMENT.md with workflow diagrams, skills/agents reference, and content pipeline overview",
+      "Slimmed README — developer content moved to DEVELOPMENT.md and docs/architecture.md",
+      "New content pipeline scripts: full-course scraper, H5P processor, exercise generator",
+      "Fixed /daily skill — removed redundant /simplify step (already in /commit)"
+    ],
+    "stats": {
+      "exercises": 933,
+      "words": 595,
+      "grammar_topics": 6,
+      "writing_prompts": 14,
+      "speaking_prompts": 11
+    }
+  },
+  {
     "version": "0.7.2",
     "date": "2026-03-04",
     "title": "Mobile Sidebar Quick Actions",
