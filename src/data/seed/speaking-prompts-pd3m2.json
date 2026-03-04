@@ -62,5 +62,35 @@
     "prompt_en": "What do you think about the weather in Denmark? How is the weather in your home country?",
     "tips": ["Comparatives: varmere, koldere, mere sol", "Seasons: forår, sommer, efterår, vinter"],
     "duration_seconds": 90
+  },
+  {
+    "id": "sp-09",
+    "title": "Mad, fester og traditioner",
+    "prompt": "Næste emne: mad, fester og traditioner. Forbered svar: Hvordan er dit forhold til mad og madlavning? Hvordan er skik og brug i dit hjemland? Hvad er typisk til fester?",
+    "prompt_en": "Topic: food, parties, and traditions. How is your relationship to food and cooking? What are customs in your home country? What is typical at celebrations?",
+    "tips": ["Compare cultures: I mit hjemland..., I Danmark...", "Use 'man' for general customs: Man spiser..., Man fejrer...", "Past tense for specific events: Sidste jul lavede vi..."],
+    "duration_seconds": 120,
+    "source": "speakspeak-homework",
+    "exam_format": true
+  },
+  {
+    "id": "sp-10",
+    "title": "Mit første job",
+    "prompt": "Forbered et kort oplæg om det første job, du havde. Hvad var det for et job? Hvad lavede du? Kunne du lide det? Hvad lærte du?",
+    "prompt_en": "Prepare a short talk about your first job. What kind of job was it? What did you do? Did you like it? What did you learn?",
+    "tips": ["Past tense: Jeg arbejdede som..., Jeg havde...", "Duration: Jeg var der i [X] måneder/år", "Opinion: Det var hårdt/sjovt/kedeligt, fordi..."],
+    "duration_seconds": 120,
+    "source": "speakspeak-homework",
+    "exam_format": true
+  },
+  {
+    "id": "sp-11",
+    "title": "Udflugtsmål i Danmark",
+    "prompt": "Vælg et sted i Danmark, du gerne vil besøge. Fortæl: Hvad er det for et sted? Hvor ligger det? Hvad kan man opleve der? Hvordan kommer man derhen? Hvorfor har du valgt netop det sted?",
+    "prompt_en": "Choose a place in Denmark you'd like to visit. Tell: What kind of place is it? Where is it? What can you experience there? How do you get there? Why did you choose it?",
+    "tips": ["Location: Det ligger i/på/ved...", "Transport: Man kan tage toget/bussen/bilen", "Recommendation: Jeg vil anbefale stedet, fordi..."],
+    "duration_seconds": 120,
+    "source": "speakspeak-homework",
+    "exam_format": true
   }
 ]

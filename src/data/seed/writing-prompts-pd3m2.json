@@ -88,5 +88,49 @@
     "tips": ["Imperative: Kom til..., Tag gerne... med", "Time and date: lørdag den 15. marts klokken 19", "Informal tone appropriate"],
     "min_words": 40,
     "max_words": 150
+  },
+  {
+    "id": "wp-11",
+    "title": "Madlavningskursus (eksamenformat)",
+    "prompt": "Situation: Du har fået en mail fra din ven, Vera.\n\nOpgave: Læs e-mailen, og skriv et svar til Vera. Du skal svare på alle Veras spørgsmål. Du skal skrive minimum 70 ord.\n\n\"Hej\nJeg har hørt, at du har været på madlavningskursus. Det lyder spændende.\nHvem var du sammen med?\nHvor var du på kursus?\nHvad lavede du der?\nKunne du godt tænke dig at tage på madlavningskursus igen?\nMange hilsner\nVera\"",
+    "prompt_en": "Situation: You received an email from your friend Vera.\n\nTask: Read the email and write a reply to Vera. Answer all of Vera's questions. Write at least 70 words.\n\nVera asks about: your cooking course — who you were with, where it was, what you did, and whether you'd do it again.",
+    "tips": ["Answer ALL questions — the exam marks each one", "Use past tense (datid) for what happened", "Minimum 70 words — aim for 80-100", "Start with 'Kære Vera' and end with 'Mange hilsner'"],
+    "min_words": 70,
+    "max_words": 250,
+    "source": "speakspeak-assignment",
+    "exam_format": true
+  },
+  {
+    "id": "wp-12",
+    "title": "Tur på museum (eksamenformat)",
+    "prompt": "Situation: Du har fået en e-mail fra din danske ven Morten.\n\nOpgave: Læs e-mailen og skriv et svar til Morten. Du skal svare på alle Mortens spørgsmål. Du skal skrive minimum 70 ord.\n\n\"Hej\nJeg har hørt, at du har været på museum. Det lyder spændende.\nHvor var du på museum?\nHvem var du sammen med?\nHvordan kom du derhen?\nHvad lavede I der?\nKunne du godt tænke dig at besøge museet igen?\nMange hilsner\nMorten\"",
+    "prompt_en": "Situation: You received an email from your Danish friend Morten.\n\nTask: Read the email and write a reply. Answer all of Morten's questions. Write at least 70 words.\n\nMorten asks about: your museum visit — which museum, who you went with, how you got there, what you did, and whether you'd visit again.",
+    "tips": ["Answer ALL questions — the exam marks each one", "Use past tense for the visit", "Transport: Jeg tog bussen/toget, Vi kørte derhen", "End with a return question to sound natural"],
+    "min_words": 70,
+    "max_words": 250,
+    "source": "speakspeak-assignment",
+    "exam_format": true
+  },
+  {
+    "id": "wp-13",
+    "title": "Min første tid i Danmark",
+    "prompt": "Skriv en tekst (cirka 70 ord) om din første tid i Danmark. Du kan fx komme ind på:\n- Hvorfor du rejste til Danmark\n- Hvem du rejste sammen med\n- Rejsen, vejret, cyklerne\n- Din første bolig",
+    "prompt_en": "Write a text (about 70 words) about your first time in Denmark. You can mention: why you moved to Denmark, who you came with, the journey, weather, bikes, your first home.",
+    "tips": ["Use past tense (datid) throughout", "Time expressions: da jeg kom, i begyndelsen, den første dag", "Subordinate clauses with 'da' and 'fordi'", "Compare: Danmark vs. dit hjemland"],
+    "min_words": 70,
+    "max_words": 250,
+    "source": "speakspeak-assignment",
+    "exam_format": true
+  },
+  {
+    "id": "wp-14",
+    "title": "På festival (eksamenformat)",
+    "prompt": "Situation: Du har fået en e-mail fra dine danske venner Jacob og Trine.\n\nOpgave: Læs e-mailen og skriv et svar til Jacob og Trine. Du skal svare på alle deres spørgsmål.\n\n\"Hej\nVi har hørt, at du har været på festival. Det lyder spændende.\nHvor var du på festival?\nHvem var du sammen med?\nHvad så/hørte du på festivalen?\nHvad var den bedste oplevelse?\nKunne du godt tænke dig at tage på festival igen?\nMange hilsner\nJacob og Trine\"",
+    "prompt_en": "Situation: You received an email from your Danish friends Jacob and Trine.\n\nTask: Read the email and reply. Answer all their questions.\n\nThey ask about: your festival trip — where, who with, what you saw/heard, best experience, and would you go again.",
+    "tips": ["Answer ALL questions", "Use past tense: Jeg var, Jeg hørte, Vi så", "Superlatives: Den bedste oplevelse var...", "Express opinion: Det var fantastisk/sjovt/hyggeligt"],
+    "min_words": 70,
+    "max_words": 250,
+    "source": "speakspeak-assignment",
+    "exam_format": true
   }
 ]
