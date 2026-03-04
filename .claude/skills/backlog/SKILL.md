@@ -100,12 +100,22 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
 
 1. Find the next BL number (see ID convention above)
 2. Apply **auto-assignment heuristics** (see below) to the user's description
-3. Present the proposed item for confirmation:
+3. **Dependency check** — before presenting, scan all open backlog items for relationships:
+   - **Blocks**: Does this item need to be done before any existing item can start? (e.g., fixing a bug that a planned enhancement depends on)
+   - **Blocked by**: Does an existing item need to finish first? (e.g., new item needs a migration that's already planned)
+   - **Related**: Same area or overlapping scope, but no hard dependency (e.g., shared Supabase client config)
+   - Include the dependency analysis in the confirmation prompt so the user can verify
+4. Present the proposed item for confirmation:
    ```
    BL-038: Fix mobile quiz layout cutting off on iPhone SE
    Type: bug | Area: ui | Pri: p1 | Effort: s | Scope: all | Status: ready
 
    Description: [expanded from prompt]
+
+   Dependencies:
+   - Blocks: BL-024 (rate limiting) — depends on this working first
+   - Blocked by: none
+   - Related: BL-026 (mobile overflow) — same area
 
    Confirm? (or override any field)
    ```
