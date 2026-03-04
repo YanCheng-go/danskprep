@@ -80,10 +80,10 @@ export function SettingsPage() {
     localStorage.setItem(SETTINGS_KEYS.DARK_MODE, String(darkMode))
 
     // Save AI provider config — use provider defaults when fields are left empty
-    if (aiProvider === 'anthropic') {
-      if (anthropicKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.ANTHROPIC_KEY, anthropicKey.trim())
-      }
+    if (aiProvider === 'none') {
+      localStorage.removeItem(SETTINGS_KEYS.AI_PROVIDER)
+      localStorage.removeItem(SETTINGS_KEYS.AI_MODEL)
+    } else if (aiProvider === 'anthropic') {
       saveProviderConfig({ provider: 'anthropic', apiKey: anthropicKey.trim() || undefined, model: anthropicModel.trim() || PROVIDER_DEFAULTS.anthropic.model })
     } else if (aiProvider === 'ollama') {
       saveProviderConfig({
@@ -92,14 +92,8 @@ export function SettingsPage() {
         model: ollamaModel.trim() || PROVIDER_DEFAULTS.ollama.model,
       })
     } else if (aiProvider === 'openrouter') {
-      if (openrouterKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.OPENROUTER_KEY, openrouterKey.trim())
-      }
       saveProviderConfig({ provider: 'openrouter', apiKey: openrouterKey.trim() || undefined, model: openrouterModel.trim() || PROVIDER_DEFAULTS.openrouter.model })
     } else if (aiProvider === 'openai') {
-      if (openaiKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.OPENAI_KEY, openaiKey.trim())
-      }
       saveProviderConfig({ provider: 'openai', apiKey: openaiKey.trim() || undefined, model: openaiModel.trim() || PROVIDER_DEFAULTS.openai.model })
     }
 
@@ -185,7 +179,7 @@ export function SettingsPage() {
           <CardContent className="space-y-4">
             {/* Provider radio buttons */}
             <div className="space-y-2">
-              {(['anthropic', 'ollama', 'openrouter', 'openai'] as const).map(provider => (
+              {(['none', 'anthropic', 'ollama', 'openrouter', 'openai'] as const).map(provider => (
                 <label key={provider} className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="radio"

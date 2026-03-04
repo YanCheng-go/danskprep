@@ -6,7 +6,7 @@
 import type { ChatMessageData } from './chat'
 import { SETTINGS_KEYS } from './constants'
 
-export type AIProvider = 'anthropic' | 'ollama' | 'openrouter' | 'openai'
+export type AIProvider = 'anthropic' | 'ollama' | 'openrouter' | 'openai' | 'none'
 
 export interface ProviderConfig {
   provider: AIProvider
@@ -15,7 +15,7 @@ export interface ProviderConfig {
   model: string
 }
 
-export const PROVIDER_DEFAULTS: Record<AIProvider, { model: string; baseUrl?: string }> = {
+export const PROVIDER_DEFAULTS: Record<Exclude<AIProvider, 'none'>, { model: string; baseUrl?: string }> = {
   anthropic: { model: 'claude-haiku-4-5-20251001' },
   ollama: { model: 'llama3.1', baseUrl: 'http://localhost:11434' },
   openrouter: { model: 'qwen/qwen3-80b:free' },
@@ -25,7 +25,11 @@ export const PROVIDER_DEFAULTS: Record<AIProvider, { model: string; baseUrl?: st
 // ── Config persistence ─────────────────────────────────────────────────────
 
 export function getProviderConfig(): ProviderConfig {
-  const provider = (localStorage.getItem(SETTINGS_KEYS.AI_PROVIDER) ?? 'anthropic') as AIProvider
+  const stored = localStorage.getItem(SETTINGS_KEYS.AI_PROVIDER)
+  const provider = (stored ?? 'none') as AIProvider
+  if (provider === 'none') {
+    return { provider: 'none', model: '' }
+  }
   const model = localStorage.getItem(SETTINGS_KEYS.AI_MODEL) ?? PROVIDER_DEFAULTS[provider].model
 
   if (provider === 'ollama') {
@@ -92,6 +96,8 @@ export async function aiComplete(system: string, userMessage: string): Promise<s
       return openrouterComplete(config, system, userMessage)
     case 'openai':
       return openaiComplete(config, system, userMessage)
+    case 'none':
+      throw new Error('No AI provider configured. Choose one in Settings.')
   }
 }
 
@@ -115,6 +121,9 @@ export async function aiStream(
       return openrouterStream(config, system, messages, onChunk, onDone, onError)
     case 'openai':
       return openaiStream(config, system, messages, onChunk, onDone, onError)
+    case 'none':
+      onError(new Error('No AI provider configured. Choose one in Settings.'))
+      return
   }
 }
 
