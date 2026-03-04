@@ -150,3 +150,4 @@ This is just a reminder — the user decides. Do not run `/release` automaticall
 - **Docs before merge**: update docs as the final commit on the branch, before requesting review
 - **Update PR description on new pushes** — when pushing additional commits to an existing PR, read the current body first (`gh pr view <number> --json body`), add the new changes to the Summary section, then write the full updated body (`gh pr edit <number> --body ...`). The `--body` flag replaces the entire body, so always read-then-write — never write from scratch
 - **Link backlog items correctly** — follow the rules in `.claude/references/pr-templates.md` for backlog references in PR bodies
+- **Never close a backlog item without user confirmation** — only use `Closes #NNN` when the PR fully implements the solution described in the issue. Partial fixes do not count. If unsure, ask the user before adding `Closes`
