@@ -20,7 +20,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import sys
 from collections import Counter
 from pathlib import Path
 
@@ -214,7 +213,6 @@ def extract_vocabulary_from_exercises(exercises: list[dict]) -> list[dict]:
     for ex in exercises:
         answer = ex.get("correct_answer", "").strip()
         question = ex.get("question", "")
-        hint = ex.get("hint", "")
 
         # Extract from cloze answers (these are real Danish words in context)
         if ex.get("exercise_type") == "cloze" and answer:
@@ -366,7 +364,7 @@ def main() -> None:
 
     # ── Vocabulary extraction ──
     if not args.exercises_only:
-        print(f"\n[2] Extracting vocabulary")
+        print("\n[2] Extracting vocabulary")
 
         all_vocab: list[dict] = []
 
