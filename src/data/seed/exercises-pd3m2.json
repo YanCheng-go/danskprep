@@ -1038,7 +1038,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Hvad er t-formen (et-ord) af 'god'?",
     "correct_answer": "godt",
@@ -1090,7 +1090,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Hvad er t-formen (et-ord) af 'dårlig'?",
     "correct_answer": "dårligt",
@@ -1103,7 +1103,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Hvad er t-formen (et-ord) af 'stor'?",
     "correct_answer": "stort",
@@ -1129,7 +1129,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Hvad er e-formen (bestemt/flertal) af 'lille'?",
     "correct_answer": "små",
@@ -1168,7 +1168,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Hvad er t-formen (et-ord) af 'gammel'?",
     "correct_answer": "gammelt",
@@ -1194,7 +1194,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Udfyld: Det er _____ hus. (stor)",
     "correct_answer": "stort",
@@ -1207,7 +1207,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Udfyld: Det er en _____ bil. (ny)",
     "correct_answer": "ny",
@@ -1220,7 +1220,7 @@
     "source": "generated"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "conjugation",
     "question": "Udfyld: De _____ biler er dyre. (ny)",
     "correct_answer": "nye",
@@ -1277,7 +1277,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "pronouns",
     "exercise_type": "cloze",
     "question": "Peter elsker ___ arbejde og tænker på det hele dagen.",
     "correct_answer": "sit",
@@ -1290,7 +1290,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "pronouns",
     "exercise_type": "multiple_choice",
     "question": "Hun savner ___ familie, når hun er på arbejde.",
     "correct_answer": "sin",
@@ -1308,7 +1308,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "pronouns",
     "exercise_type": "error_correction",
     "question": "Hun ringer til sit veninder hver uge.",
     "correct_answer": "Hun ringer til sine veninder hver uge.",
@@ -1321,7 +1321,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "inverted-word-order",
     "exercise_type": "word_order",
     "question": "på mandag tager hun til Spanien med sine venner",
     "correct_answer": "På mandag tager hun til Spanien med sine venner.",
@@ -1336,7 +1336,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "inverted-word-order",
     "exercise_type": "type_answer",
     "question": "Omskriv sætningen så den begynder med 'Når de kommer til Paris': De vil se Eiffeltårnet, når de kommer til Paris.",
     "correct_answer": "Når de kommer til Paris, vil de se Eiffeltårnet.",
@@ -1349,7 +1349,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "inverted-word-order",
     "exercise_type": "type_answer",
     "question": "Omskriv sætningen så den begynder med 'Hvis man har for meget bagage': Man skal betale overvægt i flyet, hvis man har for meget bagage.",
     "correct_answer": "Hvis man har for meget bagage, skal man betale overvægt i flyet.",
@@ -1362,7 +1362,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "cloze",
     "question": "Jeg ved ikke, ___ han har fået dårlige karakterer.",
     "correct_answer": "om",
@@ -1375,7 +1375,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "type_answer",
     "question": "Lav om til indirekte spørgsmål: Har hun brug for hjælp?",
     "correct_answer": "Jeg ved ikke, om hun har brug for hjælp.",
@@ -1388,7 +1388,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "error_correction",
     "question": "Jeg ved ikke, skal han tage til lægen.",
     "correct_answer": "Jeg ved ikke, om han skal tage til lægen.",
@@ -1401,7 +1401,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "verbs-tenses",
     "exercise_type": "type_answer",
     "question": "Omskriv til aktiv imperativ: Kartoflerne skrælles og skæres i skiver.",
     "correct_answer": "Skræl kartoflerne, og skær dem i skiver.",
@@ -1545,7 +1545,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det var ikke så ___ (hård) som hun forventede.",
     "correct_answer": "hårdt",
@@ -1563,7 +1563,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "cloze",
     "question": "Han ringede, ___ han var i København sidst.",
     "correct_answer": "da",
@@ -1576,7 +1576,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "multiple_choice",
     "question": "___ hun var barn, boede hun på Frederiksberg.",
     "correct_answer": "Da",
@@ -1594,7 +1594,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "multiple_choice",
     "question": "___ man læser meget, lærer man nye ord.",
     "correct_answer": "Når",
@@ -1612,7 +1612,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "error_correction",
     "question": "Når jeg var i skole, var jeg meget stille.",
     "correct_answer": "Da jeg var i skole, var jeg meget stille.",
@@ -1625,7 +1625,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "verbs-tenses",
     "exercise_type": "type_answer",
     "question": "Omskriv til passiv: Man bør ikke drikke kaffe om aftenen.",
     "correct_answer": "Kaffe bør ikke drikkes om aftenen.",
@@ -1638,7 +1638,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "verbs-tenses",
     "exercise_type": "type_answer",
     "question": "Omskriv til passiv: Man skal skrive opgaven på computer.",
     "correct_answer": "Opgaven skal skrives på computer.",
@@ -1651,7 +1651,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "inverted-word-order",
     "exercise_type": "word_order",
     "question": "i Danmark gik Lina på sprogskole i et par år",
     "correct_answer": "I Danmark gik Lina på sprogskole i et par år.",
@@ -1666,7 +1666,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "cloze",
     "question": "___ et par år i Danmark gik Lina på sprogskole.",
     "correct_answer": "Efter",
@@ -1679,7 +1679,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "verbs-tenses",
     "exercise_type": "cloze",
     "question": "Hvad er du egentlig ___ som? (uddanne — perfektum participium)",
     "correct_answer": "uddannet",
@@ -1692,7 +1692,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "inverted-word-order",
     "exercise_type": "error_correction",
     "question": "Hvis hun holder pauser, hun kan læse længe.",
     "correct_answer": "Hvis hun holder pauser, kan hun læse længe.",
@@ -1906,7 +1906,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "verbs-tenses",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "De ___ par dage har jeg haft feber. (bestemt adjektiv foran flertal)",
     "correct_answer": "sidste",
@@ -2084,7 +2084,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "pronouns",
+    "grammar_topic_slug": "noun-gender",
     "exercise_type": "error_correction",
     "question": "Joe har en bil. En bilen er gammel.",
     "correct_answer": "Joe har en bil. Bilen er gammel.",
@@ -2110,7 +2110,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "pronouns",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "type_answer",
     "question": "Forbind med 'da': Hun begyndte i skole. Hun var seks år.",
     "correct_answer": "Da hun var seks år, begyndte hun i skole.",
@@ -2156,7 +2156,7 @@
     "source": "generated-from-speakspeak"
   },
   {
-    "grammar_topic_slug": "pronouns",
+    "grammar_topic_slug": "main-subordinate-clauses",
     "exercise_type": "type_answer",
     "question": "Lav om til indirekte spørgsmål: Hvem kan man spørge om vej?",
     "correct_answer": "Ved du, hvem man kan spørge om vej?",
@@ -6173,7 +6173,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hans chef er ___ til at lede arbejdet.",
     "correct_answer": "god",
@@ -6190,7 +6190,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det er et ___ ansvar.",
     "correct_answer": "stort",
@@ -6207,7 +6207,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Han har taget en ___ uddannelse.",
     "correct_answer": "lang",
@@ -6224,7 +6224,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hans kollegaer er meget ___.",
     "correct_answer": "erfarne",
@@ -6241,7 +6241,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Han er med i to ___ team.",
     "correct_answer": "forskellige",
@@ -6258,7 +6258,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hans arbejde er tit ___.",
     "correct_answer": "sjovt",
@@ -6275,7 +6275,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Vi har fået ___ kontorstole.",
     "correct_answer": "nye",
@@ -6292,7 +6292,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det kan godt være et ___ arbejde at være nattevagt.",
     "correct_answer": "ensomt",
@@ -6309,7 +6309,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Vi er snart ___ med vores opgave.",
     "correct_answer": "færdige",
@@ -6326,7 +6326,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Alt bliver registreret i en ___ database.",
     "correct_answer": "stor",
@@ -6343,7 +6343,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Computeren er helt ___.",
     "correct_answer": "ny",
@@ -6360,7 +6360,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Jeg synes, priserne i kantinen er for ___.",
     "correct_answer": "høje",
@@ -6377,7 +6377,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Mit arbejdsområde er ___.",
     "correct_answer": "stort",
@@ -6394,7 +6394,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hvor er I ___, at I har fri nu!",
     "correct_answer": "heldige",
@@ -6411,7 +6411,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Jeg er i gang med et ___ projekt.",
     "correct_answer": "nyt",
@@ -6428,7 +6428,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Vi har mange ___ medarbejdere.",
     "correct_answer": "dygtige",
@@ -6445,7 +6445,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Jeg er ___ over nedskæringerne.",
     "correct_answer": "sur",
@@ -6462,7 +6462,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Vi holder nogle ___ pauser.",
     "correct_answer": "sjove",
@@ -6479,7 +6479,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Mit skrivebord er ___.",
     "correct_answer": "gammelt",
@@ -6496,7 +6496,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det er en ___ del af arbejdet.",
     "correct_answer": "vigtig",
@@ -6513,7 +6513,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Den ___ udvikling på it-området kræver mange ressourcer.",
     "correct_answer": "hurtige",
@@ -6530,7 +6530,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det er en ___ hjælp.",
     "correct_answer": "stor",
@@ -6547,7 +6547,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hans ___ kollega hjælper ham tit.",
     "correct_answer": "tålmodige",
@@ -6564,7 +6564,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Firmaets ___ direktion tog afsked i går.",
     "correct_answer": "gamle",
@@ -6581,7 +6581,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det er ___ arbejde at passe børn.",
     "correct_answer": "hårdt",
@@ -6598,7 +6598,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hendes arbejde er hendes ___ hobby.",
     "correct_answer": "store",
@@ -6615,7 +6615,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Jeg elsker min ___ computer.",
     "correct_answer": "bærbare",
@@ -6632,7 +6632,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Har du hørt om Brians ___ lønforhøjelse?",
     "correct_answer": "store",
@@ -6649,7 +6649,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Mange vil gerne arbejde i den ___ branche.",
     "correct_answer": "grafiske",
@@ -6666,7 +6666,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hun gav sin ___ sekretær lønforhøjelse.",
     "correct_answer": "dygtige",
@@ -6683,7 +6683,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Har du set vores ___ klipsemaskine nogen steder?",
     "correct_answer": "røde",
@@ -6700,7 +6700,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Lønningerne er højere i det ___ erhvervsliv.",
     "correct_answer": "private",
@@ -6717,7 +6717,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Vi har mange meget ___ medarbejdere.",
     "correct_answer": "professionelle",
@@ -6734,7 +6734,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Skrivebordsarbejde er tit ___.",
     "correct_answer": "kedeligt",
@@ -6751,7 +6751,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "De måtte hvile deres ___ ben.",
     "correct_answer": "trætte",
@@ -6768,7 +6768,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Har I fået ___ deadline?",
     "correct_answer": "ny",
@@ -6785,7 +6785,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Skal vi ikke gå ud og spise en ___ frokost?",
     "correct_answer": "god",
@@ -6802,7 +6802,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Jeg mødte en af dine ___ studiekammerater til en konference i går.",
     "correct_answer": "gamle",
@@ -6819,7 +6819,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Hvor har du stillet de ___ mapper?",
     "correct_answer": "grønne",
@@ -6836,7 +6836,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Det var et ___ chok, at så mange skulle fyres.",
     "correct_answer": "stort",
@@ -9459,7 +9459,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Er det en stor arbejdsplads, og er der ___ ansatte?",
     "correct_answer": "mange",
@@ -9498,7 +9498,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Hvad synes du om jobbet? Er du glad for det? — Det er meget godt, men det er lidt ___ at stå op en hel dag.",
     "correct_answer": "hårdt",
@@ -11349,7 +11349,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "For Zach var det faktisk ___ at flytte til Danmark.",
     "correct_answer": "hårdt",
@@ -11375,7 +11375,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Da de ankom til deres ___ lejlighed, var der problemer.",
     "correct_answer": "nye",
@@ -11388,7 +11388,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Installationerne var ___ og måtte udskiftes.",
     "correct_answer": "gamle",
@@ -11401,7 +11401,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "De første uger var lidt ___.",
     "correct_answer": "kaotiske",
@@ -11414,7 +11414,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "USA er et ___ land.",
     "correct_answer": "stort",
@@ -11427,7 +11427,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Folk er meget ___.",
     "correct_answer": "forskellige",
@@ -11440,7 +11440,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Nogle er ___ og hjælpsomme, andre er travle og sure.",
     "correct_answer": "venlige",
@@ -11453,7 +11453,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Det er ___ for dem at lære de lokale at kende.",
     "correct_answer": "vigtigt",
@@ -11466,7 +11466,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "De har kontakt til helt ___ danskere.",
     "correct_answer": "almindelige",
@@ -11479,7 +11479,7 @@
     "source": "speakspeak-dump"
   },
   {
-    "grammar_topic_slug": "comparative-superlative",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "multiple_choice",
     "question": "Which is the correct form? 'De er meget ___.'",
     "correct_answer": "hjælpsomme",
@@ -12960,7 +12960,7 @@
     "source": "speakspeak-tavlenoter"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Jeg har fået et nyt job. Mit ___ job er godt.",
     "correct_answer": "nye",
@@ -12973,7 +12973,7 @@
     "source": "speakspeak-tavlenoter"
   },
   {
-    "grammar_topic_slug": "noun-gender",
+    "grammar_topic_slug": "adjective-agreement",
     "exercise_type": "cloze",
     "question": "Vi har et stort hus. Vores ___ hus ligger i Roskilde.",
     "correct_answer": "store",

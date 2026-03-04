@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { WordDetail } from './WordDetail'
-import { Search } from 'lucide-react'
+import { ChevronRight, Search } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
 const WORDS_PER_PAGE = 50
@@ -72,10 +72,11 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
         ))}
       </div>
 
-      {/* Word count */}
-      <p className="text-xs text-muted-foreground">
-        {t('vocab.showing', { count: visibleCount, total: words.length })}
-      </p>
+      {/* Word count + hint */}
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>{t('vocab.showing', { count: visibleCount, total: words.length })}</span>
+        <span>{t('vocab.tapHint')}</span>
+      </div>
 
       {/* Word rows */}
       <div className="divide-y border rounded-lg overflow-hidden">
@@ -101,6 +102,7 @@ export function WordList({ words, searchTerm, onSearchChange, posFilter, onPosCh
                   <Badge variant="outline" className="text-xs hidden sm:flex">
                     {word.part_of_speech}
                   </Badge>
+                  <ChevronRight className={`h-4 w-4 text-muted-foreground transition-transform ${expandedId === word.id ? 'rotate-90' : ''}`} />
                 </div>
               </button>
               {expandedId === word.id && (
