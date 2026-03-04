@@ -21,6 +21,7 @@ const en = {
   'nav.practice': 'Practice',
   'nav.reference': 'Reference',
   'nav.app': 'App',
+  'nav.quickActions': 'Quick Actions',
   'nav.signIn': 'Sign in',
   'nav.signUp': 'Sign up',
 

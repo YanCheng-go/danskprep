@@ -120,12 +120,12 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
         {/* Spacer */}
         <div className="flex-1 min-w-0" />
 
-        <div className="flex items-center gap-0.5 sm:gap-1 bg-background pl-1 sm:pl-3 shrink-0">
-          {/* Game controls — toggle + rankings, hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-0 rounded-lg border border-foreground/[0.08]">
+        <div className="hidden md:flex items-center gap-1 bg-background pl-3 shrink-0">
+          {/* Game controls — toggle + rankings */}
+          <div className="flex items-center gap-0 rounded-lg border border-foreground/[0.08]">
             <button
               onClick={onToggleBubbles}
-              className={`relative inline-flex items-center justify-center min-h-9 min-w-9 p-1.5 rounded-l-lg hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
+              className={`relative inline-flex items-center justify-center min-h-11 min-w-11 p-2 rounded-l-lg hover:bg-accent transition-colors ${bubblesEnabled ? 'text-blue-500' : 'text-muted-foreground/40'}`}
               title={bubblesEnabled ? t('bubble.game.turnOff') : t('bubble.game.turnOn')}
               aria-label={t('bubble.game.tooltip')}
             >
@@ -152,7 +152,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Dark mode toggle */}
           <button
             onClick={handleThemeToggle}
-            className="inline-flex items-center justify-center rounded-md h-9 w-9 sm:min-h-11 sm:min-w-11 p-1.5 sm:p-2 text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-muted-foreground hover:bg-accent transition-colors"
             title={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
             aria-label={isDark ? t('header.darkMode.light') : t('header.darkMode.dark')}
           >
@@ -162,26 +162,26 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
           {/* Language toggle */}
           <button
             onClick={() => setLocale(locale === 'en' ? 'da' : 'en')}
-            className="inline-flex items-center justify-center rounded-md h-9 w-9 sm:min-h-11 sm:min-w-11 p-1.5 sm:p-2 text-sm text-muted-foreground hover:bg-accent transition-colors"
+            className="inline-flex items-center justify-center rounded-md min-h-11 min-w-11 p-2 text-sm text-muted-foreground hover:bg-accent transition-colors"
             title={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
             aria-label={locale === 'en' ? 'Skift til dansk' : 'Switch to English'}
           >
             {locale === 'en' ? '\u{1F1E9}\u{1F1F0}' : '\u{1F1EC}\u{1F1E7}'}
           </button>
 
-          <span className="hidden sm:block w-px h-4 bg-foreground/[0.08] mx-0.5" />
+          <span className="block w-px h-4 bg-foreground/[0.08] mx-0.5" />
 
           <button
             onClick={() => { setSupportOpen(true); track('support_click') }}
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-pink-500 hover:bg-accent transition-colors"
             aria-label={t('support.title')}
           >
             <Coffee className="h-4 w-4 text-pink-500" />
-            <span className="hidden sm:inline">{t('support.title')}</span>
+            <span>{t('support.title')}</span>
           </button>
           {user ? (
             <>
-              <span className="hidden text-xs text-muted-foreground sm:block truncate max-w-[160px] ml-1">
+              <span className="block text-xs text-muted-foreground truncate max-w-[160px] ml-1">
                 {user.email}
               </span>
               <Button variant="ghost" size="icon" onClick={onSignOut} aria-label={t('header.signOut')}>
@@ -194,7 +194,7 @@ export function Header({ user, menuOpen, onToggleMenu, onSignOut, bubblesEnabled
               className="inline-flex items-center gap-1.5 rounded-md px-2.5 h-9 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
             >
               <LogIn className="h-4 w-4" />
-              <span className="hidden sm:inline">{t('header.signIn')}</span>
+              <span>{t('header.signIn')}</span>
             </Link>
           )}
         </div>
