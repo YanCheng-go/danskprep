@@ -1,5 +1,22 @@
 [
   {
+    "version": "0.7.2",
+    "date": "2026-03-04",
+    "title": "Mobile Sidebar Quick Actions",
+    "highlights": [
+      "Utility icons (dark mode, language, game, support, auth) moved to sidebar on mobile — header now clean with just hamburger, logo, and module selector",
+      "New Quick Actions section in mobile sidebar drawer for easy access to all controls",
+      "Floating word bubbles now clickable on every page, not just the welcome screen"
+    ],
+    "stats": {
+      "exercises": 292,
+      "words": 376,
+      "grammar_topics": 6,
+      "writing_prompts": 10,
+      "speaking_prompts": 8
+    }
+  },
+  {
     "version": "0.7.1",
     "date": "2026-03-04",
     "title": "Mobile Header & Settings Fixes",
