@@ -84,9 +84,6 @@ export function SettingsPage() {
       localStorage.removeItem(SETTINGS_KEYS.AI_PROVIDER)
       localStorage.removeItem(SETTINGS_KEYS.AI_MODEL)
     } else if (aiProvider === 'anthropic') {
-      if (anthropicKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.ANTHROPIC_KEY, anthropicKey.trim())
-      }
       saveProviderConfig({ provider: 'anthropic', apiKey: anthropicKey.trim() || undefined, model: anthropicModel.trim() || PROVIDER_DEFAULTS.anthropic.model })
     } else if (aiProvider === 'ollama') {
       saveProviderConfig({
@@ -95,14 +92,8 @@ export function SettingsPage() {
         model: ollamaModel.trim() || PROVIDER_DEFAULTS.ollama.model,
       })
     } else if (aiProvider === 'openrouter') {
-      if (openrouterKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.OPENROUTER_KEY, openrouterKey.trim())
-      }
       saveProviderConfig({ provider: 'openrouter', apiKey: openrouterKey.trim() || undefined, model: openrouterModel.trim() || PROVIDER_DEFAULTS.openrouter.model })
     } else if (aiProvider === 'openai') {
-      if (openaiKey.trim()) {
-        localStorage.setItem(SETTINGS_KEYS.OPENAI_KEY, openaiKey.trim())
-      }
       saveProviderConfig({ provider: 'openai', apiKey: openaiKey.trim() || undefined, model: openaiModel.trim() || PROVIDER_DEFAULTS.openai.model })
     }
 
