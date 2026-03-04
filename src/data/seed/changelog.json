@@ -1,5 +1,23 @@
 [
   {
+    "version": "0.9.1",
+    "date": "2026-03-04",
+    "title": "Exercise Fixes & Vocabulary UX",
+    "highlights": [
+      "87 exercises recategorized across 7 grammar topics — fixes misclassifications from LLM generation",
+      "Removed 10 geography trivia questions that didn't test grammar",
+      "Vocabulary page now shows 'Tap a word to see all forms' hint with expand chevron",
+      "Recategorization script rewritten as prompt-based Claude Code review workflow with audit trail"
+    ],
+    "stats": {
+      "exercises": 923,
+      "words": 595,
+      "grammar_topics": 7,
+      "writing_prompts": 14,
+      "speaking_prompts": 11
+    }
+  },
+  {
     "version": "0.9.0",
     "date": "2026-03-04",
     "title": "Adjective Agreement & Build Optimization",
