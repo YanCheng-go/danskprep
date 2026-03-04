@@ -19,14 +19,15 @@ Parse the user's arguments to determine which subcommand to run:
 
 | Invocation | Action |
 |---|---|
-| `/backlog` (no args) | **Dashboard** — show status counts + top ready items |
-| `/backlog add <text>` | **Add** — parse prompt, auto-assign metadata, confirm, create issue |
+| `/backlog` (no args) | **Dashboard** — show status counts + top ready items (blocked items separate) |
+| `/backlog add <text>` | **Add** — parse prompt, auto-assign metadata, write deps bidirectionally, confirm, create issue |
 | `/backlog list [--status=X] [--area=X] [--priority=X]` | **List** — show filtered items |
 | `/backlog view BL-NNN` | **View** — show full issue detail |
-| `/backlog update BL-NNN field=value [...]` | **Update** — modify fields on issue/project |
-| `/backlog done BL-NNN` | **Done** — close issue, set status to Done |
-| `/backlog drop BL-NNN [reason]` | **Drop** — close issue as "not planned" |
-| `/backlog next` | **Next** — recommend highest-priority unblocked item |
+| `/backlog update BL-NNN field=value [...]` | **Update** — modify fields on issue/project (supports `blocks=` and `blocked-by=`) |
+| `/backlog done BL-NNN` | **Done** — close issue, set status to Done, report newly unblocked items |
+| `/backlog drop BL-NNN [reason]` | **Drop** — close issue as "not planned", warn if items stay blocked |
+| `/backlog next` | **Next** — recommend highest-priority **unblocked** item (blocked listed separately) |
+| `/backlog deps [BL-NNN]` | **Deps** — show dependency graph or single item's dependency tree |
 | `/backlog prioritize` | **Prioritize** — interactive review of open items |
 
 ---
@@ -82,6 +83,55 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
 
 ---
 
+## Dependency tracking
+
+All subcommands that read or write items must be dependency-aware. This section defines the canonical format and scanning procedure.
+
+### Canonical issue body format
+
+Dependencies live in a `## Dependencies` section at the bottom of the issue body. Each line uses one of two prefixes:
+
+```markdown
+## Dependencies
+- Blocks: #95 (BL-041), #98 (BL-043)
+- Blocked by: #64 (BL-024)
+```
+
+**Rules:**
+- Each ref uses the format `#NN (BL-NNN)` — GitHub issue number first, BL-ID in parentheses
+- Multiple refs on one line are comma-separated
+- Omit a line if there are no items for that direction (e.g. no `- Blocks:` line if nothing is blocked)
+- Omit the entire `## Dependencies` section if there are no dependencies at all
+- "Related" items stay in prose text — they are **not** part of the formal dependency graph
+- Dependencies are **bidirectional** — if A blocks B, then A's body says `- Blocks: #B` and B's body says `- Blocked by: #A`
+
+### Scanning procedure
+
+Used by dashboard, next, deps, done, drop, and add subcommands:
+
+```bash
+gh issue list --repo YanCheng-go/danskprep --state open --label backlog \
+  --json number,title,body --limit 200
+```
+
+Parse each issue body:
+1. Find lines starting with `- Blocks:` or `- Blocked by:`
+2. Extract issue numbers with regex `#(\d+)`
+3. Build a directed graph: `blocks[issueNum] = [list of issues it blocks]`
+4. An item is **blocked** if any issue in its `Blocked by` list is still open
+5. An item is a **root blocker** if it blocks others but is not itself blocked
+
+### Terminology
+
+| Term | Meaning |
+|------|---------|
+| **Blocked** | Has at least one open "Blocked by" item — cannot be started |
+| **Unblocked** | No open "Blocked by" items — eligible for work |
+| **Root blocker** | Unblocked itself, but blocks one or more other items |
+| **Unblock count** | Number of items directly listing this one in "Blocked by" |
+
+---
+
 ## Subcommand instructions
 
 ### `/backlog` (dashboard)
@@ -90,20 +140,24 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
    ```bash
    gh project item-list 15 --owner YanCheng-go --format json --limit 200
    ```
-2. Count items by Status field (Todo, In Progress, Done)
-3. For Todo items, check for `status:idea` label to separate idea vs ready
-4. List all In Progress items first
-5. List top 5 ready items (Todo without `status:idea`) sorted by Priority (p0 first), then Effort (xs first)
+2. **Scan dependencies** (see "Scanning procedure" above) to classify items as blocked or unblocked
+3. Count items by Status field (Todo, In Progress, Done)
+4. For Todo items, check for `status:idea` label to separate idea vs ready
+5. Output sections in this order:
+   - **In Progress** — all items currently being worked on
+   - **Top Ready** — top 5 unblocked ready items (Todo, no `status:idea`, not blocked), sorted by Priority (p0 first), then Effort (xs first). Root blockers get an `[unblocks N]` annotation
+   - **Blocked** — items that are ready but have open blockers, listed with their blocker refs
+   - **Ideas** — count only (e.g. "4 ideas in backlog")
 6. Output as a formatted summary — **read-only, no modifications**
 
 ### `/backlog add <description>`
 
 1. Find the next BL number (see ID convention above)
 2. Apply **auto-assignment heuristics** (see below) to the user's description
-3. **Dependency check** — before presenting, scan all open backlog items for relationships:
-   - **Blocks**: Does this item need to be done before any existing item can start? (e.g., fixing a bug that a planned enhancement depends on)
-   - **Blocked by**: Does an existing item need to finish first? (e.g., new item needs a migration that's already planned)
-   - **Related**: Same area or overlapping scope, but no hard dependency (e.g., shared Supabase client config)
+3. **Dependency check** — scan all open backlog items (see "Scanning procedure") for relationships:
+   - **Blocks**: Does this item need to be done before any existing item can start?
+   - **Blocked by**: Does an existing item need to finish first?
+   - **Related**: Same area or overlapping scope, but no hard dependency (stays in prose, not in `## Dependencies`)
    - Include the dependency analysis in the confirmation prompt so the user can verify
 4. Present the proposed item for confirmation:
    ```
@@ -113,19 +167,19 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
    Description: [expanded from prompt]
 
    Dependencies:
-   - Blocks: BL-024 (rate limiting) — depends on this working first
+   - Blocks: #64 (BL-024)
    - Blocked by: none
    - Related: BL-026 (mobile overflow) — same area
 
    Confirm? (or override any field)
    ```
-5. On confirmation, create the issue and add to project:
+5. On confirmation, create the issue with a `## Dependencies` section in the body (canonical format):
    ```bash
-   # Create issue
+   # Create issue — body includes ## Dependencies section
    gh issue create --repo YanCheng-go/danskprep \
      --title "BL-038: <title>" \
-     --body "<description>" \
-     --label "type:<type>,area:<area>"
+     --body "<description + ## Dependencies section>" \
+     --label "type:<type>,area:<area>,backlog"
 
    # Add to project
    gh project item-add 15 --owner YanCheng-go --url <issue_url> --format json
@@ -135,7 +189,11 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
      --field-id <FIELD_ID> --single-select-option-id <OPTION_ID>
    ```
    Repeat `item-edit` for Priority, Effort, and Scope fields.
-6. If status is `idea`, also add the `status:idea` label
+6. **Bidirectional update** — for each dependency, also update the OTHER issue's body:
+   - If new item blocks #64, edit #64's body to add `- Blocked by: #<new> (BL-038)` to its `## Dependencies` section
+   - If new item is blocked by #95, edit #95's body to add `- Blocks: #<new> (BL-038)` to its `## Dependencies` section
+   - Use `gh issue edit <number> --body "<updated body>"` to update existing issues
+7. If status is `idea`, also add the `status:idea` label
 
 ### `/backlog list [filters]`
 
@@ -172,6 +230,7 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
    - **Labels** (type, area): `gh issue edit <number> --add-label/--remove-label`
    - **Project fields** (priority, effort, scope, status): `gh project item-edit`
    - **Status changes**: Also update the issue state (open/closed) if moving to done/dropped
+   - **Dependencies** (`blocks=BL-NNN` or `blocked-by=BL-NNN`): Update this issue's `## Dependencies` section in canonical format, AND update the other issue's body with the reverse relationship (bidirectional)
 4. Add a comment on the issue noting the change:
    ```bash
    gh issue comment <number> --repo YanCheng-go/danskprep --body "Status changed from X to Y"
@@ -190,27 +249,53 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
      --field-id PVTSSF_lAHOAtALr84BQs_6zg-vxHc --single-select-option-id 98236657
    ```
 4. Add a comment: `Completed on YYYY-MM-DD`
-5. Report if closing this issue unblocks others
+5. **Dependency cleanup** — scan all open issues for ones that list this issue in `- Blocked by:`:
+   - Remove the closed issue's ref from their `- Blocked by:` line
+   - If the `- Blocked by:` line becomes empty, remove it (and the `## Dependencies` section if no other lines remain)
+   - Use `gh issue edit <number> --body "<updated body>"` for each affected issue
+6. **Report unblocked items** — list any items that are now fully unblocked (no remaining open blockers) so the user knows what's available to start
 
 ### `/backlog drop BL-NNN [reason]`
 
-1. Close the issue as "not planned":
+1. **Pre-drop dependency check** — scan for items that list this issue in `- Blocked by:`:
+   - If found, warn the user: "Dropping this will leave N items blocked: #X (BL-NNN), #Y (BL-NNN)"
+   - Ask for confirmation before proceeding
+   - Also check if this issue has `- Blocks:` lines — those items would remain blocked
+2. Close the issue as "not planned":
    ```bash
    gh issue close <number> --repo YanCheng-go/danskprep --reason "not planned"
    ```
-2. Set project Status to Done
-3. Add a comment with the reason: `Dropped on YYYY-MM-DD — <reason>`
-4. Warn if other items reference this one
+3. Set project Status to Done
+4. Add a comment with the reason: `Dropped on YYYY-MM-DD — <reason>`
+5. **Dependency cleanup** — same as `/backlog done` step 5: remove refs from other issues' `- Blocked by:` lines, clean up empty sections
 
 ### `/backlog next`
 
 1. Fetch all open project items with Status=Todo (and no `status:idea` label)
-2. Score each item:
+2. **Scan dependencies** (see "Scanning procedure") to classify each item as blocked or unblocked
+3. **Exclude blocked items** from scoring — list them separately as "Not eligible (blocked)"
+4. Score each **unblocked** item:
    - Priority: p0=40, p1=30, p2=20, p3=10
    - Effort bonus (prefer quick wins): xs=10, s=8, m=5, l=2, xl=0
+   - **Unblock bonus**: +15 per item this would directly unblock (from its `- Blocks:` refs)
    - Context bonus: +5 if area matches files changed recently (`git diff --stat HEAD~5`)
-3. Present the top recommendation with reasoning
-4. Also list the next 2-3 alternatives
+   - **Final score** = priority + effort + unblock + context
+5. Present the top recommendation with reasoning (include unblock bonus if applicable)
+6. Also list the next 2-3 alternatives
+7. List blocked items at the bottom with their blocker refs
+
+### `/backlog deps [BL-NNN]`
+
+1. **Scan dependencies** across all open backlog items (see "Scanning procedure")
+2. **Without argument** — show the full dependency graph:
+   - List all dependency chains (e.g. `#95 (BL-041) → blocks → #93 (BL-040), #98 (BL-043)`)
+   - Highlight **root blockers** — unblocked items that unblock others (these should be prioritized)
+   - Show count of blocked vs unblocked items
+3. **With BL-NNN argument** — show that item's dependency tree:
+   - What it blocks (downstream)
+   - What blocks it (upstream)
+   - Whether it is currently blocked or unblocked
+4. Output as a formatted summary — **read-only, no modifications**
 
 ### `/backlog prioritize`
 
