@@ -116,7 +116,7 @@ def parse_json_array(text: str) -> list[dict] | None:
     # Strip markdown code fences
     if "```" in text:
         lines = text.split("\n")
-        lines = [l for l in lines if not l.strip().startswith("```")]
+        lines = [line for line in lines if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
 
     start = text.find("[")
