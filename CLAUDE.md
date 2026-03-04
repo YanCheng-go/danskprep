@@ -96,6 +96,10 @@ feature branch → PR → CI/CD → Claude review → human merge
 5. **Offline-capable SRS** — FSRS runs client-side, sync on reconnect
 6. **AI-native** — Documents use clear structure, explicit context, and machine-parseable formats so AI agents can consume them effectively. APIs should be designed for AI integration (e.g. exposable via MCP servers)
 
+## Floating Bubbles — Always Interactive
+
+The `FloatingWords` component in `Layout.tsx` must always render with `interactive={true}`. Never set `interactive={false}` — the user wants bubbles clickable on every page, not just the welcome page.
+
 ## Environment Variables
 
 ```
@@ -123,6 +127,20 @@ Never commit `.env.local`.
 | `content-generator` | Agent | Danish exercise/grammar content generation |
 
 Reports output to: `docs/pm/`, `docs/spikes/`, `docs/reviews/`, `docs/test-reports/`, `docs/some/`
+
+## Exam Level Naming Convention
+
+The user is enrolled in PD3 courses at mit.speakspeak.dk. The app MVP content is PD3 Module 2.
+
+| --exam flag | Course name on SpeakSpeak | Seed files | module_level |
+|-------------|---------------------------|------------|--------------|
+| PD2   | modul 2   | exercises-pd2.json    | 2 |
+| PD3M1 | modul 3.1 | exercises-pd3m1.json  | 3 |
+| PD3M2 | modul 3.2 | exercises-pd3m2.json  | 3 |
+
+- **No PD4** — user is not enrolled in that level
+- Existing MVP seed files use PD3M2 naming: `exercises-pd3m2.json`, `grammar-pd3m2.json`, `words-pd3m2.json`, `sentences-pd3m2.json`
+- The `"source": "module2-core"` field inside words JSON is a provenance tag — do not change it
 
 ## Where to Find Detailed Rules
 

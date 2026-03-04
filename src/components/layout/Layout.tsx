@@ -69,7 +69,15 @@ export function Layout() {
             menuOpen ? 'translate-x-0' : '-translate-x-full'
           )}
         >
-          <Sidebar user={user} onClose={() => setMenuOpen(false)} />
+          <Sidebar
+            user={user}
+            onClose={() => setMenuOpen(false)}
+            bubblesEnabled={bubblesEnabled}
+            onToggleBubbles={toggleBubbles}
+            bubbleScore={bubbleScore}
+            onOpenGamePanel={() => setGamePanelOpen(o => !o)}
+            onSignOut={handleSignOut}
+          />
         </aside>
 
         {/* Main content — z-20 to stack above z-10 floating bubbles */}
@@ -87,10 +95,9 @@ export function Layout() {
         />
       </div>
 
-      {/* Floating word bubbles — decorative background, non-interactive in Layout
-           so bubbles never block clicks on content (quiz buttons, etc.) */}
+      {/* Floating word bubbles — interactive everywhere so users can click to discover words */}
       {bubblesEnabled && (
-        <FloatingWords score={bubbleScore} onScoreChange={setBubbleScore} interactive={false} />
+        <FloatingWords score={bubbleScore} onScoreChange={setBubbleScore} interactive={true} />
       )}
 
       {/* Floating chat */}
