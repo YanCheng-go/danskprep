@@ -119,7 +119,7 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
 
    Confirm? (or override any field)
    ```
-4. On confirmation, create the issue and add to project:
+5. On confirmation, create the issue and add to project:
    ```bash
    # Create issue
    gh issue create --repo YanCheng-go/danskprep \
@@ -135,7 +135,7 @@ gh issue list --repo YanCheng-go/danskprep --search "BL-" --json title --limit 2
      --field-id <FIELD_ID> --single-select-option-id <OPTION_ID>
    ```
    Repeat `item-edit` for Priority, Effort, and Scope fields.
-5. If status is `idea`, also add the `status:idea` label
+6. If status is `idea`, also add the `status:idea` label
 
 ### `/backlog list [filters]`
 
