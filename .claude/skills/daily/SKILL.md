@@ -1,6 +1,6 @@
 ---
 name: daily
-description: Daily session wrapper — start with backlog, work, simplify, commit, retro
+description: Daily session wrapper — start with backlog, work, commit, retro
 user-invocable: true
 ---
 
@@ -12,7 +12,7 @@ A guided checklist for a productive session. Run at the start of a work session 
 |---|---|
 | `/daily` | Full session flow (start → work → ship → close) |
 | `/daily start` | Just the opening steps (1–2) — see what's ready and pick work |
-| `/daily wrap` | Just the closing steps (4–6) — simplify, commit, retro |
+| `/daily wrap` | Just the closing steps (4–5) — commit, retro |
 
 ---
 
@@ -52,25 +52,15 @@ The user codes, tests, iterates. This step is implicit — the skill resumes at 
 
 ---
 
-## Step 4 — Simplify
-
-Run `/simplify` on all changed files:
-1. `git diff --name-only` to find modified files
-2. Review for: dead code, unused imports, over-engineering, duplication, missing types
-3. Apply fixes if any
-4. `npx tsc --noEmit` to verify no type errors introduced
-
-If no changes were made, skip this step.
-
-## Step 5 — Commit
+## Step 4 — Commit
 
 Run `/commit` to ship changes:
-- Branch, PR, self-review, fix, docs update
+- Branch, PR, simplify, self-review, fix, docs update
 - Stops at human checkpoint for approval
 
 If no uncommitted changes exist, skip this step.
 
-## Step 6 — Retro
+## Step 5 — Retro
 
 Run `/retro` to close out:
 - Summarize what was done
@@ -83,8 +73,8 @@ Run `/retro` to close out:
 ## Rules
 
 - Steps 1–2 run together at session start
-- Steps 4–6 run together at session end
-- Never skip the human checkpoint in `/commit` (Step 5)
+- Steps 4–5 run together at session end
+- Never skip the human checkpoint in `/commit` (Step 4)
 - If the user only runs `/daily start`, stop after Step 2
 - If the user only runs `/daily wrap`, start from Step 4
 - Keep the opening dashboard concise — no more than 10 lines
