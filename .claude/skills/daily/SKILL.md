@@ -65,7 +65,7 @@ If no uncommitted changes exist, skip this step.
 Run `/retro` to close out:
 - Summarize what was done
 - Update backlog statuses (done, in-progress, new discoveries)
-- Append session log to NOTES.md
+- Update MEMORY.md with key decisions
 - Suggest next session priorities
 
 ---
