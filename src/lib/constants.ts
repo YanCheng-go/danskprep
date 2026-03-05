@@ -1,6 +1,7 @@
 export const APP_VERSION = '0.9.1'
 
 // Feature flags
+// CI trigger: markdown-only PRs don't run the typecheck workflow
 export const FEATURES = {
   DICT_ADD_TO_VOCAB: false, // Dictionary → Add to vocabulary (WIP)
 } as const
