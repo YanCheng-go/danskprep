@@ -124,6 +124,15 @@ Please review the PR. Reply with:
    git branch -d <branch>
    ```
 6. Verify you're on an up-to-date main: `git log --oneline -3` should show the merge commit
+7. **Update project board** — for each backlog item closed by this PR (`Closes #NNN`), set the project Status to Done:
+   ```bash
+   # Find the project item ID, then set Status=Done
+   gh project item-list 15 --owner YanCheng-go --format json --limit 200 | \
+     python3 -c "import json,sys; [print(i['id']) for i in json.load(sys.stdin)['items'] if i.get('content',{}).get('number')==<issue_number>]"
+   gh project item-edit --project-id PVT_kwHOAtALr84BQs_6 --id <item_id> \
+     --field-id PVTSSF_lAHOAtALr84BQs_6zg-vxHc --single-select-option-id 98236657
+   ```
+   This ensures the project board stays in sync — `Closes #NNN` only closes the issue, not the project field.
 
 **If the merge happened in a previous session** (e.g., merged via GitHub UI), still run step 4-6 to sync before starting new work.
 
