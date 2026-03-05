@@ -49,6 +49,7 @@ Parse the user's arguments to determine which subcommand to run:
 | `type:` | `type:feature`, `type:bug`, `type:chore`, `type:infra`, `type:content` |
 | `area:` | `area:ui`, `area:dx`, `area:db`, `area:quiz`, `area:auth`, `area:vocabulary`, `area:grammar`, `area:srs`, `area:scraping`, `area:analytics` |
 | `status:` | `status:idea` (distinguishes ideas from ready items — both use Todo status) |
+| `requires:` | `requires:human-review` (item touches AI context files — needs careful human review) |
 
 ### Status mapping
 
@@ -163,6 +164,7 @@ Parse each issue body:
    ```
    BL-038: Fix mobile quiz layout cutting off on iPhone SE
    Type: bug | Area: ui | Pri: p1 | Effort: s | Scope: all | Status: ready
+   Labels: requires:human-review (if applicable)
 
    Description: [expanded from prompt]
 
@@ -194,6 +196,7 @@ Parse each issue body:
    - If new item is blocked by #95, edit #95's body to add `- Blocks: #<new> (BL-038)` to its `## Dependencies` section
    - Use `gh issue edit <number> --body "<updated body>"` to update existing issues
 7. If status is `idea`, also add the `status:idea` label
+8. If AI context detection matched (see heuristics), also add the `requires:human-review` label
 
 ### `/backlog list [filters]`
 
@@ -367,6 +370,18 @@ When the user provides a natural language description, infer metadata using thes
 ### Default status
 
 New items start as `ready` (Todo, no `status:idea` label) unless the user says "just an idea", "maybe", "someday", or "thinking about" — then use `idea` (Todo + `status:idea` label).
+
+### AI context detection
+
+If the item will likely touch AI context files, auto-add the `requires:human-review` label:
+
+| Signal words | Files affected |
+|---|---|
+| skill, agent, rule, reference, CLAUDE.md, .claude, context, prompt | `.claude/`, `CLAUDE.md` |
+| DEVELOPMENT.md, dev guide, workflow, skill chain | `DEVELOPMENT.md` |
+| memory, MEMORY.md | `MEMORY.md` |
+
+Also add the label when `area:dx` is inferred AND the description mentions AI/agent/skill configuration (not general DX like CI or Nix).
 
 ---
 
