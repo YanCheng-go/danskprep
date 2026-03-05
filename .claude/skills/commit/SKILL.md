@@ -6,7 +6,7 @@ user-invocable: true
 
 # /commit — Ship Cycle
 
-Commit → branch → PR → self-review → fix → docs → **STOP for human approval** → merge. **Never push directly to main.**
+Branch → commit → PR → self-review → fix → docs → **STOP for human approval** → merge. **Never push directly to main.**
 
 | Invocation | Behaviour |
 |---|---|
@@ -32,7 +32,7 @@ If currently on a stale branch from a previously merged PR, clean up first:
 git checkout main && git pull --rebase origin main && git branch -d <stale-branch>
 ```
 
-## Step 1 — Commit
+## Step 1 — Branch
 
 1. `git status` + `git diff --stat HEAD` to see what changed
 2. Check GitHub Issues for related backlog items: `gh issue list --repo YanCheng-go/danskprep --search "<keywords>" --state open --json number,title --limit 5`
@@ -40,19 +40,23 @@ git checkout main && git pull --rebase origin main && git branch -d <stale-branc
    - If it's **Todo**, set it to **In Progress** via `/backlog update BL-NNN status=in-progress`
    - If the PR will fully complete it, note the issue number for `Closes #NNN` in Step 2
    - If no matching item found, skip this step
-4. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
-5. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
+4. **Create branch BEFORE committing** (keeps local main clean after squash merge):
+   ```bash
+   git checkout -b <type>/<short-name>
+   ```
+   Types: `fix/`, `feat/`, `docs/`, `chore/`, `refactor/`
 
-## Step 2 — Branch and PR
+## Step 2 — Commit and PR
 
-1. `git checkout -b <type>/<short-name>` (types: `fix/`, `feat/`, `docs/`, `chore/`, `refactor/`)
-2. Merge latest main into the branch to catch conflicts early:
+1. Stage specific files (`git add <files>` — never `-A`; skip `.env`, secrets, unrelated changes)
+2. Commit: imperative message, under 70 chars, explains *why*. End with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
+3. Merge latest main into the branch to catch conflicts early:
    ```bash
    git fetch origin main && git merge origin/main
    ```
    If there are conflicts, resolve them, commit, and verify (`tsc --noEmit && npm run build && npx vitest run`) before continuing.
-3. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
-4. Create PR using the **Standard PR** template from `.claude/references/pr-templates.md`
+4. `gh auth switch --user YanCheng-go` then `git push -u origin <branch>`
+5. Create PR using the **Standard PR** template from `.claude/references/pr-templates.md`
 
 ## Step 3 — Simplify
 
@@ -87,7 +91,15 @@ Checklist — update each file **only if the PR makes it stale**:
 
 ## Step 7 — Human checkpoint ⛔
 
-**STOP HERE.** Present the following summary to the user and wait for their decision:
+**STOP HERE.** Before presenting the summary, check if the PR touches AI context files:
+
+```bash
+gh pr diff <number> --name-only | grep -E '^\.(claude/|CLAUDE\.md|DEVELOPMENT\.md)'
+```
+
+If any matches are found, add the `requires:human-review` label and include a warning banner in the summary.
+
+Present the following summary to the user and wait for their decision:
 
 ```
 ## PR ready for review
@@ -98,11 +110,17 @@ Checklist — update each file **only if the PR makes it stale**:
 - Self-review verdict: Clean / Needs fixes
 - CI status: <passing / pending / failing>
 
+⚠️ AI CONTEXT CHANGES — This PR modifies files that control AI behaviour:
+- <list of .claude/ and CLAUDE.md files changed>
+Please review these changes carefully — they affect how AI agents work in this project.
+
 Please review the PR. Reply with:
 - "merge" — to proceed with squash merge
 - "fix <issue>" — to address something before merge
 - or any other feedback
 ```
+
+Omit the ⚠️ warning block if no AI context files are changed.
 
 **Do NOT proceed to Step 8 unless the user explicitly approves the merge.**
 
