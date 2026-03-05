@@ -28,4 +28,4 @@ Context compression can happen at any time during long conversations. Important 
 
 - Don't wait until `/retro` to capture decisions — that may be too late
 - Don't save trivial or in-progress thoughts — only confirmed decisions and clear user preferences
-- Don't interrupt the user's flow for minor items — use judgment on when to pause
+- Don't interrupt the user's flow for minor items — use judgement on when to pause
