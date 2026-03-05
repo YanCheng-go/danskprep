@@ -1,18 +1,18 @@
 ---
 name: parallel
-description: Run multiple coder agents in parallel on non-overlapping backlog items using isolated worktrees
+description: Pre-flight for parallel work — pick items, check file overlap, set statuses, generate terminal commands
 user-invocable: true
 ---
 
-# /parallel — Parallel Agent Coordinator
+# /parallel — Parallel Work Pre-flight
 
-Spawn multiple coder agents working on separate backlog items simultaneously, each in an isolated git worktree. The coordinator (this skill) owns all backlog updates and conflict checks — agents only code, test, commit, and push.
+Prepare 2-3 backlog items for parallel work in separate terminal windows. This skill handles the safety checks and setup — the actual coding happens in independent Claude sessions with full context windows each.
 
 | Invocation | Behaviour |
 |---|---|
 | `/parallel` | Interactive — pick items from the ready backlog |
-| `/parallel BL-044 BL-007` | Run agents on the specified items |
-| `/parallel --dry-run BL-044 BL-007` | Check file overlap only, don't spawn agents |
+| `/parallel BL-044 BL-007` | Pre-flight for the specified items |
+| `/parallel --dry-run BL-044 BL-007` | Check file overlap only, no status changes |
 
 ---
 
@@ -29,7 +29,7 @@ If any item is invalid, report the issue and ask the user to adjust.
 
 ### If no items specified
 
-1. Run `/backlog next` logic to get the top 3 unblocked ready items
+1. Run `/backlog next` logic to get the top 3-5 unblocked ready items
 2. Present them and ask the user to pick 2-3:
    ```
    Available for parallel work:
@@ -40,13 +40,13 @@ If any item is invalid, report the issue and ask the user to adjust.
    Pick 2-3 items (e.g. "1 2" or "BL-044 BL-007"):
    ```
 
-**Practical limit: 2-3 items max.** Beyond 3, human review becomes the bottleneck and context quality drops. Warn the user if they select more than 3.
+**Practical limit: 2-3 items.** Beyond 3, human review becomes the bottleneck.
 
 ---
 
 ## Step 2 — File overlap check
 
-For each selected item, determine the files it will likely touch. Use a lightweight scope analysis:
+For each selected item, determine the files it will likely touch:
 
 1. Read each issue body for mentioned files/areas
 2. Use area labels to infer file patterns:
@@ -77,8 +77,6 @@ For each selected item, determine the files it will likely touch. Use a lightwei
    - BL-007 (lang attr): src/components/layout/Layout.tsx, index.html
 
    Overlap: NONE — safe to parallelize
-
-   Proceed?
    ```
 
 If overlap is found:
@@ -116,190 +114,103 @@ gh project item-edit --project-id PVT_kwHOAtALr84BQs_6 --id $ITEM_ID \
 
 ---
 
-## Step 4 — Spawn agents
+## Step 4 — Generate terminal commands
 
-Launch one `coder` agent per item, each with `isolation: "worktree"`. All agents launch in a single message (parallel).
+For each item, generate a ready-to-paste `claude` command that starts a worktree session with a focused prompt.
 
-### Agent brief template
+### Command template
 
-Each agent receives this prompt (fill in the blanks per item):
+```bash
+claude -w --resume "BL-NNN" -p "You are working on BL-NNN: <title> (GitHub Issue #<number>).
 
-```
-You are a coder agent working on a single backlog item in an isolated worktree.
+Issue description: <full issue body>
 
-## Your assignment
-- Item: BL-NNN — <title>
-- GitHub Issue: #<number>
-- Priority: <priority> | Effort: <effort>
-- Issue description: <full issue body>
+Files to focus on: <list from overlap analysis>
 
-## Your scope
-Files you should focus on:
-<list of files from overlap analysis>
-
-## Your workflow
-1. Read the relevant code to understand the current state
-2. Implement the fix/feature following project conventions (see CLAUDE.md, .claude/rules/)
+Workflow:
+1. Read the relevant code
+2. Implement the fix/feature following CLAUDE.md conventions
 3. Write tests if adding new logic
-4. Verify: `npx tsc --noEmit && npm run build && npx vitest run`
-5. Commit with a clear message explaining why (not what):
-   ```
-   git add <specific files>
-   git commit -m "<type>: <message>
+4. Verify: npx tsc --noEmit && npm run build && npx vitest run
+5. Run /commit to create a PR with 'Closes #<number>' in the body
+6. Stop after PR is created — do not merge
 
-   Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>"
-   ```
-6. Create a feature branch and push:
-   ```
-   gh auth switch --user YanCheng-go
-   git checkout -b <type>/BL-NNN-<short-slug>
-   git push -u origin <type>/BL-NNN-<short-slug>
-   ```
-7. Create a PR:
-   ```
-   gh pr create --title "<type>: <description>" --body "$(cat <<'EOF'
-   ## Summary
-   - <what and why>
-
-   ## Backlog
-   - Closes #<issue_number> <!-- BL-NNN: title -->
-
-   ## Test plan
-   - [ ] `npx tsc --noEmit` + `npm run build` + `npx vitest run`
-   - [ ] <specific verification>
-
-   🤖 Generated with [Claude Code](https://claude.com/claude-code)
-   EOF
-   )"
-   ```
-
-## Rules
-- Do NOT run /backlog, /commit, /retro, or /release — the coordinator handles those
-- Do NOT merge the PR — just create it and stop
-- Do NOT modify files outside your scope unless absolutely necessary
-- If you hit a blocker, document it in your final report and stop
-- Always run the full quality gate before pushing
-
-## Final report
-When done, report back with:
-- PR URL (or "no PR" if blocked)
-- Files changed (list)
-- Tests added/modified
-- Any blockers or concerns
+Stay within your file scope. If blocked, stop and explain why."
 ```
 
-### Launching
+### Launch terminals automatically
 
-Use the `Agent` tool with these parameters for each item:
-- `subagent_type: "coder"`
-- `isolation: "worktree"`
-- `run_in_background: true`
-- `description: "BL-NNN: <short title>"`
-- `prompt: <filled agent brief>`
+Use `osascript` to open new Terminal.app windows and run each command:
 
-Launch ALL agents in a single message to maximize parallelism:
+```bash
+osascript -e 'tell application "Terminal" to do script "cd /Users/yancheng/Documents/Projects/DanishPrep && claude -w --resume \"BL-NNN\" -p \"<prompt>\""'
+```
+
+Launch all terminals in parallel (one `osascript` call per item).
+
+After launching, report what was started:
 
 ```
-Spawning 2 agents:
-- Agent 1: BL-044 — Fix feedback submission error (worktree)
-- Agent 2: BL-007 — Set html lang attribute (worktree)
+## Launched
 
-Working in background. I'll report results when they complete.
+Opened 2 terminal windows:
+- Terminal 1: BL-044 — Fix feedback submission error (worktree)
+- Terminal 2: BL-007 — Set html lang attribute (worktree)
+
+Each has its own full context window. When they finish creating PRs,
+come back here and say "merge" to review and merge them sequentially.
 ```
+
+**STOP HERE.** The agents work in their own terminals. The skill resumes when the user returns.
 
 ---
 
-## Step 5 — Collect results
+## Step 5 — Merge (when user returns)
 
-As each agent completes (background notification), record its result:
-- PR URL
-- Files changed
-- Test results
-- Blockers encountered
+When the user runs `/parallel merge` or says they're ready:
 
-Wait for ALL agents to complete before presenting the summary.
-
----
-
-## Step 6 — Present results
-
-Show a unified report:
-
-```
-## Parallel Run Complete
-
-| Item | Status | PR | Files | Tests |
-|------|--------|----|-------|-------|
-| BL-044: Fix feedback error | PR created | #119 | 3 files | 2 added |
-| BL-007: Set lang attribute | PR created | #120 | 2 files | 0 |
-
-### Agent 1 — BL-044
-- PR: https://github.com/YanCheng-go/danskprep/pull/119
-- Changed: src/lib/supabase.ts, src/hooks/useFeedback.ts, src/test/feedback.test.ts
-- Notes: <any concerns>
-
-### Agent 2 — BL-007
-- PR: https://github.com/YanCheng-go/danskprep/pull/120
-- Changed: index.html, src/components/layout/Layout.tsx
-- Notes: <any concerns>
-
-### Next steps
-Review each PR, then reply:
-- "merge all" — merge all PRs sequentially
-- "merge #119" — merge a specific PR
-- "fix #120 <issue>" — request changes on a PR
-```
-
----
-
-## Step 7 — Merge (on user approval)
-
-When the user approves merging:
-
-### For "merge all"
-Merge PRs sequentially (not in parallel — avoids merge conflicts on main):
-
-For each PR:
-1. `gh pr checks <number>` — verify CI passes
-2. `git fetch origin main`
-3. `gh pr merge <number> --squash --delete-branch`
-4. Wait for merge to complete before starting the next one
-
-After all merges:
-1. Sync local: `git checkout main && git pull --rebase origin main`
-2. Update project board for each closed item (Step 8.7 from `/commit`)
-3. Clean up any remaining local branches
-
-### For selective merge
-Same process, but only for the specified PR(s).
-
----
-
-## Step 8 — Post-merge
-
-After all approved PRs are merged:
-
-1. **Update backlog** — mark completed items as Done:
+1. List open PRs from this session:
    ```bash
-   # For each merged item
-   gh issue close <number> --repo YanCheng-go/danskprep --reason completed
-   # + set project Status to Done (see /commit Step 8.7)
+   gh pr list --repo YanCheng-go/danskprep --author YanCheng-go --json number,title,url,statusCheckRollup --limit 10
    ```
-2. **Report unblocked items** — check if any blocked items are now unblocked
-3. **Suggest next actions**:
-   - More parallel work? (`/parallel` again)
-   - Release? (`/release`)
-   - Retro? (`/retro`)
+
+2. Present PR status:
+   ```
+   ## PRs ready for review
+
+   | # | Title | CI | Action |
+   |---|-------|-----|--------|
+   | #120 | fix: connect feedback to Supabase | pass | merge? |
+   | #121 | fix: set html lang attribute | pass | merge? |
+
+   Reply:
+   - "merge all" — merge sequentially
+   - "merge #120" — merge one
+   - "fix #121 <issue>" — request changes
+   ```
+
+3. On approval, merge PRs **sequentially** (one at a time to avoid conflicts):
+   ```bash
+   gh pr merge <number> --squash --delete-branch
+   ```
+   Wait for each merge to complete before the next.
+
+4. After all merges, sync local:
+   ```bash
+   git checkout main && git pull --rebase origin main
+   ```
+
+5. Update project board for each closed item (see `/commit` Step 8.7).
+
+6. Report unblocked items and suggest next actions.
 
 ---
 
 ## Rules
 
-- **Max 3 agents** — warn if user requests more, require explicit confirmation for 4+
-- **Coordinator owns backlog** — agents never touch project board or issue statuses
+- **Max 3 items** — warn if user requests more
 - **No overlapping files** — block by default, require explicit override
-- **Sequential merges** — never merge PRs in parallel to avoid conflicts on main
-- **All PRs need approval** — never auto-merge, even if agents report clean
-- **Agents are disposable** — if one fails, the others continue; report failures in summary
+- **Sequential merges** — never merge PRs in parallel
+- **All PRs need approval** — never auto-merge
 - **Always `gh auth switch --user YanCheng-go`** before any gh commands
-- **Worktree cleanup** — the Agent tool handles this automatically; if an agent makes no changes, its worktree is removed
+- **This skill only does pre-flight and post-merge** — actual coding happens in independent terminals with full context windows

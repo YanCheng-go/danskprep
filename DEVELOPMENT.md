@@ -126,7 +126,7 @@ DanskPrep uses an **AI-first methodology** powered by [Claude Code](https://clau
 | `/weekly` | Weekly review | Prioritize backlog, review progress, release check, plan ahead |
 | `/backlog` | Task management | Add, list, filter, update, prioritize backlog items; dependency-aware (`deps`, `next` excludes blocked) |
 | `/scope` | Planning | Break a backlog item into sub-tasks with effort and risk |
-| `/parallel` | Parallel work | Spawn 2-3 coder agents on non-overlapping BL items in isolated worktrees |
+| `/parallel` | Parallel work | Pre-flight + auto-launch terminals for 2-3 non-overlapping BL items |
 | `/commit` | Ship code | Branch → PR → simplify → self-review → fix → docs → human approval → merge |
 | `/release` | Cut a release | Assess changes since last tag → changelog → version bump → release PR |
 | `/retro` | Session close | Summarize work, update backlog, append session log, suggest next priorities |
