@@ -176,6 +176,12 @@ Queue shape: `{ card_id, rating, reviewed_at, response, was_correct, time_taken_
 - [x] **Migration 006** — `bubble_scores` + `bubble_nickname_history` tables with RLS and conditional unique indexes
 - [x] **Documentation** — `docs/games.md` with architecture, data flow diagrams, and future game ideas
 
+### Session 2026-03-05 — process fixes + parallel skill (branch: main, chore/commit-board-sync)
+- [x] Fixed 4 stale backlog items stuck as "In Progress" on project board (BL-030, BL-035, BL-036, BL-037)
+- [x] Added project board sync step to `/commit` skill (PR #118)
+- [x] Built `/parallel` skill — multi-agent coordinator with worktree isolation
+- [ ] `/parallel` skill uncommitted — needs `/commit` next session
+
 ### Session 2026-03-02 cont. #2 (branch: feature/feedback-session)
 - [x] **Support redesign** — renamed "Donate" to "Support" with Coffee icon (pink), removed MobilePay `<a href>` link (security), hardcoded number as JS constant, Vercel Analytics `support_click` event
 - [x] **Dictionary inflections** — `api/dictionary.ts` now extracts gender, normalizes POS (Danish→English), builds structured inflections from DDO suffixes
