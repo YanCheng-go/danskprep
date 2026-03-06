@@ -237,9 +237,10 @@ const en = {
 
   // Support / Donate
   'support.title': 'Support',
-  'support.dialogTitle': 'Buy the developer a coffee',
-  'support.dialogDesc': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying us a coffee via MobilePay:',
+  'support.dialogTitle': 'Support the developer',
+  'support.dialogDesc': 'DanskPrep is free and open-source. If it helps your exam prep, consider supporting us via MobilePay:',
   'support.thankYou': 'Every coffee helps keep DanskPrep free and improving. Tak!',
+  'support.buymeacoffee': 'Or sponsor the project on Buy Me a Coffee',
   'donate.support': 'Support with MobilePay',
   'donate.title': 'Support DanskPrep',
   'donate.description': 'DanskPrep is open-source and free. If it helps your exam prep, consider supporting via MobilePay.',
@@ -432,7 +433,7 @@ const en = {
   // Welcome — Final CTA + support
   'welcome.finalCta.title': 'Ready to pass your exam?',
   'welcome.finalCta.subtitle': 'Jump in and start practicing. No signup required.',
-  'welcome.support.text': 'DanskPrep is free and open-source. If it helps your exam prep, consider buying the developer a coffee.',
+  'welcome.support.text': 'DanskPrep is free and open-source. If it helps your exam prep, consider supporting the developer.',
   'welcome.support.moduleBadge': 'PD3 Module 2 \u00b7 More modules coming',
   'welcome.wordsDiscovered': '{count} words discovered',
 
