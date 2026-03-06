@@ -80,4 +80,4 @@ See [DEVELOPMENT.md](DEVELOPMENT.md) for setup, commands, workflow, and the full
 
 ## License
 
-MIT
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — free to share and adapt for non-commercial use with attribution.
