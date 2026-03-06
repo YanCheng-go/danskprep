@@ -4,6 +4,7 @@ import { useTranslation } from '@/lib/i18n'
 
 // Hardcoded — not in i18n translations to reduce exposure if site is compromised
 const MOBILEPAY_NUMBER = ['+45', '5272', '8520'].join(' ')
+const SPONSOR_URL = 'https://buymeacoffee.com/maverickmiaow'
 
 interface SupportDialogProps {
   open: boolean
@@ -28,6 +29,14 @@ export function SupportDialog({ open, onOpenChange }: SupportDialogProps) {
             <p className="text-2xl font-bold tracking-wider text-center select-all">{MOBILEPAY_NUMBER}</p>
           </div>
           <p className="text-xs text-muted-foreground text-center">{t('support.thankYou')}</p>
+          <a
+            href={SPONSOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-pink-500 hover:text-pink-600 dark:hover:text-pink-400 underline underline-offset-4 transition-colors"
+          >
+            {t('support.buymeacoffee')}
+          </a>
         </div>
       </DialogContent>
     </Dialog>

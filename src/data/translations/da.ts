@@ -239,9 +239,10 @@ const da: Record<TranslationKeys, string> = {
 
   // Support / Donate
   'support.title': 'Støt',
-  'support.dialogTitle': 'Køb udvikleren en kaffe',
-  'support.dialogDesc': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe os en kaffe via MobilePay:',
+  'support.dialogTitle': 'Støt udvikleren',
+  'support.dialogDesc': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du støtte os via MobilePay:',
   'support.thankYou': 'Hver kaffe hjælper med at holde DanskPrep gratis og i udvikling. Tak!',
+  'support.buymeacoffee': 'Eller støt projektet på Buy Me a Coffee',
   'donate.support': 'Støt med MobilePay',
   'donate.title': 'Støt DanskPrep',
   'donate.description': 'DanskPrep er open source og gratis. Hvis det hjælper din eksamensforberedelse, kan du overveje at støtte via MobilePay.',
@@ -434,7 +435,7 @@ const da: Record<TranslationKeys, string> = {
   // Welcome — Final CTA + support
   'welcome.finalCta.title': 'Klar til at bestå din eksamen?',
   'welcome.finalCta.subtitle': 'Hop ind og begynd at øve. Ingen tilmelding nødvendig.',
-  'welcome.support.text': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du købe udvikleren en kaffe.',
+  'welcome.support.text': 'DanskPrep er gratis og open source. Hvis det hjælper din eksamensforberedelse, kan du overveje at støtte udvikleren.',
   'welcome.support.moduleBadge': 'PD3 Modul 2 \u00b7 Flere moduler kommer',
   'welcome.wordsDiscovered': '{count} ord opdaget',
 
